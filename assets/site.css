@@ -1,0 +1,598 @@
+/* ============================================================
+   ReplyPort - replyport.github.io
+   Direction A, approved design. Values mirror "ReplyPort Site.dc.html".
+   Do not restyle without a corresponding change to the design source.
+   ============================================================ */
+
+/* ---------- 1 - Fonts (self-hosted, OFL, variable, latin + latin-ext) --- */
+
+@font-face{
+  font-family:'Libre Franklin';font-style:normal;font-weight:300 700;font-display:swap;
+  src:url(fonts/libre-franklin-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Libre Franklin';font-style:normal;font-weight:300 700;font-display:swap;
+  src:url(fonts/libre-franklin-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Spline Sans Mono';font-style:normal;font-weight:300 700;font-display:swap;
+  src:url(fonts/spline-sans-mono-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Spline Sans Mono';font-style:normal;font-weight:300 700;font-display:swap;
+  src:url(fonts/spline-sans-mono-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* ---------- 2 - Tokens ---------------------------------------------- */
+
+:root{
+  --paper:#FAF9F5;
+  --paper-alt:#F4F2EB;
+  --panel:#FFFFFF;
+  --ink:#0F0F0E;
+  --body:#3B3A36;
+  --muted:#75736B;
+  --muted-2:#9A978E;
+  --rule:#E5E2D9;
+  --rule-alt:#DDD9CE;
+  --rule-dark:#2B2A27;
+  --signal:#8A2E3B;
+  --signal-light:#C4726F;
+  --on-dark:#B7B4AC;
+  --on-dark-strong:#E4E1D9;   /* secondary button label on ink */
+  --on-dark-muted:#8B8880;    /* "No" values inside the Send row */
+  --border-strong:#CFCBBF;
+
+  --sans:'Libre Franklin','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'Spline Sans Mono',ui-monospace,Consolas,'Courier New',monospace;
+
+  --gutter:40px;
+  --content:1200px;
+
+  /* mark stroke defaults - the proportional rule from the handoff */
+  --rp-w:9%;
+  --rp-h:60%;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+[hidden]{display:none !important}
+
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:normal;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+h1,h2,h3,p{margin:0}
+img,svg{display:block}
+
+a{
+  color:var(--ink);
+  text-decoration:none;
+  transition:color 120ms ease,background-color 120ms ease,border-color 120ms ease;
+}
+a:hover{color:var(--signal)}
+a:focus-visible,summary:focus-visible{
+  outline:2px solid var(--signal);
+  outline-offset:3px;
+}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:10;
+  background:var(--ink);color:var(--paper);padding:12px 20px;font-size:14px;
+}
+.skip-link:focus{left:0;color:var(--paper)}
+
+.visually-hidden{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
+
+/* ---------- 3 - Layout scaffolding ---------------------------------- */
+
+/* The design is content-box: 1200px of content plus 40px gutters = 1280px.
+   With border-box the same result is expressed as content + both gutters. */
+.wrap{
+  max-width:calc(var(--content) + var(--gutter) * 2);
+  margin:0 auto;
+  padding-inline:var(--gutter);
+}
+
+.band{border-bottom:1px solid var(--rule)}
+.band--alt{background:var(--paper-alt)}
+.band--ink{background:var(--ink);color:var(--paper);border-bottom:0}
+
+[id]{scroll-margin-top:24px}
+
+/* ---------- 4 - Typography roles ------------------------------------ */
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.eyebrow--wide{letter-spacing:.14em}
+.eyebrow--widest{letter-spacing:.16em}
+.eyebrow--signal{color:var(--signal)}
+.eyebrow--signal-light{color:var(--signal-light)}
+
+.meta{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--muted);
+}
+.meta--tracked{letter-spacing:.02em}
+
+.lead{font-size:17px;line-height:1.7;color:var(--body)}
+
+/* ---------- 5 - The mark -------------------------------------------- */
+
+.rp-mark{
+  position:relative;
+  display:inline-block;
+  width:28px;height:28px;
+  background:var(--ink);
+  flex:none;
+}
+.rp-mark > i{
+  position:absolute;left:50%;top:50%;
+  width:var(--rp-w);height:var(--rp-h);
+  background:var(--paper);
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+.rp-mark--inverse{background:var(--paper)}
+.rp-mark--inverse > i{background:var(--ink)}
+
+/* Exact stroke geometry per size in use, as drawn in the design file. */
+.rp-mark--16{width:16px;height:16px;--rp-w:2px;--rp-h:10px}
+.rp-mark--24{width:24px;height:24px;--rp-w:2.5px;--rp-h:14px}
+.rp-mark--28{width:28px;height:28px;--rp-w:2.5px;--rp-h:17px}
+.rp-mark--34{width:34px;height:34px;--rp-w:3px;--rp-h:20px}
+.rp-mark--84{width:84px;height:84px;--rp-w:6px;--rp-h:48px}
+
+/* States - the same three the Windows tray icon uses. */
+@keyframes rp-spin{
+  from{transform:translate(-50%,-50%) rotate(45deg)}
+  to  {transform:translate(-50%,-50%) rotate(405deg)}
+}
+.rp-mark--idle > i{transform:translate(-50%,-50%) rotate(45deg)}
+.rp-mark--working > i{animation:rp-spin 2.6s linear infinite}
+.rp-mark--ready > i{transform:translate(-50%,-50%) rotate(0deg)}
+
+/* Non-motion cue for the working state. */
+.rp-mark__frame{
+  position:absolute;inset:-1px;
+  border:2px solid var(--signal);
+  opacity:0;
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rp-mark--working > i{animation:none}
+  .rp-mark--working:not(.rp-mark--framed){box-shadow:inset 0 0 0 2px var(--signal)}
+  .rp-mark__frame{opacity:1}
+}
+
+/* ---------- 6 - Buttons --------------------------------------------- */
+
+.btn{
+  display:inline-block;
+  padding:16px 28px;
+  font-size:16px;
+  font-weight:500;
+  border-radius:0;
+  background:var(--ink);
+  color:var(--paper);
+  text-align:center;
+  white-space:nowrap;
+}
+.btn:hover{color:var(--paper);background:#000}
+.btn--secondary{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--border-strong);
+  padding:16px 26px;
+  font-weight:400;
+}
+.btn--secondary:hover{color:var(--signal);background:transparent;border-color:var(--signal)}
+.btn--small{padding:11px 20px;font-size:14px}
+.btn--on-ink{background:var(--paper);color:var(--ink)}
+.btn--on-ink:hover{background:#fff;color:var(--ink)}
+.btn--ghost-on-ink{
+  background:transparent;color:var(--on-dark-strong);
+  border:1px solid var(--body);font-weight:400;padding:16px 26px;
+}
+.btn--ghost-on-ink:hover{color:var(--signal-light);border-color:var(--signal-light);background:transparent}
+
+/* ---------- 7 - Nav (section 1) ------------------------------------- */
+
+.nav__bar{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-block:26px;
+}
+.lockup{display:flex;align-items:center;gap:13px}
+.lockup:hover{color:var(--ink)}
+.wordmark{font-size:20px;font-weight:600;letter-spacing:-.032em}
+.nav__links{display:flex;gap:36px;font-size:15px;color:var(--body)}
+.nav__links a{color:var(--ink)}
+.nav__links a:hover{color:var(--signal)}
+.nav__actions{display:flex;align-items:center;gap:18px}
+.nav__disclosure{display:none}
+
+/* ---------- 8 - Hero (section 2) ------------------------------------ */
+
+.hero{
+  padding-block:104px 96px;
+  display:grid;grid-template-columns:1.02fr 1fr;gap:88px;align-items:center;
+}
+.hero__copy{display:flex;flex-direction:column;gap:34px}
+.hero h1{
+  font-size:66px;line-height:1.02;font-weight:500;letter-spacing:-.042em;
+  text-wrap:pretty;
+}
+.hero__lead{font-size:19px;line-height:1.65;color:var(--body);max-width:47ch}
+.hero__ctas{display:flex;gap:16px;align-items:center;padding-top:4px;flex-wrap:wrap}
+
+.hero__demo{display:flex;flex-direction:column;gap:16px}
+.panel{border:1px solid var(--ink);background:var(--panel)}
+.panel__prompt{padding:20px 24px;font-size:17px;line-height:1.5;color:var(--ink)}
+.panel__status{
+  border-top:1px solid var(--rule);
+  padding:16px 24px;
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:12px;color:var(--signal);letter-spacing:.04em;
+}
+.divider{display:flex;align-items:center;gap:14px;padding:6px 0}
+.divider__line{height:1px;flex:1;background:var(--rule)}
+
+.draft__head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:13px 24px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.draft__check{display:flex;align-items:center;gap:8px}
+.draft__dot{width:6px;height:6px;background:var(--ink);display:block;flex:none}
+.draft__body{padding:24px;display:flex;flex-direction:column;gap:11px}
+.draft__to{display:flex;gap:10px;font-size:13px;color:var(--muted);font-family:var(--mono)}
+.draft__to b{color:var(--body);font-weight:400}
+.draft__subject{font-size:18px;font-weight:500;letter-spacing:-.02em}
+.draft__text{font-size:16px;line-height:1.7;color:var(--body)}
+.draft__foot{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 24px;border-top:1px solid var(--rule);
+}
+.draft__state{font-size:13px;color:var(--muted)}
+.draft__actions{display:flex;gap:10px;align-items:center}
+.chip{border:1px solid var(--border-strong);padding:9px 18px;font-size:14px}
+.chip--send{background:var(--signal);color:#fff;padding:9px 22px;font-weight:500;border:0}
+
+/* ---------- 9 - What ReplyPort is (section 3) ----------------------- */
+
+.explain{padding-block:88px;display:grid;grid-template-columns:.9fr 1.1fr;gap:80px}
+.explain__body{display:flex;flex-direction:column;gap:26px}
+.statement{
+  font-size:27px;line-height:1.45;font-weight:400;letter-spacing:-.02em;
+  max-width:40ch;text-wrap:pretty;
+}
+.explain__para{font-size:17px;line-height:1.75;color:var(--body);max-width:60ch}
+.reassure{display:flex;gap:44px;padding-top:12px;border-top:1px solid var(--rule-alt);margin:0}
+.reassure > div{display:flex;flex-direction:column;gap:6px;padding-top:20px}
+.reassure dt{font-size:15px;font-weight:600}
+.reassure dd{margin:0;font-size:14px;line-height:1.6;color:var(--body);max-width:24ch}
+
+/* ---------- 10 - Section headers (4, 5, 7) -------------------------- */
+
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:60px}
+.sec-head__stack{display:flex;flex-direction:column;gap:18px}
+.h2{font-size:44px;font-weight:500;letter-spacing:-.04em;line-height:1.05}
+.h2--40{font-size:40px;letter-spacing:-.038em;line-height:1.08}
+.h2--34{font-size:34px;letter-spacing:-.035em;line-height:1.12}
+.h2--46{font-size:46px}
+
+/* ---------- 11 - Three steps (section 4) ---------------------------- */
+
+.steps-sec{padding-block:96px}
+.steps-sec .sec-head{margin-bottom:56px}
+
+/* Hairline grids: the 1px gap over a rule-coloured bed draws the lines. */
+.hair-grid{
+  display:grid;gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+}
+.hair-grid--3{grid-template-columns:repeat(3,1fr)}
+.hair-grid--2{grid-template-columns:1fr 1fr;background:var(--rule-alt);border-color:var(--rule-alt)}
+.hair-grid > *{background:var(--paper)}
+
+.step{padding:40px 36px 44px;display:flex;flex-direction:column;gap:18px}
+.step__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.step__arrow{font-family:var(--mono);font-size:11px;color:var(--border-strong);flex:none}
+.step__title{font-size:23px;font-weight:500;letter-spacing:-.025em}
+.step__text{font-size:16px;line-height:1.7;color:var(--body)}
+.step--you{box-shadow:inset 3px 0 0 var(--signal)}
+
+/* ---------- 12 - Capability table (section 5) ----------------------- */
+
+.boundary-sec{padding-block:96px}
+.boundary-sec .sec-head{margin-bottom:48px}
+
+.cap{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:var(--paper);
+  border:1px solid var(--ink);
+  text-align:left;
+}
+.cap thead th{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-size:11px;font-weight:400;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 20px;
+}
+.cap thead th:first-child{padding:15px 28px}
+.cap tbody th{font-weight:400;font-size:17px;padding:22px 28px;vertical-align:middle}
+.cap tbody td{font-size:16px;color:var(--body);padding:22px 20px;vertical-align:middle}
+.cap tbody tr{border-bottom:1px solid var(--rule)}
+.cap .is-no{color:var(--muted-2)}
+.cap tbody tr.cap__lastlight{border-bottom:1px solid var(--ink)}
+
+/* The Send row is the loudest element on the page; its rules are scoped
+   through tbody so they outrank the generic cell rules above. */
+.cap tbody tr.cap__send{background:var(--ink);color:var(--paper);border-bottom:0}
+.cap tbody tr.cap__send th{padding:34px 28px}
+.cap tbody tr.cap__send td{padding:34px 20px;font-size:18px;color:var(--on-dark-muted)}
+.cap__send-label{display:flex;align-items:center;gap:18px}
+.cap__send-word{font-size:26px;font-weight:600;letter-spacing:-.03em}
+.cap tbody tr.cap__send td.cap__only{
+  background:var(--signal);color:var(--paper);
+  font-size:18px;font-weight:600;letter-spacing:-.01em;
+}
+
+.footnotes{display:flex;gap:36px;margin-top:24px;font-size:14px;line-height:1.7;color:var(--body)}
+.footnotes p{max-width:46ch}
+
+/* ---------- 13 - Mark states (section 6) ---------------------------- */
+
+.mark-sec{padding-block:88px;display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+.mark-sec__copy{display:flex;flex-direction:column;gap:20px}
+.mark-sec__para{font-size:16px;line-height:1.75;color:var(--body);max-width:44ch}
+.state{padding:34px 28px;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.state__meta{display:flex;flex-direction:column;gap:7px}
+.state__text{font-size:15px;line-height:1.6;color:var(--body)}
+
+/* ---------- 14 - Windows & Outlook (section 7) ---------------------- */
+
+.win-sec{padding-block:96px}
+.win-sec .sec-head{margin-bottom:52px}
+.card{padding:44px 40px;display:flex;flex-direction:column;gap:26px}
+.speclist{display:flex;flex-direction:column}
+.speclist > div{
+  display:flex;justify-content:space-between;gap:24px;
+  padding:15px 0;border-bottom:1px solid var(--rule);font-size:16px;
+}
+.speclist > div:last-child{border-bottom:0}
+.speclist .status{color:var(--body);flex:none}
+.speclist .status--pending{color:var(--muted-2)}
+
+.setup{display:flex;flex-direction:column;gap:22px}
+.setup__item{display:flex;gap:20px;align-items:flex-start}
+.setup__num{font-family:var(--mono);font-size:12px;color:var(--signal);padding-top:3px;flex:none}
+.setup__body{display:flex;flex-direction:column;gap:5px}
+.setup__title{font-size:17px;font-weight:500}
+.setup__text{font-size:15px;line-height:1.6;color:var(--body)}
+
+/* ---------- 15 - Early access (section 8) --------------------------- */
+
+.beta{padding-block:104px;display:grid;grid-template-columns:1.05fr 1fr;gap:88px;align-items:center}
+.beta__copy{display:flex;flex-direction:column;gap:26px}
+.beta h2{max-width:22ch}
+.beta__para{font-size:18px;line-height:1.7;color:var(--on-dark);max-width:48ch}
+.beta__ctas{display:flex;gap:14px;align-items:center;padding-top:6px;flex-wrap:wrap}
+.today{border:1px solid var(--rule-dark);padding:40px;display:flex;flex-direction:column;gap:24px}
+.today__rows{display:flex;flex-direction:column;margin:0}
+.today__row{
+  display:flex;justify-content:space-between;gap:24px;
+  padding:14px 0;border-bottom:1px solid var(--rule-dark);font-size:15px;
+}
+.today__row:last-child{border-bottom:0}
+.today__rows dt{color:var(--on-dark)}
+.today__rows dd{margin:0}
+.today__zero{color:var(--signal-light);font-weight:600}
+.today__note{font-size:13px;line-height:1.7;color:var(--muted)}
+
+/* ---------- 16 - Footer (section 9) --------------------------------- */
+
+.foot{background:var(--ink);color:var(--on-dark);border-top:1px solid var(--rule-dark)}
+.foot__grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:56px;
+  padding-block:64px 44px;
+}
+.foot__brand{display:flex;flex-direction:column;gap:16px}
+.foot__lockup{display:flex;align-items:center;gap:12px}
+.foot__wordmark{font-size:17px;font-weight:600;letter-spacing:-.03em;color:var(--paper)}
+.foot__blurb{font-size:14px;line-height:1.7;max-width:32ch}
+.foot__col{display:flex;flex-direction:column;gap:12px;font-size:14px}
+.foot__col .eyebrow{margin-bottom:4px}
+.foot__col a{color:var(--on-dark)}
+.foot__col a:hover{color:var(--signal-light)}
+/* Destinations that do not exist yet render as plain text, so the footer
+   never ships a dead link. Swap the span for an <a href> once published. */
+.foot__pending{color:var(--on-dark)}
+.foot__legal{
+  display:flex;justify-content:space-between;align-items:center;gap:24px;
+  border-top:1px solid var(--rule-dark);
+  padding:24px var(--gutter) 56px;
+  max-width:calc(var(--content) + var(--gutter) * 2);
+  margin:0 auto;
+  font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;
+}
+
+/* ============================================================
+   18 - Responsive: a linearisation of the same design.
+   ============================================================ */
+
+/* --- 900-1239px ----------------------------------------------------- */
+@media (max-width:1239px){
+  :root{--gutter:32px}
+  .hero{gap:48px;padding-block:88px 80px}
+  .hero h1{font-size:52px}
+  .h2{font-size:38px}
+  .h2--40{font-size:38px}
+  .h2--46{font-size:38px}
+  .h2--34{font-size:32px}
+  .explain,.mark-sec{gap:48px}
+  .beta{gap:48px}
+  .foot__grid{gap:40px}
+  .reassure{gap:28px}
+  .nav__links{gap:26px}
+}
+
+/* --- 640-899px: single column --------------------------------------- */
+@media (max-width:899px){
+  .nav__links{display:none}
+  .nav__bar{padding-block:20px}
+  .nav__disclosure{display:block;border-top:1px solid var(--rule)}
+  .nav__disclosure summary{
+    list-style:none;cursor:pointer;padding:14px 0;
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav__disclosure summary::-webkit-details-marker{display:none}
+  .nav__disclosure summary::after{content:'+';font-size:14px;line-height:1}
+  .nav__disclosure[open] summary::after{content:'\2013'}
+  .nav__menu{display:flex;flex-direction:column;padding-bottom:8px}
+  .nav__menu a{
+    padding:12px 0;font-size:16px;color:var(--ink);
+    border-top:1px solid var(--rule);
+  }
+
+  .hero{grid-template-columns:1fr;gap:40px;padding-block:64px}
+  .hero h1{font-size:40px}
+  .hero__lead{font-size:18px;max-width:none}
+  .hero__copy{gap:26px}
+
+  .explain{grid-template-columns:1fr;gap:24px;padding-block:64px}
+  .statement{font-size:22px;max-width:none}
+  .explain__para{max-width:none}
+  .reassure{flex-direction:column;gap:28px;padding-top:0;border-top:0}
+  .reassure > div{padding-top:0}
+  .reassure dd{max-width:none}
+
+  .sec-head{flex-direction:column;align-items:flex-start;gap:20px}
+  .sec-head p{max-width:none}
+  .h2,.h2--40,.h2--46{font-size:30px;letter-spacing:-.03em;line-height:1.1;max-width:none}
+  .h2--34{font-size:26px;max-width:none}
+
+  .steps-sec,.boundary-sec,.win-sec{padding-block:64px}
+  .steps-sec .sec-head{margin-bottom:36px}
+  .boundary-sec .sec-head{margin-bottom:32px}
+  .win-sec .sec-head{margin-bottom:36px}
+  .hair-grid--3,.hair-grid--2{grid-template-columns:1fr}
+  .step{padding:32px 28px 36px}
+  .card{padding:34px 28px}
+
+  .mark-sec{grid-template-columns:1fr;gap:36px;padding-block:64px}
+  .mark-sec__para{max-width:none}
+
+  .beta{grid-template-columns:1fr;gap:40px;padding-block:64px}
+  .beta__para{max-width:none}
+  .today{padding:28px}
+
+  .footnotes{flex-direction:column;gap:16px}
+  .footnotes p{max-width:none}
+
+  .foot__grid{grid-template-columns:1fr 1fr;gap:36px;padding-block:56px 36px}
+  .foot__brand{grid-column:1 / -1}
+  .foot__blurb{max-width:44ch}
+  .foot__legal{flex-direction:column;align-items:flex-start;gap:10px;padding-bottom:44px}
+
+  /* Capability table -> one stacked block per capability, with the three
+     label/value pairs aligned in their own columns so nothing wraps raggedly. */
+  .cap,.cap tbody,.cap tr,.cap th,.cap td{display:block;width:auto}
+  .cap{table-layout:auto}
+  .cap thead{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);
+  }
+  .cap tbody tr{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    padding:24px;border-bottom:1px solid var(--rule);
+  }
+  .cap tbody th{grid-column:1 / -1;padding:0;font-size:17px}
+  .cap tbody td{
+    display:flex;flex-direction:column;gap:5px;padding:0;font-size:16px;
+  }
+  .cap tbody td::before{
+    content:attr(data-label);
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .cap tbody tr.cap__lastlight{border-bottom:1px solid var(--ink)}
+
+  .cap tbody tr.cap__send{padding:24px}
+  .cap tbody tr.cap__send th{padding:0}
+  .cap tbody tr.cap__send td{padding:0;font-size:16px}
+  .cap tbody tr.cap__send td::before{color:var(--on-dark-muted)}
+  .cap__send-word{font-size:22px}
+  .cap tbody tr.cap__send td.cap__only{
+    background:var(--signal);padding:8px 12px;margin:-8px -12px;font-size:16px;
+  }
+  .cap tbody tr.cap__send td.cap__only::before{color:var(--paper);opacity:.75}
+
+/* --- <640px ---------------------------------------------------------- */
+@media (max-width:639px){
+  :root{--gutter:20px}
+  .hero h1{font-size:34px}
+  .h2,.h2--40,.h2--46{font-size:26px}
+  .h2--34{font-size:24px}
+  .hero,.explain,.steps-sec,.boundary-sec,.mark-sec,.win-sec,.beta{padding-block:56px}
+  .hero__ctas,.beta__ctas{flex-direction:column;align-items:stretch;gap:12px;width:100%}
+  .hero__ctas .btn,.beta__ctas .btn{width:100%}
+  .nav__actions .eyebrow{display:none}
+  .draft__head{flex-direction:column;align-items:flex-start;gap:8px}
+  .draft__foot{flex-direction:column;align-items:flex-start;gap:14px}
+  .step{padding:28px 24px 32px}
+  .card{padding:28px 24px}
+  .today{padding:24px}
+  .foot__grid{grid-template-columns:1fr;gap:32px}
+  .rp-mark--84{width:64px;height:64px;--rp-w:5px;--rp-h:37px}
+}
+
+/* --- <400px: keep the lockup and the install button on one row --------- */
+@media (max-width:399px){
+  .nav__bar{gap:12px}
+  .lockup{gap:10px}
+  .wordmark{font-size:17px}
+  .nav__bar .rp-mark--28{width:24px;height:24px;--rp-w:2.5px;--rp-h:14px}
+  .nav__actions .btn--small{padding:9px 12px;font-size:12px}
+}
+
+/* ---------- 19 - Print ----------------------------------------------- */
+@media print{
+  .band--ink,.foot,.cap thead th,.cap__send,.cap__only{
+    background:#fff;color:#000;
+  }
+  .beta__para,.today__rows dt,.foot__blurb,.today__note,.foot__legal,.foot__col a{color:#000}
+  .btn,.chip,.nav__disclosure,.skip-link{display:none}
+  html{scroll-behavior:auto}
+}

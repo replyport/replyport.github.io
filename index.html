@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReplyPort — AI drafts it. You send it.</title>
+<meta name="description" content="ReplyPort is a small Windows program that lets ChatGPT or Claude put real reply drafts in your Outlook Drafts folder. It has no send path. Only you send.">
+<link rel="canonical" href="https://replyport.github.io/">
+<meta name="theme-color" content="#FAF9F5">
+<meta name="color-scheme" content="light">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ReplyPort">
+<meta property="og:url" content="https://replyport.github.io/">
+<meta property="og:title" content="ReplyPort — AI drafts it. You send it.">
+<meta property="og:description" content="Bring AI to your Outlook inbox, without giving it the Send button. Private beta for Windows 10 and 11.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReplyPort — AI drafts it. You send it.">
+<meta name="twitter:description" content="Bring AI to your Outlook inbox, without giving it the Send button. Private beta for Windows 10 and 11.">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preload" href="assets/fonts/libre-franklin-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- 1 · nav -->
+<header class="band">
+  <div class="wrap nav__bar">
+    <a class="lockup" href="#top" aria-label="ReplyPort, home">
+      <span class="rp-mark rp-mark--28 rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+      <span class="wordmark">ReplyPort</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#boundary">What it can't do</a>
+      <a href="#windows">Windows &amp; Outlook</a>
+      <a href="#beta">Early access</a>
+    </nav>
+    <div class="nav__actions">
+      <span class="eyebrow eyebrow--signal">Private beta</span>
+      <!-- PLACEHOLDER: no public installer URL yet; points at the early-access section. -->
+      <a class="btn btn--small" href="#beta" data-pending="install-url">Install for Windows</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <details class="nav__disclosure">
+      <summary>Menu</summary>
+      <nav class="nav__menu" aria-label="Primary, compact">
+        <a href="#how">How it works</a>
+        <a href="#boundary">What it can't do</a>
+        <a href="#windows">Windows &amp; Outlook</a>
+        <a href="#beta">Early access</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 2 · hero -->
+  <section class="band">
+    <div class="wrap hero">
+      <div class="hero__copy">
+        <p class="eyebrow eyebrow--widest eyebrow--signal">Early access &#183; Windows 10 &amp; 11</p>
+        <h1>Bring AI to your Outlook inbox, without giving it the Send button.</h1>
+        <p class="hero__lead">Ask ChatGPT or Claude what needs attention in your mailbox, then ask it for the replies. ReplyPort puts real drafts in your Outlook Drafts folder. Nothing leaves until you send it yourself.</p>
+        <div class="hero__ctas">
+          <!-- PLACEHOLDER: no public installer URL yet. -->
+          <a class="btn" href="#beta" data-pending="install-url">Install for Windows</a>
+          <!-- PLACEHOLDER: the demo video does not exist yet. Remove `hidden` once it does. -->
+          <a class="btn btn--secondary" href="#" data-pending="demo-video" hidden>Watch a 40-second demo</a>
+        </div>
+        <p class="meta meta--tracked">Free while in early access</p>
+      </div>
+
+      <div class="hero__demo">
+        <p class="eyebrow eyebrow--wide">What you type</p>
+        <div class="panel">
+          <p class="panel__prompt">Reply to Nida saying thanks, that's helpful.</p>
+          <p class="panel__status">
+            <span class="rp-mark rp-mark--16 rp-mark--working" role="img" aria-label="ReplyPort is working"><i></i></span>
+            ReplyPort is preparing the draft on your PC
+          </p>
+        </div>
+
+        <div class="divider" role="presentation">
+          <span class="divider__line"></span>
+          <span class="eyebrow eyebrow--wide">What appears in Outlook</span>
+          <span class="divider__line"></span>
+        </div>
+
+        <div class="panel">
+          <div class="draft__head">
+            <span>Outlook &#183; Drafts</span>
+            <span class="draft__check"><span class="draft__dot"></span>Thread &amp; recipient checked</span>
+          </div>
+          <div class="draft__body">
+            <p class="draft__to"><span>To:</span><b>Nida Rahman</b></p>
+            <p class="draft__subject">Re: Q3 handover notes</p>
+            <p class="draft__text">Thanks Nida &#8212; that's helpful. I'll work from your notes and come back if anything is unclear.</p>
+          </div>
+          <div class="draft__foot">
+            <span class="draft__state">Draft &#183; waiting for you</span>
+            <div class="draft__actions" aria-hidden="true">
+              <span class="chip">Edit</span>
+              <span class="chip chip--send">Send</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · what ReplyPort is -->
+  <section class="band band--alt">
+    <div class="wrap explain">
+      <h2 class="eyebrow eyebrow--wide">What ReplyPort is</h2>
+      <div class="explain__body">
+        <p class="statement">A small Windows program that sits between your AI assistant and the Outlook mailbox you already use.</p>
+        <p class="explain__para">It runs on your PC, next to Outlook. When you ask your assistant for a reply, ReplyPort is the part that touches your mailbox: it creates the draft, checks it is on the right thread and addressed to the right person, and then stops. There is no automation waiting to fire, no queue of scheduled messages, and no send button anywhere in ReplyPort.</p>
+        <dl class="reassure">
+          <div>
+            <dt>Your mail stays yours</dt>
+            <dd>We keep no copy of your mailbox on our servers.</dd>
+          </div>
+          <div>
+            <dt>You choose the folders</dt>
+            <dd>Grant access per folder, and change it whenever you like.</dd>
+          </div>
+          <div>
+            <dt>Outlook doesn't change</dt>
+            <dd>No add-in ribbon, no new inbox to learn.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · three steps -->
+  <section class="band" id="how">
+    <div class="wrap steps-sec">
+      <div class="sec-head">
+        <h2 class="h2" style="max-width:20ch">Three steps, and one of them is yours.</h2>
+        <p class="lead" style="max-width:38ch">The split is deliberate. The AI understands and prepares. ReplyPort does the mailbox work locally. Sending stays a human act.</p>
+      </div>
+      <div class="hair-grid hair-grid--3">
+        <div class="step">
+          <div class="step__head">
+            <span class="eyebrow">01 &#8212; The AI</span>
+            <span class="step__arrow" aria-hidden="true">&#8594;</span>
+          </div>
+          <h3 class="step__title">Ask what needs attention</h3>
+          <p class="step__text">Your assistant reads the threads you've allowed and tells you where people are waiting on you.</p>
+        </div>
+        <div class="step">
+          <div class="step__head">
+            <span class="eyebrow">02 &#8212; ReplyPort</span>
+            <span class="step__arrow" aria-hidden="true">&#8594;</span>
+          </div>
+          <h3 class="step__title">Ask for the replies</h3>
+          <p class="step__text">ReplyPort creates each draft in your real Outlook mailbox and verifies it before you ever see it.</p>
+        </div>
+        <div class="step step--you">
+          <div class="step__head">
+            <span class="eyebrow eyebrow--signal">03 &#8212; You</span>
+          </div>
+          <h3 class="step__title">Read it, then send it</h3>
+          <p class="step__text">Open Drafts as usual, change whatever you like, and press Send. ReplyPort can't.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · the boundary -->
+  <section class="band band--alt" id="boundary">
+    <div class="wrap boundary-sec">
+      <div class="sec-head">
+        <div class="sec-head__stack">
+          <p class="eyebrow eyebrow--wide">The boundary, written down</p>
+          <h2 class="h2" style="max-width:22ch">Neither the AI nor ReplyPort can send email.</h2>
+        </div>
+        <p class="lead" style="max-width:34ch">Not as a setting you can switch on. The ability simply isn't built.</p>
+      </div>
+
+      <table class="cap">
+        <caption class="visually-hidden">What the AI, ReplyPort and you can each do</caption>
+        <colgroup>
+          <col style="width:42.2%"><col style="width:18.35%"><col style="width:21.1%"><col style="width:18.35%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Capability</th>
+            <th scope="col">AI</th>
+            <th scope="col">ReplyPort</th>
+            <th scope="col">You</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Read the threads you allow</th>
+            <td data-label="AI">Yes</td>
+            <td data-label="ReplyPort">Yes</td>
+            <td data-label="You">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Compose draft text</th>
+            <td data-label="AI">Yes</td>
+            <td data-label="ReplyPort" class="is-no">No</td>
+            <td data-label="You">Yes</td>
+          </tr>
+          <tr class="cap__lastlight">
+            <th scope="row">Write and verify the draft in Outlook</th>
+            <td data-label="AI" class="is-no">No</td>
+            <td data-label="ReplyPort">Yes, locally</td>
+            <td data-label="You">Yes</td>
+          </tr>
+          <tr class="cap__send">
+            <th scope="row">
+              <span class="cap__send-label">
+                <span class="rp-mark rp-mark--34 rp-mark--inverse rp-mark--ready" role="img" aria-label="ReplyPort, draft ready"><i></i></span>
+                <span class="cap__send-word">Send</span>
+              </span>
+            </th>
+            <td data-label="AI">No</td>
+            <td data-label="ReplyPort">No</td>
+            <td data-label="You" class="cap__only">Only you</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="footnotes">
+        <p>&#8220;Yes, locally&#8221; means the work happens in the ReplyPort process on your machine, against the Outlook profile already signed in there.</p>
+        <p>Every draft ReplyPort writes is checked against the thread it belongs to and the recipients on it before it appears in Drafts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · the mark and its states -->
+  <section class="band">
+    <div class="wrap mark-sec">
+      <div class="mark-sec__copy">
+        <p class="eyebrow eyebrow--wide">The mark tells you where it is</p>
+        <h2 class="h2 h2--34" style="max-width:24ch">One square, one stroke, three honest states.</h2>
+        <p class="mark-sec__para">The logo doubles as the tray icon. The stroke rests at 45&#176;, turns while ReplyPort is preparing something, and settles upright when a draft is waiting for you. If you've asked your system to reduce motion, the stroke never turns &#8212; the state is shown by the frame instead.</p>
+      </div>
+      <div class="hair-grid hair-grid--3">
+        <div class="state">
+          <span class="rp-mark rp-mark--84 rp-mark--idle" role="img" aria-label="Idle"><i></i></span>
+          <div class="state__meta">
+            <span class="eyebrow">Idle</span>
+            <p class="state__text">Connected, nothing to do.</p>
+          </div>
+        </div>
+        <div class="state">
+          <span class="rp-mark rp-mark--84 rp-mark--working rp-mark--framed" role="img" aria-label="Working"><i></i><span class="rp-mark__frame"></span></span>
+          <div class="state__meta">
+            <span class="eyebrow eyebrow--signal">Working</span>
+            <p class="state__text">Preparing a draft. Smooth rotation, one full turn per 2.6s.</p>
+          </div>
+        </div>
+        <div class="state">
+          <span class="rp-mark rp-mark--84 rp-mark--ready" role="img" aria-label="Draft ready"><i></i></span>
+          <div class="state__meta">
+            <span class="eyebrow">Draft ready</span>
+            <p class="state__text">Motion stops upright. Your turn.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · windows & outlook -->
+  <section class="band band--alt" id="windows">
+    <div class="wrap win-sec">
+      <div class="sec-head">
+        <h2 class="h2 h2--40" style="max-width:24ch">Runs on the Windows PC where your Outlook already lives.</h2>
+        <p class="lead" style="max-width:34ch">Two minutes to set up. Nothing to change in Outlook itself.</p>
+      </div>
+      <div class="hair-grid hair-grid--2">
+        <div class="card">
+          <h3 class="eyebrow">Compatibility</h3>
+          <div class="speclist">
+            <div><span>Windows 10 &#183; Windows 11</span><span class="status">Supported</span></div>
+            <div><span>Microsoft 365 &amp; Outlook.com mailboxes</span><span class="status">Supported</span></div>
+            <div><span>ChatGPT and Claude desktop assistants</span><span class="status">Supported</span></div>
+            <div><span>macOS &#183; Outlook Web only</span><span class="status status--pending">Not yet</span></div>
+            <div><span>Shared and delegated mailboxes</span><span class="status status--pending">In testing</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="eyebrow">Setup</h3>
+          <div class="setup">
+            <div class="setup__item">
+              <span class="setup__num">01</span>
+              <div class="setup__body">
+                <span class="setup__title">Run the installer</span>
+                <p class="setup__text">A single Windows installer, run once.</p>
+              </div>
+            </div>
+            <div class="setup__item">
+              <span class="setup__num">02</span>
+              <div class="setup__body">
+                <span class="setup__title">Sign in to Outlook, pick folders</span>
+                <p class="setup__text">Choose what your assistant may read. Inbox only is a fine place to start.</p>
+              </div>
+            </div>
+            <div class="setup__item">
+              <span class="setup__num">03</span>
+              <div class="setup__body">
+                <span class="setup__title">Connect your assistant</span>
+                <p class="setup__text">ReplyPort appears as a tool in ChatGPT or Claude. Then just ask.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · early access -->
+  <section class="band band--ink" id="beta">
+    <div class="wrap beta">
+      <div class="beta__copy">
+        <p class="eyebrow eyebrow--widest eyebrow--signal-light">Early access</p>
+        <h2 class="h2 h2--46">We're letting people in slowly, on purpose.</h2>
+        <p class="beta__para">ReplyPort touches real mail, so we'd rather learn from a small group of careful users than a large one. Tell us roughly how you use Outlook and we'll send you an installer and a way to reach us directly.</p>
+        <div class="beta__ctas">
+          <!-- PLACEHOLDER: final installer / Store URL pending. -->
+          <a class="btn btn--on-ink" href="#beta" data-pending="install-url">Install for Windows</a>
+          <!-- PLACEHOLDER: beta intake route (mailto, form or issue template) pending. -->
+          <a class="btn btn--ghost-on-ink" href="#beta" data-pending="beta-intake">Request a beta seat</a>
+        </div>
+        <p class="meta">Free during early access &#183; no card, no trial clock</p>
+      </div>
+      <div class="today">
+        <h3 class="eyebrow">Where we are today</h3>
+        <!-- The Release / Beta users / Drafts created rows from the design are
+             held back until there are real figures to print. See build-notes §9. -->
+        <dl class="today__rows">
+          <div class="today__row">
+            <dt>Emails sent by ReplyPort</dt>
+            <dd class="today__zero">0</dd>
+          </div>
+        </dl>
+        <p class="today__note">That last number is the one we intend never to change.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 9 · footer -->
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <div class="foot__lockup">
+        <span class="rp-mark rp-mark--24 rp-mark--inverse rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+        <span class="foot__wordmark">ReplyPort</span>
+      </div>
+      <p class="foot__blurb">AI drafts it. You send it. A small Windows product for people who still want to read their own email before it goes out.</p>
+    </div>
+    <nav class="foot__col" aria-label="Product">
+      <h2 class="eyebrow">Product</h2>
+      <a href="#how">How it works</a>
+      <a href="#boundary">Trust boundary</a>
+      <a href="#windows">Requirements</a>
+      <a href="#beta">Download</a>
+    </nav>
+    <nav class="foot__col" aria-label="Documentation">
+      <h2 class="eyebrow">Documentation</h2>
+      <!-- PLACEHOLDER: these pages do not exist yet, so they are not links. -->
+      <span class="foot__pending" data-pending="docs">Setup guide</span>
+      <span class="foot__pending" data-pending="docs">Known limitations</span>
+      <span class="foot__pending" data-pending="docs">Changelog</span>
+      <a href="https://github.com/replyport" rel="noopener">GitHub</a>
+    </nav>
+    <nav class="foot__col" aria-label="Company">
+      <h2 class="eyebrow">Company</h2>
+      <!-- PLACEHOLDER: privacy / data / contact destinations pending. -->
+      <span class="foot__pending" data-pending="legal">Privacy</span>
+      <span class="foot__pending" data-pending="legal">What we store</span>
+      <span class="foot__pending" data-pending="legal">Contact</span>
+    </nav>
+  </div>
+  <div class="foot__legal">
+    <span>&#169; 2026 ReplyPort &#183; Private beta &#183; Not affiliated with Microsoft</span>
+    <span>ReplyPort has no send capability.</span>
+  </div>
+</footer>
+
+</body>
+</html>
