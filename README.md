@@ -23,6 +23,16 @@ robots.txt, sitemap.xml, .nojekyll
 There is no JavaScript. The mark's three states, the responsive nav disclosure
 and the reduced-motion behaviour are all CSS.
 
+## Distribution
+
+The website does not host a direct `.exe` download. All install entry points go
+to the Microsoft Store listing:
+
+https://apps.microsoft.com/detail/9NQLG89QM7CL
+
+This keeps installation on the Store/MSIX path rather than asking users to run a
+directly downloaded executable.
+
 ## Design source
 
 The approved design is `ReplyPort Site.dc.html` (Direction A) with
@@ -40,7 +50,6 @@ comment. Search for `PLACEHOLDER`.
 
 | Item | `data-pending` | State |
 |---|---|---|
-| `Install for Windows` (nav, hero, section 8) | `install-url` | No public installer URL yet — all three anchor to `#beta` |
 | `Watch a 40-second demo` | `demo-video` | `hidden` until the video exists |
 | `Request a beta seat` | `beta-intake` | Needs a no-backend route (mailto / form / issue template) |
 | Setup guide, Known limitations, Changelog | `docs` | Pages do not exist; rendered as plain text, not links |
