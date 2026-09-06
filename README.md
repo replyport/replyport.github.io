@@ -2,9 +2,10 @@
 
 Public marketing site for **ReplyPort** — https://replyport.github.io
 
-ReplyPort is a small Windows program that lets an AI assistant put real reply
-drafts into your Outlook Drafts folder. It has no send path; only the person
-sends.
+ReplyPort lets people use compatible AI chats to search, triage and prepare
+replies across the Outlook accounts already configured on their Windows PC.
+It does not require an Outlook add-in, keeps mailbox routing separate, creates
+verified Outlook drafts locally, and has no send path.
 
 ## Stack
 
@@ -20,8 +21,8 @@ apple-touch-icon.png       180×180 mark
 robots.txt, sitemap.xml, .nojekyll
 ```
 
-There is no JavaScript. The mark's three states, the responsive nav disclosure
-and the reduced-motion behaviour are all CSS.
+There is no JavaScript. The mark states, responsive nav disclosure and
+reduced-motion behaviour are all CSS.
 
 ## Distribution
 
@@ -33,15 +34,30 @@ https://apps.microsoft.com/detail/9NQLG89QM7CL
 This keeps installation on the Store/MSIX path rather than asking users to run a
 directly downloaded executable.
 
-## Design source
+## Design and product source
 
-The approved design is `ReplyPort Site.dc.html` (Direction A) with
-`build-notes.md` as the implementation spec. Both live in the design handoff,
-not in this repo. This site reproduces that design; the desktop render is
-99.99% pixel-identical to it at 1440px.
+The visual system started from the approved Claude Design Direction A artifact
+(`ReplyPort Site.dc.html` plus `build-notes.md`). The live site now intentionally
+evolves the information architecture and copy while preserving that visual
+identity: black-square/white-stroke mark, Libre Franklin + Spline Sans Mono,
+off-white/ink/oxblood palette, grid, spacing and responsive treatment.
 
-**Do not restyle without a corresponding change to the design source.** Tokens,
-type scale and spacing in `assets/site.css` mirror the design file exactly.
+The canonical product intent and trust boundaries remain in the private
+`SergeyVAlexeev/MailBridge` engineering repository, especially
+`PRODUCT_VISION.md`, `AGENT_CONTEXT.md` and `PROTOCOL.md`.
+
+## Current positioning
+
+The site leads with the product value rather than the safety boundary:
+
+- no Outlook add-in required;
+- work across multiple configured Outlook accounts while keeping routing separate;
+- use compatible AI chats for search, triage and batch reply preparation;
+- real drafts are created and verified in Outlook;
+- only the user sends.
+
+The no-send property remains a core trust feature, but it is not the primary
+marketing headline.
 
 ## Placeholders still open
 
@@ -51,14 +67,12 @@ comment. Search for `PLACEHOLDER`.
 | Item | `data-pending` | State |
 |---|---|---|
 | `Watch a 40-second demo` | `demo-video` | `hidden` until the video exists |
-| `Request a beta seat` | `beta-intake` | Needs a no-backend route (mailto / form / issue template) |
 | Setup guide, Known limitations, Changelog | `docs` | Pages do not exist; rendered as plain text, not links |
 | Privacy, What we store, Contact | `legal` | Destinations not decided; rendered as plain text, not links |
 
-The `Release`, `Beta users` and `Drafts created` rows from the design are held
-back until there are real figures — see `build-notes.md` §9. `Emails sent by
-ReplyPort — 0` stays, because it is a positioning statement rather than a
-metric. No version number or download size appears on the page by design.
+No invented version number, download size, user count or usage metric should be
+added to the marketing page. `Emails sent by ReplyPort — 0` is a product-boundary
+statement, not a usage metric.
 
 ## Local preview
 
