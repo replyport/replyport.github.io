@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ReplyPort — AI for the Outlook accounts you already use</title>
-<meta name="description" content="Use ChatGPT or Claude to search, triage and draft across the Outlook accounts already on your Windows PC. No Outlook add-in required. You review and send.">
+<title>ReplyPort — AI for the Outlook accounts you already have</title>
+<meta name="description" content="Use the AI products you already work in to triage, search and draft across the Outlook accounts already configured on your Windows PC. No Outlook add-in required. Only you send.">
 <link rel="canonical" href="https://replyport.github.io/">
 <meta name="theme-color" content="#FAF9F5">
 <meta name="color-scheme" content="light">
@@ -12,11 +12,11 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ReplyPort">
 <meta property="og:url" content="https://replyport.github.io/">
-<meta property="og:title" content="ReplyPort — AI for the Outlook accounts you already use">
-<meta property="og:description" content="Search, triage and draft across multiple Outlook accounts with the AI tools you already use. No Outlook add-in required.">
+<meta property="og:title" content="ReplyPort — AI for the Outlook accounts you already have">
+<meta property="og:description" content="Triage a backlog, search several work mailboxes and prepare replies in batches — from the AI products you already use. No Outlook add-in required.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ReplyPort — AI for the Outlook accounts you already use">
-<meta name="twitter:description" content="Search, triage and draft across multiple Outlook accounts with the AI tools you already use. No Outlook add-in required.">
+<meta name="twitter:title" content="ReplyPort — AI for the Outlook accounts you already have">
+<meta name="twitter:description" content="Triage a backlog, search several work mailboxes and prepare replies in batches — from the AI products you already use. No Outlook add-in required.">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -29,347 +29,374 @@
 <body id="top">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="band">
-  <div class="wrap nav__bar">
+<header class="topbar">
+  <div class="wrap topbar__bar">
     <a class="lockup" href="#top" aria-label="ReplyPort, home">
-      <span class="rp-mark rp-mark--28 rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+      <span class="rp-mark rp-mark--24 rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
       <span class="wordmark">ReplyPort</span>
+      <span class="lockup__tag">Windows &#183; Outlook Classic</span>
     </a>
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="topbar__links" aria-label="Primary">
       <a href="#use-cases">Use cases</a>
+      <a href="#surfaces">Where you use it</a>
       <a href="#how">How it works</a>
-      <a href="#boundary">Trust boundary</a>
       <a href="#windows">Windows &amp; Outlook</a>
     </nav>
-    <div class="nav__actions">
-      <span class="eyebrow eyebrow--signal">Early access</span>
-      <a class="btn btn--small" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Install for Windows</a>
-    </div>
+    <a class="btn btn--small" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Install from Store</a>
   </div>
-  <div class="wrap">
-    <details class="nav__disclosure">
-      <summary>Menu</summary>
-      <nav class="nav__menu" aria-label="Primary, compact">
-        <a href="#use-cases">Use cases</a>
-        <a href="#how">How it works</a>
-        <a href="#boundary">Trust boundary</a>
-        <a href="#windows">Windows &amp; Outlook</a>
-      </nav>
-    </details>
-  </div>
+  <details class="navdrop">
+    <summary><span class="wrap navdrop__summary">Sections</span></summary>
+    <nav class="wrap navdrop__menu" aria-label="Primary, compact">
+      <a href="#use-cases">Use cases</a>
+      <a href="#surfaces">Where you use it</a>
+      <a href="#how">How it works</a>
+      <a href="#windows">Windows &amp; Outlook</a>
+    </nav>
+  </details>
 </header>
 
 <main id="main">
 
+  <!-- ===== 1 - Hero, use cases and system flow: the first screen ===== -->
   <section class="band">
     <div class="wrap hero">
       <div class="hero__copy">
         <p class="eyebrow eyebrow--widest eyebrow--signal">AI for Outlook &#183; no add-in required</p>
-        <h1>Use AI with the Outlook accounts you already have.</h1>
-        <p class="hero__lead">Triage a backlog, search across multiple mailboxes and prepare batches of replies from the AI products you already use. ReplyPort works beside Outlook Classic on your Windows PC, then puts the real drafts back in Outlook for you to review.</p>
-        <div class="hero__ctas">
-          <a class="btn" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Install for Windows</a>
-          <a class="btn btn--secondary" href="#" data-pending="demo-video" hidden>Watch a 40-second demo</a>
-        </div>
-        <p class="meta meta--tracked">ChatGPT &#183; Codex &#183; Claude &#183; Cowork &#183; Claude Code</p>
-      </div>
-
-      <div class="hero__demo">
-        <p class="eyebrow eyebrow--wide">What you type</p>
-        <div class="panel">
-          <p class="panel__prompt">I'm back from leave. Check both work inboxes and tell me what actually needs me.</p>
-          <p class="panel__status">
-            <span class="rp-mark rp-mark--16 rp-mark--working" role="img" aria-label="ReplyPort is working"><i></i></span>
-            ReplyPort is checking the mailboxes you've connected
-          </p>
-        </div>
-
-        <div class="divider" role="presentation">
-          <span class="divider__line"></span>
-          <span class="eyebrow eyebrow--wide">What your assistant can tell you</span>
-          <span class="divider__line"></span>
-        </div>
-
-        <div class="panel">
-          <div class="draft__head">
-            <span>Triage &#183; 2 mailboxes</span>
-            <span class="draft__check"><span class="draft__dot"></span>Accounts kept separate</span>
-          </div>
-          <div class="draft__body">
-            <p class="draft__subject">13 threads need attention</p>
-            <p class="draft__text">Work account 1: 7 &#183; Work account 2: 6. Start with the deadline, the budget approval and the collaborator replies.</p>
-          </div>
-          <div class="draft__foot">
-            <span class="draft__state">Next: draft replies to the six that need one</span>
-            <div class="draft__actions" aria-hidden="true">
-              <span class="chip">Review</span>
-              <span class="chip chip--send">Draft 6</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band band--alt">
-    <div class="wrap explain">
-      <h2 class="eyebrow eyebrow--wide">Why ReplyPort exists</h2>
-      <div class="explain__body">
-        <p class="statement">Your work mail can already be in Outlook even when the AI tools you use have no direct route into it.</p>
-        <p class="explain__para">ReplyPort does not depend on an Outlook add-in or a cloud mailbox integration. It runs beside Outlook Classic on your Windows PC and gives the AI product you already use a controlled way to work with the mail you choose. Your organisation's normal software and data-use policies still apply.</p>
-        <dl class="reassure">
+        <h1>AI for the Outlook accounts you already have.</h1>
+        <dl class="claims">
           <div>
             <dt>No Outlook add-in required</dt>
-            <dd>ReplyPort is a Windows app, not an Outlook ribbon plugin.</dd>
+            <dd>A Windows app that works beside Outlook Classic. Nothing is installed into Outlook, and no cloud mailbox integration is set up.</dd>
           </div>
           <div>
-            <dt>Multiple accounts, kept separate</dt>
-            <dd>Work across several configured Outlook mailboxes without mixing their routing.</dd>
+            <dt>Multiple Outlook accounts</dt>
+            <dd>Every configured mailbox stays its own routing and authority domain. Nothing crosses between them.</dd>
           </div>
           <div>
-            <dt>Stay inside your AI product</dt>
-            <dd>Use ReplyPort from supported ChatGPT and Claude surfaces instead of moving email work into a separate ReplyPort chat.</dd>
+            <dt>Use the AI products you already work in</dt>
+            <dd>ReplyPort provides the Outlook side. You keep asking in the AI surface and conversation you already use.</dd>
+          </div>
+          <div>
+            <dt>Real Outlook drafts, checked before they appear</dt>
+            <dd>Requests come back as ordinary drafts in the right account, verified against their own thread and recipients.</dd>
           </div>
         </dl>
+        <div class="hero__cta">
+          <div class="hero__cta-row">
+            <a class="btn" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Install from Microsoft Store</a>
+            <a class="btn btn--secondary" href="#" data-pending="demo-video" hidden>Watch a 40-second demo</a>
+            <p class="surfaces">
+              <span>ChatGPT / Work / Codex</span>
+              <span>Claude / Cowork / Claude Code</span>
+            </p>
+          </div>
+          <p class="meta">Microsoft Store install &#183; no direct download &#183; free during early access</p>
+        </div>
       </div>
+
+      <div class="hero__panel">
+      <figure class="demo">
+        <figcaption class="demo__cap">
+          <span class="eyebrow">Example &#8212; one request</span>
+          <span class="eyebrow">2 work accounts</span>
+        </figcaption>
+        <p class="demo__ask">&#8220;I'm back from two weeks' leave. Check both work inboxes and tell me what actually needs me.&#8221;</p>
+        <p class="demo__status">
+          <span class="rp-mark rp-mark--16 rp-mark--working" role="img" aria-label="ReplyPort is working"><i></i></span>
+          ReplyPort is reading the mailboxes you approved
+        </p>
+        <dl class="demo__rows">
+          <div><dt>Threads that need attention</dt><dd>13</dd></div>
+          <div><dt>Work account 1</dt><dd>7</dd></div>
+          <div><dt>Work account 2</dt><dd>6</dd></div>
+          <div><dt>Replies prepared on request</dt><dd>6</dd></div>
+        </dl>
+        <p class="demo__foot">Six verified drafts wait in the right account&#8217;s Outlook Drafts folder. You review them and press Send.</p>
+      </figure>
+
+      <div class="glance">
+        <p class="eyebrow">At a glance</p>
+        <dl class="speclist">
+          <div><dt>Platform</dt><dd>Windows</dd></div>
+          <div><dt>Mail client</dt><dd>Outlook Classic</dd></div>
+          <div><dt>Outlook add-in</dt><dd class="is-no">Not required</dd></div>
+          <div><dt>Outlook accounts</dt><dd>Several, kept separate</dd></div>
+          <div><dt>Send path in ReplyPort</dt><dd class="is-no">None</dd></div>
+        </dl>
+      </div>
+      </div>
+    </div>
+
+    <div class="wrap" id="use-cases">
+      <div class="hair-grid hair-grid--3 strip">
+        <div class="usecase">
+          <p class="eyebrow">Back from leave?</p>
+          <h2 class="usecase__title">Triage the backlog</h2>
+          <p class="usecase__text">Ask what needs a reply, what is waiting on you and what can wait &#8212; before you open a single thread.</p>
+        </div>
+        <div class="usecase">
+          <p class="eyebrow">Multiple accounts?</p>
+          <h2 class="usecase__title">Search work mailboxes</h2>
+          <p class="usecase__text">One question runs across every mailbox you have enabled, and the results come back ranked together.</p>
+        </div>
+        <div class="usecase">
+          <p class="eyebrow">Lots of replies?</p>
+          <h2 class="usecase__title">Prepare drafts in batches</h2>
+          <p class="usecase__text">Ask for several replies at once. Each becomes a real Outlook draft, checked against its own thread and account.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap flow-wrap">
+      <div class="flow">
+        <div class="flow__node">
+          <p class="eyebrow">01 &#8212; you ask here</p>
+          <p class="flow__title">AI product</p>
+          <p class="flow__text">ChatGPT, Work, Codex, Claude, Cowork or Claude Code.</p>
+          <span class="flow__arrow" aria-hidden="true"></span>
+        </div>
+        <div class="flow__node flow__node--core">
+          <p class="eyebrow eyebrow--signal-light">02 &#8212; on your PC</p>
+          <p class="flow__title">ReplyPort</p>
+          <ul class="flow__list">
+            <li>local</li>
+            <li>routing</li>
+            <li>verification</li>
+          </ul>
+          <span class="flow__arrow" aria-hidden="true"></span>
+        </div>
+        <div class="flow__node">
+          <p class="eyebrow">03 &#8212; where mail lives</p>
+          <p class="flow__title">Outlook Classic</p>
+          <p class="flow__text">A real draft in the correct account, waiting for you.</p>
+        </div>
+      </div>
+      <p class="flow__note"><b>No send path exists anywhere in that chain.</b> ReplyPort creates and verifies drafts. Pressing Send stays a human action, in Outlook, every time.</p>
     </div>
   </section>
 
-  <section class="band" id="use-cases">
-    <div class="wrap steps-sec">
+  <!-- ===== 2 - Where you use it ===================================== -->
+  <section class="band band--alt" id="surfaces">
+    <div class="wrap sec">
       <div class="sec-head">
-        <h2 class="h2" style="max-width:20ch">The jobs that make email feel expensive.</h2>
-        <p class="lead" style="max-width:38ch">ReplyPort is most useful when the problem is not writing one email. It is finding the right work across a lot of email, then getting through it quickly.</p>
-      </div>
-      <div class="hair-grid hair-grid--3">
-        <div class="step">
-          <div class="step__head">
-            <span class="eyebrow">01 &#8212; Back from leave</span>
-            <span class="step__arrow" aria-hidden="true">&#8594;</span>
-          </div>
-          <h3 class="step__title">Triage the backlog</h3>
-          <p class="step__text">Ask what needs a reply, what is waiting on you, what can be ignored, and what is actually urgent before you start opening threads one by one.</p>
+        <div class="sec-head__main">
+          <p class="eyebrow eyebrow--wide">Where you use it</p>
+          <h2 class="h2">Work from the AI product you already have open.</h2>
         </div>
-        <div class="step">
-          <div class="step__head">
-            <span class="eyebrow">02 &#8212; Several accounts</span>
-            <span class="step__arrow" aria-hidden="true">&#8594;</span>
-          </div>
-          <h3 class="step__title">Search across work mailboxes</h3>
-          <p class="step__text">Ask across the Outlook accounts already configured on your PC while ReplyPort keeps each mailbox's identity and routing separate.</p>
-        </div>
-        <div class="step step--you">
-          <div class="step__head">
-            <span class="eyebrow eyebrow--signal">03 &#8212; Clear the queue</span>
-          </div>
-          <h3 class="step__title">Prepare replies in batches</h3>
-          <p class="step__text">Once the AI has found the threads that matter, ask for the replies together. ReplyPort turns approved requests into real Outlook drafts for you to review.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band band--alt" id="boundary">
-    <div class="wrap boundary-sec">
-      <div class="sec-head">
-        <div class="sec-head__stack">
-          <p class="eyebrow eyebrow--wide">The trust boundary</p>
-          <h2 class="h2" style="max-width:22ch">AI can do the email work. It still doesn't get the Send button.</h2>
-        </div>
-        <p class="lead" style="max-width:34ch">The convenience comes from search, triage and drafting. Sending remains a human action.</p>
+        <p class="lead">ReplyPort is not another chat app to move your email into. It exposes an Outlook-side path to the AI surface you already use, so the mail work happens in the conversation you are already having.</p>
       </div>
 
-      <table class="cap">
-        <caption class="visually-hidden">What the AI, ReplyPort and you can each do</caption>
-        <colgroup>
-          <col style="width:42.2%"><col style="width:18.35%"><col style="width:21.1%"><col style="width:18.35%">
-        </colgroup>
-        <thead>
-          <tr>
-            <th scope="col">Capability</th>
-            <th scope="col">AI</th>
-            <th scope="col">ReplyPort</th>
-            <th scope="col">You</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Search and reason over mail you allow</th>
-            <td data-label="AI">Yes</td>
-            <td data-label="ReplyPort">Yes</td>
-            <td data-label="You">Yes</td>
-          </tr>
-          <tr>
-            <th scope="row">Compose draft text</th>
-            <td data-label="AI">Yes</td>
-            <td data-label="ReplyPort" class="is-no">No</td>
-            <td data-label="You">Yes</td>
-          </tr>
-          <tr class="cap__lastlight">
-            <th scope="row">Write and verify the draft in Outlook</th>
-            <td data-label="AI" class="is-no">No</td>
-            <td data-label="ReplyPort">Yes, locally</td>
-            <td data-label="You">Yes</td>
-          </tr>
-          <tr class="cap__send">
-            <th scope="row">
-              <span class="cap__send-label">
-                <span class="rp-mark rp-mark--34 rp-mark--inverse rp-mark--ready" role="img" aria-label="ReplyPort, draft ready"><i></i></span>
-                <span class="cap__send-word">Send</span>
-              </span>
-            </th>
-            <td data-label="AI">No</td>
-            <td data-label="ReplyPort">No</td>
-            <td data-label="You" class="cap__only">Only you</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="footnotes">
-        <p>&#8220;Yes, locally&#8221; means the mailbox-changing work happens in the ReplyPort process on your machine, against the Outlook profile already signed in there.</p>
-        <p>ReplyPort resolves each configured mailbox separately and checks drafts against the thread and mailbox they belong to before they appear in Outlook.</p>
+      <div class="cols cols--2">
+        <div class="col">
+          <p class="eyebrow">Supported surfaces</p>
+          <dl class="speclist speclist--2col">
+            <div><dt>ChatGPT</dt><dd>Supported</dd></div>
+            <div><dt>Claude</dt><dd>Supported</dd></div>
+            <div><dt>ChatGPT Work</dt><dd>Supported</dd></div>
+            <div><dt>Claude Cowork</dt><dd>Supported</dd></div>
+            <div><dt>Codex</dt><dd>Supported</dd></div>
+            <div><dt>Claude Code</dt><dd>Supported</dd></div>
+          </dl>
+          <p class="note">ReplyPort uses the tool, connector or file-access path each surface makes available. These names identify the products ReplyPort works with; ReplyPort is independent and is not affiliated with, or endorsed by, Microsoft, OpenAI or Anthropic.</p>
+        </div>
+        <div class="col">
+          <p class="eyebrow">What that avoids</p>
+          <dl class="speclist">
+            <div><dt>Installing an Outlook add-in</dt><dd class="is-no">Not required</dd></div>
+            <div><dt>Connecting a cloud mailbox integration</dt><dd class="is-no">Not required</dd></div>
+            <div><dt>Moving email work into a separate app</dt><dd class="is-no">Not required</dd></div>
+            <div><dt>Pasting threads into a chat window by hand</dt><dd class="is-no">Not required</dd></div>
+          </dl>
+          <p class="note">ReplyPort works with the Outlook profile already signed in on your PC. Your organisation&#8217;s normal software and data-use policies continue to apply to that mail.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== 3 - How it works, and the trust boundary ================= -->
   <section class="band" id="how">
-    <div class="wrap steps-sec">
+    <div class="wrap sec">
       <div class="sec-head">
-        <h2 class="h2 h2--34" style="max-width:24ch">Your AI product, ReplyPort and Outlook each keep their own job.</h2>
-        <p class="lead" style="max-width:38ch">ReplyPort is the local execution layer between the AI surface you already use and the Outlook profile already on your PC.</p>
+        <div class="sec-head__main">
+          <p class="eyebrow eyebrow--wide">How it works</p>
+          <h2 class="h2">Three parts, and one of them is you.</h2>
+        </div>
+        <p class="lead">The AI understands and writes. ReplyPort does the mailbox work locally and checks it. Sending is the part that never leaves your hands.</p>
       </div>
-      <div class="hair-grid hair-grid--3">
-        <div class="step">
-          <div class="step__head">
-            <span class="eyebrow">01 &#8212; AI product</span>
-            <span class="step__arrow" aria-hidden="true">&#8594;</span>
-          </div>
-          <h3 class="step__title">Ask naturally</h3>
-          <p class="step__text">Search, summarise, triage and compose from supported ChatGPT or Claude surfaces. You stay in the product and conversation you already use.</p>
+
+      <div class="hair-grid hair-grid--3 strip">
+        <div class="role">
+          <p class="eyebrow">The AI product</p>
+          <h3 class="role__title">Reads and reasons</h3>
+          <p class="role__text">Works over the mail you approved for mirroring: searching, ranking, summarising and writing reply text.</p>
+          <p class="role__limit">Cannot reach Outlook, choose an account or address a recipient.</p>
         </div>
-        <div class="step">
-          <div class="step__head">
-            <span class="eyebrow">02 &#8212; ReplyPort</span>
-            <span class="step__arrow" aria-hidden="true">&#8594;</span>
-          </div>
-          <h3 class="step__title">Do the mailbox work locally</h3>
-          <p class="step__text">ReplyPort connects the request back to the correct Outlook account, thread and recipients, then creates and verifies the real draft.</p>
+        <div class="role">
+          <p class="eyebrow">ReplyPort, locally</p>
+          <h3 class="role__title">Routes and verifies</h3>
+          <p class="role__text">Resolves the mailbox by exact identity, rebuilds recipients and threading from Outlook itself, creates the draft and confirms it landed correctly.</p>
+          <p class="role__limit">Runs in its own process on your Windows PC.</p>
         </div>
-        <div class="step step--you">
-          <div class="step__head">
-            <span class="eyebrow eyebrow--signal">03 &#8212; Outlook + you</span>
-          </div>
-          <h3 class="step__title">Review and send as usual</h3>
-          <p class="step__text">The draft is waiting in Outlook. Edit anything you want and press Send yourself. ReplyPort stops before that point.</p>
+        <div class="role role--you">
+          <p class="eyebrow eyebrow--signal">You, in Outlook</p>
+          <h3 class="role__title">Reviews and sends</h3>
+          <p class="role__text">The draft is an ordinary Outlook draft in the right account. Edit it, discard it or send it exactly as you always have.</p>
+          <p class="role__limit">The only step that can put mail on the wire.</p>
+        </div>
+      </div>
+
+      <div class="cap-wrap" id="boundary">
+        <p class="eyebrow eyebrow--wide cap-label">The trust boundary</p>
+        <table class="cap">
+          <caption class="visually-hidden">What the AI, ReplyPort and you can each do</caption>
+          <colgroup>
+            <col class="cap__c1"><col class="cap__c2"><col class="cap__c3"><col class="cap__c4">
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Capability</th>
+              <th scope="col">AI</th>
+              <th scope="col">ReplyPort</th>
+              <th scope="col">You</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Search and reason over mail you have approved</th>
+              <td data-label="AI">Yes</td>
+              <td data-label="ReplyPort">Yes</td>
+              <td data-label="You">Yes</td>
+            </tr>
+            <tr>
+              <th scope="row">Work across several configured accounts at once</th>
+              <td data-label="AI">Yes</td>
+              <td data-label="ReplyPort">Yes, per mailbox</td>
+              <td data-label="You">Yes</td>
+            </tr>
+            <tr>
+              <th scope="row">Compose the reply text</th>
+              <td data-label="AI">Yes</td>
+              <td data-label="ReplyPort" class="is-no">No</td>
+              <td data-label="You">Yes</td>
+            </tr>
+            <tr>
+              <th scope="row">Choose the account, recipients and thread</th>
+              <td data-label="AI" class="is-no">No</td>
+              <td data-label="ReplyPort">Yes, from Outlook</td>
+              <td data-label="You">Yes</td>
+            </tr>
+            <tr class="cap__lastlight">
+              <th scope="row">Write and verify the draft in Outlook</th>
+              <td data-label="AI" class="is-no">No</td>
+              <td data-label="ReplyPort">Yes, locally</td>
+              <td data-label="You">Yes</td>
+            </tr>
+            <tr class="cap__send">
+              <th scope="row">
+                <span class="cap__send-label">
+                  <span class="rp-mark rp-mark--28 rp-mark--inverse rp-mark--ready" role="img" aria-label="ReplyPort, draft ready"><i></i></span>
+                  <span class="cap__send-word">Send</span>
+                </span>
+              </th>
+              <td data-label="AI">No</td>
+              <td data-label="ReplyPort">No</td>
+              <td data-label="You" class="cap__only">Only you</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footnotes">
+          <p><b>&#8220;Yes, locally&#8221;</b> &#8212; the mailbox-changing work happens in the ReplyPort process on your machine, against the Outlook profile already signed in there.</p>
+          <p><b>&#8220;Yes, per mailbox&#8221;</b> &#8212; each configured account is resolved separately, and a draft is checked against the thread and mailbox it belongs to before it appears.</p>
+          <p><b>Provider-neutral</b> &#8212; nothing in the Outlook-side design depends on which AI product you use, so changing surfaces does not move the boundary above.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== 4 - Windows & Outlook ==================================== -->
   <section class="band band--alt" id="windows">
-    <div class="wrap win-sec">
+    <div class="wrap sec">
       <div class="sec-head">
-        <h2 class="h2 h2--40" style="max-width:24ch">Use it from the AI tools you already work in.</h2>
-        <p class="lead" style="max-width:38ch">ReplyPort is designed to stay out of the way. You work from supported ChatGPT or Claude surfaces, while ReplyPort handles the Outlook side locally.</p>
+        <div class="sec-head__main">
+          <p class="eyebrow eyebrow--wide">Windows &amp; Outlook</p>
+          <h2 class="h2">What it needs, and how it gets installed.</h2>
+        </div>
+        <p class="lead">ReplyPort is Windows software that works with the Outlook Classic profile already configured on the machine. Installation is through the Microsoft Store.</p>
       </div>
-      <div class="hair-grid hair-grid--2">
-        <div class="card">
-          <h3 class="eyebrow">AI surfaces</h3>
-          <div class="speclist">
-            <div><span>ChatGPT chats</span><span class="status">Supported</span></div>
-            <div><span>ChatGPT Work</span><span class="status">Supported</span></div>
-            <div><span>Codex</span><span class="status">Supported</span></div>
-            <div><span>Claude chats</span><span class="status">Supported</span></div>
-            <div><span>Claude Cowork</span><span class="status">Supported</span></div>
-            <div><span>Claude Code</span><span class="status">Supported</span></div>
-          </div>
-          <p class="setup__text" style="margin-top:20px">ReplyPort uses the tool, connector or file-access path available in the AI surface. It is not a separate chat product, and the names above do not imply endorsement by OpenAI or Anthropic.</p>
+
+      <div class="hair-grid hair-grid--3 strip">
+        <div class="col col--pad">
+          <p class="eyebrow">Requirements</p>
+          <dl class="speclist">
+            <div><dt>Windows PC</dt><dd>Required</dd></div>
+            <div><dt>Outlook Classic, already configured</dt><dd>Required</dd></div>
+            <div><dt>Outlook running when a draft is made</dt><dd>Required</dd></div>
+            <div><dt>More than one Outlook account</dt><dd>Supported</dd></div>
+            <div><dt>Outlook add-in</dt><dd class="is-no">Not required</dd></div>
+            <div><dt>Cloud mailbox integration</dt><dd class="is-no">Not required</dd></div>
+            <div><dt>Autonomous sending</dt><dd class="is-no">Never</dd></div>
+          </dl>
         </div>
-        <div class="card">
-          <h3 class="eyebrow">Outlook side</h3>
-          <div class="speclist">
-            <div><span>Outlook Classic already configured on your PC</span><span class="status">Yes</span></div>
-            <div><span>More than one configured Outlook account</span><span class="status">Yes</span></div>
-            <div><span>Outlook add-in required</span><span class="status status--pending">No</span></div>
-            <div><span>Autonomous email sending</span><span class="status status--pending">Never</span></div>
-          </div>
-        </div>
-        <div class="card">
-          <h3 class="eyebrow">Setup</h3>
-          <div class="setup">
-            <div class="setup__item">
+        <div class="col col--pad">
+          <p class="eyebrow">Setup</p>
+          <ol class="setup">
+            <li>
               <span class="setup__num">01</span>
               <div class="setup__body">
-                <span class="setup__title">Install from the Microsoft Store</span>
-                <p class="setup__text">ReplyPort uses the Store/MSIX install path rather than a direct executable download.</p>
+                <b>Install from the Microsoft Store</b>
+                <p>ReplyPort ships on the Store/MSIX path. This site never offers a direct executable download.</p>
               </div>
-            </div>
-            <div class="setup__item">
+            </li>
+            <li>
               <span class="setup__num">02</span>
               <div class="setup__body">
-                <span class="setup__title">Complete ReplyPort setup</span>
-                <p class="setup__text">Choose the Outlook accounts and mail access you want ReplyPort to use. Technical routing details stay behind the UI.</p>
+                <b>Choose the accounts and mail it may use</b>
+                <p>Pick which configured Outlook accounts ReplyPort works with, and what it may mirror. Routing detail stays behind the interface.</p>
               </div>
-            </div>
-            <div class="setup__item">
+            </li>
+            <li>
               <span class="setup__num">03</span>
               <div class="setup__body">
-                <span class="setup__title">Use your AI product as usual</span>
-                <p class="setup__text">Open the supported ChatGPT or Claude surface you prefer, ask about your mail, and request drafts when you want them.</p>
+                <b>Ask in your AI product as usual</b>
+                <p>Open the surface you prefer, ask about your mail, and request drafts when you want them.</p>
               </div>
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
-        <div class="card">
-          <h3 class="eyebrow">The architecture</h3>
-          <div class="setup">
-            <div class="setup__item">
-              <span class="setup__num">AI</span>
-              <div class="setup__body">
-                <span class="setup__title">Your existing AI surface</span>
-                <p class="setup__text">ChatGPT, Codex, Claude, Cowork or Claude Code reads the ReplyPort records it has been given access to.</p>
-              </div>
-            </div>
-            <div class="setup__item">
-              <span class="setup__num">RP</span>
-              <div class="setup__body">
-                <span class="setup__title">ReplyPort on Windows</span>
-                <p class="setup__text">The local app safely turns authorised requests into Outlook drafts.</p>
-              </div>
-            </div>
-            <div class="setup__item">
-              <span class="setup__num">YOU</span>
-              <div class="setup__body">
-                <span class="setup__title">Outlook stays the final step</span>
-                <p class="setup__text">Review the real draft in Outlook and send it yourself.</p>
-              </div>
-            </div>
-          </div>
+        <div class="col col--pad">
+          <p class="eyebrow">Distribution &amp; scope</p>
+          <dl class="speclist">
+            <div><dt>Microsoft Store</dt><dd>Only install route</dd></div>
+            <div><dt>Direct .exe download</dt><dd class="is-no">Never offered</dd></div>
+            <div><dt>Price</dt><dd>Free in early access</dd></div>
+          </dl>
+          <p class="note">ReplyPort does not change what mail you are allowed to handle, or where. Your organisation&#8217;s software, data-use and records policies apply to ReplyPort exactly as they apply to Outlook.</p>
+          <p class="note"><a class="link" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">View the Microsoft Store listing &#8594;</a></p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== 5 - Early access ========================================= -->
   <section class="band band--ink" id="beta">
-    <div class="wrap beta">
-      <div class="beta__copy">
+    <div class="wrap cta">
+      <div class="cta__copy">
         <p class="eyebrow eyebrow--widest eyebrow--signal-light">Early access</p>
-        <h2 class="h2 h2--46">Put AI to work on the inboxes you already have.</h2>
-        <p class="beta__para">ReplyPort is still early, but the core workflow is real: inspect the mail you have allowed, reason across configured accounts, and create verified Outlook drafts while keeping Send under your control.</p>
-        <div class="beta__ctas">
+        <h2 class="h2 h2--cta">Put AI to work on the inboxes you already have.</h2>
+        <p class="cta__para">ReplyPort is early, but the workflow is real: reason across the mail you have approved, keep every configured account separate, and get verified Outlook drafts back &#8212; while Send stays yours.</p>
+        <div class="cta__row">
           <a class="btn btn--on-ink" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Install from Microsoft Store</a>
+          <p class="meta meta--on-ink">Windows &#183; Outlook Classic &#183; free during early access</p>
         </div>
-        <p class="meta">Free during early access &#183; Store install &#183; no direct EXE download</p>
       </div>
-      <div class="today">
-        <h3 class="eyebrow">One boundary does not change</h3>
-        <dl class="today__rows">
-          <div class="today__row">
-            <dt>Emails sent by ReplyPort</dt>
-            <dd class="today__zero">0</dd>
-          </div>
+      <div class="ledger">
+        <p class="eyebrow">By design, not by setting</p>
+        <dl class="ledger__rows">
+          <div><dt>Emails ReplyPort can send</dt><dd>0</dd></div>
+          <div><dt>Outlook add-ins installed</dt><dd>0</dd></div>
+          <div><dt>Accounts mixed together</dt><dd>0</dd></div>
         </dl>
-        <p class="today__note">ReplyPort can prepare the work. You are still the one who sends it.</p>
+        <p class="ledger__note">ReplyPort prepares the work. You are still the one who sends it.</p>
       </div>
     </div>
   </section>
@@ -382,30 +409,31 @@
         <span class="rp-mark rp-mark--24 rp-mark--inverse rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
         <span class="foot__wordmark">ReplyPort</span>
       </div>
-      <p class="foot__blurb">AI for the Outlook accounts you already use. Search, triage and prepare replies across multiple mailboxes. You review and send.</p>
+      <p class="foot__blurb">AI for the Outlook accounts you already have. Triage, search and prepare replies across several mailboxes on your Windows PC. You review and send.</p>
     </div>
     <nav class="foot__col" aria-label="Product">
       <h2 class="eyebrow">Product</h2>
       <a href="#use-cases">Use cases</a>
+      <a href="#surfaces">Where you use it</a>
       <a href="#how">How it works</a>
       <a href="#boundary">Trust boundary</a>
-      <a href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Microsoft Store</a>
     </nav>
-    <nav class="foot__col" aria-label="Documentation">
-      <h2 class="eyebrow">Documentation</h2>
+    <nav class="foot__col" aria-label="Install">
+      <h2 class="eyebrow">Install</h2>
+      <a href="#windows">Windows &amp; Outlook</a>
+      <a href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Microsoft Store</a>
       <span class="foot__pending" data-pending="docs">Setup guide</span>
       <span class="foot__pending" data-pending="docs">Known limitations</span>
-      <span class="foot__pending" data-pending="docs">Changelog</span>
-      <a href="https://github.com/replyport" rel="noopener">GitHub</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
+      <a href="https://github.com/replyport" rel="noopener">GitHub</a>
       <span class="foot__pending" data-pending="legal">Privacy</span>
       <span class="foot__pending" data-pending="legal">What we store</span>
       <span class="foot__pending" data-pending="legal">Contact</span>
     </nav>
   </div>
-  <div class="foot__legal">
+  <div class="wrap foot__legal">
     <span>&#169; 2026 ReplyPort &#183; Early access &#183; Not affiliated with Microsoft, OpenAI or Anthropic</span>
     <span>ReplyPort has no send capability.</span>
   </div>
