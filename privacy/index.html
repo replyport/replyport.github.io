@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy | ReplyPort</title>
+<meta name="description" content="Privacy policy for ReplyPort, a local Windows utility for Outlook Classic workflows and AI-assisted analysis and drafting.">
+<link rel="canonical" href="https://replyport.github.io/privacy/">
+<meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/libre-franklin-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar__bar">
+    <a class="lockup" href="../" aria-label="ReplyPort, home">
+      <span class="rp-mark rp-mark--24 rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+      <span class="wordmark">ReplyPort</span>
+      <span class="lockup__tag">Windows &#183; Outlook Classic</span>
+    </a>
+    <nav class="topbar__links" aria-label="Primary">
+      <a href="../#use-cases">Use cases</a>
+      <a href="../#surfaces">Where you use it</a>
+      <a href="../#how">How it works</a>
+      <a href="../#windows">Windows &amp; Outlook</a>
+    </nav>
+    <a class="btn btn--small" href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Install from Store</a>
+  </div>
+</header>
+
+<main id="main">
+  <header class="band privacy-hero">
+    <div class="wrap privacy-hero__inner">
+      <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Privacy policy</p>
+      <h1>Local by design.<br>Under your control.</h1>
+      <p class="privacy-standfirst">ReplyPort is a Windows desktop utility by Sergey Alexeev for user-authorized Outlook Classic workflows and AI-assisted analysis and drafting. This policy describes the current early-access product.</p>
+      <p class="meta">Effective date: 9 September 2026</p>
+    </div>
+  </header>
+
+  <div class="wrap privacy-layout">
+    <nav class="privacy-nav" aria-label="Privacy policy sections">
+      <p class="eyebrow">On this page</p>
+      <a href="#overview">Overview</a>
+      <a href="#information">Information</a>
+      <a href="#storage">Storage and protection</a>
+      <a href="#third-parties">Services you choose</a>
+      <a href="#ai">Generative AI</a>
+      <a href="#retention">Retention and controls</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <article class="privacy-copy">
+      <section id="overview">
+        <p class="eyebrow">Overview</p>
+        <h2>What ReplyPort does</h2>
+        <p>ReplyPort works locally with Outlook Classic. It makes approved Outlook information available in a user-selected filesystem location so that a user-chosen AI assistant or other approved tool can help search, analyse and draft a reply. ReplyPort can then create a reply draft in Outlook Classic.</p>
+        <p class="privacy-callout"><strong>Draft only.</strong> ReplyPort does not automatically send email. It does not send mail through SMTP, Microsoft Graph or another cloud mail transport. The user must review every generated draft and manually decide whether to send it in Outlook.</p>
+        <p>ReplyPort does not operate a remote email server, a hosted AI model or a ReplyPort cloud service.</p>
+      </section>
+
+      <section id="information">
+        <p class="eyebrow">Information</p>
+        <h2>Personal information accessed and why</h2>
+        <p>ReplyPort accesses the following information only as needed for functions the user authorizes:</p>
+        <ul>
+          <li><strong>Outlook message content and metadata:</strong> message body text, subject, sender and recipient details, date, conversation information, message identifiers, sensitivity or protection state, and attachment metadata. This supports approved export, search, analysis, triage, reply drafting, threading and safety checks.</li>
+          <li><strong>Outlook account and routing information:</strong> the configured account address, Outlook profile, store and folder information, approved signature information and local Outlook item locators. This lets ReplyPort keep work within the correct mailbox, preserve Outlook's recipients and conversation, and place the draft in the correct Drafts folder.</li>
+          <li><strong>Operational information:</strong> configuration, opaque identifiers, capability material, hashes, indexes, checkpoints, journals, status, error codes and bounded work counts. This supports security, integrity, recovery, deduplication and diagnostics.</li>
+        </ul>
+        <p>The current supported early-access workflow does not make attachment bytes available to AI tools. ReplyPort refuses protected or incomplete message content for drafting. It does not use personal information for advertising and does not sell personal information.</p>
+      </section>
+
+      <section id="storage">
+        <p class="eyebrow">Storage and protection</p>
+        <h2>Where information is stored</h2>
+        <h3>User-selected storage</h3>
+        <p>The user chooses ReplyPort's filesystem storage root. Message snapshots, message metadata and user-authorized AI work records are stored there. The location may be inside a Dropbox folder.</p>
+        <p>If the user chooses Dropbox-backed storage, the Dropbox desktop software may sync that folder through the user's own Dropbox account. That processing is controlled by the user and is subject to Dropbox's terms and privacy policy. ReplyPort does not use the Dropbox cloud API.</p>
+        <h3>Local operational state</h3>
+        <p>ReplyPort keeps operational state under the current user's local Windows profile. This is limited to configuration, protected Outlook routing state, DPAPI-protected capability keys and journals, hashes, indexes, checkpoints, retry state and content-free logs. Local logs contain operational identifiers, states, durations, error codes and bounded counts, not email subjects, bodies, senders, recipients or attachment filenames.</p>
+        <h3>Safeguards</h3>
+        <p>ReplyPort uses the current Windows user's filesystem permissions, Windows Data Protection API protection for local secrets and sensitive operational state, opaque mailbox identifiers, mailbox-scoped capabilities, immutable records and strict routing and draft verification. A storage root's per-mailbox folders provide logical separation; they are not a substitute for access controls. The user is responsible for securing the Windows account, Outlook profile, selected storage location, Dropbox account and any external AI account they choose.</p>
+      </section>
+
+      <section id="third-parties">
+        <p class="eyebrow">Services you choose</p>
+        <h2>When third parties may process information</h2>
+        <p>ReplyPort itself does not upload personal information to Sergey Alexeev or a ReplyPort-operated server. The current product contains no ReplyPort analytics or telemetry.</p>
+        <p>Information may nevertheless be processed by services the user selects:</p>
+        <ul>
+          <li><strong>Microsoft and the user's mailbox provider</strong> continue to process Outlook mailbox data under the account and service the user already uses. ReplyPort's local Outlook integration does not replace those arrangements.</li>
+          <li><strong>Dropbox or another storage or sync provider</strong> may process files if the user puts the ReplyPort storage root in that provider's synced location.</li>
+          <li><strong>An external AI service or AI-enabled tool</strong> may process the ReplyPort data that the user intentionally makes available to it for analysis or drafting.</li>
+        </ul>
+        <p>Each selected service operates under its own terms and privacy policy. Users should review those terms and only make mailbox information available to a service they are permitted and willing to use.</p>
+      </section>
+
+      <section id="ai">
+        <p class="eyebrow">Generative AI</p>
+        <h2>AI-assisted output requires review</h2>
+        <p>ReplyPort is designed for AI-assisted analysis and drafting. The current product does not itself provide a hosted generative-AI model. The user chooses whether to use an external AI service or AI-enabled tool.</p>
+        <p class="privacy-callout">Generative-AI output can be inaccurate, incomplete, biased or inappropriate. The user must review and, where necessary, edit every draft before deciding whether to send it.</p>
+        <p>To report inappropriate AI-generated content associated with ReplyPort, email <a class="link" href="mailto:sergei.v.alexeev@gmail.com?subject=ReplyPort%20AI%20content%20report">sergei.v.alexeev@gmail.com</a>. Please do not include confidential email content unless it is necessary to investigate the report.</p>
+      </section>
+
+      <section id="retention">
+        <p class="eyebrow">Retention and controls</p>
+        <h2>Your choices</h2>
+        <p>ReplyPort's bounded mirror copies normally expire 90 days after the source message's received or sent date, although records needed for pending work may be retained until that work is resolved. Disposable search requests and results normally expire after seven days.</p>
+        <p>The user controls ReplyPort and can:</p>
+        <ul>
+          <li>choose the storage location and stop using or remove that location;</li>
+          <li>disable ReplyPort to stop its background processing;</li>
+          <li>choose whether to use any external AI service or AI-enabled tool;</li>
+          <li>delete ReplyPort files from the user's own selected storage; and</li>
+          <li>uninstall ReplyPort to remove its local application, configuration and runtime state.</li>
+        </ul>
+        <p>Disabling or uninstalling ReplyPort does not delete, move or otherwise change messages in Outlook. Uninstalling also leaves Dropbox or other user-selected storage content untouched so that it is not silently destroyed. The user may delete ReplyPort's files from that storage separately when appropriate.</p>
+      </section>
+
+      <section id="contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Privacy questions and reports</h2>
+        <p>ReplyPort is published and developed by <strong>Sergey Alexeev</strong>.</p>
+        <p>For privacy questions, requests, concerns or reports of inappropriate AI-generated content, contact <a class="link" href="mailto:sergei.v.alexeev@gmail.com">sergei.v.alexeev@gmail.com</a>.</p>
+        <p class="note">This policy may be updated if ReplyPort's data practices change. The effective date above identifies the current version.</p>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <div class="foot__lockup">
+        <span class="rp-mark rp-mark--24 rp-mark--inverse rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+        <span class="foot__wordmark">ReplyPort</span>
+      </div>
+      <p class="foot__blurb">AI for the Outlook accounts you already have. Search, triage and prepare replies across several mailboxes on your Windows PC. You review and send.</p>
+    </div>
+    <nav class="foot__col" aria-label="Product">
+      <h2 class="eyebrow">Product</h2>
+      <a href="../#use-cases">Use cases</a>
+      <a href="../#surfaces">Where you use it</a>
+      <a href="../#how">How it works</a>
+      <a href="../#boundary">Trust boundary</a>
+    </nav>
+    <nav class="foot__col" aria-label="Install">
+      <h2 class="eyebrow">Install</h2>
+      <a href="../#windows">Windows &amp; Outlook</a>
+      <a href="https://apps.microsoft.com/detail/9NQLG89QM7CL">Microsoft Store</a>
+    </nav>
+    <nav class="foot__col" aria-label="Company">
+      <h2 class="eyebrow">Company</h2>
+      <a href="https://github.com/replyport" rel="noopener">GitHub</a>
+      <a href="./" aria-current="page">Privacy</a>
+      <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap foot__legal">
+    <span>&#169; 2026 ReplyPort &#183; Early access &#183; Not affiliated with Microsoft, OpenAI or Anthropic</span>
+    <span>ReplyPort has no send capability.</span>
+  </div>
+</footer>
+
+</body>
+</html>
