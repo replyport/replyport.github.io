@@ -102,7 +102,7 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 
 ### Page structure
 
-1. Sticky compact top bar — mark, wordmark, four links, Store CTA.
+1. Sticky compact top bar — mark, wordmark, three links (How it works / Setup / Requirements), Store CTA.
 2. Hero — headline, four claim rows, Store CTA, AI-surface chips; right column
    is a worked example panel plus an "at a glance" spec list.
 3. Use-case strip — back from leave / multiple accounts / lots of replies.
@@ -118,14 +118,10 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 
 ## Placeholders still open
 
-Everything below is marked in the HTML with a `data-pending` attribute.
-
-| Item | `data-pending` | State |
-|---|---|---|
-| `Watch a 40-second demo` | `demo-video` | `hidden` until the video exists |
-| Setup guide | `docs` | Implemented at [`setup/`](setup/) |
-| Known limitations | `docs` | Page does not exist; rendered as plain text, not a link |
-| Privacy, What we store, Contact | `legal` | Destinations not decided; rendered as plain text, not links |
+The only remaining `data-pending` placeholder is the hidden
+`Watch a 40-second demo` action (`demo-video`). The setup guide and Privacy
+page are live; the old footer placeholders for Known limitations, What we store,
+and Contact were removed rather than shipping dead links.
 
 ## Copy guardrails
 
