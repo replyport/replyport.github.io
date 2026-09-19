@@ -567,6 +567,48 @@ h1{
 .privacy-copy li::marker{color:var(--signal)}
 .privacy-callout{border-left:4px solid var(--signal);padding:16px 20px;background:var(--paper-alt);color:var(--ink) !important}
 
+/* ---------- 15.2 - Setup guide -------------------------------------- */
+
+.guide-hero__inner{padding-block:64px 56px;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:var(--gap-lg);align-items:end}
+.guide-hero h1{max-width:15ch}
+.guide-standfirst{max-width:62ch;font-size:18px;line-height:1.65;color:var(--body);margin-top:18px}
+.guide-boundary{border:1px solid var(--ink);padding:18px 20px;background:var(--panel);display:flex;flex-direction:column;gap:9px}
+.guide-boundary strong{font-size:18px;font-weight:500;letter-spacing:-.02em}
+.guide-boundary p{font-size:13.5px;line-height:1.6;color:var(--body)}
+.guide-layout{display:grid;grid-template-columns:220px minmax(0,760px);gap:80px;padding-block:56px 88px}
+.guide-nav{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.guide-nav .eyebrow{margin-bottom:8px;color:var(--muted)}
+.guide-nav a{color:var(--body)}
+.guide-nav a:hover{color:var(--signal)}
+.guide-copy{display:flex;flex-direction:column;gap:52px}
+.guide-copy section{display:flex;flex-direction:column;gap:14px;scroll-margin-top:88px}
+.guide-copy h2{font-size:clamp(26px,3vw,38px);line-height:1.08;letter-spacing:-.035em}
+.guide-copy h3{font-size:18px;line-height:1.25;margin-top:10px}
+.guide-copy p,.guide-copy li{font-size:16px;line-height:1.72;color:var(--body)}
+.guide-copy ul{display:flex;flex-direction:column;gap:10px;padding-left:20px;list-style:square}
+.guide-copy li::marker{color:var(--signal)}
+.guide-callout{border-left:4px solid var(--signal);padding:16px 20px;background:var(--paper-alt);color:var(--ink) !important}
+.guide-steps{display:flex;flex-direction:column;border-top:1px solid var(--rule-alt);counter-reset:guide-step}
+.guide-step{display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding:18px 0;border-bottom:1px solid var(--rule-alt);counter-increment:guide-step}
+.guide-step::before{content:counter(guide-step,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--signal);padding-top:4px}
+.guide-step h3{margin:0;font-size:18px;font-weight:500;letter-spacing:-.02em}
+.guide-step p{font-size:14.5px;line-height:1.62;margin-top:4px}
+.guide-step code,.setup__body code{font-family:var(--mono);font-size:.92em;color:var(--ink)}
+.ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:4px}
+.ai-card{background:var(--paper);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.ai-card__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule-alt);padding-bottom:10px}
+.ai-card__head h3{margin:0;font-size:20px;font-weight:500;letter-spacing:-.025em}
+.instruction{margin:0;padding:14px;background:var(--panel);border:1px solid var(--border-strong);font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--body);white-space:pre-wrap;overflow-wrap:anywhere}
+.instruction-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.copy-button{border:1px solid var(--border-strong);border-radius:0;padding:9px 12px;background:transparent;color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+.copy-button:hover{border-color:var(--signal);color:var(--signal)}
+.copy-button:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.instruction-download{font-size:13px;border-bottom:1px solid var(--border-strong);padding-bottom:1px}
+.copy-status{font-family:var(--mono);font-size:11px;color:var(--signal);min-height:1.5em}
+.guide-source{font-size:13px !important;line-height:1.6 !important;color:var(--muted) !important}
+.guide-source a{color:var(--body);border-bottom:1px solid var(--border-strong)}
+.guide-source a:hover{color:var(--signal);border-color:var(--signal)}
+
 /* ============================================================
    16 - Responsive. Density on desktop must not become clutter
    on a phone: the same components, progressively unstacked.
@@ -623,6 +665,11 @@ h1{
   .privacy-layout{grid-template-columns:1fr;gap:36px}
   .privacy-nav{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px;border-bottom:1px solid var(--rule);padding-bottom:28px}
   .privacy-nav .eyebrow{grid-column:1 / -1}
+  .guide-hero__inner{grid-template-columns:1fr;gap:28px;padding-block:48px 42px}
+  .guide-hero h1{max-width:20ch}
+  .guide-layout{grid-template-columns:1fr;gap:36px;padding-block:42px 64px}
+  .guide-nav{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 24px;border-bottom:1px solid var(--rule);padding-bottom:28px}
+  .guide-nav .eyebrow{grid-column:1 / -1}
 }
 
 /* --- <=767px: single column everywhere ------------------------------- */
@@ -647,6 +694,9 @@ h1{
   .privacy-hero__inner{padding-block:48px 42px}
   .privacy-standfirst{font-size:16px}
   .privacy-layout{padding-block:42px 64px}
+  .guide-standfirst{font-size:16px}
+  .guide-copy{gap:40px}
+  .ai-grid{grid-template-columns:1fr}
 
   /* Capability table -> one stacked block per capability, with the three
      label/value pairs aligned in their own columns so nothing wraps raggedly. */
@@ -694,6 +744,12 @@ h1{
   .cap tbody td{font-size:13px}
   .privacy-nav{grid-template-columns:1fr}
   .privacy-nav .eyebrow{grid-column:auto}
+  .guide-nav{grid-template-columns:1fr}
+  .guide-nav .eyebrow{grid-column:auto}
+  .guide-step{grid-template-columns:36px minmax(0,1fr);gap:10px}
+  .guide-step h3{font-size:17px}
+  .guide-step p{font-size:14px}
+  .instruction-actions{align-items:flex-start;flex-direction:column;gap:8px}
 }
 
 /* --- <=360px: keep the lockup and the Store button on one row --------- */

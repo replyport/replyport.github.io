@@ -15,6 +15,8 @@ serves the files as they are.
 
 ```
 index.html                 the whole page
+setup/index.html           consumer-facing AI setup guide
+setup/*.txt                plain-text bootstrap download fallbacks
 assets/site.css            the only stylesheet
 assets/fonts/*.woff2       Libre Franklin + Spline Sans Mono (self-hosted, OFL)
 favicon.svg                32×32 mark
@@ -22,8 +24,10 @@ apple-touch-icon.png       180×180 mark
 robots.txt, sitemap.xml, .nojekyll
 ```
 
-There is no JavaScript. The mark states, the responsive nav disclosure and the
-reduced-motion behaviour are all CSS.
+The only JavaScript is a small progressive-enhancement clipboard helper on the
+setup page. The instructions remain readable and selectable, with plain-text
+downloads available when JavaScript is disabled. The mark states, responsive
+nav disclosure and reduced-motion behaviour are CSS.
 
 ## Distribution
 
@@ -34,6 +38,24 @@ https://apps.microsoft.com/detail/9NQLG89QM7CL
 
 This keeps installation on the Store/MSIX path rather than asking users to run a
 directly downloaded executable.
+
+## Setup guide
+
+The public setup guide is implemented at [`setup/`](setup/). It gives normal
+users a five-step flow: install ReplyPort and open Outlook Classic, enable the
+mailboxes in ReplyPort Control Centre, make the Dropbox `/MailBridge` folder
+available to the chosen AI surface, paste the short bootstrap instruction, and
+then ask about mail normally. It keeps the no-Send boundary explicit.
+
+The ChatGPT and Claude bootstrap text on that page is a short, consumer-facing
+derivation of `bootstrap/CHATGPT_PROMPT.md` from the private ReplyPort
+engineering repository. The full lean guide is published at
+`setup/agent-context.txt` as a website release copy of the canonical
+`AGENT_CONTEXT.md`. The private engineering repository remains the source of
+truth. Canonical source commit:
+`1d3f5b51c8f4cae1b8b92ebd530d21f49156cc11`. Synchronize the website release
+copy whenever the canonical guide changes; this site must not become a second
+source of truth.
 
 ## Positioning
 
@@ -91,6 +113,8 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 7. Windows & Outlook — requirements, setup, distribution and scope.
 8. Early access — Store CTA and the "by design, not by setting" ledger.
 9. Footer.
+10. Setup guide — consumer setup flow, ChatGPT and Claude bootstrap text, and
+    an advanced link to the canonical full operating guide.
 
 ## Placeholders still open
 
@@ -99,7 +123,8 @@ Everything below is marked in the HTML with a `data-pending` attribute.
 | Item | `data-pending` | State |
 |---|---|---|
 | `Watch a 40-second demo` | `demo-video` | `hidden` until the video exists |
-| Setup guide, Known limitations | `docs` | Pages do not exist; rendered as plain text, not links |
+| Setup guide | `docs` | Implemented at [`setup/`](setup/) |
+| Known limitations | `docs` | Page does not exist; rendered as plain text, not a link |
 | Privacy, What we store, Contact | `legal` | Destinations not decided; rendered as plain text, not links |
 
 ## Copy guardrails
