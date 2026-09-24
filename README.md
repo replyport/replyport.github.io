@@ -34,7 +34,7 @@ nav disclosure and reduced-motion behaviour are CSS.
 The website does not host a direct `.exe` download. All install entry points go
 to the Microsoft Store listing:
 
-https://apps.microsoft.com/detail/9NQLG89QM7CL
+https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ
 
 This keeps installation on the Store/MSIX path rather than asking users to run a
 directly downloaded executable.
