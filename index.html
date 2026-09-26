@@ -15,7 +15,12 @@
 <meta property="og:url" content="https://replyport.github.io/">
 <meta property="og:title" content="ReplyPort — AI for the Outlook accounts you already have">
 <meta property="og:description" content="Triage a backlog, search several work mailboxes and prepare replies in batches — from the AI products you already use. No Outlook add-in required.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://replyport.github.io/assets/film/replyport-film-poster.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:alt" content="ReplyPort diagram: one question searched across three Outlook accounts, with the match found in the University account.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://replyport.github.io/assets/film/replyport-film-poster.jpg">
 <meta name="twitter:title" content="ReplyPort — AI for the Outlook accounts you already have">
 <meta name="twitter:description" content="Triage a backlog, search several work mailboxes and prepare replies in batches — from the AI products you already use. No Outlook add-in required.">
 
@@ -25,6 +30,8 @@
 <link rel="preload" href="assets/fonts/libre-franklin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="assets/film.js" defer></script>
 </head>
 
 <body id="top">
@@ -56,74 +63,96 @@
 
 <main id="main">
 
-  <!-- ===== 1 - Hero, use cases and system flow: the first screen ===== -->
+  <!-- ===== 1 - Hero: headline, the film, facts, use cases ============ -->
   <section class="band">
     <div class="wrap hero">
-      <div class="hero__copy">
-        <p class="eyebrow eyebrow--widest eyebrow--signal">AI for Outlook &#183; no add-in required</p>
-        <h1>AI for the Outlook accounts you already have.</h1>
-        <dl class="claims">
-          <div>
-            <dt>No Outlook add-in required</dt>
-            <dd>A Windows app that works beside Outlook Classic. Nothing is installed into Outlook, and no cloud mailbox integration is set up.</dd>
-          </div>
-          <div>
-            <dt>Multiple Outlook accounts</dt>
-            <dd>Every configured mailbox stays its own routing and authority domain. Nothing crosses between them.</dd>
-          </div>
-          <div>
-            <dt>Use the AI products you already work in</dt>
-            <dd>ReplyPort provides the Outlook side. You keep asking in the AI surface and conversation you already use.</dd>
-          </div>
-          <div>
-            <dt>Real Outlook drafts, checked before they appear</dt>
-            <dd>Requests come back as ordinary drafts in the right account, verified against their own thread and recipients.</dd>
-          </div>
-        </dl>
-        <div class="hero__cta">
+      <div class="hero__head">
+        <div class="hero__title">
+          <p class="eyebrow eyebrow--widest eyebrow--signal">AI for Outlook &#183; no add-in required</p>
+          <h1>AI for the Outlook accounts you already have.</h1>
+        </div>
+        <div class="hero__intro">
+          <p class="standfirst">ReplyPort connects the AI you already use to the Outlook accounts on your Windows PC. Ask across the mailboxes you enable, and get real drafts back in the right account. Nothing is sent until you send it.</p>
           <div class="hero__cta-row">
             <a class="btn" href="https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ">Install from Microsoft Store</a>
             <a class="btn btn--secondary" href="setup/">Setup guide</a>
-            <p class="surfaces">
-              <span>ChatGPT / Work / Codex</span>
-              <span>Claude / Cowork / Claude Code</span>
-            </p>
           </div>
           <p class="meta">Microsoft Store install &#183; no direct download &#183; US$9.99 one-time purchase</p>
         </div>
       </div>
 
-      <div class="hero__panel">
-      <figure class="demo">
-        <figcaption class="demo__cap">
-          <span class="eyebrow">Example &#8212; one request</span>
-          <span class="eyebrow">2 work accounts</span>
+      <figure class="film" id="film" aria-labelledby="film-title">
+        <h2 class="visually-hidden" id="film-title">ReplyPort in 38 seconds</h2>
+        <div class="film__frame">
+          <video class="film__video" id="film-video" controls playsinline preload="metadata"
+                 poster="assets/film/replyport-film-poster.webp" width="1920" height="1080"
+                 aria-describedby="film-summary">
+            <source src="assets/film/replyport-film-720.mp4" type="video/mp4" media="(max-width: 767px)">
+            <source src="assets/film/replyport-film-1080.mp4" type="video/mp4">
+            <track kind="captions" src="assets/film/replyport-film.en.vtt" srclang="en" label="English">
+          </video>
+          <button class="film__start" type="button" hidden>
+            <span class="film__start-icon" aria-hidden="true"></span>
+            <span class="film__start-text">
+              <span class="film__start-label">Watch the film</span>
+              <span class="film__start-meta">38 s &#183; with narration</span>
+            </span>
+          </button>
+          <button class="film__unmute" type="button" hidden>
+            <span class="film__ico film__ico--sound" aria-hidden="true"></span>Watch with sound
+          </button>
+          <p class="film__error" hidden>The film could not be loaded here. <a class="link" href="#film-transcript">Read what it shows</a>.</p>
+        </div>
+
+        <div class="film__bar">
+          <button class="film__btn film__btn--primary" type="button" data-act="sound-start">
+            <span class="film__ico film__ico--sound" aria-hidden="true"></span><span>Watch with sound</span>
+          </button>
+          <button class="film__btn" type="button" data-act="toggle">
+            <span class="film__ico film__ico--pause" aria-hidden="true"></span><span class="film__btn-text">Pause</span>
+          </button>
+          <button class="film__btn" type="button" data-act="restart">
+            <span class="film__ico film__ico--restart" aria-hidden="true"></span><span class="film__btn-text">Restart</span>
+          </button>
+          <button class="film__btn" type="button" data-act="mute" aria-pressed="true" hidden>
+            <span class="film__ico film__ico--sound" aria-hidden="true"></span><span class="film__btn-text">Sound</span>
+          </button>
+          <button class="film__btn" type="button" data-act="captions" aria-pressed="false">
+            <span class="film__cc" aria-hidden="true">CC</span><span class="film__btn-text">Captions</span>
+          </button>
+          <span class="film__time" aria-hidden="true"><span data-time>0:00</span> / 0:38</span>
+          <button class="film__btn film__btn--end" type="button" data-act="fullscreen">
+            <span class="film__ico film__ico--full" aria-hidden="true"></span><span class="film__btn-text">Full screen</span>
+          </button>
+          <span class="film__progress" aria-hidden="true"><span data-progress></span></span>
+        </div>
+
+        <figcaption class="film__facts">
+          <p class="visually-hidden" id="film-summary">A narrated diagram of how ReplyPort works: one question searches several Outlook accounts, the answer comes from the right mailbox, a reply draft is created in that account, and nothing is sent until you press Send. Captions and a written version are available.</p>
+          <dl class="facts">
+            <div><dt>Platform</dt><dd>Windows</dd></div>
+            <div><dt>Mail client</dt><dd>Outlook Classic</dd></div>
+            <div><dt>Outlook add-in</dt><dd class="is-no">Not required</dd></div>
+            <div><dt>Outlook accounts</dt><dd>Several, kept separate</dd></div>
+            <div><dt>Works from</dt><dd>ChatGPT &#183; Claude &#183; Codex</dd></div>
+            <div><dt>Send</dt><dd class="is-signal">Only you</dd></div>
+          </dl>
         </figcaption>
-        <p class="demo__ask">&#8220;I'm back from two weeks' leave. Check both work inboxes and tell me what actually needs me.&#8221;</p>
-        <p class="demo__status">
-          <span class="rp-mark rp-mark--16 rp-mark--working" role="img" aria-label="ReplyPort is working"><i></i></span>
-          ReplyPort is reading the mailboxes you approved
-        </p>
-        <dl class="demo__rows">
-          <div><dt>Threads that need attention</dt><dd>13</dd></div>
-          <div><dt>Work account 1</dt><dd>7</dd></div>
-          <div><dt>Work account 2</dt><dd>6</dd></div>
-          <div><dt>Replies prepared on request</dt><dd>6</dd></div>
-        </dl>
-        <p class="demo__foot">Six verified drafts wait in the right account&#8217;s Outlook Drafts folder. You review them and press Send.</p>
       </figure>
 
-      <div class="glance">
-        <p class="eyebrow">At a glance</p>
-        <dl class="speclist">
-          <div><dt>Platform</dt><dd>Windows</dd></div>
-          <div><dt>Mail client</dt><dd>Outlook Classic</dd></div>
-          <div><dt>Outlook add-in</dt><dd class="is-no">Not required</dd></div>
-          <div><dt>Outlook accounts</dt><dd>Several, kept separate</dd></div>
-          <div><dt>Send path in ReplyPort</dt><dd class="is-no">None</dd></div>
-        </dl>
-      </div>
-      </div>
+      <details class="transcript" id="film-transcript">
+        <summary>Read what the film shows</summary>
+        <ol class="transcript__list">
+          <li><b>Your work email isn&#8217;t always in one inbox.</b> One inbox becomes three separate work accounts.</li>
+          <li><b>And Outlook add-ins aren&#8217;t always available.</b> An add-in approaches the accounts but is not available.</li>
+          <li><b>But your accounts are already in Outlook.</b> The accounts sit inside Outlook Classic on Windows.</li>
+          <li><b>ReplyPort connects Outlook to the AI you already use.</b> ReplyPort runs on your Windows PC between Outlook and your AI, with a separate path to each account.</li>
+          <li><b>Ask a question, and your AI searches every mailbox you&#8217;ve enabled.</b> &#8220;Where&#8217;s Anton&#8217;s email about the podcast?&#8221; is checked in each account. Two have no match; the University account has it, and the answer comes back from there.</li>
+          <li><b>Ask for a reply, and a real draft appears in the right Outlook account.</b> The AI writes only the reply text. ReplyPort adds the recipient, subject and signature from Outlook and saves the draft in the University account&#8217;s Drafts.</li>
+          <li><b>Nothing sends automatically.</b> The draft stays unsent.</li>
+          <li><b>You review. You send.</b> The person reads the draft and presses Send in Outlook.</li>
+        </ol>
+      </details>
     </div>
 
     <div class="wrap" id="use-cases">
@@ -144,33 +173,6 @@
           <p class="usecase__text">Ask for several replies at once. Each becomes a real Outlook draft, checked against its own thread and account.</p>
         </div>
       </div>
-    </div>
-
-    <div class="wrap flow-wrap">
-      <div class="flow">
-        <div class="flow__node">
-          <p class="eyebrow">01 &#8212; you ask here</p>
-          <p class="flow__title">AI product</p>
-          <p class="flow__text">ChatGPT, Work, Codex, Claude, Cowork or Claude Code.</p>
-          <span class="flow__arrow" aria-hidden="true"></span>
-        </div>
-        <div class="flow__node flow__node--core">
-          <p class="eyebrow eyebrow--on-loud">02 &#8212; on your PC</p>
-          <p class="flow__title">ReplyPort</p>
-          <ul class="flow__list">
-            <li>local</li>
-            <li>routing</li>
-            <li>verification</li>
-          </ul>
-          <span class="flow__arrow" aria-hidden="true"></span>
-        </div>
-        <div class="flow__node">
-          <p class="eyebrow">03 &#8212; where mail lives</p>
-          <p class="flow__title">Outlook Classic</p>
-          <p class="flow__text">A real draft in the correct account, waiting for you.</p>
-        </div>
-      </div>
-      <p class="flow__note"><b>No send path exists anywhere in that chain.</b> ReplyPort creates and verifies drafts. Pressing Send stays a human action, in Outlook, every time.</p>
     </div>
   </section>
 

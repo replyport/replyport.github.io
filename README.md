@@ -18,16 +18,19 @@ index.html                 the whole page
 setup/index.html           consumer-facing AI setup guide
 setup/*.txt                plain-text bootstrap download fallbacks
 assets/site.css            the only stylesheet
+assets/film.js             homepage film player (progressive enhancement)
+assets/film/               hero film: 1080p and 720p MP4, captions (VTT), poster (WebP + JPEG for social cards)
 assets/fonts/*.woff2       Libre Franklin + Spline Sans Mono (self-hosted, OFL)
 favicon.svg                32×32 mark
 apple-touch-icon.png       180×180 mark
 robots.txt, sitemap.xml, .nojekyll
 ```
 
-The only JavaScript is a small progressive-enhancement clipboard helper on the
-setup page. The instructions remain readable and selectable, with plain-text
-downloads available when JavaScript is disabled. The mark states, responsive
-nav disclosure and reduced-motion behaviour are CSS.
+JavaScript is progressive enhancement only: a clipboard helper on the setup
+page, and `assets/film.js`, the homepage film player. Without JavaScript the
+setup instructions stay readable and downloadable, and the film is a native
+`<video>` with its own controls. The mark states, responsive nav disclosure and
+reduced-motion behaviour are CSS.
 
 ## Distribution
 
@@ -73,8 +76,9 @@ The value hierarchy the page is built around, in order:
 6. Human-only Send is a strong trust boundary, but it is **not** the headline.
 
 The old "we took the Send button away" pitch is deliberately no longer the lead.
-The boundary stays visible — in the system-flow note, in the capability table
-and in the early-access ledger — without occupying the conceptual centre.
+The boundary stays visible — at the end of the film, in the fact strip under it,
+in the capability table and in the early-access ledger — without occupying the
+conceptual centre.
 
 ## Design
 
@@ -103,11 +107,12 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 ### Page structure
 
 1. Sticky compact top bar — mark, wordmark, three links (How it works / Setup / Requirements), Store CTA.
-2. Hero — headline, four claim rows, Store CTA, AI-surface chips; right column
-   is a worked example panel plus an "at a glance" spec list.
-3. Use-case strip — back from leave / multiple accounts / lots of replies.
-4. System flow — AI product → ReplyPort (local, routing, verification) →
-   Outlook Classic, with the no-send-path note.
+2. Hero head — headline on the left; one-paragraph explanation, Store CTA and
+   setup guide on the right.
+3. The film — the 38-second narrated concept film at full content width, its
+   control bar, a one-row fact strip (platform, mail client, add-in, accounts,
+   AI surfaces, Send) and a collapsible written version of what it shows.
+4. Use-case strip — back from leave / multiple accounts / lots of replies.
 5. Where you use it — supported surfaces and what they avoid.
 6. How it works — three roles, then the capability/trust table with the Send row.
 7. Windows & Outlook — requirements, setup, distribution and scope.
@@ -116,12 +121,39 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 10. Setup guide — consumer setup flow, ChatGPT and Claude bootstrap text, and
     an advanced link to the canonical full operating guide.
 
+### The hero film
+
+The film is the page's main explanation, not decoration. It is produced in the
+separate `ReplyPort animation/hero-v2-concept-explainer` Remotion project; this
+site ships web encodes of its master.
+
+- `assets/film/replyport-film-1080.mp4` (H.264 1080p60, AAC, fast-start) and
+  `replyport-film-720.mp4` (served to viewports up to 767px via `<source media>`).
+- `assets/film/replyport-film-poster.webp` is the poster (frame at 18.9 s: the
+  question resolved to the University account). The JPEG copy is only for
+  Open Graph / Twitter cards.
+- `assets/film/replyport-film.en.vtt` holds captions of the narration.
+
+Playback: when at least half of the film is on screen it previews once,
+silently, unless the visitor prefers reduced motion or has Data Saver on. It
+pauses when scrolled away. Narration only starts from a click ("Watch the
+film" / "Watch with sound"), which restarts the film from the beginning. Every
+narrated line also appears as on-screen text in the film, and the written
+version below the film describes each scene, so nothing depends on audio.
+
+One film serves both colour schemes: it is a framed light object on either page
+and ends on an ink card.
+
+Local preview note: `python -m http.server` does not support HTTP range
+requests, so seeking inside the video may not work locally. GitHub Pages
+supports them.
+
 ## Placeholders still open
 
-The only remaining `data-pending` placeholder is the hidden
-`Watch a 40-second demo` action (`demo-video`). The setup guide and Privacy
-page are live; the old footer placeholders for Known limitations, What we store,
-and Contact were removed rather than shipping dead links.
+None. The earlier hidden `Watch a 40-second demo` placeholder is replaced by the
+hero film. The setup guide and Privacy page are live; the old footer placeholders
+for Known limitations, What we store, and Contact were removed rather than
+shipping dead links.
 
 ## Copy guardrails
 

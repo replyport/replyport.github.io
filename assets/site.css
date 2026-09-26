@@ -51,7 +51,7 @@
 
   /* --- Loud surfaces: the inverted bands ----------------------------
      The early-access band, the footer, the table header, the Send row
-     and the ReplyPort flow node. They are filled with --ink and their
+     and the film control bar's primary button. They are filled with --ink and their
      content uses the --on-loud-* scale and --rule-loud hairlines. */
   --on-loud:#B7B4AC;
   --on-loud-strong:#E4E1D9;
@@ -313,57 +313,180 @@ h1{
 .topbar__links a:hover{color:var(--signal)}
 .navdrop{display:none}
 
-/* ---------- 8 - Hero ------------------------------------------------- */
+/* ---------- 8 - Hero: headline, the film, facts ---------------------- */
 
-.hero{
-  display:grid;grid-template-columns:1.04fr .96fr;gap:var(--gap-lg);
-  padding-block:32px;align-items:start;
-}
-.hero__copy{display:flex;flex-direction:column;gap:14px}
-.hero__panel{display:flex;flex-direction:column;gap:18px}
-.hero h1{max-width:18ch}
+.hero{display:flex;flex-direction:column;gap:22px;padding-block:34px 26px}
 
-.claims{display:flex;flex-direction:column;border-top:1px solid var(--rule-alt);margin-top:2px}
-.claims > div{padding:9px 0;border-bottom:1px solid var(--rule-alt)}
-.claims dt{font-size:15px;font-weight:600;letter-spacing:-.012em}
-.claims dd{font-size:13.5px;line-height:1.5;color:var(--body);margin-top:1px;max-width:60ch}
+/* Two-column editorial head: the claim on the left, the plain explanation
+   and the install route on the right. It stays short so the film is the
+   first thing that explains the product. */
+.hero__head{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:var(--gap-lg);align-items:end;
+}
+.hero__title{display:flex;flex-direction:column;gap:12px}
+.hero h1{max-width:17ch;font-size:clamp(31px,3.7vw,52px)}
+.hero__intro{display:flex;flex-direction:column;gap:14px;padding-bottom:4px}
+.standfirst{font-size:16px;line-height:1.6;color:var(--body);max-width:48ch}
+.hero__cta-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 
-.hero__cta{display:flex;flex-direction:column;gap:9px;margin-top:2px}
-.hero__cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+/* The film. One canonical light film in both themes: it is a framed object
+   on the page, with its own paper, and it ends on an ink card. */
+.film{display:flex;flex-direction:column}
+.film__frame{
+  position:relative;
+  aspect-ratio:16 / 9;
+  background:#F4F2EB;
+  border:1px solid var(--ink);
+  overflow:hidden;
+}
+.film__video{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;object-fit:cover;background:transparent;
+}
+.film__video::cue{
+  font-family:var(--sans);font-size:clamp(14px,1.6vw,22px);line-height:1.35;
+  color:#FAF9F5;background:rgba(15,15,14,.86);
+}
 
-.surfaces{
-  display:flex;flex-wrap:wrap;gap:6px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.05em;
-  text-transform:uppercase;color:var(--muted);
+/* Centred start button: shown when the film is not previewing (reduced
+   motion, Data Saver, autoplay refused) and after it ends. */
+.film__start{
+  position:absolute;right:2.2%;top:3.6%;
+  display:flex;align-items:center;gap:16px;
+  padding:16px 24px 16px 18px;border:0;border-radius:0;cursor:pointer;
+  background:#0F0F0E;color:#FAF9F5;font:inherit;text-align:left;
+  box-shadow:0 0 0 1px rgba(250,249,245,.18);
 }
-.surfaces span{border:1px solid var(--rule-alt);padding:5px 9px;white-space:nowrap}
+.film__start:hover{background:#000}
+.film__start:focus-visible{outline:2px solid var(--signal);outline-offset:4px}
+.film__start-icon{
+  width:38px;height:38px;flex:none;background:#FAF9F5;position:relative;
+}
+.film__start-icon::after{
+  content:'';position:absolute;left:14px;top:11px;
+  border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #0F0F0E;
+}
+.film.is-ended .film__start{background:#FAF9F5;color:#0F0F0E}
+.film.is-ended .film__start-icon{background:#0F0F0E}
+.film.is-ended .film__start-icon::after{border-left-color:#FAF9F5}
+.film.is-ended .film__start-meta{color:#75736B}
+.film__start-text{display:flex;flex-direction:column;gap:2px}
+.film__start-label{font-size:18px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.film__start-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#B7B4AC}
 
-.glance{display:flex;flex-direction:column;gap:7px}
+.film__unmute{
+  position:absolute;right:2.2%;top:3.6%;
+  display:inline-flex;align-items:center;gap:9px;
+  min-height:40px;padding:0 14px;border:0;border-radius:0;cursor:pointer;
+  background:#0F0F0E;color:#FAF9F5;font:inherit;font-size:13.5px;font-weight:500;
+}
+.film__unmute:hover{background:#000}
+.film__unmute:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 
-/* Hero example panel */
-.demo{border:1px solid var(--ink);background:var(--panel)}
-.demo__cap{
-  display:flex;justify-content:space-between;gap:12px;
-  padding:8px 16px;border-bottom:1px solid var(--rule);
+.film__error{
+  position:absolute;left:0;right:0;bottom:0;padding:12px 16px;
+  background:var(--paper);border-top:1px solid var(--ink);font-size:13.5px;color:var(--body);
 }
-.demo__ask{padding:14px 16px;font-size:16px;line-height:1.45;letter-spacing:-.012em}
-.demo__status{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 16px;border-block:1px solid var(--rule);
-  font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--signal);
+.film.is-failed .film__bar,.film.is-failed .film__unmute{display:none}
+
+/* Control bar: sits under the film so nothing covers the picture. It is
+   only shown when the player script can run (html.js is set inline in the
+   head, so its space is reserved from the first paint); without script
+   the video keeps its native controls. */
+.js .film__bar{display:flex}
+.film__bar{
+  position:relative;
+  display:none;align-items:stretch;flex-wrap:wrap;
+  border:1px solid var(--ink);border-top:0;background:var(--paper);
 }
-.demo__rows{display:flex;flex-direction:column;padding:4px 16px}
-.demo__rows > div{
-  display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-  padding:8px 0;border-bottom:1px solid var(--rule);
+.film__btn{
+  display:inline-flex;align-items:center;gap:9px;
+  min-height:44px;padding:0 16px;
+  border:0;border-right:1px solid var(--rule);border-radius:0;
+  background:transparent;color:var(--ink);cursor:pointer;
+  font:inherit;font-size:13.5px;line-height:1;white-space:nowrap;
 }
-.demo__rows > div:last-child{border-bottom:0}
-.demo__rows dt{font-size:14px;color:var(--body)}
-.demo__rows dd{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--ink)}
-.demo__foot{
-  padding:11px 16px;border-top:1px solid var(--ink);
-  background:var(--paper);font-size:12.5px;line-height:1.55;color:var(--body);
+.film__btn:hover{color:var(--signal)}
+.film__btn:focus-visible{outline:2px solid var(--signal);outline-offset:-2px}
+.film__btn--primary{background:var(--loud-bg);color:var(--paper);font-weight:500;padding:0 18px;border-right-color:var(--ink)}
+.film__btn--primary:hover{background:var(--ink-hover);color:var(--paper)}
+.film__btn[aria-pressed="true"]{color:var(--signal)}
+.film__btn--end{margin-left:auto;border-right:0;border-left:1px solid var(--rule)}
+.film__time{
+  display:flex;align-items:center;gap:.45em;padding:0 16px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);
+  font-variant-numeric:tabular-nums;
 }
+.film__progress{position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent;pointer-events:none}
+.film__progress span{display:block;height:100%;width:0;background:var(--signal)}
+
+/* Icons: drawn with borders so they stay crisp and inherit colour. */
+.film__ico{position:relative;width:14px;height:14px;flex:none;display:inline-block}
+.film__ico--pause::before,.film__ico--pause::after{content:'';position:absolute;top:1px;width:4px;height:12px;background:currentColor}
+.film__ico--pause::before{left:2px}
+.film__ico--pause::after{right:2px}
+.film__ico--play::before{
+  content:'';position:absolute;left:3px;top:1px;
+  border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent currentColor;
+}
+.film__ico--restart{border:2px solid currentColor;border-radius:50%;border-top-color:transparent;width:13px;height:13px}
+.film__ico--restart::after{
+  content:'';position:absolute;right:-3px;top:-3px;
+  border-style:solid;border-width:4px 0 4px 5px;border-color:transparent transparent transparent currentColor;
+  transform:rotate(-45deg);
+}
+.film__ico--sound::before{content:'';position:absolute;left:0;top:4px;width:4px;height:6px;background:currentColor}
+.film__ico--sound::after{
+  content:'';position:absolute;left:3px;top:1px;
+  border-style:solid;border-width:6px 7px 6px 0;border-color:transparent currentColor transparent transparent;
+}
+[data-act="mute"][aria-pressed="false"] .film__ico--sound{opacity:.45}
+.film__ico--full{border:2px solid currentColor;width:14px;height:11px;margin-top:1px}
+.film__cc{
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.04em;
+  border:1.5px solid currentColor;padding:1px 3px;line-height:1.1;
+}
+
+/* Facts under the film: the old "At a glance" list, as one hairline row. */
+.film__facts{margin-top:14px}
+.facts{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);
+}
+.facts > div{background:var(--paper);padding:10px 14px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.facts dt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{font-size:14px;color:var(--ink);letter-spacing:-.01em}
+.facts .is-no{color:var(--muted)}
+.facts .is-signal{color:var(--signal);font-weight:600}
+
+/* Written version of the film. */
+.transcript{border-bottom:1px solid var(--rule)}
+.transcript summary{
+  list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  padding:2px 0 12px;
+}
+.transcript summary::-webkit-details-marker{display:none}
+.transcript summary::before{content:'+';font-size:13px;line-height:1;color:var(--signal)}
+.transcript[open] summary::before{content:'\2013'}
+.transcript summary:hover{color:var(--signal)}
+.transcript summary:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.transcript__list{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 40px;
+  padding-bottom:18px;counter-reset:t;
+}
+.transcript__list li{
+  counter-increment:t;position:relative;padding-left:30px;
+  font-size:13.5px;line-height:1.55;color:var(--body);
+}
+.transcript__list li::before{
+  content:counter(t,decimal-leading-zero);position:absolute;left:0;top:2px;
+  font-family:var(--mono);font-size:11px;color:var(--signal);
+}
+.transcript__list b{color:var(--ink);font-weight:600}
+
+#use-cases{padding-bottom:30px}
 
 /* ---------- 9 - Hairline grids and strips ---------------------------- */
 
@@ -380,40 +503,6 @@ h1{
 .usecase{padding:18px 20px 20px;display:flex;flex-direction:column;gap:5px}
 .usecase__title{font-size:19px;font-weight:500;letter-spacing:-.026em;line-height:1.15}
 .usecase__text{font-size:13.5px;line-height:1.55;color:var(--body)}
-
-/* ---------- 10 - System flow ---------------------------------------- */
-
-.flow-wrap{padding-block:20px 30px;display:flex;flex-direction:column;gap:12px}
-.flow{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
-  background:var(--rule);border:1px solid var(--ink);
-}
-.flow__node{
-  position:relative;background:var(--paper);padding:16px 20px 18px;
-  display:flex;flex-direction:column;gap:5px;min-width:0;
-}
-.flow__node:nth-child(1){z-index:3}
-.flow__node:nth-child(2){z-index:2}
-.flow__node:nth-child(3){z-index:1}
-.flow__node--core{background:var(--loud-bg);color:var(--paper)}
-.flow__title{font-size:19px;font-weight:500;letter-spacing:-.026em;line-height:1.15}
-.flow__text{font-size:13px;line-height:1.55;color:var(--body)}
-.flow__node--core .flow__text{color:var(--on-loud)}
-.flow__list{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:11.5px;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--on-loud-strong);margin-top:1px}
-.flow__list li{position:relative;padding-left:11px}
-.flow__list li::before{
-  content:'';position:absolute;left:0;top:.45em;width:5px;height:5px;background:var(--signal-on-loud);
-}
-.flow__arrow{
-  position:absolute;right:-1px;top:50%;transform:translate(50%,-50%);
-  width:20px;height:20px;display:grid;place-items:center;
-  background:var(--paper);color:var(--ink);border:1px solid var(--ink);
-  font-family:var(--mono);font-size:11px;line-height:1;
-}
-.flow__arrow::before{content:'\2192'}
-.flow__note{font-size:13px;line-height:1.6;color:var(--body);max-width:92ch}
-.flow__note b{color:var(--ink)}
 
 /* ---------- 11 - Section heads --------------------------------------- */
 
@@ -619,7 +708,8 @@ h1{
   :root{--gutter:28px;--gap-lg:40px}
   .lockup__tag{display:none}
   .topbar__links{gap:20px;font-size:13.5px}
-  .hero{gap:36px}
+  .hero__head{gap:36px}
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
   .sec-head{gap:32px}
   .cols{gap:28px}
   .footnotes{gap:18px}
@@ -646,9 +736,11 @@ h1{
   /* The sticky bar is taller once the Sections disclosure is part of it. */
   [id]{scroll-margin-top:100px}
 
-  .hero{grid-template-columns:1fr;gap:28px;padding-block:30px 28px}
+  .hero{padding-block:26px 22px;gap:20px}
+  .hero__head{grid-template-columns:1fr;gap:16px;align-items:start}
   .hero h1{max-width:20ch}
-  .hero__cta .meta{max-width:none}
+  .standfirst{max-width:62ch}
+  .transcript__list{grid-template-columns:1fr}
 
   .sec-head{grid-template-columns:1fr;gap:10px;align-items:start}
   .sec-head .h2,.sec-head .lead{max-width:60ch}
@@ -677,17 +769,25 @@ h1{
   :root{--gutter:22px;--band-y:34px;--gap-lg:26px}
 
   .hair-grid--3,.hair-grid--2{grid-template-columns:1fr}
-  .flow{grid-template-columns:1fr}
-  .flow__arrow{
-    right:auto;left:50%;top:auto;bottom:-1px;transform:translate(-50%,50%);
-  }
-  .flow__arrow::before{content:'\2193'}
-  .flow-wrap{padding-block:16px 24px}
+  /* The film runs edge to edge on phones: every pixel of width matters. */
+  .film__frame{margin-inline:calc(var(--gutter) * -1);border-inline:0}
+  .film__bar{margin-inline:calc(var(--gutter) * -1);border-inline:0}
+  .film__btn{padding:0 13px}
+  .film__btn-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .film__btn--primary{flex:1 1 auto;justify-content:center}
+  .film__time{display:none}
+  /* On a phone the control bar sits right under the picture, so the
+     overlay shrinks to a play square and the extra sound button goes. */
+  .film__unmute{display:none !important}
+  .film__start{right:10px;top:10px;padding:0;gap:0;box-shadow:none}
+  .film__start-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .film__start-icon{width:44px;height:44px}
+  .film__start-icon::after{left:17px;top:13px;border-width:9px 0 9px 14px}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 
   .speclist--2col{grid-template-columns:1fr}
   .footnotes{grid-template-columns:1fr;gap:12px}
 
-  .demo__ask{font-size:15px}
 
   .foot__grid{grid-template-columns:1fr 1fr;gap:24px}
   .foot__legal{flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:26px}
@@ -735,8 +835,7 @@ h1{
   .topbar__bar{gap:12px}
   .wordmark{font-size:16px}
   .btn--small{padding:8px 12px;font-size:12px}
-  .hero__cta{gap:12px}
-  .hero__cta .btn{width:100%}
+  .hero__cta-row .btn{flex:1 1 100%}
   .cta__row .btn{width:100%}
   .footnotes{gap:10px}
   .foot__grid{grid-template-columns:1fr;gap:22px}
@@ -759,8 +858,6 @@ h1{
   .wordmark{font-size:15px}
   .topbar__bar .rp-mark--24{width:20px;height:20px;--rp-w:2px;--rp-h:12px}
   .btn--small{padding:7px 9px;font-size:11px}
-  .demo__cap{flex-direction:column;gap:4px}
-  .demo__rows dt{font-size:13px}
   .cap tbody tr{grid-template-columns:1fr}
 }
 
@@ -775,11 +872,12 @@ h1{
     --on-loud:#000000;--on-loud-strong:#000000;--on-loud-muted:#333333;
     --signal:#000000;--signal-on-loud:#000000;--signal-fill:#FFFFFF;--on-signal:#000000;
   }
-  .band--ink,.foot,.cap thead th,.cap__send,.cap__only,.flow__node--core{
+  .band--ink,.foot,.cap thead th,.cap__send,.cap__only{
     background:#fff;color:#000;
   }
   .cta__para,.ledger__rows dt,.ledger__rows dd,.foot__blurb,.ledger__note,
-  .foot__legal,.foot__col a,.foot__pending,.flow__list{color:#000}
+  .foot__legal,.foot__col a,.foot__pending{color:#000}
+  .film__bar,.film__start{display:none !important}
   .topbar{position:static}
   .btn,.navdrop,.skip-link{display:none}
   html{scroll-behavior:auto}
