@@ -44,21 +44,16 @@ directly downloaded executable.
 
 ## Setup guide
 
-The public setup guide is implemented at [`setup/`](setup/). It gives normal
-users a five-step flow: install ReplyPort and open Outlook Classic, enable the
-mailboxes in ReplyPort Control Centre, make the Dropbox `/MailBridge` folder
-available to the chosen AI surface, paste the short bootstrap instruction, and
-then ask about mail normally. It keeps the no-Send boundary explicit.
+The public setup guide at [`setup/`](setup/) owns the three-step AI connection
+process: share the `/ReplyPort` folder, copy the setup prompt from Control Centre,
+and paste it into the AI to follow the guide. Installation, Outlook and mail-copying
+prerequisites appear before those steps. The homepage links here instead of
+maintaining its own instructions.
 
-The ChatGPT and Claude bootstrap text on that page is a short, consumer-facing
-derivation of `bootstrap/CHATGPT_PROMPT.md` from the private ReplyPort
-engineering repository. The full lean guide is published at
-`setup/agent-context.txt` as a website release copy of the canonical
-`AGENT_CONTEXT.md`. The private engineering repository remains the source of
-truth. Canonical source commit:
-`1d3f5b51c8f4cae1b8b92ebd530d21f49156cc11`. Synchronize the website release
-copy whenever the canonical guide changes; this site must not become a second
-source of truth.
+`setup/setup-prompt.txt` matches the copyable prompt on the page. The older
+`chatgpt.txt` and `claude.txt` URLs retain the same prompt for existing links.
+`agent-context.txt` redirects readers to the current guide; it is not an operating
+protocol. Keep these download URLs working and do not invent setup instructions.
 
 ## Positioning
 
@@ -76,9 +71,7 @@ The value hierarchy the page is built around, in order:
 6. Human-only Send is a strong trust boundary, but it is **not** the headline.
 
 The old "we took the Send button away" pitch is deliberately no longer the lead.
-The boundary stays visible — at the end of the film, in the fact strip under it,
-and in the How it works section — without occupying the
-conceptual centre.
+The no-send message stays visible in the film and How it works section.
 
 ## Design
 
@@ -97,30 +90,25 @@ aesthetic. Concretely, relative to the original handoff:
   three-step email flow instead of one large band per idea;
 - mono eyebrow labels on every block for scanability.
 
-Before the How it works simplification, at 1440px the page went from **5714px to ~3485px tall (−39%)**
-while carrying more information.
-
 Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 `--band-y` 48px, `--gap-lg` 52px. Breakpoints at 1180 / 980 / 767 / 520 / 360.
 
 ### Page structure
 
-1. Sticky compact top bar — mark, wordmark, three links (How it works / Setup / Requirements), Store CTA.
-2. Hero head — headline on the left; one-paragraph explanation, Store CTA and
-   setup guide on the right.
-3. The film — the 38-second narrated concept film at full content width, its
-   control bar, a one-row fact strip (platform, mail client, add-in, accounts,
-   AI surfaces, Send) and a collapsible written version of what it shows.
-4. Use-case strip — back from leave / multiple accounts / lots of replies.
-5. Where you use it — supported surfaces and what they avoid.
-6. How it works — ask your AI, ReplyPort creates the draft, then you review and
-   send. A prominent statement makes clear that ReplyPort never sends email.
-   The numbered flow runs horizontally on desktop and stacks on mobile.
-7. Windows & Outlook — requirements, setup, distribution and scope.
-8. Early access — Store CTA.
-9. Footer.
-10. Setup guide — consumer setup flow, ChatGPT and Claude bootstrap text, and
-    an advanced link to the canonical full operating guide.
+1. Shared top bar — How it works, Setup, Requirements and a Store link.
+2. Homepage hero — product explanation, supported AI products, Store CTA and price.
+3. Film — accessible controls, captions and a collapsible written description.
+4. Use cases — triage, search across accounts and prepare several replies.
+5. How it works — ask your AI, ReplyPort creates the draft, you review and send.
+6. Requirements — Windows/Outlook/AI access, Store install and one Setup guide link.
+7. Shared footer — product, installation and company links, plus affiliation notice.
+8. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
+9. Privacy page — full data-handling disclosures and contact information.
+
+Keep detailed setup on `/setup/`. Avoid repeating feature tables, negative claims
+or a second closing product pitch on the homepage. Retain the film's captions and
+written description even when they repeat information: they provide access without
+sound or video. Privacy disclosures should not be treated as marketing repetition.
 
 ### The hero film
 
@@ -148,13 +136,6 @@ and ends on an ink card.
 Local preview note: `python -m http.server` does not support HTTP range
 requests, so seeking inside the video may not work locally. GitHub Pages
 supports them.
-
-## Placeholders still open
-
-None. The earlier hidden `Watch a 40-second demo` placeholder is replaced by the
-hero film. The setup guide and Privacy page are live; the old footer placeholders
-for Known limitations, What we store, and Contact were removed rather than
-shipping dead links.
 
 ## Copy guardrails
 

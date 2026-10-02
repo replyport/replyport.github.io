@@ -50,8 +50,7 @@
   --border-strong:#CFCBBF;
 
   /* --- Loud surfaces: the inverted bands ----------------------------
-     The early-access band, the footer
-     and the film control bar's primary button. They are filled with --ink and their
+     The footer and the film control bar's primary button. They are filled with --ink and their
      content uses the --on-loud-* scale and --rule-loud hairlines. */
   --on-loud:#B7B4AC;
   --on-loud-strong:#E4E1D9;
@@ -448,18 +447,6 @@ h1{
   border:1.5px solid currentColor;padding:1px 3px;line-height:1.1;
 }
 
-/* Facts under the film: the old "At a glance" list, as one hairline row. */
-.film__facts{margin-top:14px}
-.facts{
-  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;
-  background:var(--rule);border:1px solid var(--rule);
-}
-.facts > div{background:var(--paper);padding:10px 14px;display:flex;flex-direction:column;gap:3px;min-width:0}
-.facts dt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.facts dd{font-size:14px;color:var(--ink);letter-spacing:-.01em}
-.facts .is-no{color:var(--muted)}
-.facts .is-signal{color:var(--signal);font-weight:600}
-
 /* Written version of the film. */
 .transcript{border-bottom:1px solid var(--rule)}
 .transcript summary{
@@ -534,11 +521,9 @@ h1{
 .speclist--2col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:32px;border-top:0}
 .speclist--2col > div{border-top:1px solid var(--rule-alt);border-bottom:0}
 
-.setup{display:flex;flex-direction:column;border-top:1px solid var(--rule-alt)}
-.setup li{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--rule-alt)}
-.setup__num{font-family:var(--mono);font-size:11px;color:var(--signal);flex:none;padding-top:3px}
-.setup__body b{display:block;font-size:14px;letter-spacing:-.01em}
-.setup__body p{font-size:12.5px;line-height:1.55;color:var(--muted);margin-top:2px}
+#windows .btn{max-width:100%;white-space:normal}
+.requirements-list{display:grid;gap:8px;font-size:14px;color:var(--body)}
+.requirements-list li{padding-bottom:8px;border-bottom:1px solid var(--rule-alt)}
 
 /* ---------- 13 - How-it-works boundary statement + step list --------- */
 
@@ -573,14 +558,6 @@ h1{
   content:'';position:absolute;right:5px;top:8px;width:7px;height:7px;
   border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg);
 }
-
-/* ---------- 14 - Early access (ink band) ----------------------------- */
-
-.cta{padding-block:var(--band-y)}
-.cta__copy{max-width:680px;display:flex;flex-direction:column;gap:12px}
-.cta .h2{max-width:22ch}
-.cta__para{font-size:15px;line-height:1.65;color:var(--on-loud);max-width:56ch}
-.cta__row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:4px}
 
 /* ---------- 15 - Footer ---------------------------------------------- */
 
@@ -632,6 +609,7 @@ h1{
 .guide-standfirst{max-width:62ch;font-size:18px;line-height:1.65;color:var(--body);margin-top:18px}
 .guide-boundary{border:1px solid var(--ink);padding:18px 20px;background:var(--panel);display:flex;flex-direction:column;gap:9px}
 .guide-boundary strong{font-size:18px;font-weight:500;letter-spacing:-.02em}
+.guide-boundary ul{display:grid;gap:8px;list-style:square;padding-left:16px;font-size:13.5px;line-height:1.6;color:var(--body)}
 .guide-boundary p{font-size:13.5px;line-height:1.6;color:var(--body)}
 .guide-layout{display:grid;grid-template-columns:220px minmax(0,760px);gap:80px;padding-block:56px 88px}
 .guide-nav{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:10px;font-size:14px}
@@ -651,7 +629,7 @@ h1{
 .guide-step::before{content:counter(guide-step,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--signal);padding-top:4px}
 .guide-step h3{margin:0;font-size:18px;font-weight:500;letter-spacing:-.02em}
 .guide-step p{font-size:14.5px;line-height:1.62;margin-top:4px}
-.guide-step code,.setup__body code{font-family:var(--mono);font-size:.92em;color:var(--ink)}
+.guide-step code{font-family:var(--mono);font-size:.92em;color:var(--ink)}
 .ai-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:4px}
 .ai-card{background:var(--paper);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .ai-card__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule-alt);padding-bottom:10px}
@@ -663,6 +641,11 @@ h1{
 .copy-button:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 .instruction-download{font-size:13px;border-bottom:1px solid var(--border-strong);padding-bottom:1px}
 .copy-status{font-family:var(--mono);font-size:11px;color:var(--signal);min-height:1.5em}
+.guide-help{display:grid;gap:0}
+.guide-help > div{padding:14px 0;border-top:1px solid var(--rule-alt)}
+.guide-help dt{font-size:16px;font-weight:500;color:var(--ink)}
+.guide-help dd{margin-top:4px;font-size:14px;line-height:1.6;color:var(--body)}
+
 .guide-source{font-size:13px !important;line-height:1.6 !important;color:var(--muted) !important}
 .guide-source a{color:var(--body);border-bottom:1px solid var(--border-strong)}
 .guide-source a:hover{color:var(--signal);border-color:var(--signal)}
@@ -678,7 +661,6 @@ h1{
   .lockup__tag{display:none}
   .topbar__links{gap:20px;font-size:13.5px}
   .hero__head{gap:36px}
-  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
   .sec-head{gap:32px}
   .cols{gap:28px}
   .foot__grid{gap:28px}
@@ -715,7 +697,6 @@ h1{
 
   .cols--2{grid-template-columns:1fr}
 
-  .cta .h2{max-width:none}
 
   .foot__grid{grid-template-columns:1fr 1fr 1fr;gap:26px}
   .foot__brand{grid-column:1 / -1}
@@ -749,7 +730,6 @@ h1{
   .film__start-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
   .film__start-icon{width:44px;height:44px}
   .film__start-icon::after{left:17px;top:13px;border-width:9px 0 9px 14px}
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 
   .speclist--2col{grid-template-columns:1fr}
 
@@ -779,12 +759,11 @@ h1{
   .wordmark{font-size:16px}
   .btn--small{padding:8px 12px;font-size:12px}
   .hero__cta-row .btn{flex:1 1 100%}
-  .cta__row .btn{width:100%}
   .foot__grid{grid-template-columns:1fr;gap:22px}
   .privacy-nav{grid-template-columns:1fr}
   .privacy-nav .eyebrow{grid-column:auto}
-  .guide-nav{grid-template-columns:1fr}
-  .guide-nav .eyebrow{grid-column:auto}
+  .guide-nav{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px 20px;padding-bottom:16px}
+  .guide-nav .eyebrow{display:none}
   .guide-step{grid-template-columns:36px minmax(0,1fr);gap:10px}
   .guide-step h3{font-size:17px}
   .guide-step p{font-size:14px}
@@ -814,8 +793,7 @@ h1{
   .band--ink,.foot{
     background:#fff;color:#000;
   }
-  .cta__para,.foot__blurb,
-  .foot__legal,.foot__col a,.foot__pending{color:#000}
+  .foot__blurb,.foot__legal,.foot__col a,.foot__pending{color:#000}
   .film__bar,.film__start{display:none !important}
   .topbar{position:static}
   .btn,.navdrop,.skip-link{display:none}

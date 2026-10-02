@@ -50,12 +50,14 @@
       <div>
         <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Setup guide</p>
         <h1>Connect your AI in three steps.</h1>
-        <p class="guide-standfirst">ReplyPort already handles the Outlook side. Give your AI access to the ReplyPort folder, paste one setup prompt, and let the trusted guide inside that folder do the rest.</p>
       </div>
-      <aside class="guide-boundary" aria-label="ReplyPort boundary">
-        <p class="eyebrow">The boundary</p>
-        <strong>Drafts only. Never Send.</strong>
-        <p>The setup test is a harmless search. It does not create a draft. ReplyPort never sends mail; you review and send in Outlook.</p>
+      <aside class="guide-boundary" aria-label="Before you start">
+        <p class="eyebrow">Before you start</p>
+        <ul>
+          <li>Install ReplyPort from the <a class="link" href="https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ">Microsoft Store</a>.</li>
+          <li>Open Outlook Classic.</li>
+          <li>Enable mail copying for your chosen accounts in ReplyPort Control Centre.</li>
+        </ul>
       </aside>
     </div>
   </header>
@@ -70,40 +72,35 @@
 
     <article class="guide-copy">
       <section id="steps">
-        <p class="eyebrow">Start here</p>
-        <h2>Three steps, then use ReplyPort normally</h2>
-        <ol class="guide-steps">
+        <h2>Connect your AI</h2>
+        <ol class="guide-steps" role="list">
           <li class="guide-step">
             <div>
               <h3>Make the ReplyPort folder available to your AI</h3>
-              <p>Use the file, connector or Dropbox access option your AI provides and make sure it can reach the <code>/ReplyPort</code> folder. Having Dropbox installed on Windows is not enough by itself; the AI also needs access to that folder.</p>
+              <p>Use your AI&#8217;s file or Dropbox connection to give it access to <code>/ReplyPort</code>. Installing Dropbox on your PC alone does not give your AI access.</p>
             </div>
           </li>
           <li class="guide-step">
             <div>
-              <h3>Copy the setup prompt from ReplyPort Control Centre</h3>
-              <p>Open ReplyPort Control Centre and choose <strong>Copy setup prompt</strong>. This is the normal setup path. The prompt is short because the detailed instructions already live safely inside your ReplyPort folder.</p>
+              <h3>Copy the setup prompt</h3>
+              <p>Open ReplyPort Control Centre and choose <strong>Copy setup prompt</strong>.</p>
             </div>
           </li>
           <li class="guide-step">
             <div>
-              <h3>Paste it into a normal AI chat and follow the steps</h3>
-              <p>The AI opens <code>/ReplyPort/SETUP.md</code>, checks the connection, gives you the permanent ReplyPort instructions and tells you where to save them, then runs one harmless search test. When it reports <strong>Ready</strong>, you can simply ask about your mail.</p>
+              <h3>Paste it into your AI chat</h3>
+              <p>Follow the guide to save the permanent ReplyPort instructions and run the search test. When it reports <strong>Ready</strong>, you can ask about your mail.</p>
             </div>
           </li>
         </ol>
+        <p>The setup test searches only; it creates no draft. ReplyPort never sends email. You review and send in Outlook.</p>
       </section>
 
       <section id="setup-prompt">
-        <p class="eyebrow">Fallback</p>
-        <h2>Need the setup prompt here?</h2>
-        <p>If you cannot copy it from Control Centre, this is the same current prompt. Paste it into the AI that has access to your ReplyPort folder.</p>
+        <h2 id="setup-prompt-title">Need the setup prompt?</h2>
+        <p>If you cannot copy it from Control Centre, copy it here.</p>
 
         <article class="ai-card" aria-labelledby="setup-prompt-title">
-          <div class="ai-card__head">
-            <h3 id="setup-prompt-title">ReplyPort setup prompt</h3>
-            <p class="eyebrow">Paste once into a normal chat</p>
-          </div>
           <pre class="instruction" id="replyport-setup-prompt">I just installed ReplyPort. In the connected ReplyPort folder (/ReplyPort), open SETUP.md and follow it as ReplyPort's trusted setup guide. Walk me through setup step by step, including where to save the permanent ReplyPort instructions, then run its one harmless setup test. Do not create any draft during setup.</pre>
           <div class="instruction-actions">
             <button class="copy-button" type="button" data-copy-target="replyport-setup-prompt" data-copy-status="replyport-status">Copy setup prompt</button>
@@ -111,27 +108,18 @@
           </div>
           <p class="copy-status" id="replyport-status" aria-live="polite"></p>
         </article>
-
-        <p class="note">You do not need to copy protocol instructions, schemas or mailbox IDs yourself. <code>SETUP.md</code> tells the AI what to read and how to perform the setup safely.</p>
       </section>
 
       <section id="trouble">
-        <p class="eyebrow">If setup stops</p>
-        <h2>The AI should tell you the next action</h2>
-        <div class="hair-grid hair-grid--3 strip">
-          <div class="col col--pad">
-            <p class="eyebrow">Cannot see /ReplyPort</p>
-            <p>Make the ReplyPort Dropbox folder available to that AI, then paste the setup prompt again.</p>
-          </div>
-          <div class="col col--pad">
-            <p class="eyebrow">Mail copying is off</p>
-            <p>Open ReplyPort Control Centre and enable mail copying for at least one mailbox, then continue setup.</p>
-          </div>
-          <div class="col col--pad">
-            <p class="eyebrow">Setup test times out</p>
-            <p>Check that the PC is on, the ReplyPort tray icon is running, Outlook Classic is open and Dropbox is syncing, then ask the AI to run the ReplyPort setup test again.</p>
-          </div>
-        </div>
+        <h2>If setup stops</h2>
+        <dl class="guide-help">
+          <div><dt>Cannot see /ReplyPort</dt>
+          <dd>Make the ReplyPort Dropbox folder available to that AI, then paste the setup prompt again.</dd></div>
+          <div><dt>Mail copying is off</dt>
+          <dd>Open ReplyPort Control Centre and enable mail copying for at least one mailbox, then continue setup.</dd></div>
+          <div><dt>Setup test times out</dt>
+          <dd>Check that the PC is on, the ReplyPort tray icon is running, Outlook Classic is open and Dropbox is syncing, then ask the AI to run the ReplyPort setup test again.</dd></div>
+        </dl>
       </section>
     </article>
   </div>
@@ -144,29 +132,28 @@
         <span class="rp-mark rp-mark--24 rp-mark--inverse rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
         <span class="foot__wordmark">ReplyPort</span>
       </div>
-      <p class="foot__blurb">AI for the Outlook accounts you already have. Search, triage and prepare replies across several mailboxes on your Windows PC. You review and send.</p>
+      <p class="foot__blurb">For Outlook Classic on Windows.</p>
     </div>
     <nav class="foot__col" aria-label="Product">
       <h2 class="eyebrow">Product</h2>
       <a href="../#how">How it works</a>
       <a href="../#use-cases">Use cases</a>
-      <a href="../#boundary">Trust boundary</a>
+      <a href="../#windows">Requirements</a>
     </nav>
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
       <a href="./" aria-current="page">Setup guide</a>
       <a href="https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ">Microsoft Store</a>
-      <a href="../#windows">Requirements</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
       <a href="../privacy/">Privacy</a>
       <a href="https://github.com/replyport" rel="noopener">GitHub</a>
+      <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
     </nav>
   </div>
   <div class="wrap foot__legal">
-    <span>&#169; 2026 ReplyPort &#183; Early access &#183; Not affiliated with Microsoft, OpenAI or Anthropic</span>
-    <span>ReplyPort has no send capability.</span>
+    <span>&#169; 2026 ReplyPort &#183; Early access &#183; Independent; not affiliated with or endorsed by Microsoft, OpenAI or Anthropic.</span>
   </div>
 </footer>
 

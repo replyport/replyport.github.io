@@ -1,14 +1,6 @@
 ReplyPort setup has changed.
 
-This public text file is retained only so older links do not lead to obsolete instructions.
-
-Current setup:
-1. Make the ReplyPort folder available to your AI.
-2. In ReplyPort Control Centre, choose "Copy setup prompt".
-3. Paste that prompt into a normal AI chat.
-4. The AI should follow /ReplyPort/SETUP.md, give you the permanent ReplyPort instructions, and run one harmless search setup test.
-
-Current setup guide:
+For current setup instructions, use:
 https://replyport.github.io/setup/
 
-Do not use older /MailBridge setup instructions. Current ReplyPort uses /ReplyPort.
+This file is retained for older links. Do not use older /MailBridge setup instructions. Current ReplyPort uses /ReplyPort.
