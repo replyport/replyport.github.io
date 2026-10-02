@@ -77,7 +77,7 @@ The value hierarchy the page is built around, in order:
 
 The old "we took the Send button away" pitch is deliberately no longer the lead.
 The boundary stays visible — at the end of the film, in the fact strip under it,
-in the How it works section and in the early-access ledger — without occupying the
+and in the How it works section — without occupying the
 conceptual centre.
 
 ## Design
@@ -117,7 +117,7 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
    send. A prominent statement makes clear that ReplyPort never sends email.
    The numbered flow runs horizontally on desktop and stacks on mobile.
 7. Windows & Outlook — requirements, setup, distribution and scope.
-8. Early access — Store CTA and the "by design, not by setting" ledger.
+8. Early access — Store CTA.
 9. Footer.
 10. Setup guide — consumer setup flow, ChatGPT and Claude bootstrap text, and
     an advanced link to the canonical full operating guide.
@@ -168,9 +168,6 @@ Do not add: user counts, draft counts, install time, download size, unsupported
 compatibility claims, or any implication of endorsement by Microsoft, OpenAI or
 Anthropic. "No Outlook add-in required" is the correct framing; anything that
 reads as bypassing an employer's or university's policy is not.
-
-The three zeros in the early-access ledger are product-boundary statements, not
-usage metrics.
 
 ## Product source
 
