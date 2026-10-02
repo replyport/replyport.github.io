@@ -77,7 +77,7 @@ The value hierarchy the page is built around, in order:
 
 The old "we took the Send button away" pitch is deliberately no longer the lead.
 The boundary stays visible — at the end of the film, in the fact strip under it,
-in the capability table and in the early-access ledger — without occupying the
+in the How it works section and in the early-access ledger — without occupying the
 conceptual centre.
 
 ## Design
@@ -94,11 +94,10 @@ aesthetic. Concretely, relative to the original handoff:
 - section headings after the hero cut from 44–46px to a 21–28px clamp;
 - body copy 15px/1.55, small copy 12.5–13.5px;
 - more information side by side: spec lists, three-up strips, a compact
-  system-flow diagram and a compact capability table instead of one large band
-  per idea;
+  three-step email flow instead of one large band per idea;
 - mono eyebrow labels on every block for scanability.
 
-Net effect at 1440px: the page went from **5714px to ~3485px tall (−39%)**
+Before the How it works simplification, at 1440px the page went from **5714px to ~3485px tall (−39%)**
 while carrying more information.
 
 Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
@@ -114,7 +113,9 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
    AI surfaces, Send) and a collapsible written version of what it shows.
 4. Use-case strip — back from leave / multiple accounts / lots of replies.
 5. Where you use it — supported surfaces and what they avoid.
-6. How it works — three roles, then the capability/trust table with the Send row.
+6. How it works — ask your AI, ReplyPort creates the draft, then you review and
+   send. A prominent statement makes clear that ReplyPort never sends email.
+   The numbered flow runs horizontally on desktop and stacks on mobile.
 7. Windows & Outlook — requirements, setup, distribution and scope.
 8. Early access — Store CTA and the "by design, not by setting" ledger.
 9. Footer.

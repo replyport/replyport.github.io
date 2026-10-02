@@ -50,7 +50,7 @@
   --border-strong:#CFCBBF;
 
   /* --- Loud surfaces: the inverted bands ----------------------------
-     The early-access band, the footer, the table header, the Send row
+     The early-access band, the footer
      and the film control bar's primary button. They are filled with --ink and their
      content uses the --on-loud-* scale and --rule-loud hairlines. */
   --on-loud:#B7B4AC;
@@ -540,56 +540,39 @@ h1{
 .setup__body b{display:block;font-size:14px;letter-spacing:-.01em}
 .setup__body p{font-size:12.5px;line-height:1.55;color:var(--muted);margin-top:2px}
 
-/* ---------- 13 - Roles + capability table ---------------------------- */
+/* ---------- 13 - How-it-works boundary statement + step list --------- */
 
-.role{padding:18px 20px 20px;display:flex;flex-direction:column;gap:5px}
-.role__title{font-size:18px;font-weight:500;letter-spacing:-.024em;line-height:1.2}
-.role__text{font-size:13.5px;line-height:1.55;color:var(--body)}
-.role__limit{
-  margin-top:auto;padding-top:10px;border-top:1px solid var(--rule-alt);
-  font-family:var(--mono);font-size:11px;line-height:1.5;letter-spacing:.03em;color:var(--muted);
+.how-boundary{display:flex;flex-direction:column;gap:4px}
+.how-boundary__statement{
+  font-size:19px;font-weight:600;letter-spacing:-.022em;line-height:1.25;color:var(--ink);
 }
-.role--you{box-shadow:inset 3px 0 0 var(--signal)}
+.how-boundary__support{font-size:13px;line-height:1.5;color:var(--muted)}
 
-.cap-wrap{margin-top:26px}
-.cap-label{display:block;margin-bottom:8px}
-
-.cap{
-  width:100%;border-collapse:collapse;table-layout:fixed;
-  background:var(--paper);border:1px solid var(--ink);text-align:left;
+.how-steps{
+  display:flex;align-items:stretch;
+  border-top:1px solid var(--rule-alt);border-bottom:1px solid var(--rule-alt);
 }
-.band--alt .cap{background:var(--paper-alt)}
-.cap__c1{width:44%}
-.cap__c2{width:17%}
-.cap__c3{width:22%}
-.cap__c4{width:17%}
-.cap thead th{
-  background:var(--loud-bg);color:var(--paper);
-  font-family:var(--mono);font-size:10.5px;font-weight:400;
-  letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;
+.how-step{
+  position:relative;flex:1 1 0;min-width:0;
+  padding:18px 24px 20px;display:flex;flex-direction:column;gap:5px;
+  border-left:1px solid var(--rule-alt);
 }
-.cap thead th:first-child{padding-left:20px}
-.cap tbody th{font-weight:400;font-size:14.5px;padding:11px 14px 11px 20px;vertical-align:middle}
-.cap tbody td{font-size:13.5px;color:var(--body);padding:11px 14px;vertical-align:middle;font-family:var(--mono);letter-spacing:.01em}
-.cap tbody tr{border-bottom:1px solid var(--rule)}
-.band--alt .cap tbody tr{border-bottom-color:var(--rule-alt)}
-.cap .is-no{color:var(--muted-2)}
-.cap tbody tr.cap__lastlight{border-bottom:1px solid var(--ink)}
-
-.cap tbody tr.cap__send{background:var(--loud-bg);color:var(--paper);border-bottom:0}
-.cap tbody tr.cap__send th{padding:18px 14px 18px 20px}
-.cap tbody tr.cap__send td{padding:18px 14px;font-size:15px;color:var(--on-loud-muted)}
-.cap__send-label{display:flex;align-items:center;gap:14px}
-.cap__send-word{font-size:22px;font-weight:600;letter-spacing:-.03em;font-family:var(--sans)}
-.cap tbody tr.cap__send td.cap__only{
-  background:var(--signal-fill);color:var(--on-signal);font-size:15px;font-weight:500;letter-spacing:.01em;
+.how-step:first-child{border-left:0}
+.how-step__num{font-family:var(--mono);font-size:11px;color:var(--signal);letter-spacing:.03em}
+.how-step__title{font-size:18px;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.how-step__text{font-size:13.5px;line-height:1.55;color:var(--body)}
+.how-step--you{box-shadow:inset 3px 0 0 var(--signal)}
+.how-step__arrow{
+  position:absolute;top:22px;right:-12px;z-index:1;
+  width:24px;height:24px;background:var(--paper);color:var(--muted);
 }
-
-.footnotes{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
-  margin-top:14px;font-size:12.5px;line-height:1.6;color:var(--muted);
+.how-step__arrow::before{
+  content:'';position:absolute;left:5px;right:5px;top:11px;border-top:1px solid currentColor;
 }
-.footnotes b{color:var(--body)}
+.how-step__arrow::after{
+  content:'';position:absolute;right:5px;top:8px;width:7px;height:7px;
+  border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg);
+}
 
 /* ---------- 14 - Early access (ink band) ----------------------------- */
 
@@ -712,7 +695,6 @@ h1{
   .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
   .sec-head{gap:32px}
   .cols{gap:28px}
-  .footnotes{gap:18px}
   .foot__grid{gap:28px}
 }
 
@@ -746,7 +728,6 @@ h1{
   .sec-head .h2,.sec-head .lead{max-width:60ch}
 
   .cols--2{grid-template-columns:1fr}
-  .footnotes{grid-template-columns:1fr 1fr}
 
   .cta{grid-template-columns:1fr;gap:28px;align-items:start}
   .cta .h2{max-width:none}
@@ -786,8 +767,6 @@ h1{
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 
   .speclist--2col{grid-template-columns:1fr}
-  .footnotes{grid-template-columns:1fr;gap:12px}
-
 
   .foot__grid{grid-template-columns:1fr 1fr;gap:24px}
   .foot__legal{flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:26px}
@@ -798,35 +777,14 @@ h1{
   .guide-copy{gap:40px}
   .ai-grid{grid-template-columns:1fr}
 
-  /* Capability table -> one stacked block per capability, with the three
-     label/value pairs aligned in their own columns so nothing wraps raggedly. */
-  .cap,.cap tbody,.cap tr,.cap th,.cap td{display:block;width:auto}
-  .cap{table-layout:auto}
-  .cap thead{
-    position:absolute;width:1px;height:1px;overflow:hidden;
-    clip:rect(0 0 0 0);clip-path:inset(50%);
+  /* How-it-works steps -> stack vertically, arrows point down between them. */
+  .how-steps{flex-direction:column;border-left:1px solid var(--rule-alt);border-right:1px solid var(--rule-alt)}
+  .how-step{border-left:0;border-top:1px solid var(--rule-alt)}
+  .how-step:first-child{border-top:0}
+  .how-step__arrow{
+    top:auto;right:auto;left:50%;bottom:-12px;
+    transform:translateX(-50%) rotate(90deg);
   }
-  .cap tbody tr{
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
-    padding:14px 16px;border-bottom:1px solid var(--rule);
-  }
-  .cap tbody th{grid-column:1 / -1;padding:0;font-size:15px}
-  .cap tbody td{display:flex;flex-direction:column;gap:2px;padding:0;font-size:13.5px}
-  .cap tbody td::before{
-    content:attr(data-label);
-    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--muted);
-  }
-  .cap tbody tr.cap__lastlight{border-bottom:1px solid var(--ink)}
-  .cap tbody tr.cap__send{padding:16px}
-  .cap tbody tr.cap__send th{padding:0}
-  .cap tbody tr.cap__send td{padding:0;font-size:14px}
-  .cap tbody tr.cap__send td::before{color:var(--on-loud-muted)}
-  .cap__send-word{font-size:20px}
-  .cap tbody tr.cap__send td.cap__only{
-    background:var(--signal-fill);padding:6px 10px;margin:-6px -10px;font-size:14px;
-  }
-  .cap tbody tr.cap__send td.cap__only::before{color:var(--on-signal);opacity:.75}
 }
 
 /* --- <=520px --------------------------------------------------------- */
@@ -837,10 +795,7 @@ h1{
   .btn--small{padding:8px 12px;font-size:12px}
   .hero__cta-row .btn{flex:1 1 100%}
   .cta__row .btn{width:100%}
-  .footnotes{gap:10px}
   .foot__grid{grid-template-columns:1fr;gap:22px}
-  .cap tbody tr{gap:8px}
-  .cap tbody td{font-size:13px}
   .privacy-nav{grid-template-columns:1fr}
   .privacy-nav .eyebrow{grid-column:auto}
   .guide-nav{grid-template-columns:1fr}
@@ -858,7 +813,6 @@ h1{
   .wordmark{font-size:15px}
   .topbar__bar .rp-mark--24{width:20px;height:20px;--rp-w:2px;--rp-h:12px}
   .btn--small{padding:7px 9px;font-size:11px}
-  .cap tbody tr{grid-template-columns:1fr}
 }
 
 /* ---------- 17 - Print ------------------------------------------------ */
@@ -872,7 +826,7 @@ h1{
     --on-loud:#000000;--on-loud-strong:#000000;--on-loud-muted:#333333;
     --signal:#000000;--signal-on-loud:#000000;--signal-fill:#FFFFFF;--on-signal:#000000;
   }
-  .band--ink,.foot,.cap thead th,.cap__send,.cap__only{
+  .band--ink,.foot{
     background:#fff;color:#000;
   }
   .cta__para,.ledger__rows dt,.ledger__rows dd,.foot__blurb,.ledger__note,

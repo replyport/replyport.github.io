@@ -214,103 +214,39 @@
     </div>
   </section>
 
-  <!-- ===== 3 - How it works, and the trust boundary ================= -->
+  <!-- ===== 3 - From your AI to an Outlook draft     ================= -->
   <section class="band" id="how">
     <div class="wrap sec">
       <div class="sec-head">
         <div class="sec-head__main">
           <p class="eyebrow eyebrow--wide">How it works</p>
-          <h2 class="h2">Three parts, and one of them is you.</h2>
+          <h2 class="h2">Ask your AI. Review in Outlook. You send.</h2>
         </div>
-        <p class="lead">The AI understands and writes. ReplyPort does the mailbox work locally and checks it. Sending is the part that never leaves your hands.</p>
-      </div>
-
-      <div class="hair-grid hair-grid--3 strip">
-        <div class="role">
-          <p class="eyebrow">The AI product</p>
-          <h3 class="role__title">Reads and reasons</h3>
-          <p class="role__text">Works over the mail you approved for mirroring: searching, ranking, summarising and writing reply text.</p>
-          <p class="role__limit">Cannot reach Outlook, choose an account or address a recipient.</p>
-        </div>
-        <div class="role">
-          <p class="eyebrow">ReplyPort, locally</p>
-          <h3 class="role__title">Routes and verifies</h3>
-          <p class="role__text">Resolves the mailbox by exact identity, rebuilds recipients and threading from Outlook itself, creates the draft and confirms it landed correctly.</p>
-          <p class="role__limit">Runs in its own process on your Windows PC.</p>
-        </div>
-        <div class="role role--you">
-          <p class="eyebrow eyebrow--signal">You, in Outlook</p>
-          <h3 class="role__title">Reviews and sends</h3>
-          <p class="role__text">The draft is an ordinary Outlook draft in the right account. Edit it, discard it or send it exactly as you always have.</p>
-          <p class="role__limit">The only step that can put mail on the wire.</p>
+        <div class="how-boundary">
+          <p class="how-boundary__statement" id="boundary">ReplyPort never sends email.</p>
+          <p class="how-boundary__support">Every draft waits for you in Outlook.</p>
         </div>
       </div>
 
-      <div class="cap-wrap" id="boundary">
-        <p class="eyebrow eyebrow--wide cap-label">The trust boundary</p>
-        <table class="cap">
-          <caption class="visually-hidden">What the AI, ReplyPort and you can each do</caption>
-          <colgroup>
-            <col class="cap__c1"><col class="cap__c2"><col class="cap__c3"><col class="cap__c4">
-          </colgroup>
-          <thead>
-            <tr>
-              <th scope="col">Capability</th>
-              <th scope="col">AI</th>
-              <th scope="col">ReplyPort</th>
-              <th scope="col">You</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Search and reason over mail you have approved</th>
-              <td data-label="AI">Yes</td>
-              <td data-label="ReplyPort">Yes</td>
-              <td data-label="You">Yes</td>
-            </tr>
-            <tr>
-              <th scope="row">Work across several configured accounts at once</th>
-              <td data-label="AI">Yes</td>
-              <td data-label="ReplyPort">Yes, per mailbox</td>
-              <td data-label="You">Yes</td>
-            </tr>
-            <tr>
-              <th scope="row">Compose the reply text</th>
-              <td data-label="AI">Yes</td>
-              <td data-label="ReplyPort" class="is-no">No</td>
-              <td data-label="You">Yes</td>
-            </tr>
-            <tr>
-              <th scope="row">Choose the account, recipients and thread</th>
-              <td data-label="AI" class="is-no">No</td>
-              <td data-label="ReplyPort">Yes, from Outlook</td>
-              <td data-label="You">Yes</td>
-            </tr>
-            <tr class="cap__lastlight">
-              <th scope="row">Write and verify the draft in Outlook</th>
-              <td data-label="AI" class="is-no">No</td>
-              <td data-label="ReplyPort">Yes, locally</td>
-              <td data-label="You">Yes</td>
-            </tr>
-            <tr class="cap__send">
-              <th scope="row">
-                <span class="cap__send-label">
-                  <span class="rp-mark rp-mark--28 rp-mark--inverse rp-mark--ready" role="img" aria-label="ReplyPort, draft ready"><i></i></span>
-                  <span class="cap__send-word">Send</span>
-                </span>
-              </th>
-              <td data-label="AI">No</td>
-              <td data-label="ReplyPort">No</td>
-              <td data-label="You" class="cap__only">Only you</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="footnotes">
-          <p><b>&#8220;Yes, locally&#8221;</b> &#8212; the mailbox-changing work happens in the ReplyPort process on your machine, against the Outlook profile already signed in there.</p>
-          <p><b>&#8220;Yes, per mailbox&#8221;</b> &#8212; each configured account is resolved separately, and a draft is checked against the thread and mailbox it belongs to before it appears.</p>
-          <p><b>Provider-neutral</b> &#8212; nothing in the Outlook-side design depends on which AI product you use, so changing surfaces does not move the boundary above.</p>
-        </div>
-      </div>
+      <ol class="how-steps" role="list">
+        <li class="how-step">
+          <span class="how-step__num">01</span>
+          <h3 class="how-step__title">Ask your AI.</h3>
+          <p class="how-step__text">Ask it to find email, summarise a conversation or write a reply. It works with copies of the mail you approve, across the Outlook accounts you enable.</p>
+          <span class="how-step__arrow" aria-hidden="true"></span>
+        </li>
+        <li class="how-step">
+          <span class="how-step__num">02</span>
+          <h3 class="how-step__title">ReplyPort creates the draft.</h3>
+          <p class="how-step__text">On your Windows PC, ReplyPort checks the account, conversation and recipients in Outlook Classic, then saves the AI-written text as an ordinary draft in the right account.</p>
+          <span class="how-step__arrow" aria-hidden="true"></span>
+        </li>
+        <li class="how-step how-step--you">
+          <span class="how-step__num">03</span>
+          <h3 class="how-step__title">You review and send.</h3>
+          <p class="how-step__text">Open the draft in Outlook. Read it, edit it, discard it or press Send yourself.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -430,7 +366,7 @@
       <h2 class="eyebrow">Product</h2>
       <a href="#how">How it works</a>
       <a href="#use-cases">Use cases</a>
-      <a href="#boundary">Trust boundary</a>
+      <a href="#boundary">Only you send</a>
     </nav>
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
