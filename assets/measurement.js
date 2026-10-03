@@ -115,30 +115,29 @@
     );
 
     storeLinks().forEach((anchor) => {
-      anchor.addEventListener(
-        'click',
-        () => {
-          window.oaiq(
-            'measure',
-            'custom',
-            {
-              type: 'custom',
-              contents: [
-                {
-                  id: STORE_PRODUCT_ID,
-                  name: 'ReplyPort',
-                  content_type: 'product',
-                },
-              ],
-            },
-            {
-              custom_event_name: 'microsoft_store_click',
-              opt_out: true,
-            }
-          );
-        },
-        { capture: true }
-      );
+      let sentAt = 0;
+
+      const measureStoreClick = () => {
+        const now = Date.now();
+        if (now - sentAt < 1000) return;
+        sentAt = now;
+
+        window.oaiq(
+          'measure',
+          'custom',
+          { type: 'custom' },
+          {
+            custom_event_name: 'microsoft_store_click',
+            opt_out: true,
+          }
+        );
+      };
+
+      // Send on pointer-down so the Pixel has time to queue the event before
+      // the browser leaves for apps.microsoft.com. Keep click as a keyboard
+      // activation fallback, with the short guard above preventing duplicates.
+      anchor.addEventListener('pointerdown', measureStoreClick, { capture: true });
+      anchor.addEventListener('click', measureStoreClick, { capture: true });
     });
   };
 
