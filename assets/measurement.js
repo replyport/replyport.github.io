@@ -3,7 +3,7 @@
 
   // Public browser identifier from OpenAI Ads Manager. This is not an API key.
   // Leave blank until the ReplyPort web data source has been created.
-  const OPENAI_PIXEL_ID = '';
+  const OPENAI_PIXEL_ID = 'B5mqYqGA8oW13e9Do7Yc9B';
   const STORE_PRODUCT_ID = '9PPGN3H4QGJJ';
   const CHATGPT_LAUNCH_CID = 'chatgpt_launch';
   const TRACKING_KEYS = [
