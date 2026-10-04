@@ -6,6 +6,8 @@
   const OPENAI_PIXEL_ID = 'B5mqYqGA8oW13e9Do7Yc9B';
   const STORE_PRODUCT_ID = '9PPGN3H4QGJJ';
   const CHATGPT_LAUNCH_CID = 'chatgpt_launch';
+  const GOOGLE_SEARCH_CID = 'google_search_oct26';
+  const GOOGLE_ADS_CONVERSION_SEND_TO = 'AW-18493139821/Suf_CMn4kZAdEO3Wm_JE';
   const TRACKING_KEYS = [
     'utm_source',
     'utm_medium',
@@ -62,16 +64,65 @@
     });
 
   const addMicrosoftCampaignId = () => {
-    const isChatGptLaunch =
-      (params.get('utm_source') || '').toLowerCase() === 'chatgpt' &&
-      (params.get('utm_campaign') || '').toLowerCase() === 'launch';
+    const source = (params.get('utm_source') || '').toLowerCase();
+    const campaign = (params.get('utm_campaign') || '').toLowerCase();
 
-    if (!isChatGptLaunch) return;
+    let cid = '';
+    if (source === 'chatgpt' && campaign === 'launch') {
+      cid = CHATGPT_LAUNCH_CID;
+    } else if (source === 'google' && campaign === 'search_oct26') {
+      cid = GOOGLE_SEARCH_CID;
+    }
+
+    if (!cid) return;
 
     storeLinks().forEach((anchor) => {
       const target = new URL(anchor.href);
-      target.searchParams.set('cid', CHATGPT_LAUNCH_CID);
+      target.searchParams.set('cid', cid);
       anchor.href = target.toString();
+    });
+  };
+
+  const installGoogleAdsConversionTracking = () => {
+    if (!window.gtag) return;
+
+    storeLinks().forEach((anchor) => {
+      anchor.addEventListener(
+        'click',
+        (event) => {
+          const send = (callback) => {
+            const payload = {
+              send_to: GOOGLE_ADS_CONVERSION_SEND_TO,
+            };
+            if (callback) {
+              payload.event_callback = callback;
+              payload.event_timeout = 1000;
+            }
+            window.gtag('event', 'conversion', payload);
+          };
+
+          // Preserve modified-click behaviour such as Ctrl/Cmd-clicking into a
+          // new tab. The conversion event can still be queued without taking
+          // over navigation.
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+            send();
+            return;
+          }
+
+          event.preventDefault();
+          const url = anchor.href;
+          let navigated = false;
+          const navigate = () => {
+            if (navigated) return;
+            navigated = true;
+            window.location.assign(url);
+          };
+
+          send(navigate);
+          window.setTimeout(navigate, 1100);
+        },
+        { capture: true }
+      );
     });
   };
 
@@ -143,5 +194,6 @@
 
   preserveTrackingOnInternalLinks();
   addMicrosoftCampaignId();
+  installGoogleAdsConversionTracking();
   installOpenAiPixel();
 })();
