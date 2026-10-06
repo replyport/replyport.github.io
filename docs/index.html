@@ -14,6 +14,15 @@
 <link rel="preload" href="../assets/fonts/libre-franklin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/site.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18493139821"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18493139821');
+</script>
+<script src="../assets/measurement.js" defer></script>
 </head>
 
 <body id="top">
@@ -32,7 +41,7 @@
       <a href="./" aria-current="page">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
-    <a class="btn btn--small" href="https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ">Install from Store</a>
+    <a class="btn btn--small" href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Install from Store</a>
   </div>
   <details class="navdrop">
     <summary><span class="wrap navdrop__summary">Sections</span></summary>
@@ -687,7 +696,7 @@
       <section id="privacy">
         <h2>Privacy summary</h2>
         <ul>
-          <li>ReplyPort runs entirely on your PC. There is no ReplyPort server, no hosted AI, and no ReplyPort analytics or telemetry.</li>
+          <li>The ReplyPort Windows app runs entirely on your PC. There is no ReplyPort server and no hosted AI, and the app contains no ReplyPort analytics or telemetry.</li>
           <li>Copied mail is processed by Dropbox, because it is in your Dropbox folder, and by whichever AI service you connect to that folder. Each operates under its own terms.</li>
           <li>You choose which mailboxes are copied and whether their attachments are included. Mail copying and attachment copying are both off until you turn them on.</li>
           <li>Copies are limited to 90 days and removed automatically after that. Search requests and results are deleted after seven days.</li>
@@ -745,7 +754,7 @@
           <li>Delays and failures when an AI&#8217;s Dropbox connection writes request files.</li>
           <li>Occasional first-attempt failure of Store updates while ReplyPort is running.</li>
         </ul>
-        <p>Suggestions and problem reports: <a class="link" href="https://github.com/replyport/feedback/issues" rel="noopener">ReplyPort feedback</a>.</p>
+        <p>Suggestions and problem reports: <a class="link" href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">ReplyPort feedback</a>.</p>
       </section>
 
       <section id="troubleshooting">
@@ -762,7 +771,7 @@
           <div><dt>A message you know exists is not found</dt>
           <dd>Check that it is in the Inbox or Sent Items, within 90 days, not marked Personal, Private or Confidential, and not encrypted; and that the mailbox&#8217;s first scan has finished. Very recent mail may need a few minutes.</dd></div>
           <div><dt>Drafts are refused with <code>SIGNATURE_APPROVAL_REQUIRED</code></dt>
-          <dd>The approved signature for that mailbox was edited, renamed or deleted in Outlook. If you can undo that change exactly, drafts resume. Otherwise report it through <a class="link" href="https://github.com/replyport/feedback/issues" rel="noopener">Feedback</a>: Control Centre does not yet have a way to approve a changed signature.</dd></div>
+          <dd>The approved signature for that mailbox was edited, renamed or deleted in Outlook. If you can undo that change exactly, drafts resume. Otherwise report it through <a class="link" href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>: Control Centre does not yet have a way to approve a changed signature.</dd></div>
           <div><dt>A reply is refused with <code>DUPLICATE_REQUEST</code></dt>
           <dd>A reply of that kind was already requested for this message. Look for the earlier draft in Outlook and edit it there.</dd></div>
           <div><dt>Drafts are refused with <code>MACHINE_REBIND_REQUIRED</code> or <code>STORE_MISMATCH</code></dt>
@@ -872,12 +881,12 @@
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
       <a href="../setup/">Setup guide</a>
-      <a href="https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ">Microsoft Store</a>
+      <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
       <a href="../privacy/">Privacy</a>
-      <a href="https://github.com/replyport/feedback/issues" rel="noopener">Feedback</a>
+      <a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>
       <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
     </nav>
   </div>
