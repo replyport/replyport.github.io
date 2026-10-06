@@ -19,6 +19,7 @@ setup/index.html           consumer-facing AI setup guide
 setup/*.txt                plain-text bootstrap download fallbacks
 docs/index.html            technical documentation / product reference
 assets/site.css            the only stylesheet
+assets/measurement.js      launch attribution and optional OpenAI Ads measurement
 assets/film.js             homepage film player (progressive enhancement)
 assets/film/               hero film: 1080p and 720p MP4, captions (VTT), poster (WebP + JPEG for social cards)
 assets/fonts/*.woff2       Libre Franklin + Spline Sans Mono (self-hosted, OFL)
@@ -43,6 +44,26 @@ https://apps.microsoft.com/detail/restricted/9PPGN3H4QGJJ
 
 This keeps installation on the Store/MSIX path rather than asking users to run a
 directly downloaded executable.
+
+## Launch measurement
+
+`assets/measurement.js` keeps launch measurement deliberately small:
+
+- It preserves the current OpenAI/UTM attribution parameters on internal site
+  navigation without storing them in the ReplyPort app.
+- For visitors arriving with `utm_source=chatgpt` and
+  `utm_campaign=launch`, Microsoft Store links receive
+  `cid=chatgpt_launch` so Partner Center can report Store page views and
+  acquisitions for the campaign.
+- It is ready to send the OpenAI standard `page_viewed` event and the custom
+  `microsoft_store_click` event through the OpenAI Ads Measurement Pixel.
+- The Pixel remains disabled while `OPENAI_PIXEL_ID` is blank. After creating
+  the ReplyPort web data source in Ads Manager, set that public Pixel ID in
+  `assets/measurement.js`. Never put an Ads API key or Conversions API key in
+  this static site.
+
+The Store-click event is a handoff event, not a purchase. Paid acquisitions and
+installs are measured separately in Microsoft Partner Center.
 
 ## Setup guide
 
