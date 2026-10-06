@@ -17,6 +17,7 @@ serves the files as they are.
 index.html                 the whole page
 setup/index.html           consumer-facing AI setup guide
 setup/*.txt                plain-text bootstrap download fallbacks
+docs/index.html            technical documentation / product reference
 assets/site.css            the only stylesheet
 assets/measurement.js      launch attribution and optional OpenAI Ads measurement
 assets/film.js             homepage film player (progressive enhancement)
@@ -28,7 +29,8 @@ robots.txt, sitemap.xml, .nojekyll
 ```
 
 JavaScript is progressive enhancement only: a clipboard helper on the setup
-page, and `assets/film.js`, the homepage film player. Without JavaScript the
+page, the contents folding and current-section highlight on the docs page, and
+`assets/film.js`, the homepage film player. Without JavaScript the
 setup instructions stay readable and downloadable, and the film is a native
 `<video>` with its own controls. The mark states, responsive nav disclosure and
 reduced-motion behaviour are CSS.
@@ -116,7 +118,7 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 
 ### Page structure
 
-1. Shared top bar — How it works, Setup, Requirements and a Store link.
+1. Shared top bar — How it works, Setup, Docs, Requirements and a Store link.
 2. Homepage hero — product explanation, supported AI products, Store CTA and price.
 3. Film — accessible controls, captions and a collapsible written description.
 4. Use cases — triage, search across accounts and prepare several replies.
@@ -125,6 +127,10 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 7. Shared footer — product, installation and company links, plus affiliation notice.
 8. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
 9. Privacy page — full data-handling disclosures and contact information.
+10. Docs page — the technical reference: feature status, architecture, AI
+    workflows, mailbox routing, mirroring and folder coverage, attachments,
+    safety model, lifecycle, privacy summary, limitations, roadmap,
+    troubleshooting, result codes and technical architecture.
 
 Keep detailed setup on `/setup/`. Avoid repeating feature tables, negative claims
 or a second closing product pitch on the homepage. Retain the film's captions and
@@ -170,6 +176,28 @@ Do not add: user counts, draft counts, install time, download size, unsupported
 compatibility claims, or any implication of endorsement by Microsoft, OpenAI or
 Anthropic. "No Outlook add-in required" is the correct framing; anything that
 reads as bypassing an employer's or university's policy is not.
+
+## Maintaining the documentation page
+
+`docs/index.html` must describe what Store users can rely on, derived from the
+current MailBridge source, `PROTOCOL.md`, `AGENT_CONTEXT.md`, release records and
+open issues, not from memory or intent.
+
+- **Version and review date** appear once, in the *Documentation status* panel at
+  the top of the page (marked with an HTML comment). Elsewhere the page says
+  "the current release". Exceptions are deliberate "from version X" notes for
+  behaviour that older installations lack.
+- **Status labels** are the only way to mark maturity: `st--yes` *Available*
+  (in the current Store release), `st--dev` *In development* (built and being
+  tested, not released), `st--planned` *Planned* (accepted direction, not built),
+  `st--no` *Not supported*. Never mark a feature Available before the Store
+  release containing it is live.
+- When a release ships, review in this order: the status panel, the *Feature
+  status* table, *Known limitations*, *In development and planned*, then the
+  affected sections. Move shipped items out of the roadmap.
+- Do not publish private issue numbers, private paths, mailbox addresses, test
+  identities, keys or token material. Explaining the HMAC/idempotency design
+  conceptually is fine.
 
 ## Product source
 

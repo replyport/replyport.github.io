@@ -38,6 +38,7 @@
     <nav class="topbar__links" aria-label="Primary">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../docs/">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
     <a class="btn btn--small" href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Install from Store</a>
@@ -47,6 +48,7 @@
     <nav class="wrap navdrop__menu" aria-label="Primary, compact">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../docs/">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
   </details>
@@ -58,7 +60,7 @@
       <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Privacy policy</p>
       <h1>Privacy policy</h1>
       <p class="privacy-standfirst">ReplyPort is a Windows desktop utility by Sergey Alexeev for user-authorized Outlook Classic workflows and AI-assisted analysis and drafting. This policy describes the current early-access product.</p>
-      <p class="meta">Effective date: 9 September 2026</p>
+      <p class="meta">Effective date: 6 October 2026</p>
     </div>
   </header>
 
@@ -89,17 +91,18 @@
         <p>ReplyPort accesses the following information only as needed for functions the user authorizes:</p>
         <ul>
           <li><strong>Outlook message content and metadata:</strong> message body text, subject, sender and recipient details, date, conversation information, message identifiers, sensitivity or protection state, and attachment metadata. This supports approved export, search, analysis, triage, reply drafting, threading and safety checks.</li>
+          <li><strong>Email attachment contents, only if the user turns this on:</strong> the files attached to messages ReplyPort has already copied, for mailboxes where the user has chosen to copy email attachments. This lets an AI tool the user connects to the storage location read those attachments with their email.</li>
           <li><strong>Outlook account and routing information:</strong> the configured account address, Outlook profile, store and folder information, approved signature information and local Outlook item locators. This lets ReplyPort keep work within the correct mailbox, preserve Outlook's recipients and conversation, and place the draft in the correct Drafts folder.</li>
           <li><strong>Operational information:</strong> configuration, opaque identifiers, capability material, hashes, indexes, checkpoints, journals, status, error codes and bounded work counts. This supports security, integrity, recovery, deduplication and diagnostics.</li>
         </ul>
-        <p>The current supported early-access workflow does not make attachment bytes available to AI tools. ReplyPort refuses protected or incomplete message content for drafting. It does not use personal information for advertising and does not sell personal information.</p>
+        <p>Copying email attachments is an optional setting for each mailbox, shown in ReplyPort as <strong>Include email attachments</strong>. It is off by default, can be turned on only for a mailbox whose mail copying is on, and can be turned on only by the user on their PC. When it is on, ReplyPort copies supported attachment types (documents, spreadsheets, presentations, text files and images) within size limits, from messages it has already copied, into the user-selected storage location. Other attachments are not copied and remain in Outlook. Turning the setting off stops copying and removes the attachment copies ReplyPort made. ReplyPort refuses protected or incomplete message content for drafting. It does not use personal information for advertising and does not sell personal information.</p>
       </section>
 
       <section id="storage">
         <p class="eyebrow">Storage and protection</p>
         <h2>Where information is stored</h2>
         <h3>User-selected storage</h3>
-        <p>The user chooses ReplyPort's filesystem storage root. Message snapshots, message metadata and user-authorized AI work records are stored there. The location may be inside a Dropbox folder.</p>
+        <p>The user chooses ReplyPort's filesystem storage root. Message snapshots, message metadata, attachment copies (only for mailboxes where the user has turned on attachment copying) and user-authorized AI work records are stored there. The location may be inside a Dropbox folder.</p>
         <p>If the user chooses Dropbox-backed storage, the Dropbox desktop software may sync that folder through the user's own Dropbox account. That processing is controlled by the user and is subject to Dropbox's terms and privacy policy. ReplyPort does not use the Dropbox cloud API.</p>
         <h3>Local operational state</h3>
         <p>ReplyPort keeps operational state under the current user's local Windows profile. This is limited to configuration, protected Outlook routing state, DPAPI-protected capability keys and journals, hashes, indexes, checkpoints, retry state and content-free logs. Local logs contain operational identifiers, states, durations, error codes and bounded counts, not email subjects, bodies, senders, recipients or attachment filenames.</p>
@@ -133,10 +136,11 @@
       <section id="retention">
         <p class="eyebrow">Retention and controls</p>
         <h2>Your choices</h2>
-        <p>ReplyPort's bounded mirror copies normally expire 90 days after the source message's received or sent date, although records needed for pending work may be retained until that work is resolved. Disposable search requests and results normally expire after seven days.</p>
+        <p>ReplyPort's bounded mirror copies, including any attachment copies, normally expire 90 days after the source message's received or sent date, although records needed for pending work may be retained until that work is resolved. Disposable search requests and results normally expire after seven days.</p>
         <p>The user controls ReplyPort and can:</p>
         <ul>
           <li>choose the storage location and stop using or remove that location;</li>
+          <li>choose, for each mailbox, whether email attachments are copied, and turn this off at any time, which removes the attachment copies;</li>
           <li>disable ReplyPort to stop its background processing;</li>
           <li>choose whether to use any external AI service or AI-enabled tool;</li>
           <li>delete ReplyPort files from the user's own selected storage; and</li>
@@ -170,6 +174,7 @@
       <a href="../#how">How it works</a>
       <a href="../#use-cases">Use cases</a>
       <a href="../#windows">Requirements</a>
+      <a href="../docs/">Documentation</a>
     </nav>
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
