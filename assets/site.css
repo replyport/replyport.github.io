@@ -757,6 +757,137 @@ h1{
 }
 .docs-foot{border-top:1px solid var(--rule);padding-top:18px}
 
+/* ---------- 15.4 - Homepage: proof, jobs, data flow, fit, FAQ -------- */
+
+/* Hero with a real Outlook screenshot as the first proof. The claim and
+   install route sit on the left, the screenshot on the right. */
+.hero__head--proof{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:center}
+.hero__head--proof h1{max-width:15ch}
+.hero__head--proof .hero__intro{padding-bottom:0}
+.proof{
+  display:flex;flex-wrap:wrap;gap:6px 18px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--body);
+  padding-top:12px;border-top:1px solid var(--rule);
+}
+.proof li{display:flex;align-items:center;gap:8px}
+.proof li::before{content:'';width:5px;height:5px;background:var(--signal);flex:none}
+
+/* Screenshots are framed objects, like the film. */
+.shot{display:flex;flex-direction:column;gap:10px;min-width:0}
+.shot__frame{display:block;border:1px solid var(--ink);background:#1D1E20;overflow:hidden}
+.shot__frame img{display:block;width:100%;height:auto}
+.shot__cap{display:flex;flex-direction:column;gap:2px}
+.shot__claim{font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.shot__note{font-size:12.5px;line-height:1.55;color:var(--muted)}
+.shot__note a{color:var(--body);border-bottom:1px solid var(--border-strong)}
+.shot__note a:hover{color:var(--signal);border-color:var(--signal)}
+
+/* Tall chat screenshots are shown from the top, in a fixed frame. */
+.shot--chat{max-width:480px}
+.shot--chat .shot__frame{position:relative;aspect-ratio:941 / 1010;background:#121212}
+.shot--chat .shot__frame img{height:100%;object-fit:cover;object-position:top}
+.shot--chat .shot__frame::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:72px;pointer-events:none;
+  background:linear-gradient(rgba(18,18,18,0),#121212);
+}
+.shot--light{max-width:520px}
+.shot--light .shot__frame{border-color:var(--rule-alt);background:transparent}
+
+/* Who it is for: three account set-ups. */
+.who-grid .usecase{padding:18px 20px 20px}
+
+/* Three jobs, each with its own evidence. */
+.jobs{display:flex;flex-direction:column}
+.job{
+  display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:var(--gap-lg);
+  padding-block:6px 28px;border-bottom:1px solid var(--rule);align-items:start;
+}
+.job + .job{padding-top:28px}
+.job:last-child{border-bottom:0;padding-bottom:0}
+.job__text{display:flex;flex-direction:column;gap:10px;max-width:46ch}
+.job__num{font-family:var(--mono);font-size:11px;color:var(--signal);letter-spacing:.03em}
+.job__title{font-size:22px;font-weight:500;letter-spacing:-.028em;line-height:1.15}
+.job__body{font-size:14.5px;line-height:1.62;color:var(--body)}
+.job__prompt{
+  margin:0;border-left:2px solid var(--signal);padding:2px 0 2px 12px;
+  font-size:14px;line-height:1.55;color:var(--ink);
+}
+.job__prompt cite{
+  display:block;margin-top:4px;font-style:normal;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+.job .film{min-width:0}
+.job .transcript{margin-top:10px}
+
+/* How it works, in five steps. */
+.how-steps--5 .how-step{padding:16px 18px 18px}
+.how-steps--5 .how-step__title{font-size:16.5px}
+.how-steps--5 .how-step__text{font-size:13px}
+
+/* Data flow: three places, plus the Control Centre screenshot. */
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--gap-lg);align-items:start}
+.flow{display:flex;flex-direction:column;border-top:1px solid var(--rule-alt)}
+.flow__place{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:14px 0;border-bottom:1px solid var(--rule-alt)}
+.flow__place h3{font-size:16px;font-weight:500;letter-spacing:-.015em;line-height:1.3}
+.flow__place ul{display:grid;gap:6px;list-style:square;padding-left:16px;font-size:13.5px;line-height:1.55;color:var(--body)}
+.flow__place li::marker{color:var(--signal)}
+.flow__more{font-size:13px;color:var(--muted);margin-top:14px}
+.flow__more a{color:var(--body);border-bottom:1px solid var(--border-strong)}
+.flow__more a:hover{color:var(--signal);border-color:var(--signal)}
+
+/* Requirements and fit. */
+.fit-col h3{display:flex;align-items:baseline;gap:8px}
+.fit-col--no h3{color:var(--body)}
+.requirements-list a{color:var(--ink);border-bottom:1px solid var(--border-strong)}
+.requirements-list a:hover{color:var(--signal);border-color:var(--signal)}
+.buy{
+  display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;
+  margin-top:22px;padding:18px 20px;border:1px solid var(--ink);background:var(--panel);
+}
+.buy__text{display:flex;flex-direction:column;gap:4px;max-width:70ch}
+.buy__text p:first-child{font-size:15px;color:var(--ink)}
+.buy__actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* When to use ReplyPort, and questions. */
+.callout{border-left:4px solid var(--signal);padding:14px 18px;background:var(--paper-alt);margin-bottom:22px}
+.callout p{font-size:14.5px;line-height:1.62;color:var(--body);max-width:96ch}
+.callout p + p{margin-top:8px}
+.callout strong{color:var(--ink)}
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;
+  padding:13px 0;font-size:15.5px;font-weight:500;letter-spacing:-.012em;color:var(--ink);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-family:var(--mono);font-size:14px;color:var(--signal);flex:none}
+.faq details[open] summary::after{content:'\2013'}
+.faq summary:hover{color:var(--signal)}
+.faq summary:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.faq details p{font-size:14px;line-height:1.62;color:var(--body);padding-bottom:14px;max-width:62ch}
+.faq details p a{color:var(--ink);border-bottom:1px solid var(--border-strong)}
+
+@media (max-width:1180px){
+  .flow__place{grid-template-columns:120px minmax(0,1fr)}
+}
+@media (max-width:980px){
+  .job{grid-template-columns:1fr;gap:18px}
+  .job__text{max-width:62ch}
+  .split{grid-template-columns:1fr;gap:28px}
+  .faq{grid-template-columns:1fr}
+  .how-steps--5{flex-direction:column;border-left:1px solid var(--rule-alt);border-right:1px solid var(--rule-alt)}
+  .how-steps--5 .how-step{border-left:0;border-top:1px solid var(--rule-alt)}
+  .how-steps--5 .how-step:first-child{border-top:0}
+  .how-steps--5 .how-step__arrow{top:auto;right:auto;left:50%;bottom:-12px;transform:translateX(-50%) rotate(90deg)}
+}
+@media (max-width:767px){
+  .shot--hero .shot__frame{margin-inline:calc(var(--gutter) * -1);border-inline:0}
+  .flow__place{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:520px){
+  .buy__actions .btn{flex:1 1 100%}
+}
+
 /* ============================================================
    16 - Responsive. Density on desktop must not become clutter
    on a phone: the same components, progressively unstacked.
