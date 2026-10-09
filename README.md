@@ -2,9 +2,9 @@
 
 Public marketing site for **ReplyPort** — https://replyport.github.io
 
-ReplyPort lets people use the AI products they already work in to search, triage
-and prepare replies across the Outlook accounts already configured on their
-Windows PC. It does not require an Outlook add-in or a cloud mailbox
+ReplyPort is a bring-your-own-AI, multi-mailbox bridge for Outlook Classic: one
+AI conversation across the Outlook accounts already configured on a Windows PC,
+with real drafts created in the right account. It does not require an Outlook add-in or a cloud mailbox
 integration, keeps each configured mailbox as its own routing and authority
 domain, creates verified Outlook drafts locally, and has no send path.
 
@@ -14,13 +14,16 @@ Hand-written static site. No framework, no build step, no backend — GitHub Pag
 serves the files as they are.
 
 ```
-index.html                 the whole page
+index.html                 the home page
+ai-multiple-outlook-accounts/index.html   landing page: AI across several Outlook accounts
+ai-for-outlook-classic/index.html         landing page: ways to use AI with Outlook Classic
 setup/index.html           consumer-facing AI setup guide
 setup/*.txt                plain-text bootstrap download fallbacks
 docs/index.html            technical documentation / product reference
 assets/site.css            the only stylesheet
 assets/measurement.js      launch attribution and optional OpenAI Ads measurement
 assets/film.js             homepage film player (progressive enhancement)
+assets/screens/            product screenshots (WebP + JPEG/PNG fallback, social card)
 assets/film/               hero film: 1080p and 720p MP4, captions (VTT), poster (WebP + JPEG for social cards)
 assets/fonts/*.woff2       Libre Franklin + Spline Sans Mono (self-hosted, OFL)
 favicon.svg                32×32 mark
@@ -51,10 +54,16 @@ directly downloaded executable.
 
 - It preserves the current OpenAI/UTM attribution parameters on internal site
   navigation without storing them in the ReplyPort app.
-- For visitors arriving with `utm_source=chatgpt` and
-  `utm_campaign=launch`, Microsoft Store links receive
-  `cid=chatgpt_launch` so Partner Center can report Store page views and
-  acquisitions for the campaign.
+- Microsoft Store links receive a `cid` so Partner Center can report Store
+  page views and acquisitions by source. Recognised campaigns take precedence:
+  `utm_source=chatgpt&utm_campaign=launch` gives `chatgpt_launch`, and
+  `utm_source=google&utm_campaign=search_oct26` gives `google_search_oct26`.
+  Any other visit is labelled by the page the Store link was clicked on:
+  `site_home_v2`, `site_multiacct_v1`, `site_generic_v1`, `site_setup_v1`,
+  `site_docs_v1` or `site_privacy_v1`. Add a new campaign's mapping in
+  `addMicrosoftCampaignId` before sending traffic to it.
+- Every Store link click also sends the Google Ads conversion
+  `AW-18493139821/Suf_CMn4kZAdEO3Wm_JE` (a Store handoff, not a purchase).
 - It is ready to send the OpenAI standard `page_viewed` event and the custom
   `microsoft_store_click` event through the OpenAI Ads Measurement Pixel.
 - The Pixel remains disabled while `OPENAI_PIXEL_ID` is blank. After creating
@@ -80,21 +89,32 @@ protocol. Keep these download URLs working and do not invent setup instructions.
 
 ## Positioning
 
-The value hierarchy the page is built around, in order:
+Since 9 October 2026 the site follows the commercial strategy in
+`Dropbox/ReplyPort promotion/2026-10-07 ChatGPT Pro - first-principles commercial strategy.md`.
+ReplyPort is a bring-your-own-AI, multi-mailbox bridge for Outlook Classic, aimed
+first at independent professionals with two or more Outlook accounts. It is not
+positioned as "Claude for Outlook" or any other provider's product.
 
-1. Use AI with the Outlook accounts already configured on the Windows PC.
-2. No Outlook add-in and no cloud mailbox integration are required.
-3. Work across several Outlook accounts while keeping routing and authority
-   separate.
-4. High-volume workflows: return from leave and triage a backlog, search across
-   several work mailboxes, find what actually needs attention, prepare several
-   reply drafts in one workflow.
-5. Work from the AI surfaces the user already uses (ChatGPT / Work / Codex and
-   Claude / Cowork / Claude Code).
-6. Human-only Send is a strong trust boundary, but it is **not** the headline.
+Value hierarchy, in order:
 
-The old "we took the Send button away" pitch is deliberately no longer the lead.
-The no-send message stays visible in the film and How it works section.
+1. One AI conversation across multiple Outlook accounts.
+2. Real drafts created in the correct mailbox.
+3. Use the AI the customer already prefers.
+4. Keep Outlook Classic and existing accounts.
+5. No Outlook add-in required.
+6. ReplyPort has no send function.
+7. One-time purchase.
+
+Homepage headline: "One AI conversation across your Outlook accounts." The first
+proof is the dark-mode Outlook screenshot (`assets/screens/outlook-drafts.*`).
+That web copy has the outgoing-attachment row and paperclip markers removed,
+because attaching files to drafts is not in the current Store release; switch
+back to the original Store screenshot once that feature ships.
+
+Safety language supports the differentiation rather than leading it. Name native
+integrations (Claude for Outlook, ChatGPT's Outlook apps, Copilot) only fairly:
+never claim they cannot connect to Outlook or handle several accounts unless that
+has been tested and dated.
 
 ## Design
 
@@ -118,19 +138,29 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 
 ### Page structure
 
-1. Shared top bar — How it works, Setup, Docs, Requirements and a Store link.
-2. Homepage hero — product explanation, supported AI products, Store CTA and price.
-3. Film — accessible controls, captions and a collapsible written description.
-4. Use cases — triage, search across accounts and prepare several replies.
-5. How it works — ask your AI, ReplyPort creates the draft, you review and send.
-6. Requirements — Windows/Outlook/AI access, Store install and one Setup guide link.
-7. Shared footer — product, installation and company links, plus affiliation notice.
-8. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
-9. Privacy page — full data-handling disclosures and contact information.
-10. Docs page — the technical reference: feature status, architecture, AI
+1. Shared top bar — Use cases, How it works, Requirements, Setup, Docs and a Store link.
+2. Homepage hero — headline, supporting message, Store CTA and price, proof strip,
+   supported AI products, and the Outlook drafts screenshot as first proof.
+3. Who it is for (`#who`) — people with more than one Outlook account; three set-ups.
+4. Three jobs (`#use-cases`) — orient across accounts (screenshot), find it in
+   whichever account received it (the film, with transcript), prepare drafts in
+   the right identities (screenshot).
+5. How it works (`#how`) — five steps, ending with the person pressing Send.
+6. Data flow (`#data`) — what runs on the PC, what goes to Dropbox, what the AI sees.
+7. Requirements and fit (`#windows`) — needs, accounts and mail limits, not-a-fit
+   list, policy note, Store CTA and price.
+8. Questions (`#faq`) — fair "when to use ReplyPort" note and short FAQ.
+9. Shared footer — product, guides and company links, plus affiliation notice.
+10. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
+11. Privacy page — full data-handling disclosures and contact information.
+12. Docs page — the technical reference: feature status, architecture, AI
     workflows, mailbox routing, mirroring and folder coverage, attachments,
     safety model, lifecycle, privacy summary, limitations, roadmap,
     troubleshooting, result codes and technical architecture.
+13. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
+    identity, examples, limits) and `/ai-for-outlook-classic/` (the ways to use AI
+    with Outlook, when ReplyPort fits, what it can and cannot do). Each must answer
+    a different question from the homepage; do not add thin keyword variants.
 
 Keep detailed setup on `/setup/`. Avoid repeating feature tables, negative claims
 or a second closing product pitch on the homepage. Retain the film's captions and

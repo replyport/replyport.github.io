@@ -20,10 +20,33 @@
 
   const params = new URLSearchParams(window.location.search);
 
+  // Microsoft Store campaign IDs for visitors who did not arrive from a
+  // recognised campaign. They label the page the Store link was clicked on,
+  // so Partner Center separates site traffic from paid campaigns. The
+  // recognised campaigns in addMicrosoftCampaignId always take precedence.
+  const SITE_PAGE_CIDS = [
+    ['/ai-multiple-outlook-accounts/', 'site_multiacct_v1'],
+    ['/ai-for-outlook-classic/', 'site_generic_v1'],
+    ['/setup/', 'site_setup_v1'],
+    ['/docs/', 'site_docs_v1'],
+    ['/privacy/', 'site_privacy_v1'],
+  ];
+  const SITE_HOME_CID = 'site_home_v2';
+
   const pageIdentity = () => {
-    if (window.location.pathname.startsWith('/setup/')) return ['setup', 'ReplyPort setup'];
-    if (window.location.pathname.startsWith('/privacy/')) return ['privacy', 'ReplyPort privacy'];
+    const path = window.location.pathname;
+    if (path.startsWith('/setup/')) return ['setup', 'ReplyPort setup'];
+    if (path.startsWith('/privacy/')) return ['privacy', 'ReplyPort privacy'];
+    if (path.startsWith('/ai-multiple-outlook-accounts/')) return ['multiple_accounts', 'ReplyPort multiple Outlook accounts'];
+    if (path.startsWith('/ai-for-outlook-classic/')) return ['outlook_classic', 'ReplyPort AI for Outlook Classic'];
     return ['landing', 'ReplyPort landing page'];
+  };
+
+  const sitePageCid = () => {
+    const path = window.location.pathname;
+    const match = SITE_PAGE_CIDS.find(([prefix]) => path.startsWith(prefix));
+    if (match) return match[1];
+    return path === '/' || path === '/index.html' ? SITE_HOME_CID : '';
   };
 
   const preserveTrackingOnInternalLinks = () => {
@@ -72,6 +95,8 @@
       cid = CHATGPT_LAUNCH_CID;
     } else if (source === 'google' && campaign === 'search_oct26') {
       cid = GOOGLE_SEARCH_CID;
+    } else {
+      cid = sitePageCid();
     }
 
     if (!cid) return;
