@@ -175,7 +175,7 @@
               <tr><th scope="row"><a href="#forward">Forward</a></th><td><span class="st st--no">Not supported</span> <span class="st st--planned">Planned</span></td><td>No forward operation exists. A new message is not a substitute.</td></tr>
               <tr><th scope="row"><a href="#mailboxes">Several Outlook accounts</a></th><td><span class="st st--yes">Available</span></td><td>Each mailbox is kept separate.</td></tr>
               <tr><th scope="row"><a href="#folders">Inbox and Sent Items</a></th><td><span class="st st--yes">Available</span></td><td>Default folders of each connected mailbox, without subfolders.</td></tr>
-              <tr><th scope="row"><a href="#folders">Other mail folders</a></th><td><span class="st st--no">Not supported</span> <span class="st st--planned">Planned</span></td><td>User-created folders, subfolders and Archive are not copied.</td></tr>
+              <tr><th scope="row"><a href="#folders">Other mail folders</a></th><td><span class="st st--no">Not supported</span> <span class="st st--dev">In development</span></td><td>User-created folders, subfolders and Archive are not copied by the current Store release. Support is implemented for the next release, 0.3.12.</td></tr>
               <tr><th scope="row"><a href="#signatures">Approved signature on drafts</a></th><td><span class="st st--yes">Available</span></td><td>One existing Outlook signature per mailbox.</td></tr>
               <tr><th scope="row"><a href="#attachment-mirroring">Copying attachments of copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Optional, per mailbox, off by default.</td></tr>
               <tr><th scope="row"><a href="#outgoing-attachments">Attaching files to drafts</a></th><td><span class="st st--dev">In development</span></td><td>Being validated in development builds. Not available in the current Store release.</td></tr>
@@ -421,14 +421,14 @@
             <tbody>
               <tr><td>Inbox (default)</td><td><span class="st st--yes">Copied</span></td></tr>
               <tr><td>Sent Items (default)</td><td><span class="st st--yes">Copied</span></td></tr>
-              <tr><td>Subfolders of Inbox or Sent Items</td><td><span class="st st--no">Not copied</span></td></tr>
-              <tr><td>Your own folders, nested folders, Archive</td><td><span class="st st--no">Not copied</span> <span class="st st--planned">Planned</span></td></tr>
+              <tr><td>Subfolders of Inbox or Sent Items</td><td><span class="st st--no">Not copied</span> <span class="st st--dev">In development</span></td></tr>
+              <tr><td>Your own folders, nested folders, Archive</td><td><span class="st st--no">Not copied</span> <span class="st st--dev">In development</span></td></tr>
               <tr><td>Drafts, Outbox, Deleted Items, Junk Email</td><td><span class="st st--no">Not copied</span></td></tr>
               <tr><td>Shared mailboxes not connected as their own account, PST files, Online Archive</td><td><span class="st st--no">Not copied</span></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="docs-callout docs-callout--quiet"><span class="st st--planned">Planned</span> Copying all ordinary mail folders in the connected mailbox, including your own folders, nested folders and Archive, with reply support for received messages in them. Deleted Items, Drafts, Outbox, Junk Email, and Outlook&#8217;s sync and service folders would stay excluded, as would shared stores, PST files and Online Archive. New setups would be able to approve this coverage during setup. Existing installations would keep Inbox and Sent Items until you choose to widen coverage. This is not in the current release.</p>
+        <p class="docs-callout docs-callout--dev"><strong>Not available in the current Store release.</strong> Support for all ordinary mail folders is implemented for the next release, ReplyPort 0.3.12, which is not yet available in the Microsoft Store. It covers the ordinary mail folders in the connected mailbox&#8217;s own Outlook store: your own folders at any depth, subfolders of Inbox and Sent Items, and Archive in the same mailbox. Drafts, Outbox, Deleted Items, Junk Email and Outlook&#8217;s sync and service folders stay excluded, together with any folders inside them, as do other mail stores, PST files, Online Archive and shared mailboxes not connected as their own account. Received messages in these folders can be searched, read and replied to; sent messages filed there are context only. Coverage is approved once per mailbox; there is no per-folder choice. New setups approve it when turning on mail copying. Existing installations keep Inbox and Sent Items after updating until you turn on <strong>Include all mail folders</strong> for a mailbox in Control Centre, and you can turn it off again.</p>
       </section>
 
       <!-- ================= Attachments ================= -->
@@ -711,7 +711,7 @@
         <h2>Known limitations</h2>
         <p>Limitations of the current release that affect ordinary use:</p>
         <ul>
-          <li>Only the default Inbox and Sent Items are copied. Mail filed into other folders is not searchable and cannot be replied to unless it was copied first.</li>
+          <li>Only the default Inbox and Sent Items are copied. Mail filed into other folders is not searchable and cannot be replied to unless it was copied first. Support for other ordinary folders is <span class="st st--dev">In development</span>.</li>
           <li>Drafts cannot include files. Attaching files is <span class="st st--dev">In development</span>.</li>
           <li>There is no Forward.</li>
           <li>Replies are possible only to copied Inbox messages, not to Sent Items.</li>
@@ -740,10 +740,10 @@
           <li><strong>First scans in the background</strong>, independent of finishing first run, with search results reporting incomplete coverage until a mailbox&#8217;s first scan has finished.</li>
           <li><strong>Simpler Dropbox onboarding</strong> and clearer explanations of attachment formats and limits during setup.</li>
           <li><strong>Faster draft pickup</strong> once a request reaches the PC.</li>
+          <li><strong>All ordinary mail folders</strong> in the connected mailbox, including your own and nested folders, Inbox subfolders and Archive, with reply support. Implemented for ReplyPort 0.3.12, which is not yet in the Microsoft Store. Existing installations will keep Inbox and Sent Items until you turn on <em>Include all mail folders</em> for a mailbox. See <a class="link" href="#folders">Folder coverage</a>.</li>
         </ul>
         <h3><span class="st st--planned">Planned</span> Accepted direction</h3>
         <ul>
-          <li><strong>All ordinary mail folders</strong> in the connected mailbox, including your own and nested folders and Archive, with reply support. New setups would be able to approve this during setup; existing installations would keep Inbox and Sent Items until you choose to widen coverage. See <a class="link" href="#folders">Folder coverage</a>.</li>
           <li><strong>Native Forward drafts.</strong></li>
           <li><strong>OneDrive</strong> as a storage option alongside Dropbox.</li>
           <li><strong>Clearer tray Exit</strong>, so it is unambiguous whether ReplyPort as a whole has closed.</li>
