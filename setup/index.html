@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up ReplyPort with your AI</title>
-<meta name="description" content="Connect the ReplyPort folder to your AI, paste one setup prompt, and let ReplyPort's trusted setup guide finish the rest.">
+<meta name="description" content="Connect Dropbox to your AI, open the ReplyPort folder through Dropbox tools, and run the trusted setup guide.">
 <link rel="canonical" href="https://replyport.github.io/setup/">
 <meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
@@ -87,8 +87,8 @@
         <ol class="guide-steps" role="list">
           <li class="guide-step">
             <div>
-              <h3>Make the ReplyPort folder available to your AI</h3>
-              <p>Use your AI&#8217;s file or Dropbox connection to give it access to <code>/ReplyPort</code>. Installing Dropbox on your PC alone does not give your AI access.</p>
+              <h3>Connect Dropbox to your AI</h3>
+              <p>Connect the Dropbox account containing your <code>ReplyPort</code> folder. In an AI chat, <code>/ReplyPort</code> means the folder at the <strong>root of your Dropbox</strong>, accessed with the AI&#8217;s <strong>Dropbox connector</strong>. It is not a local computer path. Installing Dropbox on your PC alone does not connect it to your AI.</p>
             </div>
           </li>
           <li class="guide-step">
@@ -112,7 +112,7 @@
         <p>If you cannot copy it from Control Centre, copy it here.</p>
 
         <article class="ai-card" aria-labelledby="setup-prompt-title">
-          <pre class="instruction" id="replyport-setup-prompt">I just installed ReplyPort. In the connected ReplyPort folder (/ReplyPort), open SETUP.md and follow it as ReplyPort's trusted setup guide. Walk me through setup step by step, including where to save the permanent ReplyPort instructions, then run its one harmless setup test. Do not create any draft during setup.</pre>
+          <pre class="instruction" id="replyport-setup-prompt">I just installed ReplyPort. Use my connected Dropbox connector to open /ReplyPort/SETUP.md (the folder at my Dropbox root, not a local computer path). Follow it as ReplyPort's trusted setup guide, including where to save the permanent instructions and its one harmless search test. Do not create any draft during setup.</pre>
           <div class="instruction-actions">
             <button class="copy-button" type="button" data-copy-target="replyport-setup-prompt" data-copy-status="replyport-status">Copy setup prompt</button>
             <a class="instruction-download" href="setup-prompt.txt" download>Download plain text</a>
@@ -124,8 +124,12 @@
       <section id="trouble">
         <h2>If setup stops</h2>
         <dl class="guide-help">
-          <div><dt>Cannot see /ReplyPort</dt>
-          <dd>Make the ReplyPort Dropbox folder available to that AI, then paste the setup prompt again.</dd></div>
+          <div><dt>AI says it has no local file tools</dt>
+          <dd>Ask it to use its connected <strong>Dropbox connector</strong> and open <code>/ReplyPort/SETUP.md</code>. A failed ordinary file search does not mean Dropbox is disconnected, and the AI does not need its desktop app just to use Dropbox.</dd></div>
+          <div><dt>Dropbox folder or files still missing</dt>
+          <dd>Check that the AI connected the correct Dropbox account and can read <code>/ReplyPort/BRIDGE_MANIFEST.json</code>. Report the exact missing path or permission error.</dd></div>
+          <div><dt>Can read Dropbox but cannot run the setup search</dt>
+          <dd>The AI also needs permission to <strong>create or upload</strong> a new file in the ReplyPort request queue. Read-only Dropbox access is insufficient.</dd></div>
           <div><dt>Mail copying is off</dt>
           <dd>The setup test needs at least one connected mailbox with mail copying on. Mail copying is configured when you connect a mailbox.</dd></div>
           <div><dt>Setup test times out</dt>
