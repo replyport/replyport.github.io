@@ -63,19 +63,24 @@
         <p class="docs-standfirst">A reference for what ReplyPort copies from Outlook, what your AI can ask it to do, how each draft is checked before it is saved, and where the current limits are. For first-time setup, use the <a class="link" href="../setup/">Setup guide</a>.</p>
       </div>
 
-      <!-- RELEASE STATUS: the only place the documented version and review date
-           are stated. Update this block (and the badge legend's meaning, if it
-           changes) whenever the documentation is reviewed against a release.
-           Elsewhere the page says "the current release", not a version number. -->
+      <!-- RELEASE STATUS: the place the documented Store version, the pending
+           release and the review date are stated. Update this block (and the
+           badge legend's meaning, if it changes) whenever the documentation is
+           reviewed against a release. Elsewhere the page says "the current
+           release", with deliberate "from version X" notes where older
+           installations behave differently. "Awaiting Store" marks work that is
+           built and submitted but not yet in the public Store listing. -->
       <aside class="docs-release" aria-labelledby="docs-release-title">
         <p class="eyebrow" id="docs-release-title">Documentation status</p>
         <dl class="docs-release__list">
           <div><dt>Describes</dt><dd>ReplyPort 0.3.12 (Microsoft Store)</dd></div>
-          <div><dt>Last reviewed</dt><dd><time datetime="2026-10-09">9 October 2026</time></dd></div>
+          <div><dt>Next release</dt><dd>0.3.13, submitted; not yet public</dd></div>
+          <div><dt>Last reviewed</dt><dd><time datetime="2026-10-10">10 October 2026</time></dd></div>
           <div><dt>Stage</dt><dd>Early access</dd></div>
         </dl>
         <ul class="docs-release__legend" aria-label="Status labels">
           <li><span class="st st--yes">Available</span> in the current release</li>
+          <li><span class="st st--soon">Awaiting Store</span> built and submitted; not yet public</li>
           <li><span class="st st--dev">In development</span> being validated in development builds; not in the Store release</li>
           <li><span class="st st--planned">Planned</span> accepted direction, not built</li>
           <li><span class="st st--no">Not supported</span> not available</li>
@@ -95,6 +100,7 @@
         <a href="#requirements">Requirements</a>
 
         <p class="docs-toc__group">Working with your AI</p>
+        <a href="#ai-connection">How your AI connects</a>
         <a href="#workflows">What you can ask</a>
         <a href="#search">Search and reading</a>
         <a href="#freshness">How current the copy is</a>
@@ -103,6 +109,7 @@
         <a href="#forward">Forward</a>
         <a href="#signatures">Signatures</a>
         <a href="#batches">Several drafts at once</a>
+        <a href="#requests">Requests, results and receipts</a>
 
         <p class="docs-toc__group">Mailboxes and coverage</p>
         <a href="#mailboxes">Mailboxes and routing</a>
@@ -163,7 +170,7 @@
 
       <section id="status">
         <h2>Feature status at a glance</h2>
-        <p>Each feature is labelled by what ordinary users of the current release can rely on. Features marked <span class="st st--dev">In development</span> are not available in the Microsoft Store version until a release says so.</p>
+        <p>Each feature is labelled by what ordinary users of the current Store release can rely on. Features marked <span class="st st--soon">Awaiting Store</span> or <span class="st st--dev">In development</span> are not available in the Microsoft Store version until a release says so.</p>
         <div class="docs-table-wrap">
           <table class="docs-table">
             <thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
@@ -179,6 +186,7 @@
               <tr><th scope="row"><a href="#signatures">Approved signature on drafts</a></th><td><span class="st st--yes">Available</span></td><td>One existing Outlook signature per mailbox.</td></tr>
               <tr><th scope="row"><a href="#attachment-mirroring">Copying attachments of copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Optional, per mailbox, off by default.</td></tr>
               <tr><th scope="row"><a href="#outgoing-attachments">Attaching files to drafts</a></th><td><span class="st st--yes">Available</span></td><td>Exact files chosen by the AI, verified before and after saving.</td></tr>
+              <tr><th scope="row"><a href="#ai-connection">Dropbox-first AI setup wording</a></th><td><span class="st st--soon">Awaiting Store</span></td><td>Control Centre&#8217;s setup prompt, permanent instructions and published guides say explicitly that <code>/ReplyPort</code> is the folder at the root of the connected Dropbox, found with the AI&#8217;s Dropbox connector, not a local path. The <a href="../setup/">Setup guide</a> already uses this wording and works with any version.</td></tr>
               <tr><th scope="row"><a href="#storage">Storage provider</a></th><td><span class="st st--yes">Dropbox</span></td><td>OneDrive is <span class="st st--planned">Planned</span>.</td></tr>
               <tr><th scope="row"><a href="#no-send">Sending email</a></th><td><span class="st st--no">Not supported</span></td><td>By design. There is no plan to add it.</td></tr>
             </tbody>
@@ -230,11 +238,12 @@
         <div class="docs-table-wrap">
           <table class="docs-table docs-table--kv">
             <tbody>
-              <tr><th scope="row">Operating system</th><td>Windows 11 on an x64 PC, installed from the Microsoft Store. A standard Windows user account is sufficient.</td></tr>
+              <tr><th scope="row">Operating system</th><td>Windows 11 (version 22000 or later) on an x64 PC, installed from the Microsoft Store. A standard Windows user account is sufficient.</td></tr>
               <tr><th scope="row">Mail client</th><td>Outlook Classic (the desktop Outlook for Windows), with your accounts already set up. <span class="st st--no">Not supported</span> New Outlook for Windows, Outlook on the web, Mac Outlook.</td></tr>
+              <tr><th scope="row">Accounts</th><td>Accounts that Outlook Classic delivers into their own mail data store, such as Microsoft 365 and Exchange accounts. Each account you connect must have its own data store; if two accounts deliver into the same data file, ReplyPort refuses drafts for it rather than risk choosing the wrong account. IMAP and POP accounts are not documented as supported.</td></tr>
               <tr><th scope="row">Outlook running</th><td>Outlook Classic must be open for mail copying and for draft creation. ReplyPort never starts Outlook itself. Search of already-copied mail works while Outlook is closed.</td></tr>
-              <tr><th scope="row">Storage</th><td>The Dropbox desktop app, signed in, with a local Dropbox folder on this PC. ReplyPort uses the Dropbox folder on disk; it does not use the Dropbox web API.</td></tr>
-              <tr><th scope="row">AI</th><td>An AI assistant that can both read files in, and create new files in, your Dropbox <code>/ReplyPort</code> folder. Read-only access is not enough to search or draft.</td></tr>
+              <tr><th scope="row">Storage</th><td>The Dropbox desktop app, signed in, with a local Dropbox folder on this PC. ReplyPort uses the Dropbox folder on disk; it does not use the Dropbox web API. Dropbox must keep syncing for your AI to see new copies and for ReplyPort to see new requests.</td></tr>
+              <tr><th scope="row">AI</th><td>An AI assistant with a <strong>Dropbox connection</strong> to the same Dropbox account, able both to read files in, and to create new files in, the <code>/ReplyPort</code> folder at the root of that Dropbox. Read-only access is not enough to search or draft. Installing Dropbox on the PC does not connect it to your AI. See <a class="link" href="#ai-connection">How your AI connects</a>.</td></tr>
               <tr><th scope="row">PC state</th><td>The PC must be on, signed in, and running ReplyPort for any request to be processed.</td></tr>
             </tbody>
           </table>
@@ -244,8 +253,42 @@
 
       <!-- ================= Working with your AI ================= -->
 
-      <section id="workflows">
+      <section id="ai-connection">
         <p class="eyebrow">Working with your AI</p>
+        <h2>How your AI connects to ReplyPort</h2>
+        <p>ReplyPort and your AI never talk to each other directly. They meet in one place: the <code>ReplyPort</code> folder in your Dropbox. ReplyPort reaches it through the Dropbox desktop app on your PC. Your AI reaches the same folder through its own connection to your Dropbox account.</p>
+        <p class="docs-callout"><strong><code>/ReplyPort</code> is a Dropbox path, not a path on your computer.</strong> In an AI chat it means the folder named <code>ReplyPort</code> at the root of the connected Dropbox account, opened with the AI&#8217;s Dropbox connector or Dropbox tools. If an AI says it has no local file tools, or suggests installing a desktop app, ask it to use its Dropbox connection instead. A failed ordinary file search does not mean Dropbox is disconnected.</p>
+        <h3>What your AI needs permission to do</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th scope="col">Permission</th><th scope="col">Used for</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Read</th><td>Finding <code>/ReplyPort</code>, then reading the instructions, the manifest, the request formats, copied messages, search results and draft results.</td></tr>
+              <tr><th scope="row">Create</th><td>Adding new request files to the folders ReplyPort watches. It must create new files; it never edits, replaces, moves or deletes existing ones.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Being able to read the folder does not prove an AI can create files in it. If it can read but not create, setup reports that and search and drafting will not work. Some AI products have no direct &#8220;write a text file&#8221; action and instead upload a generated file to the exact folder; that is fine. If the AI product shows a permission prompt, approve it yourself: ReplyPort cannot approve it for you and an AI is instructed not to try to bypass it.</p>
+        <h3>What happens automatically, and what you do</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th scope="col">ReplyPort does automatically</th><th scope="col">You do yourself</th></tr></thead>
+            <tbody>
+              <tr><td>Publishes the AI instructions, the manifest and the request formats into <code>/ReplyPort</code> at setup, and refreshes them after an update.</td><td>Connect your AI to the Dropbox account that holds the <code>ReplyPort</code> folder.</td></tr>
+              <tr><td>Copies the mail you approved, and keeps the copy current.</td><td>Copy the setup prompt from Control Centre and paste it into a new chat with your AI.</td></tr>
+              <tr><td>Answers search requests and creates drafts as requests arrive.</td><td>Save the <em>permanent instructions</em> in your AI&#8217;s own settings when the guide tells you to.</td></tr>
+              <tr><td>Shows <em>Request write observed</em> in Control Centre once it has seen a request file written by your AI.</td><td>Approve any permission prompt your AI product shows for Dropbox.</td></tr>
+              <tr><td>Never sends mail.</td><td>Review every draft in Outlook, and send or discard it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Saved AI instructions are yours to update</h3>
+        <p>The permanent instructions live inside your AI account, in ChatGPT&#8217;s custom instructions, Claude&#8217;s instructions or the equivalent. ReplyPort cannot see them and cannot change them. When ReplyPort&#8217;s instructions change in a new release, the copies in your AI do not change by themselves: open Control Centre, choose <em>Other setup options&#8230;</em> and then <em>Copy permanent instructions</em>, and replace the old text in your AI&#8217;s settings.</p>
+        <h3>The setup test</h3>
+        <p>The setup prompt asks your AI to read the guide in <code>/ReplyPort</code> and run exactly one harmless search. It creates no draft and does not summarise any mail. The AI reports <strong>Ready</strong> only after ReplyPort&#8217;s matching search result has arrived, even if that result found no messages. The steps for the person setting up are on the <a class="link" href="../setup/">Setup guide</a>.</p>
+      </section>
+
+      <section id="workflows">
         <h2>What you can ask</h2>
         <p>Once setup is complete, use ordinary language. Your AI follows the ReplyPort instructions you saved during setup. Some examples, with what happens underneath:</p>
         <dl class="docs-examples">
@@ -290,10 +333,11 @@
           <li>Search is keyword matching, not semantic search. If a search finds nothing useful, the AI is instructed to try once more with broader terms and then tell you the limits of what it found.</li>
           <li>Each request returns up to 50 results, ranked. A result contains a subject, a short snippet and a pointer to the full copy.</li>
           <li>Search does not use Outlook, so it works while Outlook is closed. It does need the PC to be on, ReplyPort to be running and Dropbox to be syncing.</li>
+          <li>The AI asks about once every 5 seconds for the result, for up to about three minutes per mailbox, and treats a few empty checks as normal.</li>
         </ul>
         <h3>Search results are hints</h3>
         <p>The AI is instructed to open the full copied message before telling you what it says, who sent it or when, and before acting on it. Subject lines and snippets are not treated as evidence.</p>
-        <p>Every result also states whether the search covered the whole copied mailbox. If any copy could not be read, the result says the coverage was incomplete, and the AI should not conclude that a message does not exist.</p>
+        <p>Every result also states whether the search covered the whole copied mailbox. The result reports incomplete coverage if any copy could not be read, if a mailbox&#8217;s first scan has not finished, or, when all mail folders are approved, until every ordinary folder has been read and copied. The AI should then say that coverage is incomplete and should not conclude that a message does not exist.</p>
         <p class="note">Search covers copied mail only: the mailboxes, folders and date window described in <a class="link" href="#mirroring">What gets copied</a>. ReplyPort search does not look inside attachments; an AI can open copied attachment files itself.</p>
       </section>
 
@@ -301,12 +345,12 @@
         <h2>How current the copy is</h2>
         <p>Search reads the copy in Dropbox, not Outlook. A message that has just arrived becomes searchable only after three things have happened:</p>
         <ol class="docs-steps">
-          <li>ReplyPort&#8217;s next background copy pass picks it up. While Outlook Classic is open, ReplyPort starts an incremental pass about every two minutes, with longer back-off after failures.</li>
+          <li>ReplyPort&#8217;s next background copy pass picks it up. While Outlook Classic is open, ReplyPort starts an incremental pass about every two minutes, with longer back-off after failures. New mail in Inbox and Sent Items is never held back behind the catch-up copying of other folders.</li>
           <li>Dropbox uploads the new copy.</li>
           <li>Your AI&#8217;s Dropbox connection can see it.</li>
         </ol>
         <p>A search does not trigger a fresh copy pass. If you ask about a message that arrived a moment ago, it may not be found yet. Ask again after a few minutes, or tell the AI that the message is very recent.</p>
-        <p class="note">Improving freshness for just-arrived mail is under investigation. See <a class="link" href="#roadmap">Planned and under investigation</a>.</p>
+        <p class="note">ReplyPort cannot update a conversation your AI has already had. The AI has to search again to see mail that was copied after its last search. Improving freshness for just-arrived mail is under investigation. See <a class="link" href="#roadmap">Planned and under investigation</a>.</p>
       </section>
 
       <section id="reply">
@@ -327,6 +371,7 @@
               <tr><td>Copied received message, from the Inbox or another copied folder</td><td><span class="st st--yes">Available</span></td></tr>
               <tr><td>Copied message you sent</td><td><span class="st st--no">Not supported</span> Used as context only.</td></tr>
               <tr><td>Message in another folder, never copied</td><td><span class="st st--no">Not supported</span> See <a class="link" href="#folders">Folder coverage</a>.</td></tr>
+              <tr><td>Message now in Deleted Items, Junk Email, Drafts, Outbox or a sync or RSS folder, or an unsent item</td><td><span class="st st--no">Not supported</span> Reply authority ends when the message is moved there, even though its copy remains until it expires.</td></tr>
               <tr><td>Message marked Personal, Private or Confidential, or protected by rights management or encryption</td><td><span class="st st--no">Not supported</span> Not copied.</td></tr>
               <tr><td>Message whose body exceeds 1 MiB of text</td><td><span class="st st--no">Not supported</span> Copied as incomplete; cannot be replied to.</td></tr>
             </tbody>
@@ -334,7 +379,7 @@
         </div>
         <h3>If the original has changed</h3>
         <p>Before creating a reply, ReplyPort checks that the Outlook message still matches the copy the AI read. If it has changed, the request is refused with <code>SOURCE_CHANGED</code>, ReplyPort refreshes that copy, and the AI may read the fresh copy and try once more. It does not retry in a loop.</p>
-        <p>If you moved the message to another folder in the same mailbox after it was copied, ReplyPort may still find it, but only if a strict search inside that mailbox finds exactly one matching item. Otherwise the request is refused.</p>
+        <p>If you moved the message to another folder in the same mailbox after it was copied, ReplyPort may still find it, but only if it is still in an ordinary mail folder of that mailbox and a strict search of those folders finds exactly one matching message that was received. A message in Deleted Items, Junk Email, Drafts, Outbox or a sync or RSS folder, or in a folder inside one of those, is refused with <code>SOURCE_NOT_FOUND</code>. Outside the Inbox, a message counts as received only if Outlook holds delivery evidence for it; otherwise it cannot be replied to.</p>
         <h3>One reply draft per message version</h3>
         <p>ReplyPort creates at most one Reply draft and one Reply All draft for each version of a copied message. Asking for a second Reply to the same message is refused as a duplicate, even if you discarded the first draft. To change a reply, edit the draft in Outlook. See <a class="link" href="#duplicates">Duplicate protection</a>.</p>
       </section>
@@ -379,6 +424,30 @@
         <p>Several separate drafts are never merged into one email with many recipients.</p>
       </section>
 
+      <section id="requests">
+        <h2>Requests, results and receipts</h2>
+        <p>Everything your AI asks ReplyPort to do is a small file it creates in a folder ReplyPort watches. ReplyPort answers with a file of its own. The exact formats are published in the ReplyPort folder as <code>schemas/</code>, and the manifest says which versions the installed ReplyPort accepts.</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th scope="col">Operation</th><th scope="col">AI creates, in the mailbox&#8217;s folder</th><th scope="col">ReplyPort answers with</th></tr></thead>
+            <tbody>
+              <tr><td>Search</td><td><code>search_requests/&lt;id&gt;.json</code></td><td><code>search_results/&lt;id&gt;.json</code></td></tr>
+              <tr><td>Reply, Reply All</td><td><code>draft_requests/&lt;id&gt;.json</code></td><td><code>receipts/&lt;id&gt;.json</code></td></tr>
+              <tr><td>New message</td><td><code>new_message_requests/&lt;id&gt;.json</code></td><td><code>receipts/&lt;id&gt;.json</code></td></tr>
+              <tr><td>After <code>SOURCE_CHANGED</code></td><td>Nothing: the AI reads the answer</td><td><code>source_refresh_results/&lt;id&gt;.json</code>, under the rejected request&#8217;s own ID</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>One file per request.</strong> The file name is the request&#8217;s own ID, a lowercase UUID, and the answer uses the same ID. The AI never edits, replaces or reuses a request file; a new request needs a new ID.</li>
+          <li><strong>Strict format.</strong> A request must match its published format exactly, including the format fingerprint listed in the manifest. A request with unknown fields or the wrong fingerprint is rejected.</li>
+          <li><strong>One answer per request.</strong> A receipt records the request it answers, its status, a fixed error code if it was rejected, and a content-free fingerprint of the saved draft. It never contains message text, subjects or addresses.</li>
+          <li><strong>Statuses.</strong> <code>created</code> means a verified unsent draft exists. <code>deferred</code> means the request is still waiting, for example because Outlook is closed. <code>rejected</code> and <code>cancelled</code> are final.</li>
+          <li><strong>Waiting.</strong> The AI waits for the answer to its own request ID; it does not search the folder for it and does not submit the request again while it waits. If no answer arrives, check the PC, the tray icon, Outlook and Dropbox. See <a class="link" href="#troubleshooting">Troubleshooting</a>.</li>
+          <li><strong>Retention.</strong> Search requests, search results and refresh results are deleted after seven days.</li>
+        </ul>
+      </section>
+
       <!-- ================= Mailboxes and coverage ================= -->
 
       <section id="mailboxes">
@@ -390,13 +459,14 @@
           <li><strong>Opaque identifiers.</strong> In the Dropbox folder, a mailbox is identified by a random ID that reveals nothing about the account. The account&#8217;s email address and Outlook locations stay on your PC.</li>
           <li><strong>Labels.</strong> The friendly name you give a mailbox is published so the AI can pick it for a new message. A label is for choosing, not for routing; ReplyPort maps it to the account locally.</li>
           <li><strong>Search across, draft within.</strong> The AI may search all mailboxes, but every draft stays in exactly one mailbox: the one you named, or the one that holds the message being replied to. A token issued for one mailbox is rejected in any other.</li>
+          <li><strong>One account, one data store.</strong> ReplyPort requires exactly one Outlook account to match each connected mailbox&#8217;s mail data store. If two accounts deliver into the same data file, ReplyPort refuses drafts for that mailbox with <code>ACCOUNT_NOT_UNIQUE</code> instead of choosing between them.</li>
           <li><strong>Adding accounts.</strong> Accounts added to Outlook after setup can be connected with <em>Add mailbox</em> in Control Centre. Existing mailboxes are not changed.</li>
         </ul>
       </section>
 
       <section id="mirroring">
         <h2>What gets copied</h2>
-        <p>Mail copying (&#8220;mirroring&#8221;) is off until you approve it for each mailbox. After approval, ReplyPort runs a first scan of that mailbox, then keeps the copy current in the background.</p>
+        <p>Mail copying (&#8220;mirroring&#8221;) is off until you approve it for each mailbox. After approval, ReplyPort runs a first scan of that mailbox, then keeps the copy current in the background. A first scan can take a while for a large mailbox; until it has finished, search reports that its coverage is incomplete.</p>
         <div class="docs-table-wrap">
           <table class="docs-table docs-table--kv">
             <tbody>
@@ -419,6 +489,23 @@
           <li><strong>New mailboxes.</strong> The mail copying approval in first run and in <em>Add mailbox</em> covers the whole mailbox: Inbox, Sent Items and its other ordinary mail folders.</li>
           <li><strong>Mailboxes connected before 0.3.12.</strong> Nothing widens on update. Tick <strong>Include all mail folders</strong> on the mailbox card in Control Centre and confirm. Unticking it returns to Inbox and Sent Items; mail already copied from other folders stays until it ages out of the 90-day window.</li>
           <li><strong>Progress.</strong> The mailbox card shows how many recent messages are still being copied from other folders, then <em>up to date</em>. Until then, search reports that coverage is incomplete.</li>
+          <li><strong>Turning it off.</strong> Unticking returns the mailbox to Inbox and Sent Items. ReplyPort stops copying other folders; what it already copied stays until it expires. Outlook is not changed.</li>
+        </ul>
+        <h3>What the Control Centre card says</h3>
+        <dl class="docs-defs">
+          <div><dt>Mail folders: Inbox and Sent Items</dt><dd>The mailbox has not been widened. This is the state of every mailbox connected before 0.3.12 after updating.</dd></div>
+          <div><dt>Mail folders: all &#183; copying N recent messages from other folders</dt><dd>Catch-up copying is under way.</dd></div>
+          <div><dt>Mail folders: all &#183; up to date</dt><dd>Every ordinary folder has been read and nothing is left to copy.</dd></div>
+          <div><dt>Mail folders: all &#183; some mail could not be copied yet; ReplyPort will try again</dt><dd>At least one message could not be copied. ReplyPort retries automatically, and search reports incomplete coverage meanwhile.</dd></div>
+          <div><dt>Mail folders: all &#183; waiting for the next mail check</dt><dd>The scope is approved and the next background pass has not yet run.</dd></div>
+        </dl>
+        <h3>How other folders are copied</h3>
+        <ul>
+          <li>Mail already filed in other folders is copied in small batches of up to 20 messages, each batch in its own short Outlook lock, for up to about a minute per background pass. A draft or search that is waiting runs between batches, so catch-up copying does not hold up your work.</li>
+          <li>Each message is judged against the 90-day window by its own received or sent time.</li>
+          <li>Whether a message was received or sent is decided from Outlook&#8217;s delivery information, not from the folder it is in. Unsent items are never copied.</li>
+          <li>Moving or copying a message between copied folders does not create a second copy.</li>
+          <li>Attachment copying, if you turned it on for the mailbox, follows the folders you approved.</li>
         </ul>
         <div class="docs-table-wrap">
           <table class="docs-table">
@@ -433,7 +520,8 @@
             </tbody>
           </table>
         </div>
-        <p class="docs-callout docs-callout--quiet">Folders are recognised by their identity in Outlook, never by name. Outlook&#8217;s sync, service, search and hidden folders are never copied. A received message keeps its identity wherever it is filed, so moving it between copied folders does not create a second copy.</p>
+        <p class="docs-callout docs-callout--quiet">Folders are recognised by their identity in Outlook, never by name, so renaming or moving a folder does not change what is copied. Outlook&#8217;s sync, service, search and hidden folders, and anything inside an excluded folder, are never copied. A received message keeps its identity wherever it is filed.</p>
+        <p class="note">Limits of other-folder copying: signed or encrypted (S/MIME) messages and other non-ordinary items filed in other folders are not copied. An edit to an already-copied message in another folder is picked up only if a reply request finds the message changed, or after it is moved. Rarely, a message you sent that carries delivery headers and is filed outside Sent Items is treated as received.</p>
       </section>
 
       <!-- ================= Attachments ================= -->
@@ -446,7 +534,7 @@
         <ul>
           <li>Off by default, set per mailbox, and available only when mail copying is on for that mailbox.</li>
           <li>Only you can turn it on, on the PC. No file in Dropbox, AI request or email can turn it on.</li>
-          <li>It applies to attachments of every copied message, received or sent, within the same 90-day window.</li>
+          <li>It applies to attachments of every copied message, received or sent, in the folders you approved, within the same 90-day window.</li>
           <li>Turning it on processes already-copied mail in the background, newest first, a few messages per pass. This can take a while.</li>
           <li>Turning it off stops copying and deletes the attachment copies ReplyPort made. Mail copying and Outlook are unaffected.</li>
           <li>Each copied message has an attachment list in the ReplyPort folder. Every attachment is listed as copied, with its file, size and hash, or skipped, with a fixed reason such as <code>TYPE_NOT_SUPPORTED</code> or <code>TOO_LARGE</code>.</li>
@@ -613,20 +701,20 @@
           <li><strong>Mail copying.</strong> A separate approval for each mailbox, covering its Inbox, Sent Items and other ordinary mail folders, with the option to include email attachments. Turn it on here for every mailbox you want the AI to search; Control Centre does not currently offer this choice again later.</li>
           <li><strong>First scan.</strong> ReplyPort copies the last 90 days of approved mail in the background, one mailbox at a time. First run does not wait for it; search reports incomplete coverage until a mailbox&#8217;s first scan has finished.</li>
         </ol>
-        <p>Then connect your AI using the <a class="link" href="../setup/">Setup guide</a>: give the AI access to <code>/ReplyPort</code>, copy the setup prompt from Control Centre, and paste it into the AI. The AI walks you through saving permanent ReplyPort instructions and runs one harmless test search. Setup creates no drafts.</p>
+        <p>Then connect your AI using the <a class="link" href="../setup/">Setup guide</a>: connect your AI to the Dropbox that holds the <code>ReplyPort</code> folder, copy the setup prompt from Control Centre, and paste it into a new chat. The AI walks you through saving permanent ReplyPort instructions and runs one harmless test search. Setup creates no drafts. What your AI needs, and what ReplyPort cannot do for you, is explained in <a class="link" href="#ai-connection">How your AI connects</a>.</p>
         <p class="note">Searching existing mail needs the first scan to have finished. Creating new messages does not.</p>
       </section>
 
       <section id="tray">
         <h2>Background operation and the tray</h2>
         <p>ReplyPort runs in the background with an icon in the Windows notification area. It starts automatically when you sign in to Windows.</p>
-        <p>While running, it checks for new search requests about every 5 seconds, processes draft requests when they arrive, and starts an incremental mail copy pass about every 2 minutes while Outlook Classic is open. The icon animates while searches or drafts are pending.</p>
+        <p>While running, it checks for new requests about every 5 seconds. A new draft request starts as soon as the previous draft worker has finished, instead of waiting out a fixed delay; retries of requests that had to wait, for example for Outlook, are about 30 seconds apart. It starts an incremental mail copy pass about every 2 minutes while Outlook Classic is open. The icon animates while searches or drafts are pending.</p>
         <h3>Tray menu</h3>
         <dl class="docs-defs">
           <div><dt>Status</dt><dd>Opens Control Centre.</dd></div>
           <div><dt>Sync requests now</dt><dd>Processes waiting requests immediately.</dd></div>
           <div><dt>Run first mailbox scan&#8230;</dt><dd>Starts a first scan for a mailbox that does not have one yet.</dd></div>
-          <div><dt>Pause / Resume</dt><dd>Stops or restarts all background processing. Requests wait while paused.</dd></div>
+          <div><dt>Pause / Resume</dt><dd>Stops or restarts all background processing. Requests wait while paused, and nothing is copied. <strong>Pause stays in effect after you restart Windows</strong> until you choose <em>Resume</em>. Control Centre reports &#8220;ReplyPort is paused.&#8221;</dd></div>
           <div><dt>Exit</dt><dd>Closes the background tray process. An open Control Centre window stays open; close it separately.</dd></div>
           <div><dt>Advanced / support</dt><dd>Open the storage folder, open the content-free logs, and an optional hotkey (Ctrl+Alt+D) to copy the message selected in Outlook. These are support tools, not needed for normal use. The &#8220;Attachment requests&#8221; item there belongs to an older experimental workflow and is not supported.</dd></div>
         </dl>
@@ -634,12 +722,14 @@
 
       <section id="control-centre">
         <h2>Control Centre</h2>
-        <p>Control Centre shows whether ReplyPort is running, whether Outlook Classic and the Dropbox folder are available, and a card for each mailbox with its copying status, attachment setting and pending work. From it you can:</p>
+        <p>Control Centre shows whether ReplyPort is running, whether Outlook Classic and the Dropbox folder are available, and a card for each mailbox with its copying status, folder and attachment settings and pending work. From it you can:</p>
         <ul>
+          <li>tick <strong>Include all mail folders</strong> per mailbox, and confirm, to copy every ordinary mail folder, or untick it to return to Inbox and Sent Items;</li>
           <li>turn <strong>Include email attachments</strong> on or off per mailbox;</li>
           <li>restrict a mailbox to replies only (Advanced);</li>
           <li>connect another Outlook account (<em>Add mailbox</em>);</li>
-          <li>copy the AI setup prompt;</li>
+          <li>copy the AI setup prompt (<em>Copy setup prompt</em>), or, under <em>Other setup options&#8230;</em>, copy the permanent instructions or view the setup guide;</li>
+          <li>see <em>AI request write</em>, which shows <em>Request write observed</em> once ReplyPort has seen a request file written by your AI;</li>
           <li>run <em>Repair</em> when ReplyPort reports a problem it can fix;</li>
           <li>remove ReplyPort (<em>Remove ReplyPort&#8230;</em>).</li>
         </ul>
@@ -650,11 +740,24 @@
         <h2>Updates</h2>
         <p>ReplyPort is distributed and updated only through the Microsoft Store. The website does not offer a separate installer.</p>
         <ul>
-          <li>An update keeps your configuration, mailboxes and Dropbox folder.</li>
+          <li>An update keeps your configuration, mailboxes, mirrored mail and Dropbox folder. On the first start after an update, ReplyPort republishes the instructions, manifest and request formats in <code>/ReplyPort</code> and checks that it is working before it resumes.</li>
+          <li>An update does not change settings you chose. A mailbox connected before 0.3.12 stays on Inbox and Sent Items until you tick <strong>Include all mail folders</strong>.</li>
+          <li>An update does not change the instructions saved inside your AI. If the instructions change in a release, copy the new text from Control Centre and replace the old; see <a class="link" href="#ai-connection">How your AI connects</a>.</li>
           <li>A Store update stops the background tray process. Opening ReplyPort from the Start menu restarts it; signing in to Windows again also does.</li>
           <li>A first attempt to install an update has been seen to fail while ReplyPort was running, and pressing Retry in the Store then succeeded. The cause is being investigated.</li>
           <li>The ReplyPort folder contains a manifest stating the installed version and which request formats it accepts. An AI working from an older or newer description must follow the manifest.</li>
         </ul>
+        <h3>Release status</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead><tr><th scope="col">Version</th><th scope="col">Status</th><th scope="col">What it covers</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">0.3.12</th><td><span class="st st--yes">Available</span></td><td>All ordinary mail folders (opt-in for existing mailboxes), attaching files to drafts, background first scans, simpler Dropbox onboarding, faster pickup of new draft requests, refusal when two accounts share a data store.</td></tr>
+              <tr><th scope="row">0.3.13</th><td><span class="st st--soon">Awaiting Store</span></td><td>No change to how mail is copied or drafts are created. Control Centre&#8217;s setup prompt and permanent instructions, and the guides published into Dropbox, say explicitly that <code>/ReplyPort</code> is the folder at the root of your connected Dropbox, found with the AI&#8217;s Dropbox connector and not a local computer path, and that a failed ordinary file search does not mean Dropbox is disconnected. This is to stop an AI from looking for the folder on your computer.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">0.3.13 was submitted to the Microsoft Store and publishes automatically after certification. This page keeps describing 0.3.12 as the current release until the Store lists 0.3.13.</p>
       </section>
 
       <section id="removal">
@@ -683,7 +786,7 @@
   mailboxes/
     &lt;mailbox id&gt;/         one per connected mailbox
       mirror/             copied messages
-      work/               reply tokens for copied Inbox messages
+      work/               reply tokens for copied received messages
       attachments/        copied attachments, if turned on
       search_requests/    written by the AI
       search_results/     written by ReplyPort
@@ -691,6 +794,14 @@
       new_message_requests/
       receipts/           draft results, written by ReplyPort
       &#8230;                   housekeeping folders</pre>
+        <h3>What ReplyPort places in Dropbox</h3>
+        <ul>
+          <li><strong>Copies of the mail you approved:</strong> subject, sender, recipients, date, plain-text body (up to 1 MiB), conversation identifier and attachment names, types and sizes.</li>
+          <li><strong>Attachment files,</strong> only for mailboxes where you turned on <strong>Include email attachments</strong>.</li>
+          <li><strong>Requests and results:</strong> search, draft and new-message requests written by your AI, and ReplyPort&#8217;s content-free answers.</li>
+          <li><strong>ReplyPort&#8217;s own guides, manifest and formats,</strong> and the per-message tokens that let your AI request a reply to that exact message.</li>
+        </ul>
+        <p>It never places account passwords, encryption keys, Outlook&#8217;s internal item locations or local file paths there. Mailbox identifiers are random and reveal nothing about the account.</p>
         <p>ReplyPort publishes the instructions, manifest and formats itself, from the installed version. They are not edited by hand. Files in request folders that do not have an expected name, such as temporary files or Dropbox conflict copies, are moved aside to a quarantine folder rather than processed.</p>
         <h3>On the PC</h3>
         <p>Under your Windows user profile ReplyPort keeps configuration, the account bindings, protected keys, progress records and logs. Keys and sensitive records are encrypted with Windows Data Protection for your user account. Logs contain codes, counts, timings and opaque IDs only: no subjects, bodies, addresses or file names.</p>
@@ -701,7 +812,7 @@
         <ul>
           <li>The ReplyPort Windows app runs entirely on your PC. There is no ReplyPort server and no hosted AI, and the app contains no ReplyPort analytics or telemetry.</li>
           <li>Copied mail is processed by Dropbox, because it is in your Dropbox folder, and by whichever AI service you connect to that folder. Each operates under its own terms.</li>
-          <li>You choose which mailboxes are copied and whether their attachments are included. Mail copying and attachment copying are both off until you turn them on.</li>
+          <li>You choose which mailboxes are copied, whether each copies only Inbox and Sent Items or all ordinary mail folders, and whether attachments are included. Mail copying and attachment copying are both off until you turn them on, and a mailbox is never widened to more folders by an update.</li>
           <li>Copies are limited to 90 days and removed automatically after that. Search requests and results are deleted after seven days.</li>
         </ul>
         <p>The full policy is on the <a class="link" href="../privacy/">Privacy</a> page.</p>
@@ -714,7 +825,9 @@
         <h2>Known limitations</h2>
         <p>Limitations of the current release that affect ordinary use:</p>
         <ul>
-          <li>Mailboxes connected before 0.3.12 copy only Inbox and Sent Items until you tick <strong>Include all mail folders</strong> in Control Centre. Shared mailboxes, PST files and Online Archive are never copied.</li>
+          <li>Mailboxes connected before 0.3.12 copy only Inbox and Sent Items until you tick <strong>Include all mail folders</strong> in Control Centre. Shared mailboxes, PST files and Online Archive are never copied. Folders cannot be chosen one by one.</li>
+          <li>Signed or encrypted (S/MIME) messages filed in other folders are not copied, and an edit to an already-copied message there is not noticed until a reply request finds it changed or the message moves.</li>
+          <li>Catching up on mail already filed in other folders takes several background passes. Until it finishes, search reports incomplete coverage.</li>
           <li>There is no Forward.</li>
           <li>Replies are possible only to copied received messages, not to messages you sent.</li>
           <li>One Reply and one Reply All draft per version of a message. A second request for the same message is refused as a duplicate.</li>
@@ -725,17 +838,24 @@
           <li>A just-arrived message may take a few minutes to become searchable.</li>
           <li>Search is keyword-based and does not look inside attachments.</li>
           <li>Outlook Classic must be open for copying and drafting. New Outlook is not supported.</li>
-          <li>Dropbox is the only supported storage. Your AI must be able to create files there, not just read them.</li>
+          <li>Dropbox is the only supported storage. Your AI must be able to create files there, not just read them. Whether an AI product&#8217;s Dropbox connection can create files differs between products and accounts, and ReplyPort cannot check it in advance; the setup test shows whether it works.</li>
+          <li>ReplyPort cannot read or change the instructions saved in your AI. After a release that changes them, you replace them yourself. An AI that looks for <code>/ReplyPort</code> on your computer instead of in Dropbox should be told to use its Dropbox connection; the Setup guide&#8217;s prompt says so explicitly.</li>
+          <li>A just-written request is only seen once Dropbox has synced it to the PC, and a copy only once it has synced to your AI&#8217;s side. Both depend on Dropbox and can lag.</li>
           <li>Editing or deleting an approved signature in Outlook stops drafts for that mailbox, and Control Centre does not yet offer a way to approve the edited signature.</li>
           <li>Mail copying can be approved only during first run or <em>Add mailbox</em>. Control Centre has no control to turn it on later, or off, for a connected mailbox.</li>
           <li>Tray <em>Exit</em> does not close an open Control Centre window.</li>
+          <li>Tray <em>Pause</em> persists after a restart. If nothing is being copied or answered after Windows restarts, check whether the tray menu offers <em>Resume</em>.</li>
           <li>ReplyPort does not detect when Outlook is running in a reduced-functionality or unlicensed state.</li>
         </ul>
       </section>
 
       <section id="roadmap">
         <h2>Planned and under investigation</h2>
-        <p>Nothing in this section is available in the current release. Items move to the main documentation when they ship. There are no committed dates.</p>
+        <p>Nothing in this section is available in the current Store release except where stated. Items move to the main documentation when they ship. There are no committed dates.</p>
+        <h3><span class="st st--soon">Awaiting Store</span> Submitted</h3>
+        <ul>
+          <li><strong>ReplyPort 0.3.13</strong>, which makes the Dropbox-first wording of the AI setup prompt, permanent instructions and guides explicit. See <a class="link" href="#updates">Updates</a>.</li>
+        </ul>
         <h3><span class="st st--planned">Planned</span> Accepted direction</h3>
         <ul>
           <li><strong>Native Forward drafts.</strong></li>
@@ -755,11 +875,23 @@
         <h2>Troubleshooting</h2>
         <dl class="docs-help">
           <div><dt>The AI cannot see /ReplyPort</dt>
-          <dd>Connect Dropbox to that AI product and give it access to the ReplyPort folder. Installing Dropbox on the PC does not give an AI access.</dd></div>
+          <dd>Connect Dropbox to that AI product, and make sure it is the Dropbox account that holds the <code>ReplyPort</code> folder. Installing Dropbox on the PC does not give an AI access.</dd></div>
+          <div><dt>The AI says it has no local file tools, or looks for a folder on your computer</dt>
+          <dd><code>/ReplyPort</code> is in your Dropbox, not on your computer. Ask the AI to use its Dropbox connector to open <code>/ReplyPort/SETUP.md</code>. A failed ordinary file search does not mean Dropbox is disconnected, and an AI does not need a desktop app just to use Dropbox. The prompt on the <a class="link" href="../setup/">Setup guide</a> says this explicitly.</dd></div>
+          <div><dt>The AI found the folder but a file is missing</dt>
+          <dd>Check that the AI is using the right Dropbox account and can read <code>/ReplyPort/BRIDGE_MANIFEST.json</code>. Ask it to report the exact path or permission error. Let Dropbox finish syncing on the PC. If a ReplyPort file stays missing, report it through <a class="link" href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>.</dd></div>
           <div><dt>The AI says it can read but cannot create the request file</dt>
           <dd>Its Dropbox access is read-only, or it lacks a direct write action. Some AI products can create the file by uploading it; approve any permission prompt the product shows. Without write access, ReplyPort cannot be used from that AI.</dd></div>
           <div><dt>Search or a draft request gets no answer</dt>
-          <dd>Check that the PC is on and signed in, the ReplyPort tray icon is present and not paused, Dropbox is syncing, and, for drafts, that Outlook Classic is open. Then use <em>Sync requests now</em> from the tray.</dd></div>
+          <dd>Check that the PC is on and signed in, the ReplyPort tray icon is present and not paused (a paused tray offers <em>Resume</em>, and stays paused after a restart), Dropbox is syncing, and, for drafts, that Outlook Classic is open. Then use <em>Sync requests now</em> from the tray. Control Centre shows pending searches and drafts for each mailbox.</dd></div>
+          <div><dt>Control Centre does not show Request write observed</dt>
+          <dd>ReplyPort has not yet seen a request file written by your AI. Run the setup test again. If the AI can read Dropbox but cannot create a file, its Dropbox access is read-only or its product cannot create files there.</dd></div>
+          <div><dt>Search says coverage is incomplete</dt>
+          <dd>A mailbox&#8217;s first scan may not have finished, or, with all mail folders approved, mail from other folders is still being copied. Check the mailbox card in Control Centre. The AI should not treat a missing message as proof it does not exist until coverage is complete.</dd></div>
+          <div><dt>Mail filed in other folders is not found</dt>
+          <dd>On the mailbox card, check that <strong>Include all mail folders</strong> is ticked and that the status says <em>up to date</em>. Deleted Items, Junk Email, Drafts, Outbox, shared mailboxes, PST files and Online Archive are never copied.</dd></div>
+          <div><dt>Drafts are refused with <code>ACCOUNT_NOT_UNIQUE</code></dt>
+          <dd>More than one Outlook account matches this mailbox&#8217;s data store, usually because two accounts deliver into the same data file. ReplyPort refuses rather than risk using the wrong account. ReplyPort will not draft for that mailbox until the accounts no longer share a data store in Outlook.</dd></div>
           <div><dt>ReplyPort is not running after a Store update</dt>
           <dd>Open ReplyPort from the Start menu. It restarts the background process and opens Control Centre.</dd></div>
           <div><dt>A message you know exists is not found</dt>
@@ -772,6 +904,8 @@
           <dd>The Outlook account or its folders changed since setup, or ReplyPort was restored on a different PC. Open Control Centre and use Repair if it is offered.</dd></div>
           <div><dt>The Store update fails</dt>
           <dd>Retry the update in the Microsoft Store.</dd></div>
+          <div><dt>An attachment was not added to a draft</dt>
+          <dd>The draft request is rejected with an <code>ATTACHMENT_</code> code rather than saved without the file; see <a class="link" href="#errors">Result codes</a>. Check the file type, the size and count limits, and that the AI chose one exact file.</dd></div>
         </dl>
       </section>
 
@@ -786,15 +920,15 @@
               <tr><td><code>NEW_OUTLOOK_ACTIVE</code></td><td>New Outlook is in use; ReplyPort only works with Outlook Classic.</td></tr>
               <tr><td><code>OUTLOOK_BUSY</code></td><td>Outlook did not respond within the retry limit.</td></tr>
               <tr><td><code>WRONG_PROFILE</code></td><td>Outlook is open with a different profile from the one set up.</td></tr>
-              <tr><td><code>ACCOUNT_NOT_UNIQUE</code></td><td>The mailbox&#8217;s account could not be matched to exactly one Outlook account and store.</td></tr>
+              <tr><td><code>ACCOUNT_NOT_UNIQUE</code></td><td>The mailbox&#8217;s account could not be matched to exactly one Outlook account and store, for example because two accounts share a data store.</td></tr>
               <tr><td><code>STORE_MISMATCH</code></td><td>The original or the draft is in a different mail store from the one set up.</td></tr>
               <tr><td><code>MACHINE_REBIND_REQUIRED</code></td><td>Outlook&#8217;s folders differ from this PC&#8217;s setup.</td></tr>
-              <tr><td><code>SOURCE_NOT_FOUND</code></td><td>The original message could not be found.</td></tr>
+              <tr><td><code>SOURCE_NOT_FOUND</code></td><td>The original message could not be found, or is no longer in an ordinary mail folder of the mailbox.</td></tr>
               <tr><td><code>SOURCE_AMBIGUOUS</code></td><td>More than one item could be the original.</td></tr>
               <tr><td><code>SOURCE_CHANGED</code></td><td>The original changed after it was copied. A refreshed copy follows; one retry is allowed.</td></tr>
               <tr><td><code>PROTECTED_CONTENT</code></td><td>Sensitivity marking, rights management or encryption prevents use.</td></tr>
               <tr><td><code>TRUNCATED_CONTENT</code></td><td>The copy is incomplete because the message is too long.</td></tr>
-              <tr><td><code>UNSUPPORTED_ITEM</code></td><td>The item is not an ordinary email message.</td></tr>
+              <tr><td><code>UNSUPPORTED_ITEM</code></td><td>The item is not an ordinary email message, or is unsent.</td></tr>
               <tr><td><code>SIGNATURE_APPROVAL_REQUIRED</code></td><td>The approved signature is missing or has changed.</td></tr>
               <tr><td><code>DUPLICATE_REQUEST</code></td><td>Equivalent work already exists; no second draft was created.</td></tr>
               <tr><td><code>REQUEST_CHANGED</code></td><td>The request file changed after ReplyPort first saw it.</td></tr>
@@ -808,7 +942,24 @@
             </tbody>
           </table>
         </div>
-        <p class="note">Additional codes beginning <code>ATTACHMENT_</code> belong to attachment features. They are listed in <code>PROTOCOL.md</code> in your ReplyPort folder.</p>
+        <h3>Attachment codes</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table docs-table--codes">
+            <thead><tr><th scope="col">Code</th><th scope="col">Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>ATTACHMENT_BLOCKED</code></td><td>The file type, size or content failed the format rules, or storage policy blocks attachments.</td></tr>
+              <tr><td><code>ATTACHMENT_LIMIT</code></td><td>More than 20 files, or more than 50 MiB in total, were requested.</td></tr>
+              <tr><td><code>ATTACHMENT_DUPLICATE</code></td><td>The same file or file name was listed twice.</td></tr>
+              <tr><td><code>ATTACHMENT_NOT_APPROVED</code></td><td>The file was not registered for this request.</td></tr>
+              <tr><td><code>ATTACHMENT_SCOPE_MISMATCH</code></td><td>The file belongs to a different request or mailbox.</td></tr>
+              <tr><td><code>ATTACHMENT_UNAVAILABLE</code></td><td>The file was missing when ReplyPort needed it.</td></tr>
+              <tr><td><code>ATTACHMENT_EXPIRED</code></td><td>The file had been staged for more than 24 hours.</td></tr>
+              <tr><td><code>ATTACHMENT_CHANGED</code></td><td>The file was replaced or changed after it was registered, even with identical contents.</td></tr>
+              <tr><td><code>ATTACHMENT_BASELINE_UNSUPPORTED</code></td><td>The new draft already contained an attachment kind ReplyPort cannot verify, such as an embedded item.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">A draft that fails its attachment check is reported as <code>DRAFT_VERIFICATION_FAILED</code>. The full list and exact meanings are in <code>PROTOCOL.md</code> in your ReplyPort folder.</p>
       </section>
 
       <section id="technical">
@@ -817,7 +968,7 @@
 
         <h3>Components</h3>
         <ul>
-          <li><strong>Resident tray process</strong>: schedules three independent lanes, each a separate short-lived worker with its own lock: draft requests (uses Outlook), search (never uses Outlook), and incremental copying (uses Outlook, runs only while Outlook Classic is open).</li>
+          <li><strong>Resident tray process</strong>: schedules three independent lanes, each a separate short-lived worker with its own lock: draft requests (uses Outlook), search (never uses Outlook), and incremental copying (uses Outlook, runs only while Outlook Classic is open). All Outlook work shares one lock; catch-up copying of other folders takes it in short batches so that drafts are not held up.</li>
           <li><strong>Control Centre and first run</strong>: on-demand windows for setup, status and repair. They are not involved in processing requests.</li>
           <li><strong>Outlook access</strong>: through Outlook Classic&#8217;s COM interface, attaching only to an Outlook process that is already running. All Outlook operations are serialized.</li>
         </ul>
@@ -825,8 +976,8 @@
         <h3>Records</h3>
         <p>Every record is a strict JSON file with a declared type, protocol version and schema hash. The manifest lists the SHA-256 hash of every schema; a record whose hash does not match is rejected. Records that ReplyPort writes go to a temporary file in the same folder and are renamed into place, so a reader never sees a partial file.</p>
         <ul>
-          <li><strong>Message snapshot</strong>: an immutable version of one copied message. Its identity includes the mailbox and folder role, so the Inbox and Sent copies of a message you sent to yourself are distinct.</li>
-          <li><strong>Draft work item</strong>: issued for each copyable Inbox snapshot. It names the snapshot, its hash, the allowed operations and a token.</li>
+          <li><strong>Message snapshot</strong>: an immutable version of one copied message. Its identity includes the mailbox and its direction, received or sent, so the received and sent copies of a message you sent to yourself are distinct. The copied mail stays logically flat: the folder a message is in is current placement information held on the PC, not part of the snapshot, so moving a message or renaming a folder does not create a new snapshot.</li>
+          <li><strong>Draft work item</strong>: issued for each copyable received snapshot. It names the snapshot, its hash, the allowed operations and a token.</li>
           <li><strong>Requests and results</strong>: search, draft and new-message requests are written by the AI with a fresh UUID as the file name; ReplyPort writes the matching result under the same UUID.</li>
         </ul>
 
@@ -838,7 +989,7 @@
         <ol class="docs-steps">
           <li>Freeze the request by hash and record intent in a local journal.</li>
           <li>Attach to running Outlook Classic and check the profile, the exact account and the bound store and folders.</li>
-          <li>Find the original by its stored locator; if moved, allow only one exact match within the same store.</li>
+          <li>Find the original by its stored locator; if moved, allow only one exact match of the same direction within the ordinary mail folders of the same store. The item must currently sit in an ordinary folder, identified by its identity and properties, never by name.</li>
           <li>Recheck item type, protection, sensitivity, content fingerprint, version and token.</li>
           <li>Search Drafts and Sent Items for an existing draft with this request&#8217;s marker.</li>
           <li>Call Outlook&#8217;s native Reply or Reply All; set the sending account; insert the text and approved signature above Outlook&#8217;s quote; stamp the marker; save.</li>
@@ -846,6 +997,9 @@
           <li>Release the item, fetch it again by ID and run every check listed under <a class="link" href="#verification">Draft verification</a>.</li>
           <li>Record verification, then publish the <code>created</code> result.</li>
         </ol>
+
+        <h3>Folder membership</h3>
+        <p>One membership pass per mailbox reads the Inbox and Sent Items and, when all mail folders are approved, every other eligible folder, comparing each folder&#8217;s current items with what it recorded last time. Folder identity comes from Outlook&#8217;s long-term folder identifier, which is unchanged by renaming or moving a folder. A failed read of a folder keeps what was known about it and infers nothing. Immediately before an other-folder message is copied, its current folder is checked again.</p>
 
         <h3>Lifecycle</h3>
         <p>A request moves from discovered to validated, then to processing or deferred, and ends as created, rejected or cancelled. Only those three are final. A local journal records each step so that a restart resumes from the right place; a crash between saving the draft and writing the result is recovered by finding the marked draft, not by creating another.</p>
