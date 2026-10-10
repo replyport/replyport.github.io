@@ -64,24 +64,27 @@
       </div>
 
       <!-- RELEASE STATUS: the place the documented Store version, the pending
-           release and the review date are stated. Update this block (and the
-           badge legend's meaning, if it changes) whenever the documentation is
-           reviewed against a release. Elsewhere the page says "the current
-           release", with deliberate "from version X" notes where older
-           installations behave differently. "Awaiting Store" marks work that is
-           built and submitted but not yet in the public Store listing. -->
+           release and the review date are stated. Update this block, the
+           "Release status" table under Updates and the roadmap whenever the
+           documentation is reviewed against a release. Elsewhere the page says
+           "the current release", with deliberate "from version X" notes where
+           older installations behave differently. Three states are used:
+           Available (in the public Store listing), Awaiting Store (in a package
+           submitted to the Store) and In development (merged into the
+           application source but in no submitted package). -->
       <aside class="docs-release" aria-labelledby="docs-release-title">
         <p class="eyebrow" id="docs-release-title">Documentation status</p>
         <dl class="docs-release__list">
           <div><dt>Describes</dt><dd>ReplyPort 0.3.12 (Microsoft Store)</dd></div>
           <div><dt>Next release</dt><dd>0.3.13, submitted; not yet public</dd></div>
+          <div><dt>After that</dt><dd>Further changes merged, in no submitted package</dd></div>
           <div><dt>Last reviewed</dt><dd><time datetime="2026-10-10">10 October 2026</time></dd></div>
           <div><dt>Stage</dt><dd>Early access</dd></div>
         </dl>
         <ul class="docs-release__legend" aria-label="Status labels">
           <li><span class="st st--yes">Available</span> in the current release</li>
           <li><span class="st st--soon">Awaiting Store</span> built and submitted; not yet public</li>
-          <li><span class="st st--dev">In development</span> being validated in development builds; not in the Store release</li>
+          <li><span class="st st--dev">In development</span> implemented in the application source; in no submitted Store package</li>
           <li><span class="st st--planned">Planned</span> accepted direction, not built</li>
           <li><span class="st st--no">Not supported</span> not available</li>
         </ul>
@@ -101,6 +104,7 @@
 
         <p class="docs-toc__group">Working with your AI</p>
         <a href="#ai-connection">How your AI connects</a>
+        <a href="#which-folder">Which Dropbox folder</a>
         <a href="#workflows">What you can ask</a>
         <a href="#search">Search and reading</a>
         <a href="#freshness">How current the copy is</a>
@@ -120,6 +124,7 @@
         <a href="#attachment-mirroring">Attachments on copied mail</a>
         <a href="#outgoing-attachments">Attaching files to drafts</a>
         <a href="#attachment-limits">Formats and limits</a>
+        <a href="#zip">ZIP files</a>
 
         <p class="docs-toc__group">Safety model</p>
         <a href="#safety">AI proposes, ReplyPort decides</a>
@@ -131,9 +136,11 @@
 
         <p class="docs-toc__group">Running ReplyPort</p>
         <a href="#first-run">First run</a>
+        <a href="#mirroring-consent">Consent for mail copying</a>
         <a href="#tray">Background operation</a>
         <a href="#control-centre">Control Centre</a>
         <a href="#updates">Updates</a>
+        <a href="#recovery">Upgrades, moved folders and recovery</a>
         <a href="#removal">Removing ReplyPort</a>
 
         <p class="docs-toc__group">Data and privacy</p>
@@ -170,7 +177,7 @@
 
       <section id="status">
         <h2>Feature status at a glance</h2>
-        <p>Each feature is labelled by what ordinary users of the current Store release can rely on. Features marked <span class="st st--soon">Awaiting Store</span> or <span class="st st--dev">In development</span> are not available in the Microsoft Store version until a release says so.</p>
+        <p>Each feature is labelled by what ordinary users of the current Store release can rely on. Features marked <span class="st st--soon">Awaiting Store</span> or <span class="st st--dev">In development</span> are not available in the Microsoft Store version until a release says so. Where a restriction still applies to the current release, it is stated as such, even if a fix is in development.</p>
         <div class="docs-table-wrap">
           <table class="docs-table">
             <thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
@@ -186,6 +193,12 @@
               <tr><th scope="row"><a href="#signatures">Approved signature on drafts</a></th><td><span class="st st--yes">Available</span></td><td>One existing Outlook signature per mailbox.</td></tr>
               <tr><th scope="row"><a href="#attachment-mirroring">Copying attachments of copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Optional, per mailbox, off by default.</td></tr>
               <tr><th scope="row"><a href="#outgoing-attachments">Attaching files to drafts</a></th><td><span class="st st--yes">Available</span></td><td>Exact files chosen by the AI, verified before and after saving.</td></tr>
+              <tr><th scope="row"><a href="#mirroring-consent">Decline mail copying at setup, turn it on later</a></th><td><span class="st st--no">Not supported</span> <span class="st st--dev">In development</span></td><td>In the current release mail copying is approved during first run or <em>Add mailbox</em>. A merged change adds <em>Not now</em> at setup and <em>Turn on mail copying&#8230;</em> on the mailbox card.</td></tr>
+              <tr><th scope="row"><a href="#recovery">Resume an interrupted first installation</a></th><td><span class="st st--no">Not supported</span> <span class="st st--dev">In development</span></td><td>Merged; not in a Store package.</td></tr>
+              <tr><th scope="row"><a href="#recovery">Refuse to replace a missing storage folder during a Store update</a></th><td><span class="st st--no">Not supported</span> <span class="st st--dev">In development</span></td><td>The current release does not check this before an update.</td></tr>
+              <tr><th scope="row"><a href="#which-folder">AI setup text that names a numbered folder</a></th><td><span class="st st--no">Not supported</span> <span class="st st--dev">In development</span></td><td>The current texts always name <code>/ReplyPort</code>.</td></tr>
+              <tr><th scope="row"><a href="#recovery">Choose a preserved numbered folder when reinstalling</a></th><td><span class="st st--no">Not supported</span> <span class="st st--planned">Planned</span></td><td>Not implemented.</td></tr>
+              <tr><th scope="row"><a href="#zip">ZIP files as attachments</a></th><td><span class="st st--no">Not supported</span> <span class="st st--dev">In development</span></td><td>Copying and attaching to drafts. Other archive types stay unsupported.</td></tr>
               <tr><th scope="row"><a href="#ai-connection">Dropbox-first AI setup wording</a></th><td><span class="st st--soon">Awaiting Store</span></td><td>Control Centre&#8217;s setup prompt, permanent instructions and published guides say explicitly that <code>/ReplyPort</code> is the folder at the root of the connected Dropbox, found with the AI&#8217;s Dropbox connector, not a local path. The <a href="../setup/">Setup guide</a> already uses this wording and works with any version.</td></tr>
               <tr><th scope="row"><a href="#storage">Storage provider</a></th><td><span class="st st--yes">Dropbox</span></td><td>OneDrive is <span class="st st--planned">Planned</span>.</td></tr>
               <tr><th scope="row"><a href="#no-send">Sending email</a></th><td><span class="st st--no">Not supported</span></td><td>By design. There is no plan to add it.</td></tr>
@@ -206,7 +219,7 @@
           </li>
           <li class="docs-flow__node">
             <span class="docs-flow__num">02</span>
-            <h3>/ReplyPort in Dropbox</h3>
+            <h3>The ReplyPort folder in Dropbox</h3>
             <p>Mail copies, instructions for the AI, search and draft requests, and ReplyPort&#8217;s results.</p>
           </li>
           <li class="docs-flow__node">
@@ -243,7 +256,7 @@
               <tr><th scope="row">Accounts</th><td>Accounts that Outlook Classic delivers into their own mail data store, such as Microsoft 365 and Exchange accounts. Each account you connect must have its own data store; if two accounts deliver into the same data file, ReplyPort refuses drafts for it rather than risk choosing the wrong account. IMAP and POP accounts are not documented as supported.</td></tr>
               <tr><th scope="row">Outlook running</th><td>Outlook Classic must be open for mail copying and for draft creation. ReplyPort never starts Outlook itself. Search of already-copied mail works while Outlook is closed.</td></tr>
               <tr><th scope="row">Storage</th><td>The Dropbox desktop app, signed in, with a local Dropbox folder on this PC. ReplyPort uses the Dropbox folder on disk; it does not use the Dropbox web API. Dropbox must keep syncing for your AI to see new copies and for ReplyPort to see new requests.</td></tr>
-              <tr><th scope="row">AI</th><td>An AI assistant with a <strong>Dropbox connection</strong> to the same Dropbox account, able both to read files in, and to create new files in, the <code>/ReplyPort</code> folder at the root of that Dropbox. Read-only access is not enough to search or draft. Installing Dropbox on the PC does not connect it to your AI. See <a class="link" href="#ai-connection">How your AI connects</a>.</td></tr>
+              <tr><th scope="row">AI</th><td>An AI assistant with a <strong>Dropbox connection</strong> to the same Dropbox account, able both to read files in, and to create new files in, the ReplyPort folder at the root of that Dropbox (usually <code>/ReplyPort</code>; see <a class="link" href="#which-folder">Which Dropbox folder</a>). Read-only access is not enough to search or draft. Installing Dropbox on the PC does not connect it to your AI. See <a class="link" href="#ai-connection">How your AI connects</a>.</td></tr>
               <tr><th scope="row">PC state</th><td>The PC must be on, signed in, and running ReplyPort for any request to be processed.</td></tr>
             </tbody>
           </table>
@@ -257,7 +270,7 @@
         <p class="eyebrow">Working with your AI</p>
         <h2>How your AI connects to ReplyPort</h2>
         <p>ReplyPort and your AI never talk to each other directly. They meet in one place: the <code>ReplyPort</code> folder in your Dropbox. ReplyPort reaches it through the Dropbox desktop app on your PC. Your AI reaches the same folder through its own connection to your Dropbox account.</p>
-        <p class="docs-callout"><strong><code>/ReplyPort</code> is a Dropbox path, not a path on your computer.</strong> In an AI chat it means the folder named <code>ReplyPort</code> at the root of the connected Dropbox account, opened with the AI&#8217;s Dropbox connector or Dropbox tools. If an AI says it has no local file tools, or suggests installing a desktop app, ask it to use its Dropbox connection instead. A failed ordinary file search does not mean Dropbox is disconnected.</p>
+        <p class="docs-callout"><strong><code>/ReplyPort</code> is a Dropbox path, not a path on your computer.</strong> In an AI chat it means the folder named <code>ReplyPort</code> at the root of the connected Dropbox account (for most installations; a numbered name such as <code>ReplyPort (2)</code> is used when the default name was taken, so use the folder your own ReplyPort uses: see <a class="link" href="#which-folder">Which Dropbox folder</a>), opened with the AI&#8217;s Dropbox connector or Dropbox tools. If an AI says it has no local file tools, or suggests installing a desktop app, ask it to use its Dropbox connection instead. A failed ordinary file search does not mean Dropbox is disconnected.</p>
         <h3>What your AI needs permission to do</h3>
         <div class="docs-table-wrap">
           <table class="docs-table">
@@ -274,7 +287,7 @@
           <table class="docs-table">
             <thead><tr><th scope="col">ReplyPort does automatically</th><th scope="col">You do yourself</th></tr></thead>
             <tbody>
-              <tr><td>Publishes the AI instructions, the manifest and the request formats into <code>/ReplyPort</code> at setup, and refreshes them after an update.</td><td>Connect your AI to the Dropbox account that holds the <code>ReplyPort</code> folder.</td></tr>
+              <tr><td>Publishes the AI instructions, the manifest and the request formats into the ReplyPort folder at setup, and refreshes them after an update.</td><td>Connect your AI to the Dropbox account that holds the <code>ReplyPort</code> folder.</td></tr>
               <tr><td>Copies the mail you approved, and keeps the copy current.</td><td>Copy the setup prompt from Control Centre and paste it into a new chat with your AI.</td></tr>
               <tr><td>Answers search requests and creates drafts as requests arrive.</td><td>Save the <em>permanent instructions</em> in your AI&#8217;s own settings when the guide tells you to.</td></tr>
               <tr><td>Shows <em>Request write observed</em> in Control Centre once it has seen a request file written by your AI.</td><td>Approve any permission prompt your AI product shows for Dropbox.</td></tr>
@@ -282,6 +295,25 @@
             </tbody>
           </table>
         </div>
+        <h3 id="which-folder">Which Dropbox folder?</h3>
+        <p>Most installations use a folder named <code>ReplyPort</code> at the root of Dropbox, written <code>/ReplyPort</code> in this documentation and in AI chats. Where the default name is already taken, for example by older preserved data, first run uses the first free numbered name instead: <code>ReplyPort (2)</code>, <code>ReplyPort (3)</code> and so on. Everything ReplyPort publishes and watches is inside the folder in use: the manifest, the instructions, the formats and every mailbox&#8217;s folders. Paths in the manifest and in the formats are relative to that folder.</p>
+        <p><strong>Use the folder your own ReplyPort uses, not the name in an example.</strong> To find it:</p>
+        <ul>
+          <li>First run shows it as &#8220;ReplyPort will use:&#8221; before you continue.</li>
+          <li>From the tray, choose <em>Advanced / support</em> and then <em>Open storage root</em>.</li>
+          <li>It is the folder that contains <code>BRIDGE_MANIFEST.json</code> and <code>SETUP.md</code>.</li>
+        </ul>
+        <div class="docs-table-wrap">
+          <table class="docs-table docs-table--compare">
+            <thead><tr><th scope="col"></th><th scope="col">Current release</th><th scope="col"><span class="st st--dev">In development</span></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">AI setup prompt and permanent instructions</th><td data-label="Current release">Always name <code>/ReplyPort</code>. If your folder is numbered, tell the AI the exact folder name and replace <code>/ReplyPort</code> in the instructions you save.</td><td data-label="In development">Generated for the folder actually in use, so a numbered folder is named correctly.</td></tr>
+              <tr><th scope="row">Published <code>SETUP.md</code> and <code>AGENT_CONTEXT.md</code></th><td data-label="Current release">Always name <code>/ReplyPort</code>.</td><td data-label="In development">Generated for the folder in use. The setup-test paths are written in full under that folder, and the guide tells the AI to use exactly that folder and never another.</td></tr>
+              <tr><th scope="row">If the folder cannot be identified safely</th><td data-label="Current release">Not applicable: <code>/ReplyPort</code> is assumed.</td><td data-label="In development">Control Centre copies nothing and explains why; ReplyPort does not rewrite the guides and never falls back to <code>/ReplyPort</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>In the development version the folder is worked out from your own Windows Dropbox settings, never from anything an AI or an email can write. It is described only when it sits directly at the Dropbox root, its name uses letters, digits, spaces and <code>. _ ( ) -</code>, exactly one Dropbox folder on the PC can contain it, and a single storage folder is in use. ReplyPort cannot see which Dropbox account an AI is linked to, so the AI is told to report a missing folder or a wrong account precisely.</p>
         <h3>Saved AI instructions are yours to update</h3>
         <p>The permanent instructions live inside your AI account, in ChatGPT&#8217;s custom instructions, Claude&#8217;s instructions or the equivalent. ReplyPort cannot see them and cannot change them. When ReplyPort&#8217;s instructions change in a new release, the copies in your AI do not change by themselves: open Control Centre, choose <em>Other setup options&#8230;</em> and then <em>Copy permanent instructions</em>, and replace the old text in your AI&#8217;s settings.</p>
         <h3>The setup test</h3>
@@ -561,7 +593,7 @@
 
       <section id="attachment-limits">
         <h2>Attachment formats and limits</h2>
-        <h3>Supported file types</h3>
+        <h3>Supported file types (current release)</h3>
         <div class="docs-table-wrap">
           <table class="docs-table">
             <thead><tr><th scope="col">Kind</th><th scope="col">Extensions</th></tr></thead>
@@ -575,7 +607,7 @@
           </table>
         </div>
         <p>A file must also start with the fixed byte signature of its format; a file whose contents do not match its extension is skipped. This is a format consistency check, not a virus scan.</p>
-        <p><strong>Not copied:</strong> Outlook message attachments (<code>.msg</code>), macro-enabled Office files, ZIP and other archives, executables, linked or cloud attachments, inline images without a file extension, and any other type not listed above. Skipped attachments remain in Outlook.</p>
+        <p><strong>Not copied or attached in the current release:</strong> Outlook message attachments (<code>.msg</code>), macro-enabled Office files, ZIP and other archives, executables, linked or cloud attachments, inline images without a file extension, and any other type not listed above. Skipped attachments remain in Outlook. Ordinary ZIP files are <span class="st st--dev">In development</span>; see <a class="link" href="#zip">ZIP files</a>.</p>
         <h3>Limits</h3>
         <div class="docs-table-wrap">
           <table class="docs-table">
@@ -591,6 +623,36 @@
           </table>
         </div>
         <p class="note">An attachment that cannot be read is retried in later passes, up to three attempts, before being recorded as skipped.</p>
+        <h3>Why an incoming attachment is listed as skipped</h3>
+        <p>Each copied message has an attachment list. An attachment that was not copied is listed with one of these fixed reasons:</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table docs-table--codes">
+            <thead><tr><th scope="col">Reason</th><th scope="col">Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><code>TYPE_NOT_SUPPORTED</code></td><td>The file type is not in the supported list.</td></tr>
+              <tr><td><code>TYPE_MISMATCH</code></td><td>The contents do not match the file type. For a ZIP file, this also covers a damaged or unsupported archive.</td></tr>
+              <tr><td><code>UNSUPPORTED_KIND</code></td><td>Not a plain attached file, for example a linked, cloud or embedded item.</td></tr>
+              <tr><td><code>TOO_LARGE</code>, <code>EMPTY</code></td><td>Over 25 MiB, or no content.</td></tr>
+              <tr><td><code>MESSAGE_LIMIT</code>, <code>MAILBOX_LIMIT</code></td><td>The message or mailbox limit above was reached.</td></tr>
+              <tr><td><code>UNREADABLE</code></td><td>Outlook would not give the file after three attempts.</td></tr>
+              <tr><td><code>SOURCE_CHANGED</code>, <code>SOURCE_UNAVAILABLE</code></td><td>The message changed, moved, is protected or could not be found when the copy was made.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="zip">
+        <h2>ZIP files <span class="st st--dev">In development</span></h2>
+        <p class="docs-callout docs-callout--dev"><strong>Not available in the current Store release.</strong> ZIP files are currently skipped when copying incoming attachments and rejected when an AI tries to attach one to a draft. Support is implemented in the application source and has not been through live Outlook acceptance or released in a Store package.</p>
+        <p>This describes the implemented behaviour, so you know what to expect. It applies to both attachment features: copying incoming attachments, which stays a separate per-mailbox consent, and attaching an AI-selected file to an unsent draft.</p>
+        <ul>
+          <li><strong>A ZIP is an opaque file.</strong> ReplyPort never extracts, opens, runs or lists it, and its entries are never exposed as separate attachments.</li>
+          <li><strong>Bounded structural check first.</strong> ReplyPort reads only the archive&#8217;s end record, directory and entry headers, not the entry data, and accepts an ordinary single-file archive with at least one entry, using the stored or deflate methods that ordinary ZIP tools such as Windows PowerShell and .NET write, with no unsafe entry names.</li>
+          <li><strong>Refused:</strong> encrypted archives, ZIP64, multi-part archives, other compression methods (such as LZMA or bzip2), truncated or malformed archives, executables renamed to <code>.zip</code>, empty archives, more than 10,000 entries, and entry names that would escape an extraction folder. A refused incoming file is listed as skipped with <code>TYPE_MISMATCH</code>; a refused draft attachment is rejected with <code>ATTACHMENT_BLOCKED</code>.</li>
+          <li><strong>Other archive types stay unsupported:</strong> 7z, RAR, TAR, GZ, TGZ, BZ2, XZ, CAB, JAR and ZIPX, and double extensions such as <code>.zip.exe</code>.</li>
+          <li><strong>The same limits apply:</strong> 25 MiB per file, 20 files and 50 MiB per message or draft, and the mailbox and per-pass limits. Nothing about consent changes.</li>
+        </ul>
+        <p><strong>What the check does not do.</strong> It confirms the archive is structurally consistent. It is not malware detection and does not inspect the contents. An archive that contains executables, macro documents or other archives is still accepted as an opaque file. Treat anything inside a ZIP as untrusted, and do not extract it merely because ReplyPort copied it. An AI is instructed to do the same.</p>
       </section>
 
       <!-- ================= Safety model ================= -->
@@ -698,11 +760,28 @@
           <li><strong>Accounts.</strong> Choose which Outlook accounts to connect.</li>
           <li><strong>Signatures.</strong> Choose one existing Outlook signature per account.</li>
           <li><strong>Review and configure.</strong> ReplyPort binds each account and checks the result in Outlook before finishing.</li>
-          <li><strong>Mail copying.</strong> A separate approval for each mailbox, covering its Inbox, Sent Items and other ordinary mail folders, with the option to include email attachments. Turn it on here for every mailbox you want the AI to search; Control Centre does not currently offer this choice again later.</li>
+          <li><strong>Mail copying.</strong> A separate approval for each mailbox, covering its Inbox, Sent Items and other ordinary mail folders, with the option to include email attachments. Turn it on here for every mailbox you want the AI to search; in the current release Control Centre does not offer this choice again later. <span class="st st--dev">In development</span> A <em>Not now</em> button leaves mail copying off for that mailbox, and it can be turned on later from its card.</li>
           <li><strong>First scan.</strong> ReplyPort copies the last 90 days of approved mail in the background, one mailbox at a time. First run does not wait for it; search reports incomplete coverage until a mailbox&#8217;s first scan has finished.</li>
         </ol>
         <p>Then connect your AI using the <a class="link" href="../setup/">Setup guide</a>: connect your AI to the Dropbox that holds the <code>ReplyPort</code> folder, copy the setup prompt from Control Centre, and paste it into a new chat. The AI walks you through saving permanent ReplyPort instructions and runs one harmless test search. Setup creates no drafts. What your AI needs, and what ReplyPort cannot do for you, is explained in <a class="link" href="#ai-connection">How your AI connects</a>.</p>
         <p class="note">Searching existing mail needs the first scan to have finished. Creating new messages does not.</p>
+        <p>If first run is interrupted after ReplyPort has saved its configuration, see <a class="link" href="#recovery">Upgrades, moved folders and recovery</a>.</p>
+      </section>
+
+      <section id="mirroring-consent">
+        <h2>Consent for mail copying, scans and attachments</h2>
+        <p>ReplyPort asks for each of these separately, per mailbox. Approving one never approves another, and no file in Dropbox, AI request or email can approve any of them.</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table docs-table--compare">
+            <thead><tr><th scope="col">Choice</th><th scope="col">Current release</th><th scope="col"><span class="st st--dev">In development</span></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Mail copying, and which folders</th><td data-label="Current release">Approved with <em>Enable mirroring</em> on the first-run page or in <em>Add mailbox</em>; the approval covers the whole mailbox. Folder scope for older mailboxes is changed with <strong>Include all mail folders</strong>. There is no way to decline at setup and enable later.</td><td data-label="In development"><em>Not now</em> at setup keeps copying off and you can finish setup. A mailbox with copying off shows <em>Turn on mail copying&#8230;</em> on its Control Centre card, with the same exact confirmation and a dialog that names the whole-mailbox scope.</td></tr>
+              <tr><th scope="row">First scan</th><td data-label="Current release">A separate page after copying is approved; or <em>Run first mailbox scan&#8230;</em> from the tray later.</td><td data-label="In development">Also a separate <em>Start first scan&#8230;</em> on the card once copying is on. Turning copying on never starts a scan.</td></tr>
+              <tr><th scope="row">Include email attachments</th><td data-label="Current release">An unticked box beside the mail copying approval, and a per-mailbox setting afterwards. Off by default.</td><td data-label="In development">Unchanged: still off by default and never part of the mail copying consent.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cancelling any of these dialogs changes nothing. A failed change is reported without claiming success.</p>
       </section>
 
       <section id="tray">
@@ -733,7 +812,7 @@
           <li>run <em>Repair</em> when ReplyPort reports a problem it can fix;</li>
           <li>remove ReplyPort (<em>Remove ReplyPort&#8230;</em>).</li>
         </ul>
-        <p class="note">Mail copying is approved per mailbox during first run or <em>Add mailbox</em>. The mailbox card shows its state but does not currently have a control to turn mail copying on later, or off.</p>
+        <p class="note">In the current release mail copying is approved per mailbox during first run or <em>Add mailbox</em>; the mailbox card shows its state but has no control to turn it on later, or off. <span class="st st--dev">In development</span> A card for a mailbox with copying off offers <em>Turn on mail copying&#8230;</em> and then, as a separate step, <em>Start first scan&#8230;</em>.</p>
       </section>
 
       <section id="updates">
@@ -758,6 +837,65 @@
           </table>
         </div>
         <p class="note">0.3.13 was submitted to the Microsoft Store and publishes automatically after certification. This page keeps describing 0.3.12 as the current release until the Store lists 0.3.13.</p>
+        <h3>Merged, in no Store package yet</h3>
+        <p>These changes are in the application source after 0.3.13 was built. No Store submission contains them, so they are <span class="st st--dev">In development</span>; no release number or date is announced.</p>
+        <ul>
+          <li><strong>Mail copying can be declined at setup and turned on later</strong>, with the first scan as its own consent. See <a class="link" href="#mirroring-consent">Consent</a>.</li>
+          <li><strong>ZIP files</strong> as incoming and draft attachments. See <a class="link" href="#zip">ZIP files</a>.</li>
+          <li><strong>A Store update refuses to replace a missing storage folder</strong> with an empty one. See <a class="link" href="#recovery">recovery</a>.</li>
+          <li><strong>AI setup text names the folder in use</strong>, including numbered folders such as <code>ReplyPort (2)</code>. A customer in a numbered folder replaces the saved AI instructions after updating. See <a class="link" href="#which-folder">Which Dropbox folder</a>.</li>
+          <li><strong>An interrupted first installation can be resumed.</strong></li>
+        </ul>
+      </section>
+
+      <section id="recovery">
+        <h2>Upgrades, moved folders and recovery</h2>
+        <p>ReplyPort&#8217;s configuration, keys and mailbox identities stay on your PC, and copied mail stays in your ReplyPort folder in Dropbox. This section says what happens when that folder, or a setup in progress, is not as ReplyPort expects. <strong>ReplyPort never searches for, moves, merges or repairs storage on its own.</strong> When something is not where it expects, you put it back or start again, and ReplyPort says which.</p>
+
+        <h3>Reinstalling with preserved data <span class="st st--yes">Available</span></h3>
+        <p>From version 0.3.11, <em>Remove ReplyPort&#8230;</em> with <em>Keep my mirrored data</em> seals a protected recovery record for your Windows account and leaves the Dropbox folder untouched. A later first run on the same Windows account offers <strong>Reuse previous data</strong> only after it has verified that record and that the folder is complete and unchanged. Reuse brings back the same mailbox identities, keys, local permissions and checkpoints, and grants no extra authority. Anything missing, changed, foreign or partly preserved is refused.</p>
+        <ul>
+          <li><strong>Start fresh</strong> chooses the first unused numbered sibling (<code>ReplyPort (2)</code>, <code>ReplyPort (3)</code>, and so on), shows its exact path before you configure, and leaves the old folder untouched. The new installation gets new mailbox identities.</li>
+          <li>An installation removed before 0.3.11 left no recovery record, so its data cannot be reused.</li>
+          <li><strong>Choosing a different preserved folder, such as <code>ReplyPort (2)</code>, is not implemented.</strong> Reuse checks the folder ReplyPort proposes; there is no way yet to point it at another. <span class="st st--planned">Planned</span></li>
+        </ul>
+
+        <h3>If the configured folder is missing, renamed or moved</h3>
+        <div class="docs-table-wrap">
+          <table class="docs-table docs-table--compare">
+            <thead><tr><th scope="col"></th><th scope="col">Current release</th><th scope="col"><span class="st st--dev">In development</span></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">What a Store update does</th><td data-label="Current release">On the first start after an update, ReplyPort reconciles the installation. It does not check that the configured folder is still the one it published to. If you renamed, moved or deleted it, reconciliation can recreate an empty folder with an empty mailbox tree and manifest and report success, while your real copies stay where you put them and ReplyPort no longer points to them.</td><td data-label="In development">First proves, read-only, that every configured folder is a real folder whose manifest names this installation&#8217;s storage profile and only its mailboxes, and whose mailbox permissions verify against this Windows account&#8217;s keys. If not, it refuses the whole reconciliation and changes nothing: no folder, tree, manifest or guide is created or rewritten, and your configuration, keys and consents are untouched. Newer or older packaged guides and formats are not a failure.</td></tr>
+              <tr><th scope="row">What you see</th><td data-label="Current release">No warning: reconciliation reports success.</td><td data-label="In development">&#8220;ReplyPort could not find your ReplyPort storage folder&#8221;, with error code <code>MBSTORE-SC-001</code>.</td></tr>
+              <tr><th scope="row">What you do</th><td data-label="Current release">Do not rename, move or delete the ReplyPort folder. Contact support if you already did.</td><td data-label="In development">Put the original folder back where it was, wait for Dropbox to finish syncing, and open ReplyPort again. A retry then succeeds. Contact support with the error code if it continues.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>ReplyPort does not move a folder or merge two folders for you in either version. Existing mailbox data and identities are preserved.</p>
+
+        <h3>If first installation is interrupted</h3>
+        <p>First run can stop after ReplyPort has saved its configuration, mailbox keys and Dropbox files but before it finishes: a restart, a crash or failed final checks.</p>
+        <div class="docs-table-wrap">
+          <table class="docs-table docs-table--compare">
+            <thead><tr><th scope="col"></th><th scope="col">Current release</th><th scope="col"><span class="st st--dev">In development</span></th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Next launch</th><td data-label="Current release">The wizard starts again from the beginning. Because the folder already exists and there is no earlier-installation record, it offers <em>Start fresh</em>, and the saved configuration then refuses the new folder (<code>STORAGE_ROOT_IMMUTABLE</code>). The setup cannot be finished from the wizard. Contact support.</td><td data-label="In development">The wizard first checks, read-only, whether an earlier setup was interrupted. If so, the only route offered is <strong>Resume setup</strong>, at the folder and Outlook accounts already saved: no folder or account choice, no <em>Start fresh</em>, no restore.</td></tr>
+              <tr><th scope="row">What resuming does</th><td data-label="Current release">&#8212;</td><td data-label="In development">Only repeatable steps: brings the package details of the configuration up to date, creates any <em>missing</em> mailbox key (an existing key is never replaced), republishes the guides, formats and manifest, runs the complete final checks, and only then marks setup complete. Stopping anywhere leaves it resumable. Failed final checks can be retried after you correct the condition.</td></tr>
+              <tr><th scope="row">Consent</th><td data-label="Current release">&#8212;</td><td data-label="In development">Resuming never turns on mail copying, attachment copying or a first scan. Each mailbox without copying is offered the same separate, off-by-default choice as in a first-time setup; a mailbox that already had it on keeps it.</td></tr>
+              <tr><th scope="row">When it refuses</th><td data-label="Current release">&#8212;</td><td data-label="In development">Refuses, changes nothing and does not fall back to a fresh installation if: the folder cannot be found (open Dropbox and wait for it; do not move or rename it); it holds files ReplyPort does not recognise (remove them or restore the original folder); ReplyPort cannot confirm the folder is the one it was creating, or it is redirected or unsafe (restore the original folder); or the unfinished setup does not belong to this installation.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Resuming is not the same as reusing preserved data after a removal: a restore keeps its own proof, and resume cannot adopt preserved data.</p>
+
+        <h3>When you must restore a folder or ask for help</h3>
+        <ul>
+          <li>You renamed, moved or deleted the ReplyPort folder: put it back, and let Dropbox finish syncing.</li>
+          <li>ReplyPort says it cannot safely reuse or resume: follow the message, and contact support rather than deleting files in the ReplyPort folder.</li>
+          <li>The data was preserved in a numbered folder and you want to reuse it: not supported yet; contact support before removing anything.</li>
+          <li>An installation removed before 0.3.11: its data cannot be reused.</li>
+        </ul>
+        <p class="note">Support: <a class="link" href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">ReplyPort feedback</a>. Do not include confidential mail content.</p>
       </section>
 
       <section id="removal">
@@ -777,7 +915,7 @@
         <h2>Where data is kept</h2>
         <p>ReplyPort keeps mail content in exactly one place: the ReplyPort folder in your Dropbox. It does not keep a second copy of email bodies or attachments on the PC.</p>
         <h3>The ReplyPort folder</h3>
-<pre class="docs-tree" aria-label="Simplified layout of the ReplyPort folder">/ReplyPort
+<pre class="docs-tree" aria-label="Simplified layout of the ReplyPort folder">/ReplyPort               the folder in use (may be numbered)
   AGENT_CONTEXT.md        instructions for the AI
   PROTOCOL.md             full rules for exceptional cases
   SETUP.md                the AI setup guide
@@ -842,7 +980,12 @@
           <li>ReplyPort cannot read or change the instructions saved in your AI. After a release that changes them, you replace them yourself. An AI that looks for <code>/ReplyPort</code> on your computer instead of in Dropbox should be told to use its Dropbox connection; the Setup guide&#8217;s prompt says so explicitly.</li>
           <li>A just-written request is only seen once Dropbox has synced it to the PC, and a copy only once it has synced to your AI&#8217;s side. Both depend on Dropbox and can lag.</li>
           <li>Editing or deleting an approved signature in Outlook stops drafts for that mailbox, and Control Centre does not yet offer a way to approve the edited signature.</li>
-          <li>Mail copying can be approved only during first run or <em>Add mailbox</em>. Control Centre has no control to turn it on later, or off, for a connected mailbox.</li>
+          <li>Mail copying can be approved only during first run or <em>Add mailbox</em>. Control Centre has no control to turn it on later, or off, for a connected mailbox, and first run has no <em>Not now</em>. <span class="st st--dev">In development</span></li>
+          <li>A first installation that was interrupted after ReplyPort saved its configuration cannot be finished from the wizard. <span class="st st--dev">In development</span> See <a class="link" href="#recovery">Upgrades, moved folders and recovery</a>.</li>
+          <li>A Store update does not check that the configured Dropbox folder still exists; do not rename, move or delete it. <span class="st st--dev">In development</span></li>
+          <li>When ReplyPort uses a numbered folder such as <code>ReplyPort (2)</code>, the AI setup prompt, the saved-instruction text and the published guides still name <code>/ReplyPort</code>. Tell your AI the exact folder. <span class="st st--dev">In development</span></li>
+          <li>Reusing preserved data that is in a numbered folder is not supported. <span class="st st--planned">Planned</span></li>
+          <li>ZIP and other archive files are not copied or attached. Ordinary ZIP files are <span class="st st--dev">In development</span>.</li>
           <li>Tray <em>Exit</em> does not close an open Control Centre window.</li>
           <li>Tray <em>Pause</em> persists after a restart. If nothing is being copied or answered after Windows restarts, check whether the tray menu offers <em>Resume</em>.</li>
           <li>ReplyPort does not detect when Outlook is running in a reduced-functionality or unlicensed state.</li>
@@ -856,8 +999,16 @@
         <ul>
           <li><strong>ReplyPort 0.3.13</strong>, which makes the Dropbox-first wording of the AI setup prompt, permanent instructions and guides explicit. See <a class="link" href="#updates">Updates</a>.</li>
         </ul>
+        <h3><span class="st st--dev">In development</span> Merged, in no Store package yet</h3>
+        <ul>
+          <li>Decline mail copying at setup and turn it on later (<a class="link" href="#mirroring-consent">Consent</a>).</li>
+          <li>ZIP files as attachments (<a class="link" href="#zip">ZIP files</a>).</li>
+          <li>A Store update that refuses to replace a missing storage folder, and resuming an interrupted first installation (<a class="link" href="#recovery">recovery</a>).</li>
+          <li>AI setup text that names the folder actually in use (<a class="link" href="#which-folder">Which Dropbox folder</a>).</li>
+        </ul>
         <h3><span class="st st--planned">Planned</span> Accepted direction</h3>
         <ul>
+          <li><strong>Choosing a preserved numbered folder</strong> when reinstalling with preserved data.</li>
           <li><strong>Native Forward drafts.</strong></li>
           <li><strong>OneDrive</strong> as a storage option alongside Dropbox.</li>
           <li><strong>Clearer tray Exit</strong>, so it is unambiguous whether ReplyPort as a whole has closed.</li>
@@ -874,10 +1025,20 @@
       <section id="troubleshooting">
         <h2>Troubleshooting</h2>
         <dl class="docs-help">
-          <div><dt>The AI cannot see /ReplyPort</dt>
+          <div><dt>The AI cannot see the ReplyPort folder</dt>
           <dd>Connect Dropbox to that AI product, and make sure it is the Dropbox account that holds the <code>ReplyPort</code> folder. Installing Dropbox on the PC does not give an AI access.</dd></div>
           <div><dt>The AI says it has no local file tools, or looks for a folder on your computer</dt>
           <dd><code>/ReplyPort</code> is in your Dropbox, not on your computer. Ask the AI to use its Dropbox connector to open <code>/ReplyPort/SETUP.md</code>. A failed ordinary file search does not mean Dropbox is disconnected, and an AI does not need a desktop app just to use Dropbox. The prompt on the <a class="link" href="../setup/">Setup guide</a> says this explicitly.</dd></div>
+          <div><dt>My ReplyPort folder is named ReplyPort (2), or something else</dt>
+          <dd>Use the folder your own ReplyPort uses; see <a class="link" href="#which-folder">Which Dropbox folder</a>. In the current release the setup prompt and saved instructions still say <code>/ReplyPort</code>, so give your AI the exact folder name. The folder is the one that contains <code>BRIDGE_MANIFEST.json</code>. <span class="st st--dev">In development</span> Control Centre copies text that names the folder in use. If it cannot name one safely it copies nothing and says why (for example, the folder is not directly inside your Dropbox folder, more than one Dropbox folder could contain it, or several storage folders are in use).</dd></div>
+          <div><dt>Setup stopped partway and now cannot finish</dt>
+          <dd>See <a class="link" href="#recovery">If first installation is interrupted</a>. In the current release the wizard cannot finish an installation that was interrupted after its configuration was saved: contact support. <span class="st st--dev">In development</span> The wizard offers <em>Resume setup</em>.</dd></div>
+          <div><dt>ReplyPort could not find your storage folder (<code>MBSTORE-SC-001</code>)</dt>
+          <dd><span class="st st--dev">In development</span> A Store update found that the configured Dropbox folder is missing, renamed, moved or no longer holds ReplyPort&#8217;s data, and changed nothing. Put the original folder back, let Dropbox finish syncing, and open ReplyPort again.</dd></div>
+          <div><dt>Mail copying was declined or skipped at setup</dt>
+          <dd>In the current release there is no control to turn it on later; contact support. <span class="st st--dev">In development</span> The mailbox card offers <em>Turn on mail copying&#8230;</em>, and then <em>Start first scan&#8230;</em> as a separate step.</dd></div>
+          <div><dt>A ZIP attachment was skipped or rejected</dt>
+          <dd>The current release does not support ZIP files. <span class="st st--dev">In development</span> Ordinary ZIP files are supported; encrypted, ZIP64, multi-part and other archive types are not. See <a class="link" href="#zip">ZIP files</a>.</dd></div>
           <div><dt>The AI found the folder but a file is missing</dt>
           <dd>Check that the AI is using the right Dropbox account and can read <code>/ReplyPort/BRIDGE_MANIFEST.json</code>. Ask it to report the exact path or permission error. Let Dropbox finish syncing on the PC. If a ReplyPort file stays missing, report it through <a class="link" href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>.</dd></div>
           <div><dt>The AI says it can read but cannot create the request file</dt>
@@ -972,6 +1133,10 @@
           <li><strong>Control Centre and first run</strong>: on-demand windows for setup, status and repair. They are not involved in processing requests.</li>
           <li><strong>Outlook access</strong>: through Outlook Classic&#8217;s COM interface, attaching only to an Outlook process that is already running. All Outlook operations are serialized.</li>
         </ul>
+
+        <h3>Discovery and Dropbox-relative paths</h3>
+        <p>An AI starts from the ReplyPort folder at the root of the connected Dropbox. It reads <code>BRIDGE_MANIFEST.json</code>, which lists the mailboxes (by random identifier and label), what each can do, the installed version and the format fingerprint of every record type; then <code>AGENT_CONTEXT.md</code>; then the format for the operation it needs. All paths in the manifest and in the formats are relative to the folder in use, so the same instructions work for <code>/ReplyPort</code> and for a numbered folder. The Windows side addresses the same folder through its local Dropbox path, which is never given to the AI.</p>
+        <p>The guides published into the folder come from the installed ReplyPort version. In the current release they always spell the default folder; <span class="st st--dev">In development</span> they are generated for the folder in use, rendered in full before anything is written, so that a folder that cannot be identified leaves the existing guides untouched. Generation changes only the folder name: the safety rules, the protocol and the formats are unchanged. Text saved in an AI account is separate and is never edited by ReplyPort.</p>
 
         <h3>Records</h3>
         <p>Every record is a strict JSON file with a declared type, protocol version and schema hash. The manifest lists the SHA-256 hash of every schema; a record whose hash does not match is rejected. Records that ReplyPort writes go to a temporary file in the same folder and are renamed into place, so a reader never sees a partial file.</p>
@@ -1071,7 +1236,7 @@
       current = link;
     });
   }, { rootMargin: '-80px 0px -70% 0px' });
-  document.querySelectorAll('.docs-copy > section[id]').forEach((s) => observer.observe(s));
+  document.querySelectorAll('.docs-copy > section[id], .docs-copy h3[id]').forEach((s) => observer.observe(s));
 })();
 </script>
 </body>
