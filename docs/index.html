@@ -70,8 +70,8 @@
       <aside class="docs-release" aria-labelledby="docs-release-title">
         <p class="eyebrow" id="docs-release-title">Documentation status</p>
         <dl class="docs-release__list">
-          <div><dt>Describes</dt><dd>ReplyPort 0.3.11 (Microsoft Store)</dd></div>
-          <div><dt>Last reviewed</dt><dd><time datetime="2026-10-06">6 October 2026</time></dd></div>
+          <div><dt>Describes</dt><dd>ReplyPort 0.3.12 (Microsoft Store)</dd></div>
+          <div><dt>Last reviewed</dt><dd><time datetime="2026-10-09">9 October 2026</time></dd></div>
           <div><dt>Stage</dt><dd>Early access</dd></div>
         </dl>
         <ul class="docs-release__legend" aria-label="Status labels">
@@ -135,7 +135,7 @@
 
         <p class="docs-toc__group">Reference</p>
         <a href="#limitations">Known limitations</a>
-        <a href="#roadmap">In development and planned</a>
+        <a href="#roadmap">Planned and under investigation</a>
         <a href="#troubleshooting">Troubleshooting</a>
         <a href="#errors">Result codes</a>
         <a href="#technical">Technical architecture</a>
@@ -168,17 +168,17 @@
           <table class="docs-table">
             <thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
             <tbody>
-              <tr><th scope="row"><a href="#search">Search and read copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Keyword search over copied Inbox and Sent Items mail.</td></tr>
-              <tr><th scope="row"><a href="#reply">Reply</a></th><td><span class="st st--yes">Available</span></td><td>Native Outlook reply to a copied Inbox message.</td></tr>
-              <tr><th scope="row"><a href="#reply">Reply All</a></th><td><span class="st st--yes">Available</span></td><td>Native Outlook reply-all to a copied Inbox message.</td></tr>
+              <tr><th scope="row"><a href="#search">Search and read copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Keyword search over copied mail.</td></tr>
+              <tr><th scope="row"><a href="#reply">Reply</a></th><td><span class="st st--yes">Available</span></td><td>Native Outlook reply to a copied received message.</td></tr>
+              <tr><th scope="row"><a href="#reply">Reply All</a></th><td><span class="st st--yes">Available</span></td><td>Native Outlook reply-all to a copied received message.</td></tr>
               <tr><th scope="row"><a href="#new-message">New message</a></th><td><span class="st st--yes">Available</span></td><td>To and CC by exact address. No BCC.</td></tr>
               <tr><th scope="row"><a href="#forward">Forward</a></th><td><span class="st st--no">Not supported</span> <span class="st st--planned">Planned</span></td><td>No forward operation exists. A new message is not a substitute.</td></tr>
               <tr><th scope="row"><a href="#mailboxes">Several Outlook accounts</a></th><td><span class="st st--yes">Available</span></td><td>Each mailbox is kept separate.</td></tr>
-              <tr><th scope="row"><a href="#folders">Inbox and Sent Items</a></th><td><span class="st st--yes">Available</span></td><td>Default folders of each connected mailbox, without subfolders.</td></tr>
-              <tr><th scope="row"><a href="#folders">Other mail folders</a></th><td><span class="st st--no">Not supported</span> <span class="st st--planned">Planned</span></td><td>User-created folders, subfolders and Archive are not copied.</td></tr>
+              <tr><th scope="row"><a href="#folders">Inbox and Sent Items</a></th><td><span class="st st--yes">Available</span></td><td>Default folders of each connected mailbox.</td></tr>
+              <tr><th scope="row"><a href="#folders">Other mail folders</a></th><td><span class="st st--yes">Available</span></td><td>Your own folders, nested folders, Inbox subfolders and Archive, after you approve it for the mailbox.</td></tr>
               <tr><th scope="row"><a href="#signatures">Approved signature on drafts</a></th><td><span class="st st--yes">Available</span></td><td>One existing Outlook signature per mailbox.</td></tr>
               <tr><th scope="row"><a href="#attachment-mirroring">Copying attachments of copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Optional, per mailbox, off by default.</td></tr>
-              <tr><th scope="row"><a href="#outgoing-attachments">Attaching files to drafts</a></th><td><span class="st st--dev">In development</span></td><td>Being validated in development builds. Not available in the current Store release.</td></tr>
+              <tr><th scope="row"><a href="#outgoing-attachments">Attaching files to drafts</a></th><td><span class="st st--yes">Available</span></td><td>Exact files chosen by the AI, verified before and after saving.</td></tr>
               <tr><th scope="row"><a href="#storage">Storage provider</a></th><td><span class="st st--yes">Dropbox</span></td><td>OneDrive is <span class="st st--planned">Planned</span>.</td></tr>
               <tr><th scope="row"><a href="#no-send">Sending email</a></th><td><span class="st st--no">Not supported</span></td><td>By design. There is no plan to add it.</td></tr>
             </tbody>
@@ -275,7 +275,7 @@
           </div>
           <div>
             <dt>&#8220;Reply and attach the report.&#8221;</dt>
-            <dd><span class="st st--dev">In development</span> In the current release a draft cannot include a file. See <a class="link" href="#outgoing-attachments">Attaching files to drafts</a>.</dd>
+            <dd>A reply draft with the exact file the AI chose attached. If more than one file could match, the AI asks you. See <a class="link" href="#outgoing-attachments">Attaching files to drafts</a>.</dd>
           </div>
         </dl>
       </section>
@@ -286,7 +286,7 @@
         <h3>How a search runs</h3>
         <ul>
           <li>Each search request covers exactly one mailbox. When you do not name a mailbox, the AI sends one request to each mailbox that has mail copying turned on and combines the answers. It should not ask you which mailbox to search.</li>
-          <li>ReplyPort matches keywords against the subject, sender, recipients and body text of the copied messages. Results can be narrowed by sender, conversation, Inbox or Sent Items, and date range. The AI can ask for messages matching all or any of up to 16 terms.</li>
+          <li>ReplyPort matches keywords against the subject, sender, recipients and body text of the copied messages. Results can be narrowed by sender, conversation, received or sent mail, and date range. The AI can ask for messages matching all or any of up to 16 terms.</li>
           <li>Search is keyword matching, not semantic search. If a search finds nothing useful, the AI is instructed to try once more with broader terms and then tell you the limits of what it found.</li>
           <li>Each request returns up to 50 results, ranked. A result contains a subject, a short snippet and a pointer to the full copy.</li>
           <li>Search does not use Outlook, so it works while Outlook is closed. It does need the PC to be on, ReplyPort to be running and Dropbox to be syncing.</li>
@@ -306,7 +306,7 @@
           <li>Your AI&#8217;s Dropbox connection can see it.</li>
         </ol>
         <p>A search does not trigger a fresh copy pass. If you ask about a message that arrived a moment ago, it may not be found yet. Ask again after a few minutes, or tell the AI that the message is very recent.</p>
-        <p class="note">Improving freshness for just-arrived mail is under investigation. See <a class="link" href="#roadmap">In development and planned</a>.</p>
+        <p class="note">Improving freshness for just-arrived mail is under investigation. See <a class="link" href="#roadmap">Planned and under investigation</a>.</p>
       </section>
 
       <section id="reply">
@@ -324,8 +324,8 @@
           <table class="docs-table">
             <thead><tr><th scope="col">Message</th><th scope="col">Reply / Reply All</th></tr></thead>
             <tbody>
-              <tr><td>Copied message from the Inbox</td><td><span class="st st--yes">Available</span></td></tr>
-              <tr><td>Copied message from Sent Items</td><td><span class="st st--no">Not supported</span> Used as context only.</td></tr>
+              <tr><td>Copied received message, from the Inbox or another copied folder</td><td><span class="st st--yes">Available</span></td></tr>
+              <tr><td>Copied message you sent</td><td><span class="st st--no">Not supported</span> Used as context only.</td></tr>
               <tr><td>Message in another folder, never copied</td><td><span class="st st--no">Not supported</span> See <a class="link" href="#folders">Folder coverage</a>.</td></tr>
               <tr><td>Message marked Personal, Private or Confidential, or protected by rights management or encryption</td><td><span class="st st--no">Not supported</span> Not copied.</td></tr>
               <tr><td>Message whose body exceeds 1 MiB of text</td><td><span class="st st--no">Not supported</span> Copied as incomplete; cannot be replied to.</td></tr>
@@ -400,7 +400,7 @@
         <div class="docs-table-wrap">
           <table class="docs-table docs-table--kv">
             <tbody>
-              <tr><th scope="row">Folders</th><td>Default Inbox and Sent Items of the mailbox. See <a class="link" href="#folders">Folder coverage</a>.</td></tr>
+              <tr><th scope="row">Folders</th><td>Default Inbox and Sent Items, and, if you approve it, every other ordinary mail folder of the mailbox. See <a class="link" href="#folders">Folder coverage</a>.</td></tr>
               <tr><th scope="row">Time window</th><td>Messages received or sent in the last 90 days. Copies older than that are deleted from the ReplyPort folder automatically. Outlook is not affected.</td></tr>
               <tr><th scope="row">Copied for each message</th><td>Subject, sender, recipients, date, conversation identifier, the plain-text body (up to 1 MiB), and attachment names, types and sizes.</td></tr>
               <tr><th scope="row">Not copied</th><td>HTML formatting and embedded images; attachment files, unless <a class="link" href="#attachment-mirroring">attachment copying</a> is on; Outlook internal identifiers.</td></tr>
@@ -414,21 +414,26 @@
 
       <section id="folders">
         <h2>Folder coverage</h2>
-        <p>The current release copies only the two default folders of each connected mailbox. If you file mail into other folders, the AI cannot see it unless it was copied before you moved it.</p>
+        <p>Every connected mailbox copies its default Inbox and Sent Items. You can also approve copying of every other ordinary mail folder of that mailbox, so mail you have filed can be searched, read and replied to. There is no per-folder selection.</p>
+        <ul>
+          <li><strong>New mailboxes.</strong> The mail copying approval in first run and in <em>Add mailbox</em> covers the whole mailbox: Inbox, Sent Items and its other ordinary mail folders.</li>
+          <li><strong>Mailboxes connected before 0.3.12.</strong> Nothing widens on update. Tick <strong>Include all mail folders</strong> on the mailbox card in Control Centre and confirm. Unticking it returns to Inbox and Sent Items; mail already copied from other folders stays until it ages out of the 90-day window.</li>
+          <li><strong>Progress.</strong> The mailbox card shows how many recent messages are still being copied from other folders, then <em>up to date</em>. Until then, search reports that coverage is incomplete.</li>
+        </ul>
         <div class="docs-table-wrap">
           <table class="docs-table">
-            <thead><tr><th scope="col">Folder</th><th scope="col">Current release</th></tr></thead>
+            <thead><tr><th scope="col">Folder</th><th scope="col">Copied</th></tr></thead>
             <tbody>
               <tr><td>Inbox (default)</td><td><span class="st st--yes">Copied</span></td></tr>
               <tr><td>Sent Items (default)</td><td><span class="st st--yes">Copied</span></td></tr>
-              <tr><td>Subfolders of Inbox or Sent Items</td><td><span class="st st--no">Not copied</span></td></tr>
-              <tr><td>Your own folders, nested folders, Archive</td><td><span class="st st--no">Not copied</span> <span class="st st--planned">Planned</span></td></tr>
+              <tr><td>Subfolders of Inbox or Sent Items</td><td><span class="st st--yes">Copied</span> when all mail folders are approved</td></tr>
+              <tr><td>Your own folders, nested folders, Archive in the same mailbox</td><td><span class="st st--yes">Copied</span> when all mail folders are approved</td></tr>
               <tr><td>Drafts, Outbox, Deleted Items, Junk Email</td><td><span class="st st--no">Not copied</span></td></tr>
               <tr><td>Shared mailboxes not connected as their own account, PST files, Online Archive</td><td><span class="st st--no">Not copied</span></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="docs-callout docs-callout--quiet"><span class="st st--planned">Planned</span> Copying all ordinary mail folders in the connected mailbox, including your own folders, nested folders and Archive, with reply support for received messages in them. Deleted Items, Drafts, Outbox, Junk Email, and Outlook&#8217;s sync and service folders would stay excluded, as would shared stores, PST files and Online Archive. New setups would be able to approve this coverage during setup. Existing installations would keep Inbox and Sent Items until you choose to widen coverage. This is not in the current release.</p>
+        <p class="docs-callout docs-callout--quiet">Folders are recognised by their identity in Outlook, never by name. Outlook&#8217;s sync, service, search and hidden folders are never copied. A received message keeps its identity wherever it is filed, so moving it between copied folders does not create a second copy.</p>
       </section>
 
       <!-- ================= Attachments ================= -->
@@ -436,12 +441,12 @@
       <section id="attachment-mirroring">
         <p class="eyebrow">Attachments</p>
         <h2>Attachments on copied mail <span class="st st--yes">Available</span></h2>
-        <p>ReplyPort has two separate attachment features. This one controls whether files attached to your copied email are also copied to Dropbox so your AI can open them. The other, <a class="link" href="#outgoing-attachments">attaching files to drafts</a>, is unrelated and is not in the current release.</p>
+        <p>ReplyPort has two separate attachment features. This one controls whether files attached to your copied email are also copied to Dropbox so your AI can open them. The other, <a class="link" href="#outgoing-attachments">attaching files to drafts</a>, is a separate feature with its own checks.</p>
         <p>In Control Centre and first run this setting is labelled <strong>Include email attachments</strong>. It is a storage and privacy choice:</p>
         <ul>
           <li>Off by default, set per mailbox, and available only when mail copying is on for that mailbox.</li>
           <li>Only you can turn it on, on the PC. No file in Dropbox, AI request or email can turn it on.</li>
-          <li>It applies to attachments of copied messages in both Inbox and Sent Items, within the same 90-day window.</li>
+          <li>It applies to attachments of every copied message, received or sent, within the same 90-day window.</li>
           <li>Turning it on processes already-copied mail in the background, newest first, a few messages per pass. This can take a while.</li>
           <li>Turning it off stops copying and deletes the attachment copies ReplyPort made. Mail copying and Outlook are unaffected.</li>
           <li>Each copied message has an attachment list in the ReplyPort folder. Every attachment is listed as copied, with its file, size and hash, or skipped, with a fixed reason such as <code>TYPE_NOT_SUPPORTED</code> or <code>TOO_LARGE</code>.</li>
@@ -451,12 +456,10 @@
       </section>
 
       <section id="outgoing-attachments">
-        <h2>Attaching files to drafts <span class="st st--dev">In development</span></h2>
-        <p class="docs-callout docs-callout--dev"><strong>Not available in the current Store release.</strong> Outgoing draft attachments are being validated in development builds. A draft created by the current Microsoft Store version cannot include a file. A draft request that tries to include one is rejected. If your AI says it attached a file, check the draft in Outlook.</p>
-        <p>This section describes the intended behaviour, so you know what to expect. Details may change before release.</p>
-        <h3>Intended experience</h3>
-        <p>&#8220;Reply and attach the report&#8221; should work like a mail connector in any AI product. If the AI can identify the exact file, from Dropbox, another connected source, a file it has just produced, or an attachment ReplyPort already copied, it includes that file in the Reply, Reply All or new-message draft. If two files could match, the AI asks you which one. ReplyPort never chooses or guesses a file. There is no separate attachment picker or extra confirmation; the draft in Outlook is where you review it.</p>
-        <h3>How it is designed to work</h3>
+        <h2>Attaching files to drafts <span class="st st--yes">Available</span></h2>
+        <h3>What to expect</h3>
+        <p>&#8220;Reply and attach the report&#8221; works like a mail connector in any AI product. If the AI can identify the exact file, from Dropbox, another connected source, a file it has just produced, or an attachment ReplyPort already copied, it includes that file in the Reply, Reply All or new-message draft. If two files could match, the AI asks you which one. ReplyPort never chooses or guesses a file. There is no separate attachment picker or extra confirmation; the draft in Outlook is where you review it.</p>
+        <h3>How it works</h3>
         <ol class="docs-steps">
           <li>The AI copies the exact chosen file into a staging folder belonging to that one request and mailbox.</li>
           <li>The draft request lists each file by name, size and SHA-256 hash.</li>
@@ -488,7 +491,7 @@
         <h3>Limits</h3>
         <div class="docs-table-wrap">
           <table class="docs-table">
-            <thead><tr><th scope="col">Limit</th><th scope="col">Attachment copying <span class="st st--yes">Available</span></th><th scope="col">Attaching to drafts <span class="st st--dev">In development</span></th></tr></thead>
+            <thead><tr><th scope="col">Limit</th><th scope="col">Attachment copying <span class="st st--yes">Available</span></th><th scope="col">Attaching to drafts <span class="st st--yes">Available</span></th></tr></thead>
             <tbody>
               <tr><td>Per file</td><td>25 MiB</td><td>25 MiB</td></tr>
               <tr><td>Files</td><td>20 per message</td><td>20 per draft</td></tr>
@@ -607,8 +610,8 @@
           <li><strong>Accounts.</strong> Choose which Outlook accounts to connect.</li>
           <li><strong>Signatures.</strong> Choose one existing Outlook signature per account.</li>
           <li><strong>Review and configure.</strong> ReplyPort binds each account and checks the result in Outlook before finishing.</li>
-          <li><strong>Mail copying.</strong> A separate approval for each mailbox, with the option to include email attachments. Turn it on here for every mailbox you want the AI to search; Control Centre does not currently offer this choice again later.</li>
-          <li><strong>First scan.</strong> Start copying the last 90 days of Inbox and Sent Items. Scans run one mailbox at a time and can take a while.</li>
+          <li><strong>Mail copying.</strong> A separate approval for each mailbox, covering its Inbox, Sent Items and other ordinary mail folders, with the option to include email attachments. Turn it on here for every mailbox you want the AI to search; Control Centre does not currently offer this choice again later.</li>
+          <li><strong>First scan.</strong> ReplyPort copies the last 90 days of approved mail in the background, one mailbox at a time. First run does not wait for it; search reports incomplete coverage until a mailbox&#8217;s first scan has finished.</li>
         </ol>
         <p>Then connect your AI using the <a class="link" href="../setup/">Setup guide</a>: give the AI access to <code>/ReplyPort</code>, copy the setup prompt from Control Centre, and paste it into the AI. The AI walks you through saving permanent ReplyPort instructions and runs one harmless test search. Setup creates no drafts.</p>
         <p class="note">Searching existing mail needs the first scan to have finished. Creating new messages does not.</p>
@@ -711,10 +714,9 @@
         <h2>Known limitations</h2>
         <p>Limitations of the current release that affect ordinary use:</p>
         <ul>
-          <li>Only the default Inbox and Sent Items are copied. Mail filed into other folders is not searchable and cannot be replied to unless it was copied first.</li>
-          <li>Drafts cannot include files. Attaching files is <span class="st st--dev">In development</span>.</li>
+          <li>Mailboxes connected before 0.3.12 copy only Inbox and Sent Items until you tick <strong>Include all mail folders</strong> in Control Centre. Shared mailboxes, PST files and Online Archive are never copied.</li>
           <li>There is no Forward.</li>
-          <li>Replies are possible only to copied Inbox messages, not to Sent Items.</li>
+          <li>Replies are possible only to copied received messages, not to messages you sent.</li>
           <li>One Reply and one Reply All draft per version of a message. A second request for the same message is refused as a duplicate.</li>
           <li>The AI writes plain text. Draft text has no bold, lists, tables or embedded images; the signature keeps its own formatting.</li>
           <li>The AI cannot add or remove recipients on a reply; edit the draft in Outlook.</li>
@@ -732,18 +734,10 @@
       </section>
 
       <section id="roadmap">
-        <h2>In development and planned</h2>
+        <h2>Planned and under investigation</h2>
         <p>Nothing in this section is available in the current release. Items move to the main documentation when they ship. There are no committed dates.</p>
-        <h3><span class="st st--dev">In development</span> Being validated in development builds</h3>
-        <ul>
-          <li><strong>Attaching files to drafts</strong> for Reply, Reply All and new messages. Not available in the current Store release. Intended behaviour is described in <a class="link" href="#outgoing-attachments">Attaching files to drafts</a>.</li>
-          <li><strong>First scans in the background</strong>, independent of finishing first run, with search results reporting incomplete coverage until a mailbox&#8217;s first scan has finished.</li>
-          <li><strong>Simpler Dropbox onboarding</strong> and clearer explanations of attachment formats and limits during setup.</li>
-          <li><strong>Faster draft pickup</strong> once a request reaches the PC.</li>
-        </ul>
         <h3><span class="st st--planned">Planned</span> Accepted direction</h3>
         <ul>
-          <li><strong>All ordinary mail folders</strong> in the connected mailbox, including your own and nested folders and Archive, with reply support. New setups would be able to approve this during setup; existing installations would keep Inbox and Sent Items until you choose to widen coverage. See <a class="link" href="#folders">Folder coverage</a>.</li>
           <li><strong>Native Forward drafts.</strong></li>
           <li><strong>OneDrive</strong> as a storage option alongside Dropbox.</li>
           <li><strong>Clearer tray Exit</strong>, so it is unambiguous whether ReplyPort as a whole has closed.</li>
@@ -769,7 +763,7 @@
           <div><dt>ReplyPort is not running after a Store update</dt>
           <dd>Open ReplyPort from the Start menu. It restarts the background process and opens Control Centre.</dd></div>
           <div><dt>A message you know exists is not found</dt>
-          <dd>Check that it is in the Inbox or Sent Items, within 90 days, not marked Personal, Private or Confidential, and not encrypted; and that the mailbox&#8217;s first scan has finished. Very recent mail may need a few minutes.</dd></div>
+          <dd>Check that it is in a copied folder (Inbox and Sent Items, or any ordinary folder if <strong>Include all mail folders</strong> is on), within 90 days, not marked Personal, Private or Confidential, and not encrypted; and that the mailbox&#8217;s first scan has finished. Very recent mail may need a few minutes.</dd></div>
           <div><dt>Drafts are refused with <code>SIGNATURE_APPROVAL_REQUIRED</code></dt>
           <dd>The approved signature for that mailbox was edited, renamed or deleted in Outlook. If you can undo that change exactly, drafts resume. Otherwise report it through <a class="link" href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>: Control Centre does not yet have a way to approve a changed signature.</dd></div>
           <div><dt>A reply is refused with <code>DUPLICATE_REQUEST</code></dt>
@@ -814,7 +808,7 @@
             </tbody>
           </table>
         </div>
-        <p class="note">Additional codes beginning <code>ATTACHMENT_</code> belong to attachment features. The codes for attaching files to drafts are <span class="st st--dev">In development</span>.</p>
+        <p class="note">Additional codes beginning <code>ATTACHMENT_</code> belong to attachment features. They are listed in <code>PROTOCOL.md</code> in your ReplyPort folder.</p>
       </section>
 
       <section id="technical">

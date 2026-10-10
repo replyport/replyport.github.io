@@ -107,9 +107,8 @@ Value hierarchy, in order:
 
 Homepage headline: "One AI conversation across your Outlook accounts." The first
 proof is the dark-mode Outlook screenshot (`assets/screens/outlook-drafts.*`).
-That web copy has the outgoing-attachment row and paperclip markers removed,
-because attaching files to drafts is not in the current Store release; switch
-back to the original Store screenshot once that feature ships.
+Since 0.3.12 (attaching files to drafts is available) the web copy is the
+unedited Store screenshot, including its PDF attachment.
 
 Safety language supports the differentiation rather than leading it. Name native
 integrations (Claude for Outlook, ChatGPT's Outlook apps, Copilot) only fairly:
