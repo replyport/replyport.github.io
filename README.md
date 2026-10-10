@@ -212,18 +212,25 @@ reads as bypassing an employer's or university's policy is not.
 current MailBridge source, `PROTOCOL.md`, `AGENT_CONTEXT.md`, release records and
 open issues, not from memory or intent.
 
-- **Version and review date** appear once, in the *Documentation status* panel at
-  the top of the page (marked with an HTML comment). Elsewhere the page says
-  "the current release". Exceptions are deliberate "from version X" notes for
-  behaviour that older installations lack.
+- **Version, pending release and review date** appear in the *Documentation
+  status* panel at the top of the page (marked with an HTML comment), and the
+  *Release status* table under *Updates*. Elsewhere the page says "the current
+  release". Exceptions are deliberate "from version X" notes for behaviour that
+  older installations lack.
 - **Status labels** are the only way to mark maturity: `st--yes` *Available*
-  (in the current Store release), `st--dev` *In development* (built and being
-  tested, not released), `st--planned` *Planned* (accepted direction, not built),
-  `st--no` *Not supported*. Never mark a feature Available before the Store
-  release containing it is live.
-- When a release ships, review in this order: the status panel, the *Feature
-  status* table, *Known limitations*, *In development and planned*, then the
-  affected sections. Move shipped items out of the roadmap.
+  (in the current public Store release), `st--soon` *Awaiting Store* (built and
+  submitted, not yet in the public listing), `st--dev` *In development* (being
+  validated, not submitted), `st--planned` *Planned* (accepted direction, not
+  built), `st--no` *Not supported*. Never mark a feature Available before the
+  Store listing shows the release containing it. Check with the public Store API
+  (`storeedgefd.dsx.mp.microsoft.com/v9.0/products/9PPGN3H4QGJJ`) or the display
+  catalog's package list, not with Partner Center status alone.
+- When a release becomes public, review in this order: the status panel, the
+  *Release status* table, the *Feature status* table, *Known limitations*,
+  *Planned and under investigation*, then the affected sections. Move shipped
+  items out of the roadmap.
+- The Setup page and the three `setup/*.txt` downloads must match the setup
+  prompt in Control Centre's `AiSetupText.cs` exactly.
 - Do not publish private issue numbers, private paths, mailbox addresses, test
   identities, keys or token material. Explaining the HMAC/idempotency design
   conceptually is fine.
