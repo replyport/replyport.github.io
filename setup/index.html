@@ -105,6 +105,7 @@
           </li>
         </ol>
         <p>The setup test searches only; it creates no draft. ReplyPort never sends email. You review and send in Outlook.</p>
+        <p><strong>Which folder?</strong> Most installations use <code>/ReplyPort</code>. If the default name was already taken, ReplyPort chose a numbered folder such as <code>ReplyPort (2)</code>; first run showed it as &#8220;ReplyPort will use&#8221;, and the tray menu&#8217;s <em>Advanced / support</em> &#8594; <em>Open storage root</em> opens it. In that case, tell your AI the exact folder name and replace <code>/ReplyPort</code> in the prompt and in the instructions you save.</p>
         <p>ReplyPort cannot see or change the instructions you save in your AI. If a later ReplyPort update changes them, copy the new permanent instructions yourself (Control Centre &#8594; <strong>Other setup options&#8230;</strong> &#8594; <strong>Copy permanent instructions</strong>) and replace the old text. Details are in <a class="link" href="../docs/#ai-connection">How your AI connects</a>.</p>
       </section>
 
@@ -131,6 +132,8 @@
           <dd>Check that the AI connected the correct Dropbox account and can read <code>/ReplyPort/BRIDGE_MANIFEST.json</code>. Report the exact missing path or permission error.</dd></div>
           <div><dt>Can read Dropbox but cannot run the setup search</dt>
           <dd>The AI also needs permission to <strong>create or upload</strong> a new file in the ReplyPort request queue. Read-only Dropbox access is insufficient.</dd></div>
+          <div><dt>My ReplyPort folder is named ReplyPort (2)</dt>
+          <dd>Use that exact folder name instead of <code>/ReplyPort</code> in the prompt, and in the permanent instructions before you save them. It is the folder that contains <code>BRIDGE_MANIFEST.json</code>. See <a class="link" href="../docs/#which-folder">Which Dropbox folder</a>.</dd></div>
           <div><dt>Mail copying is off</dt>
           <dd>The setup test needs at least one connected mailbox with mail copying on. Mail copying is configured when you connect a mailbox.</dd></div>
           <div><dt>Setup test times out</dt>
