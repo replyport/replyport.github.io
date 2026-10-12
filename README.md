@@ -146,7 +146,10 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
    `chat-orientation.*`), find it in whichever account received it (Claude, with
    "Used Dropbox" visible, `chat-find.*`), prepare drafts in the right identities
    (ChatGPT, `chat-outreach.*`). Keep the trio visually consistent; do not put
-   video in this grid.
+   video in this grid. Label them honestly and discreetly in the caption and alt
+   text: the Claude image is an anonymised, illustrative recreation of a real
+   ReplyPort workflow; the ChatGPT images are labelled "Illustrative example".
+   Link to "the full image", not "the full screenshot".
 5. The film (`#film`) — its own band after the jobs: the whole workflow in four
    beats beside the film and its written version. The hero's "Watch the
    38-second film" button links here; keep the `#film` anchor stable.
@@ -157,7 +160,9 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 9. Questions (`#faq`) — fair "when to use ReplyPort" note and short FAQ.
 10. Shared footer — product, guides and company links, plus affiliation notice.
 11. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
-12. Privacy page — full data-handling disclosures and contact information.
+12. Privacy page — full data-handling disclosures and contact information. It
+    states that Dropbox is the required storage provider in the current release;
+    change it, and its effective date, if another provider ships.
 13. Docs page — the technical reference: feature status, architecture, AI
     workflows, mailbox routing, mirroring and folder coverage, attachments,
     safety model, lifecycle, privacy summary, limitations, roadmap,
