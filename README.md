@@ -232,29 +232,24 @@ reads as bypassing an employer's or university's policy is not.
 current MailBridge source, `PROTOCOL.md`, `AGENT_CONTEXT.md`, release records and
 open issues, not from memory or intent.
 
-- **Version, pending release and review date** appear in the *Documentation
-  status* panel at the top of the page (marked with an HTML comment), and the
-  *Release status* table under *Updates*. Elsewhere the page says "the current
-  release". Exceptions are deliberate "from version X" notes for behaviour that
-  older installations lack.
-- **Status labels** are the only way to mark maturity: `st--yes` *Available*
-  (in the current public Store release), `st--soon` *Awaiting Store* (in a package
-  submitted to the Store, not yet in the public listing), `st--dev` *In
-  development* (merged into the application source, in no submitted package),
-  `st--planned` *Planned* (accepted direction, not built), `st--no` *Not
-  supported*. A restriction that still applies to the public release stays
-  documented as a restriction, with *In development* beside it if a fix is merged. Never mark a feature Available before the
-  Store listing shows the release containing it. Check with the public Store API
+- **Version and review date** appear in the *Documentation status* panel at the
+  top of the page (marked with an HTML comment), and the *Release status* table
+  under *Updates*. Elsewhere the page says "the current release". Exceptions are
+  deliberate "from version X" notes for behaviour that older installations lack.
+- **Status labels** are the only way to mark maturity: `st--yes` *Available* (in
+  the current public Store release), `st--planned` *Planned* (accepted direction,
+  not built), `st--no` *Not supported*. The page describes what customers can do
+  today, not the development process: do not document merged-but-unreleased
+  changes, and never mark a feature Available before the Store listing shows the
+  release containing it. Check with the public Store API
   (`storeedgefd.dsx.mp.microsoft.com/v9.0/products/9PPGN3H4QGJJ`) or the display
   catalog's package list, not with Partner Center status alone.
 - When a release becomes public, review in this order: the status panel, the
-  *Release status* table and its "Merged, in no Store package yet" list, the
-  *Feature status* table, *Known limitations*, *Planned and under
-  investigation*, the "current release" vs "In development" columns in *Which
-  Dropbox folder*, *Consent for mail copying* and *Upgrades, moved folders and
-  recovery*, *ZIP files*, then the setup page. Mail-copying and folder wording on
-  `setup/index.html` describes the current public release. Move shipped
-  items out of the roadmap.
+  *Release status* table, the *Feature status* table, *Known limitations*,
+  *Planned and under investigation*, *Which Dropbox folder*, *Consent for mail
+  copying*, *Upgrades, moved folders and recovery*, *ZIP files*, then the setup
+  page. Mail-copying and folder wording on `setup/index.html` describes the
+  current public release. Move shipped items out of the roadmap.
 - The Setup page and the three `setup/*.txt` downloads must match the setup
   prompt in Control Centre's `AiSetupText.cs` exactly.
 - Do not publish private issue numbers, private paths, mailbox addresses, test
