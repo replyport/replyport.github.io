@@ -783,9 +783,10 @@ h1{
 .shot__note a{color:var(--body);border-bottom:1px solid var(--border-strong)}
 .shot__note a:hover{color:var(--signal);border-color:var(--signal)}
 
-/* Tall chat screenshots are shown from the top, in a fixed frame. */
+/* Tall chat screenshots are shown from the top, in a fixed frame. It is deep
+   enough for job 3 to show a draft in each mailbox above the fade. */
 .shot--chat{max-width:480px}
-.shot--chat .shot__frame{position:relative;aspect-ratio:941 / 1010;background:#121212}
+.shot--chat .shot__frame{position:relative;aspect-ratio:941 / 1200;background:#121212}
 .shot--chat .shot__frame img{height:100%;object-fit:cover;object-position:top}
 .shot--chat .shot__frame::after{
   content:'';position:absolute;left:0;right:0;bottom:0;height:72px;pointer-events:none;
