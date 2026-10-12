@@ -97,7 +97,7 @@
             <li>No send function</li>
             <li>One-time purchase</li>
           </ul>
-          <p class="note" id="surfaces">Works with ChatGPT, ChatGPT Work, Codex, Claude, Claude Cowork and Claude Code.</p>
+          <p class="note" id="surfaces">Works with ChatGPT, ChatGPT Work, Codex, Claude, Claude Cowork and Claude Code, connected through your Dropbox.</p>
         </div>
 
         <figure class="shot shot--hero">
@@ -152,7 +152,7 @@
           <p class="eyebrow eyebrow--wide">What you can do</p>
           <h2 class="h2">Three jobs across your accounts.</h2>
         </div>
-        <p class="lead">Ask in ordinary language. The examples below use ChatGPT with a university account and a personal account; Claude works the same way.</p>
+        <p class="lead">Ask in ordinary language. These examples use a university account and a personal account, with ChatGPT in the first and third and Claude in the second. Each assistant reaches ReplyPort through its Dropbox connection.</p>
       </div>
 
       <div class="jobs">
@@ -178,73 +178,18 @@
           <div class="job__text">
             <span class="job__num">02</span>
             <h3 class="job__title">Find it, whichever account received it</h3>
-            <p class="job__body">You do not need to remember which mailbox a message went to. Your AI runs one search in each enabled account and reads the full message before it reports back. Ask for a reply and the draft is created in the account that received the original.</p>
-            <blockquote class="job__prompt">&#8220;Where&#8217;s Anton&#8217;s email about the podcast?&#8221;<cite>Shown in the film</cite></blockquote>
+            <p class="job__body">You do not need to remember which mailbox a message went to. Your AI reaches ReplyPort through its Dropbox connection, runs one search in each enabled account and opens the full message before it reports back. Ask for a reply and the draft is created in the account that received the original.</p>
+            <blockquote class="job__prompt">&#8220;Using ReplyPort, find the email about the podcast invitation. Search across my enabled Outlook mailboxes and identify which account received it.&#8221;<cite>Example request</cite></blockquote>
           </div>
-          <div>
-            <figure class="film" id="film" aria-labelledby="film-title">
-              <h4 class="visually-hidden" id="film-title">ReplyPort in 38 seconds</h4>
-              <div class="film__frame">
-                <video class="film__video" id="film-video" controls playsinline preload="metadata"
-                       poster="assets/film/replyport-film-poster.webp" width="1920" height="1080"
-                       aria-describedby="film-summary">
-                  <source src="assets/film/replyport-film-720.mp4" type="video/mp4" media="(max-width: 767px)">
-                  <source src="assets/film/replyport-film-1080.mp4" type="video/mp4">
-                  <track kind="captions" src="assets/film/replyport-film.en.vtt" srclang="en" label="English">
-                </video>
-                <button class="film__start" type="button" hidden>
-                  <span class="film__start-icon" aria-hidden="true"></span>
-                  <span class="film__start-text">
-                    <span class="film__start-label">Watch the film</span>
-                    <span class="film__start-meta">38 s &#183; with narration</span>
-                  </span>
-                </button>
-                <button class="film__unmute" type="button" hidden>
-                  <span class="film__ico film__ico--sound" aria-hidden="true"></span>Watch with sound
-                </button>
-                <p class="film__error" hidden>The film could not be loaded here. <a class="link" href="#film-transcript">Read what it shows</a>.</p>
-              </div>
-
-              <div class="film__bar">
-                <button class="film__btn film__btn--primary" type="button" data-act="sound-start">
-                  <span class="film__ico film__ico--sound" aria-hidden="true"></span><span>Watch with sound</span>
-                </button>
-                <button class="film__btn" type="button" data-act="toggle">
-                  <span class="film__ico film__ico--pause" aria-hidden="true"></span><span class="film__btn-text">Pause</span>
-                </button>
-                <button class="film__btn" type="button" data-act="restart">
-                  <span class="film__ico film__ico--restart" aria-hidden="true"></span><span class="film__btn-text">Restart</span>
-                </button>
-                <button class="film__btn" type="button" data-act="mute" aria-pressed="true" hidden>
-                  <span class="film__ico film__ico--sound" aria-hidden="true"></span><span class="film__btn-text">Sound</span>
-                </button>
-                <button class="film__btn" type="button" data-act="captions" aria-pressed="false">
-                  <span class="film__cc" aria-hidden="true">CC</span><span class="film__btn-text">Captions</span>
-                </button>
-                <span class="film__time" aria-hidden="true"><span data-time>0:00</span> / 0:38</span>
-                <button class="film__btn film__btn--end" type="button" data-act="fullscreen">
-                  <span class="film__ico film__ico--full" aria-hidden="true"></span><span class="film__btn-text">Full screen</span>
-                </button>
-                <span class="film__progress" aria-hidden="true"><span data-progress></span></span>
-              </div>
-
-              <figcaption class="visually-hidden" id="film-summary">A narrated example: search across enabled Outlook accounts, create a reply draft in the right account, then review and send it yourself. Captions and a written version are available.</figcaption>
-            </figure>
-
-            <details class="transcript" id="film-transcript">
-              <summary>Read what the film shows</summary>
-              <ol class="transcript__list">
-                <li><b>Your work email isn&#8217;t always in one inbox.</b> One inbox becomes three separate work accounts.</li>
-                <li><b>And Outlook add-ins aren&#8217;t always available.</b> An add-in approaches the accounts but is not available.</li>
-                <li><b>But your accounts are already in Outlook.</b> The accounts sit inside Outlook Classic on Windows.</li>
-                <li><b>ReplyPort connects Outlook to the AI you already use.</b> ReplyPort runs on your Windows PC between Outlook and your AI, with a separate path to each account.</li>
-                <li><b>Ask a question, and your AI searches every mailbox you&#8217;ve enabled.</b> &#8220;Where&#8217;s Anton&#8217;s email about the podcast?&#8221; is checked in each account. Two have no match; the University account has it, and the answer comes back from there.</li>
-                <li><b>Ask for a reply, and a real draft appears in the right Outlook account.</b> The AI writes only the reply text. ReplyPort adds the recipient, subject and signature from Outlook and saves the draft in the University account&#8217;s Drafts.</li>
-                <li><b>Nothing sends automatically.</b> The draft stays unsent.</li>
-                <li><b>You review. You send.</b> The person reads the draft and presses Send in Outlook.</li>
-              </ol>
-            </details>
-          </div>
+          <figure class="shot shot--chat shot--claude">
+            <a class="shot__frame" href="assets/screens/chat-find.jpg">
+              <picture>
+                <source type="image/webp" srcset="assets/screens/chat-find.webp">
+                <img src="assets/screens/chat-find.jpg" width="940" height="1672" loading="lazy" alt="A Claude conversation using ReplyPort, with Dropbox shown as the connection it used. Claude reports that the podcast invitation thread is in the University mailbox and that the Personal mailbox had no matching correspondence, then gives the subject, the dates and what each message in the thread was about.">
+              </picture>
+            </a>
+            <figcaption class="shot__note">Claude, using ReplyPort through Dropbox. <a href="assets/screens/chat-find.jpg">Open the full screenshot</a>.</figcaption>
+          </figure>
         </article>
 
         <article class="job">
@@ -268,7 +213,89 @@
     </div>
   </section>
 
-  <!-- ===== 4 - How it works ========================================== -->
+  <!-- ===== 4 - The film: the whole workflow, start to finish ========= -->
+  <section class="band band--alt" id="film" aria-labelledby="film-title">
+    <div class="wrap sec">
+      <div class="film-feature">
+        <div class="film-feature__text">
+          <p class="eyebrow eyebrow--wide">The film &#183; 38 seconds</p>
+          <h2 class="h2" id="film-title">The whole workflow, start to finish.</h2>
+          <p class="lead">One question across your Outlook accounts, a real draft in the right mailbox, and you pressing Send. Narrated, with captions and a written version.</p>
+          <ol class="film-beats" role="list">
+            <li>Ask once, across every account you have enabled.</li>
+            <li>Your AI finds the account that received the message.</li>
+            <li>A real, unsent draft appears in that account in Outlook.</li>
+            <li>You review it and press Send yourself.</li>
+          </ol>
+        </div>
+        <div class="film-feature__media">
+          <figure class="film" id="film-player" aria-label="ReplyPort film, 38 seconds">
+            <div class="film__frame">
+              <video class="film__video" id="film-video" controls playsinline preload="metadata"
+                     poster="assets/film/replyport-film-poster.webp" width="1920" height="1080"
+                     aria-describedby="film-summary">
+                <source src="assets/film/replyport-film-720.mp4" type="video/mp4" media="(max-width: 767px)">
+                <source src="assets/film/replyport-film-1080.mp4" type="video/mp4">
+                <track kind="captions" src="assets/film/replyport-film.en.vtt" srclang="en" label="English">
+              </video>
+              <button class="film__start" type="button" hidden>
+                <span class="film__start-icon" aria-hidden="true"></span>
+                <span class="film__start-text">
+                  <span class="film__start-label">Watch the film</span>
+                  <span class="film__start-meta">38 s &#183; with narration</span>
+                </span>
+              </button>
+              <button class="film__unmute" type="button" hidden>
+                <span class="film__ico film__ico--sound" aria-hidden="true"></span>Watch with sound
+              </button>
+              <p class="film__error" hidden>The film could not be loaded here. <a class="link" href="#film-transcript">Read what it shows</a>.</p>
+            </div>
+
+            <div class="film__bar">
+              <button class="film__btn film__btn--primary" type="button" data-act="sound-start">
+                <span class="film__ico film__ico--sound" aria-hidden="true"></span><span>Watch with sound</span>
+              </button>
+              <button class="film__btn" type="button" data-act="toggle">
+                <span class="film__ico film__ico--pause" aria-hidden="true"></span><span class="film__btn-text">Pause</span>
+              </button>
+              <button class="film__btn" type="button" data-act="restart">
+                <span class="film__ico film__ico--restart" aria-hidden="true"></span><span class="film__btn-text">Restart</span>
+              </button>
+              <button class="film__btn" type="button" data-act="mute" aria-pressed="true" hidden>
+                <span class="film__ico film__ico--sound" aria-hidden="true"></span><span class="film__btn-text">Sound</span>
+              </button>
+              <button class="film__btn" type="button" data-act="captions" aria-pressed="false">
+                <span class="film__cc" aria-hidden="true">CC</span><span class="film__btn-text">Captions</span>
+              </button>
+              <span class="film__time" aria-hidden="true"><span data-time>0:00</span> / 0:38</span>
+              <button class="film__btn film__btn--end" type="button" data-act="fullscreen">
+                <span class="film__ico film__ico--full" aria-hidden="true"></span><span class="film__btn-text">Full screen</span>
+              </button>
+              <span class="film__progress" aria-hidden="true"><span data-progress></span></span>
+            </div>
+
+            <figcaption class="visually-hidden" id="film-summary">A narrated example: search across enabled Outlook accounts, create a reply draft in the right account, then review and send it yourself. Captions and a written version are available.</figcaption>
+          </figure>
+
+          <details class="transcript" id="film-transcript">
+            <summary>Read what the film shows</summary>
+            <ol class="transcript__list">
+              <li><b>Your work email isn&#8217;t always in one inbox.</b> One inbox becomes three separate work accounts.</li>
+              <li><b>And Outlook add-ins aren&#8217;t always available.</b> An add-in approaches the accounts but is not available.</li>
+              <li><b>But your accounts are already in Outlook.</b> The accounts sit inside Outlook Classic on Windows.</li>
+              <li><b>ReplyPort connects Outlook to the AI you already use.</b> ReplyPort runs on your Windows PC between Outlook and your AI, with a separate path to each account.</li>
+              <li><b>Ask a question, and your AI searches every mailbox you&#8217;ve enabled.</b> &#8220;Where&#8217;s Anton&#8217;s email about the podcast?&#8221; is checked in each account. Two have no match; the University account has it, and the answer comes back from there.</li>
+              <li><b>Ask for a reply, and a real draft appears in the right Outlook account.</b> The AI writes only the reply text. ReplyPort adds the recipient, subject and signature from Outlook and saves the draft in the University account&#8217;s Drafts.</li>
+              <li><b>Nothing sends automatically.</b> The draft stays unsent.</li>
+              <li><b>You review. You send.</b> The person reads the draft and presses Send in Outlook.</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5 - How it works ========================================== -->
   <section class="band" id="how">
     <div class="wrap sec">
       <div class="sec-head">
@@ -298,7 +325,7 @@
         <li class="how-step">
           <span class="how-step__num">03</span>
           <h3 class="how-step__title">Ask your AI.</h3>
-          <p class="how-step__text">Your assistant reads that folder to search, summarise and write replies, then leaves a draft request there.</p>
+          <p class="how-step__text">Through its Dropbox connection, your assistant reads that folder to search, summarise and write replies, then leaves a draft request there.</p>
           <span class="how-step__arrow" aria-hidden="true"></span>
         </li>
         <li class="how-step">
@@ -316,7 +343,7 @@
     </div>
   </section>
 
-  <!-- ===== 5 - Data flow ============================================= -->
+  <!-- ===== 6 - Data flow ============================================= -->
   <section class="band band--alt" id="data">
     <div class="wrap sec">
       <div class="sec-head">
@@ -361,15 +388,15 @@
         <figure class="shot shot--light">
           <picture class="shot__frame">
             <source type="image/webp" srcset="assets/screens/control-centre-800.webp 800w, assets/screens/control-centre.webp 1256w" sizes="(max-width: 980px) 100vw, 520px">
-            <img src="assets/screens/control-centre-800.png" srcset="assets/screens/control-centre-800.png 800w, assets/screens/control-centre.png 1256w" sizes="(max-width: 980px) 100vw, 520px" width="1256" height="1425" loading="lazy" alt="ReplyPort Control Centre showing ReplyPort running, Outlook Classic connected and storage connected, with two example mailbox cards, University and Personal. Each card shows mail copying enabled, Include all mail folders and Include email attachments turned on, and both up to date.">
+            <img src="assets/screens/control-centre-800.png" srcset="assets/screens/control-centre-800.png 800w, assets/screens/control-centre.png 1256w" sizes="(max-width: 980px) 100vw, 520px" width="1256" height="1425" loading="lazy" alt="ReplyPort Control Centre showing ReplyPort running, Outlook Classic connected and storage, the ReplyPort folder in Dropbox, connected, with two example mailbox cards, University and Personal. Each card shows mail copying enabled, Include all mail folders and Include email attachments turned on, and both up to date.">
           </picture>
-          <figcaption class="shot__note">Control Centre shows each connected mailbox, which folders are copied and whether attachments are included.</figcaption>
+          <figcaption class="shot__note">Control Centre shows whether Outlook and Dropbox storage are connected, each connected mailbox, which folders are copied and whether attachments are included.</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ===== 6 - Requirements and fit ================================== -->
+  <!-- ===== 7 - Requirements and fit ================================== -->
   <section class="band" id="windows">
     <div class="wrap sec">
       <div class="sec-head">
@@ -386,7 +413,7 @@
             <li>Windows 11 on an x64 PC where you can install apps from the Microsoft Store.</li>
             <li>Outlook Classic with your accounts already set up. It must be open for drafts to be created.</li>
             <li>The Dropbox desktop app, signed in on the same PC.</li>
-            <li>An AI assistant that can read and create files in your Dropbox, such as ChatGPT, ChatGPT Work, Codex, Claude, Claude Cowork or Claude Code.</li>
+            <li>An AI assistant connected to that same Dropbox account, with permission to read and create files there, such as ChatGPT, ChatGPT Work, Codex, Claude, Claude Cowork or Claude Code.</li>
           </ul>
         </div>
         <div class="col col--pad fit-col">
@@ -410,7 +437,7 @@
       </div>
       <div class="buy">
         <div class="buy__text">
-          <p>ReplyPort does not need an Outlook add-in, and you do not authorise it through Microsoft Graph. Your organisation&#8217;s device, storage and AI-use policies still apply.</p>
+          <p>ReplyPort does not need an Outlook add-in, and you do not authorise it through Microsoft Graph. Your organisation&#8217;s device, Dropbox and AI-use policies still apply.</p>
           <p class="meta">Early access &#183; US$29.99 one-time purchase &#183; Local prices shown in the Microsoft Store &#183; Updates through the Microsoft Store</p>
         </div>
         <div class="buy__actions">
@@ -421,7 +448,7 @@
     </div>
   </section>
 
-  <!-- ===== 7 - When to use ReplyPort, and questions ================== -->
+  <!-- ===== 8 - When to use ReplyPort, and questions ================== -->
   <section class="band band--alt" id="faq">
     <div class="wrap sec">
       <div class="sec-head">
