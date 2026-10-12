@@ -24,7 +24,7 @@ assets/site.css            the only stylesheet
 assets/measurement.js      launch attribution and optional OpenAI Ads measurement
 assets/film.js             homepage film player (progressive enhancement)
 assets/screens/            product screenshots (WebP + JPEG/PNG fallback, social card)
-assets/film/               hero film: 1080p and 720p MP4, captions (VTT), poster (WebP + JPEG for social cards)
+assets/film/               homepage film: 1080p and 720p MP4, captions (VTT), poster (WebP + JPEG for social cards)
 assets/fonts/*.woff2       Libre Franklin + Spline Sans Mono (self-hosted, OFL)
 favicon.svg                32×32 mark
 apple-touch-icon.png       180×180 mark
@@ -141,22 +141,33 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
 2. Homepage hero — headline, supporting message, Store CTA and price, proof strip,
    supported AI products, and the Outlook drafts screenshot as first proof.
 3. Who it is for (`#who`) — people with more than one Outlook account; three set-ups.
-4. Three jobs (`#use-cases`) — orient across accounts (screenshot), find it in
-   whichever account received it (the film, with transcript), prepare drafts in
-   the right identities (screenshot).
-5. How it works (`#how`) — five steps, ending with the person pressing Send.
-6. Data flow (`#data`) — what runs on the PC, what goes to Dropbox, what the AI sees.
-7. Requirements and fit (`#windows`) — needs, accounts and mail limits, not-a-fit
+4. Three jobs (`#use-cases`) — three matching dark chat screenshots (941/940 ×
+   1672, shown from the top in a fixed frame): orient across accounts (ChatGPT,
+   `chat-orientation.*`), find it in whichever account received it (Claude, with
+   "Used Dropbox" visible, `chat-find.*`), prepare drafts in the right identities
+   (ChatGPT, `chat-outreach.*`). Keep the trio visually consistent; do not put
+   video in this grid. Label them honestly and discreetly in the caption and alt
+   text: the Claude image is an anonymised, illustrative recreation of a real
+   ReplyPort workflow; the ChatGPT images are labelled "Illustrative example".
+   Link to "the full image", not "the full screenshot".
+5. The film (`#film`) — its own band after the jobs: the whole workflow in four
+   beats beside the film and its written version. The hero's "Watch the
+   38-second film" button links here; keep the `#film` anchor stable.
+6. How it works (`#how`) — five steps, ending with the person pressing Send.
+7. Data flow (`#data`) — what runs on the PC, what goes to Dropbox, what the AI sees.
+8. Requirements and fit (`#windows`) — needs, accounts and mail limits, not-a-fit
    list, policy note, Store CTA and price.
-8. Questions (`#faq`) — fair "when to use ReplyPort" note and short FAQ.
-9. Shared footer — product, guides and company links, plus affiliation notice.
-10. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
-11. Privacy page — full data-handling disclosures and contact information.
-12. Docs page — the technical reference: feature status, architecture, AI
+9. Questions (`#faq`) — fair "when to use ReplyPort" note and short FAQ.
+10. Shared footer — product, guides and company links, plus affiliation notice.
+11. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
+12. Privacy page — full data-handling disclosures and contact information. It
+    states that Dropbox is the required storage provider in the current release;
+    change it, and its effective date, if another provider ships.
+13. Docs page — the technical reference: feature status, architecture, AI
     workflows, mailbox routing, mirroring and folder coverage, attachments,
     safety model, lifecycle, privacy summary, limitations, roadmap,
     troubleshooting, result codes and technical architecture.
-13. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
+14. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
     identity, examples, limits) and `/ai-for-outlook-classic/` (the ways to use AI
     with Outlook, when ReplyPort fits, what it can and cannot do). Each must answer
     a different question from the homepage; do not add thin keyword variants.
@@ -166,9 +177,12 @@ or a second closing product pitch on the homepage. Retain the film's captions an
 written description even when they repeat information: they provide access without
 sound or video. Privacy disclosures should not be treated as marketing repetition.
 
-### The hero film
+### The film
 
-The film is the page's main explanation, not decoration. It is produced in the
+The film is the page's end-to-end explanation, not decoration. It sits in its
+own section (`#film`) after the three jobs, so the jobs stay a consistent set of
+screenshots and the film shows the whole loop once the reader has seen the parts.
+The player is `figure#film-player`; `assets/film.js` looks for that id. It is produced in the
 separate `ReplyPort animation/hero-v2-concept-explainer` Remotion project; this
 site ships web encodes of its master.
 
@@ -198,8 +212,14 @@ supports them.
 Preserve: Windows software; Outlook Classic; multiple configured accounts are
 separate authority/routing domains; AI reasons over approved mirrored mail;
 ReplyPort validates locally and creates real Outlook drafts; no ReplyPort send
-path; only the person sends; provider-neutral architecture; Microsoft Store is
+path; only the person sends; AI-provider-neutral architecture; Microsoft Store is
 the only public install route.
+
+AI is bring-your-own and provider-neutral; storage is not. The current version
+uses Dropbox only, so say "Dropbox" wherever the copy is about where mail is
+copied, what the AI connects to or which policies apply. Do not write "your
+storage" or "selected storage" in marketing copy, or imply other storage
+providers are supported.
 
 Do not add: user counts, draft counts, install time, download size, unsupported
 compatibility claims, or any implication of endorsement by Microsoft, OpenAI or

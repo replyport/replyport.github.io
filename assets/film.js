@@ -1,4 +1,5 @@
-/* ReplyPort homepage film: progressive enhancement for the hero video.
+/* ReplyPort homepage film: progressive enhancement for the film section
+   (#film, linked from the hero's "Watch" button).
 
    Without this script the <video> keeps its native controls and poster.
    With it:
@@ -10,7 +11,7 @@
    - if the video cannot load, the poster stays and a link to the written
      version appears. */
 (function () {
-  var fig = document.getElementById('film');
+  var fig = document.getElementById('film-player');
   if (!fig) return;
   var video = fig.querySelector('video');
   var frame = fig.querySelector('.film__frame');
