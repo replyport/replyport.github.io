@@ -73,12 +73,13 @@
       <aside class="docs-release" aria-labelledby="docs-release-title">
         <p class="eyebrow" id="docs-release-title">Documentation status</p>
         <dl class="docs-release__list">
-          <div><dt>Describes</dt><dd>ReplyPort 0.3.14 (Microsoft Store)</dd></div>
-          <div><dt>Last reviewed</dt><dd><time datetime="2026-10-12">12 October 2026</time></dd></div>
+          <div><dt>Describes</dt><dd>ReplyPort 0.3.14 (Microsoft Store) + clearly marked next-release work</dd></div>
+          <div><dt>Last reviewed</dt><dd><time datetime="2026-10-19">19 October 2026</time></dd></div>
           <div><dt>Stage</dt><dd>Early access</dd></div>
         </dl>
         <ul class="docs-release__legend" aria-label="Status labels">
-          <li><span class="st st--yes">Available</span> in the current release</li>
+          <li><span class="st st--yes">Available</span> in the current Store release</li>
+          <li><span class="st st--dev">In development</span> implemented or actively being tested for a future release</li>
           <li><span class="st st--planned">Planned</span> accepted direction, not built</li>
           <li><span class="st st--no">Not supported</span> not available</li>
         </ul>
@@ -171,7 +172,7 @@
 
       <section id="status">
         <h2>Feature status at a glance</h2>
-        <p>Each feature is labelled by what ordinary users of the current Store release can rely on. <span class="st st--planned">Planned</span> is accepted direction that has not been built; <span class="st st--no">Not supported</span> means it is not available.</p>
+        <p><span class="st st--yes">Available</span> means ordinary users of the current Store release can rely on it. <span class="st st--dev">In development</span> means the feature is implemented or under active acceptance work for a future release but is not yet part of the current Store build. <span class="st st--planned">Planned</span> is accepted direction that has not been built; <span class="st st--no">Not supported</span> means it is not available.</p>
         <div class="docs-table-wrap">
           <table class="docs-table">
             <thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
@@ -180,10 +181,11 @@
               <tr><th scope="row"><a href="#reply">Reply</a></th><td><span class="st st--yes">Available</span></td><td>Native Outlook reply to a copied received message.</td></tr>
               <tr><th scope="row"><a href="#reply">Reply All</a></th><td><span class="st st--yes">Available</span></td><td>Native Outlook reply-all to a copied received message.</td></tr>
               <tr><th scope="row"><a href="#new-message">New message</a></th><td><span class="st st--yes">Available</span></td><td>To and CC by exact address. No BCC.</td></tr>
-              <tr><th scope="row"><a href="#forward">Forward</a></th><td><span class="st st--no">Not supported</span> <span class="st st--planned">Planned</span></td><td>No forward operation exists. A new message is not a substitute.</td></tr>
+              <tr><th scope="row"><a href="#forward">Forward</a></th><td><span class="st st--dev">In development</span></td><td>Native Outlook Forward is implemented for the next release and is undergoing final acceptance. The current Store release does not advertise it.</td></tr>
               <tr><th scope="row"><a href="#mailboxes">Several Outlook accounts</a></th><td><span class="st st--yes">Available</span></td><td>Each mailbox is kept separate.</td></tr>
               <tr><th scope="row"><a href="#folders">Inbox and Sent Items</a></th><td><span class="st st--yes">Available</span></td><td>Default folders of each connected mailbox.</td></tr>
               <tr><th scope="row"><a href="#folders">Other mail folders</a></th><td><span class="st st--yes">Available</span></td><td>Your own folders, nested folders, Inbox subfolders and Archive, after you approve it for the mailbox.</td></tr>
+              <tr><th scope="row"><a href="#folders">Choose or exclude specific folders</a></th><td><span class="st st--dev">In development</span></td><td>Per-mailbox folder selection is being built for the next release so sensitive or irrelevant folders can stay outside ReplyPort copying.</td></tr>
               <tr><th scope="row"><a href="#signatures">Approved signature on drafts</a></th><td><span class="st st--yes">Available</span></td><td>One existing Outlook signature per mailbox.</td></tr>
               <tr><th scope="row"><a href="#attachment-mirroring">Copying attachments of copied mail</a></th><td><span class="st st--yes">Available</span></td><td>Optional, per mailbox, off by default.</td></tr>
               <tr><th scope="row"><a href="#outgoing-attachments">Attaching files to drafts</a></th><td><span class="st st--yes">Available</span></td><td>Exact files chosen by the AI, verified before and after saving.</td></tr>
@@ -194,6 +196,8 @@
               <tr><th scope="row"><a href="#recovery">Choose a preserved numbered folder when reinstalling</a></th><td><span class="st st--yes">Available</span></td><td>First run lists earlier folders that have saved recovery information, and you choose one or continue with the standard setup.</td></tr>
               <tr><th scope="row"><a href="#zip">ZIP files as attachments</a></th><td><span class="st st--yes">Available</span></td><td>Copying and attaching to drafts. Other archive types stay unsupported.</td></tr>
               <tr><th scope="row"><a href="#ai-connection">Dropbox-first AI setup wording</a></th><td><span class="st st--yes">Available</span></td><td>Control Centre&#8217;s setup prompt, permanent instructions and published guides say explicitly that the ReplyPort folder is at the root of the connected Dropbox, found with the AI&#8217;s Dropbox connector, not a local path.</td></tr>
+              <tr><th scope="row"><a href="#ai-connection">First-class ReplyPort MCP</a></th><td><span class="st st--dev">In development</span></td><td>A first-class MCP surface for Search, Read, Reply, New Draft, Forward and Draft Status is implemented for controlled deployment, but is not yet public.</td></tr>
+              <tr><th scope="row"><a href="#storage">Dropbox App Folder storage root</a></th><td><span class="st st--dev">In development</span></td><td>The next-release Windows setup uses ReplyPort&#8217;s Dropbox App Folder as the storage root. The current Store release still uses the existing ReplyPort folder described below.</td></tr>
               <tr><th scope="row"><a href="#storage">Storage provider</a></th><td><span class="st st--yes">Dropbox</span></td><td>OneDrive is <span class="st st--planned">Planned</span>.</td></tr>
               <tr><th scope="row"><a href="#no-send">Sending email</a></th><td><span class="st st--no">Not supported</span></td><td>By design. There is no plan to add it.</td></tr>
             </tbody>
@@ -204,6 +208,7 @@
       <section id="architecture">
         <h2>How it works</h2>
         <p>ReplyPort splits the work between three places. Your AI does the reasoning and writing. A folder in your Dropbox carries copies and requests between the AI and your PC. ReplyPort on your PC is the only component that touches Outlook.</p>
+        <p class="docs-callout docs-callout--quiet"><strong>Current Store release:</strong> the AI reaches ReplyPort through its Dropbox connection, as documented below. A first-class ReplyPort MCP and Dropbox App Folder storage layout are <span class="st st--dev">In development</span> for the next release; they are not yet the public setup path.</p>
 
         <ol class="docs-flow" role="list" aria-label="Components, from your AI to Outlook">
           <li class="docs-flow__node">
@@ -263,7 +268,8 @@
       <section id="ai-connection">
         <p class="eyebrow">Working with your AI</p>
         <h2>How your AI connects to ReplyPort</h2>
-        <p>ReplyPort and your AI never talk to each other directly. They meet in one place: the <code>ReplyPort</code> folder in your Dropbox. ReplyPort reaches it through the Dropbox desktop app on your PC. Your AI reaches the same folder through its own connection to your Dropbox account.</p>
+        <p>In the current Store release, ReplyPort and your AI meet in one place: the <code>ReplyPort</code> folder in your Dropbox. ReplyPort reaches it through the Dropbox desktop app on your PC. Your AI reaches the same folder through its own connection to your Dropbox account.</p>
+        <p class="docs-callout docs-callout--dev"><strong>First-class ReplyPort MCP is in development.</strong> The next connection path is designed to let compatible AI clients call ReplyPort Search, Read, Reply, New Draft, Forward and Draft Status directly against the same user-controlled ReplyPort storage. The MCP does not touch Outlook; the Windows ReplyPort worker remains the Outlook executor. It is not yet deployed as the public setup path, so use the Dropbox instructions below for the current Store release.</p>
         <p class="docs-callout"><strong><code>/ReplyPort</code> is a Dropbox path, not a path on your computer.</strong> In an AI chat it means the folder named <code>ReplyPort</code> at the root of the connected Dropbox account (for most installations; a numbered name such as <code>ReplyPort (2)</code> is used when the default name was taken, so use the folder your own ReplyPort uses: see <a class="link" href="#which-folder">Which Dropbox folder</a>), opened with the AI&#8217;s Dropbox connector or Dropbox tools. If an AI says it has no local file tools, or suggests installing a desktop app, ask it to use its Dropbox connection instead. A failed ordinary file search does not mean Dropbox is disconnected.</p>
         <h3>What your AI needs permission to do</h3>
         <div class="docs-table-wrap">
@@ -309,6 +315,7 @@
         </div>
         <p>Instructions you saved in your AI before updating to 0.3.14 still name <code>/ReplyPort</code>. If your folder is numbered, copy the new text from Control Centre and replace them.</p>
         <p>The folder is worked out from your own Windows Dropbox settings, never from anything an AI or an email can write. It is described only when it sits directly at the Dropbox root, its name uses letters, digits, spaces and <code>. _ ( ) -</code>, exactly one Dropbox folder on the PC can contain it, and a single storage folder is in use. ReplyPort cannot see which Dropbox account an AI is linked to, so the AI is told to report a missing folder or a wrong account precisely.</p>
+        <p class="docs-callout docs-callout--dev"><strong>Next-release storage layout:</strong> ReplyPort&#8217;s Dropbox App Folder becomes the storage root itself. From the Dropbox API the root is <code>/</code>; in the Dropbox desktop tree it appears under <code>Apps/&lt;ReplyPort App Folder&gt;</code>. There is no nested production <code>/ReplyPort</code> folder in that design. This is <span class="st st--dev">In development</span>, not the layout of the current Store release.</p>
         <h3>Saved AI instructions are yours to update</h3>
         <p>The permanent instructions live inside your AI account, in ChatGPT&#8217;s custom instructions, Claude&#8217;s instructions or the equivalent. ReplyPort cannot see them and cannot change them. When ReplyPort&#8217;s instructions change in a new release, the copies in your AI do not change by themselves: open Control Centre, choose <em>Other setup options&#8230;</em> and then <em>Copy permanent instructions</em>, and replace the old text in your AI&#8217;s settings.</p>
         <h3>The setup test</h3>
@@ -341,7 +348,7 @@
           </div>
           <div>
             <dt>&#8220;Forward this to Mark.&#8221;</dt>
-            <dd><span class="st st--no">Not supported</span> The AI should tell you forwarding is not available, rather than create a new message that imitates a forward. See <a class="link" href="#forward">Forward</a>.</dd>
+            <dd><span class="st st--dev">In development</span> Native Outlook forwarding is implemented for the next release and is undergoing final acceptance. The current Store release should still tell you Forward is unavailable rather than imitate it with a new message. See <a class="link" href="#forward">Forward</a>.</dd>
           </div>
           <div>
             <dt>&#8220;Reply and attach the report.&#8221;</dt>
@@ -426,10 +433,10 @@
       </section>
 
       <section id="forward">
-        <h2>Forward <span class="st st--no">Not supported</span></h2>
-        <p>ReplyPort cannot create a forward draft. Supporting Reply and Reply All does not imply forwarding: a forward has a different structure, carries the original attachments and can go to new recipients, and none of this is implemented.</p>
-        <p>The AI is instructed not to imitate a forward by pasting the original message into a new-message draft. If you need to forward something, forward it in Outlook.</p>
-        <p class="docs-callout docs-callout--quiet">Native Outlook forward drafts are <span class="st st--planned">Planned</span>. They will be advertised to the AI only when the installed version supports them.</p>
+        <h2>Forward <span class="st st--dev">In development</span></h2>
+        <p>Native Outlook Forward is implemented for the next release and is undergoing final live Outlook/Exchange acceptance. It uses Outlook&#8217;s own Forward operation, preserves the forwarded structure and ordinary attachments, accepts new To/CC recipients, saves the result in the correct mailbox Drafts folder and reopens it for verification.</p>
+        <p>The current Store release does not advertise Forward, so its AI instructions should still refuse a Forward request rather than imitate one with a new message.</p>
+        <p class="docs-callout docs-callout--quiet">When the installed version advertises Forward, the AI can use it as a first-class operation. Until that release ships, forward manually in Outlook.</p>
       </section>
 
       <section id="signatures">
@@ -461,6 +468,7 @@
               <tr><td>Search</td><td><code>search_requests/&lt;id&gt;.json</code></td><td><code>search_results/&lt;id&gt;.json</code></td></tr>
               <tr><td>Reply, Reply All</td><td><code>draft_requests/&lt;id&gt;.json</code></td><td><code>receipts/&lt;id&gt;.json</code></td></tr>
               <tr><td>New message</td><td><code>new_message_requests/&lt;id&gt;.json</code></td><td><code>receipts/&lt;id&gt;.json</code></td></tr>
+              <tr><td>Forward <span class="st st--dev">In development</span></td><td><code>forward_requests/&lt;id&gt;.json</code></td><td><code>receipts/&lt;id&gt;.json</code></td></tr>
               <tr><td>After <code>SOURCE_CHANGED</code></td><td>Nothing: the AI reads the answer</td><td><code>source_refresh_results/&lt;id&gt;.json</code>, under the rejected request&#8217;s own ID</td></tr>
             </tbody>
           </table>
@@ -511,7 +519,8 @@
 
       <section id="folders">
         <h2>Folder coverage</h2>
-        <p>Every connected mailbox copies its default Inbox and Sent Items. You can also approve copying of every other ordinary mail folder of that mailbox, so mail you have filed can be searched, read and replied to. There is no per-folder selection.</p>
+        <p>In the current Store release, every connected mailbox copies its default Inbox and Sent Items. You can also approve copying of every other ordinary mail folder of that mailbox, so mail you have filed can be searched, read and replied to. The current Store release does not yet offer per-folder selection.</p>
+        <p class="docs-callout docs-callout--dev"><strong>Choose folders is in development for the next release.</strong> The planned Control Centre flow adds a third per-mailbox mode alongside Inbox/Sent-only and all ordinary folders: choose exact folders. This is intended for people who want broad AI access to their mailbox while keeping sensitive or irrelevant folders outside ReplyPort copying. The selection remains changeable later in Control Centre. The implementation is still under privacy/rebuild acceptance and is not part of Store 0.3.14.</p>
         <ul>
           <li><strong>New mailboxes.</strong> The mail copying approval in first run and in <em>Add mailbox</em> covers the whole mailbox: Inbox, Sent Items and its other ordinary mail folders.</li>
           <li><strong>Mailboxes connected before 0.3.12.</strong> Nothing widens on update. Tick <strong>Include all mail folders</strong> on the mailbox card in Control Centre and confirm. Unticking it returns to Inbox and Sent Items; mail already copied from other folders stays until it ages out of the 90-day window.</li>
@@ -919,6 +928,7 @@
       new_message_requests/
       receipts/           draft results, written by ReplyPort
       &#8230;                   housekeeping folders</pre>
+        <p class="docs-callout docs-callout--dev"><strong>Next-release Dropbox App Folder work is in development.</strong> The upcoming storage design uses ReplyPort&#8217;s Dropbox App Folder as the production storage root instead of creating another <code>ReplyPort</code> folder beneath it. This documentation keeps the current Store tree above because that is what 0.3.14 users have today.</p>
         <h3>What ReplyPort places in Dropbox</h3>
         <ul>
           <li><strong>Copies of the mail you approved:</strong> subject, sender, recipients, date, plain-text body (up to 1 MiB), conversation identifier and attachment names, types and sizes.</li>
@@ -950,10 +960,10 @@
         <h2>Known limitations</h2>
         <p>Limitations that affect ordinary use:</p>
         <ul>
-          <li>Mailboxes connected before 0.3.12 copy only Inbox and Sent Items until you tick <strong>Include all mail folders</strong> in Control Centre. Shared mailboxes, PST files and Online Archive are never copied. Folders cannot be chosen one by one.</li>
+          <li>Mailboxes connected before 0.3.12 copy only Inbox and Sent Items until you tick <strong>Include all mail folders</strong> in Control Centre. Shared mailboxes, PST files and Online Archive are never copied. The current Store release cannot choose folders one by one; selective folder copying is <span class="st st--dev">In development</span>.</li>
           <li>Signed or encrypted (S/MIME) messages filed in other folders are not copied, and an edit to an already-copied message there is not noticed until a reply request finds it changed or the message moves.</li>
           <li>Catching up on mail already filed in other folders takes several background passes. Until it finishes, search reports incomplete coverage.</li>
-          <li>There is no Forward.</li>
+          <li>The current Store release has no Forward. Native Outlook Forward is <span class="st st--dev">In development</span> for the next release.</li>
           <li>Replies are possible only to copied received messages, not to messages you sent.</li>
           <li>One Reply and one Reply All draft per version of a message. A second request for the same message is refused as a duplicate.</li>
           <li>The AI writes plain text. Draft text has no bold, lists, tables or embedded images; the signature keeps its own formatting.</li>
@@ -978,10 +988,16 @@
 
       <section id="roadmap">
         <h2>Planned and under investigation</h2>
-        <p>Nothing in this section is available yet. Items move to the main documentation when they ship. There are no committed dates.</p>
+        <p>Nothing marked in development or planned below is part of the current Store release until it ships. There are no committed dates.</p>
+        <h3><span class="st st--dev">In development</span> Next-release work</h3>
+        <ul>
+          <li><strong>Native Outlook Forward drafts</strong>, implemented and undergoing final live acceptance.</li>
+          <li><strong>Selective folder copying</strong>, so a mailbox can include exact folders and leave sensitive or irrelevant folders outside ReplyPort copying.</li>
+          <li><strong>Dropbox App Folder storage</strong>, with the App Folder itself as the ReplyPort storage root.</li>
+          <li><strong>First-class ReplyPort MCP</strong> for Search, Read, Reply, New Draft, Forward and Draft Status from compatible AI clients. Controlled deployment work is complete; it is not yet public.</li>
+        </ul>
         <h3><span class="st st--planned">Planned</span> Accepted direction</h3>
         <ul>
-          <li><strong>Native Forward drafts.</strong></li>
           <li><strong>OneDrive</strong> as a storage option alongside Dropbox.</li>
           <li><strong>Clearer tray Exit</strong>, so it is unambiguous whether ReplyPort as a whole has closed.</li>
         </ul>
@@ -1109,6 +1125,9 @@
         <h3>Discovery and Dropbox-relative paths</h3>
         <p>An AI starts from the ReplyPort folder at the root of the connected Dropbox. It reads <code>BRIDGE_MANIFEST.json</code>, which lists the mailboxes (by random identifier and label), what each can do, the installed version and the format fingerprint of every record type; then <code>AGENT_CONTEXT.md</code>; then the format for the operation it needs. All paths in the manifest and in the formats are relative to the folder in use, so the same instructions work for <code>/ReplyPort</code> and for a numbered folder. The Windows side addresses the same folder through its local Dropbox path, which is never given to the AI.</p>
         <p>The guides published into the folder come from the installed ReplyPort version. They are generated for the folder in use, rendered in full before anything is written, so that a folder that cannot be identified leaves the existing guides untouched. Generation changes only the folder name: the safety rules, the protocol and the formats are unchanged. Text saved in an AI account is separate and is never edited by ReplyPort.</p>
+
+        <h3>First-class MCP <span class="st st--dev">In development</span></h3>
+        <p>A remote ReplyPort MCP is implemented for controlled deployment so compatible AI clients can use first-class Search, Read, Reply, New Draft, Forward and Draft Status tools instead of constructing queue files themselves. The MCP is a storage bridge: it reads and writes only ReplyPort&#8217;s Dropbox App Folder data. It does not use Outlook COM and cannot replace the local Windows worker as the Outlook executor. It is not yet the public connection path documented by the setup guide.</p>
 
         <h3>Records</h3>
         <p>Every record is a strict JSON file with a declared type, protocol version and schema hash. The manifest lists the SHA-256 hash of every schema; a record whose hash does not match is rejected. Records that ReplyPort writes go to a temporary file in the same folder and are renamed into place, so a reader never sees a partial file.</p>
