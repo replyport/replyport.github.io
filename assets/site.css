@@ -742,8 +742,8 @@ h1{
 .docs-copy .docs-flow p{font-size:13.5px;line-height:1.55}
 
 .docs-copy .docs-steps{display:flex;flex-direction:column;gap:0;padding-left:0;list-style:none;counter-reset:docs-step;border-top:1px solid var(--rule-alt)}
-.docs-steps > li{counter-increment:docs-step;display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px;padding:8px 0;border-bottom:1px solid var(--rule-alt)}
-.docs-steps > li::before{content:counter(docs-step,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--signal);padding-top:5px}
+.docs-steps > li{counter-increment:docs-step;position:relative;display:block;padding:8px 0 8px 42px;border-bottom:1px solid var(--rule-alt)}
+.docs-steps > li::before{content:counter(docs-step,decimal-leading-zero);position:absolute;left:0;top:13px;font-family:var(--mono);font-size:11px;color:var(--signal)}
 
 .docs-examples,.docs-defs,.docs-help{display:flex;flex-direction:column;border-top:1px solid var(--rule-alt)}
 .docs-examples > div,.docs-defs > div,.docs-help > div{padding:12px 0;border-bottom:1px solid var(--rule-alt)}
