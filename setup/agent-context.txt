@@ -3,4 +3,4 @@ ReplyPort setup has changed.
 For current setup instructions, use:
 https://replyport.github.io/setup/
 
-This file is retained for older links. Do not use older /MailBridge setup instructions. Current ReplyPort uses /ReplyPort.
+This file is retained for older links. Do not use older /MailBridge or Dropbox-root /ReplyPort setup instructions. Current ReplyPort uses its dedicated Dropbox App Folder; copy the exact setup prompt from Control Centre.

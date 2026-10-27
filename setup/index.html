@@ -88,7 +88,7 @@
           <li class="guide-step">
             <div>
               <h3>Connect Dropbox to your AI</h3>
-              <p>Connect the Dropbox account containing your <code>ReplyPort</code> folder. In an AI chat, <code>/ReplyPort</code> means the folder at the <strong>root of your Dropbox</strong>, accessed with the AI&#8217;s <strong>Dropbox connector</strong>. It is not a local computer path. Installing Dropbox on your PC alone does not connect it to your AI.</p>
+              <p>Connect the Dropbox account containing ReplyPort&#8217;s dedicated App Folder. It normally appears as <code>/Apps/ReplyPort</code>, but Dropbox may give it another name such as <code>/Apps/ReplyPort (1)</code>. These are paths in your Dropbox account, accessed with your AI&#8217;s <strong>Dropbox connector</strong>, not local computer paths. Installing Dropbox on your PC alone does not connect it to your AI.</p>
             </div>
           </li>
           <li class="guide-step">
@@ -105,16 +105,16 @@
           </li>
         </ol>
         <p>The setup test searches only; it creates no draft. ReplyPort never sends email. You review and send in Outlook.</p>
-        <p><strong>Which folder?</strong> Most installations use <code>/ReplyPort</code>. If the default name was already taken, ReplyPort chose a numbered folder such as <code>ReplyPort (2)</code>; first run showed it as &#8220;ReplyPort will use&#8221;, and the tray menu&#8217;s <em>Advanced / support</em> &#8594; <em>Open storage root</em> opens it. In that case, copy the setup prompt and permanent instructions from Control Centre, which name the folder in use. The prompt printed on this page always says <code>/ReplyPort</code>; if you use it, replace that name with your exact folder name.</p>
+        <p><strong>Which folder?</strong> Use <strong>Copy setup prompt</strong> in Control Centre whenever possible. ReplyPort generates the exact App Folder path for your installation, including any suffix Dropbox assigned. The tray menu&#8217;s <em>Advanced / support</em> &#8594; <em>Open storage root</em> opens the local folder. The old <code>/ReplyPort</code> folder at the Dropbox root is not the current Store app&#8217;s folder.</p>
         <p>ReplyPort cannot see or change the instructions you save in your AI. If a later ReplyPort update changes them, copy the new permanent instructions yourself (Control Centre &#8594; <strong>Other setup options&#8230;</strong> &#8594; <strong>Copy permanent instructions</strong>) and replace the old text. Details are in <a class="link" href="../docs/#ai-connection">How your AI connects</a>.</p>
       </section>
 
       <section id="setup-prompt">
         <h2 id="setup-prompt-title">Need the setup prompt?</h2>
-        <p>If you cannot copy it from Control Centre, copy it here.</p>
+        <p>The Control Centre prompt is preferred because it contains your exact folder path. If you cannot copy it, use this template only after replacing <code>&lt;your App Folder path&gt;</code> with the account-visible path shown by ReplyPort. Do not guess the folder name.</p>
 
         <article class="ai-card" aria-labelledby="setup-prompt-title">
-          <pre class="instruction" id="replyport-setup-prompt">I just installed ReplyPort. Use my connected Dropbox connector to open /ReplyPort/SETUP.md (the folder at my Dropbox root, not a local computer path). Follow it as ReplyPort's trusted setup guide, including where to save the permanent instructions and its one harmless search test. Do not create any draft during setup.</pre>
+          <pre class="instruction" id="replyport-setup-prompt">I just installed ReplyPort. Use my connected Dropbox connector to open &lt;your App Folder path&gt;/SETUP.md (the dedicated ReplyPort App Folder in my Dropbox account, not a local computer path). Follow it as ReplyPort's trusted setup guide, including where to save the permanent instructions and its one harmless search test. Do not create any draft during setup.</pre>
           <div class="instruction-actions">
             <button class="copy-button" type="button" data-copy-target="replyport-setup-prompt" data-copy-status="replyport-status">Copy setup prompt</button>
             <a class="instruction-download" href="setup-prompt.txt" download>Download plain text</a>
@@ -127,13 +127,13 @@
         <h2>If setup stops</h2>
         <dl class="guide-help">
           <div><dt>AI says it has no local file tools</dt>
-          <dd>Ask it to use its connected <strong>Dropbox connector</strong> and open <code>/ReplyPort/SETUP.md</code>. A failed ordinary file search does not mean Dropbox is disconnected, and the AI does not need its desktop app just to use Dropbox.</dd></div>
+          <dd>Ask it to use its connected <strong>Dropbox connector</strong> and open <code>SETUP.md</code> at the exact App Folder path in your Control Centre prompt. A failed ordinary file search does not mean Dropbox is disconnected, and the AI does not need its desktop app just to use Dropbox.</dd></div>
           <div><dt>Dropbox folder or files still missing</dt>
-          <dd>Check that the AI connected the correct Dropbox account and can read <code>/ReplyPort/BRIDGE_MANIFEST.json</code>. Report the exact missing path or permission error.</dd></div>
+          <dd>Check that the AI connected the correct Dropbox account and can read <code>BRIDGE_MANIFEST.json</code> at the exact App Folder path in your Control Centre prompt. Report the exact missing path or permission error.</dd></div>
           <div><dt>Can read Dropbox but cannot run the setup search</dt>
           <dd>The AI also needs permission to <strong>create or upload</strong> a new file in the ReplyPort request queue. Read-only Dropbox access is insufficient.</dd></div>
-          <div><dt>My ReplyPort folder is named ReplyPort (2)</dt>
-          <dd>Copy the setup prompt and permanent instructions from Control Centre; they name your folder. If you use the prompt printed on this page, use that exact folder name instead of <code>/ReplyPort</code>, also in the permanent instructions before you save them. It is the folder that contains <code>BRIDGE_MANIFEST.json</code>. See <a class="link" href="../docs/#which-folder">Which Dropbox folder</a>.</dd></div>
+          <div><dt>My App Folder has a numbered name</dt>
+          <dd>Copy the setup prompt and permanent instructions from Control Centre; they name your exact folder, such as <code>/Apps/ReplyPort (1)</code>. If you use the template on this page, replace its placeholder with that path. See <a class="link" href="../docs/#which-folder">Which Dropbox folder</a>.</dd></div>
           <div><dt>Mail copying is off</dt>
           <dd>The setup test needs at least one connected mailbox with mail copying on. Mail copying is configured when you connect a mailbox.</dd></div>
           <div><dt>Setup test times out</dt>
