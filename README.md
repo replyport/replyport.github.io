@@ -77,7 +77,7 @@ installs are measured separately in Microsoft Partner Center.
 ## Setup guide
 
 The public setup guide at [`setup/`](setup/) owns the three-step AI connection
-process: share the `/ReplyPort` folder, copy the setup prompt from Control Centre,
+process: connect the AI to the Dropbox account containing ReplyPort's App Folder, copy the exact setup prompt from Control Centre,
 and paste it into the AI to follow the guide. Installation, Outlook and mail-copying
 prerequisites appear before those steps. The homepage links here instead of
 maintaining its own instructions.
