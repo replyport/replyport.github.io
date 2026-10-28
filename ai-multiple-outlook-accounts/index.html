@@ -49,6 +49,7 @@
     <nav class="topbar__links" aria-label="Primary">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../connectors/">Connectors</a>
       <a href="../docs/">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -59,6 +60,7 @@
     <nav class="wrap navdrop__menu" aria-label="Primary, compact">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../connectors/">Connectors</a>
       <a href="../docs/">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -176,7 +178,7 @@
           <li>Tested with Microsoft 365 work or school accounts and personal Outlook.com accounts in Outlook Classic. IMAP, POP and on-premises Exchange accounts have not been verified.</li>
           <li>Shared or delegated mailboxes are not included unless they are set up as their own account.</li>
           <li>Outlook Classic must be open for drafts to be created. New Outlook is not supported.</li>
-          <li>To let your AI read mail, ReplyPort copies it from the accounts you approve to your Dropbox. Dropbox and your AI provider process it under their own terms. See <a class="link" href="../#data">Data flow</a> and the <a class="link" href="../privacy/">Privacy policy</a>.</li>
+          <li>In the current Windows-app workflow, ReplyPort copies approved mail to Dropbox for your AI to access. A separate optional Cloudflare MCP connector is being prepared and will return requested content to the selected AI host. Dropbox, Cloudflare when that service is used, and the AI provider process data under their own terms. See <a class="link" href="../#data">Data flow</a>, the <a class="link" href="../connectors/">connector setup guide</a> and the <a class="link" href="../privacy/">Privacy policy</a>.</li>
         </ul>
         <p class="guide-callout">Use ReplyPort only if your organisation permits copying this mail to Dropbox and using it with your AI service. ReplyPort does not need an Outlook add-in, but your organisation&#8217;s device, Dropbox and AI-use policies still apply.</p>
         <p>Full requirements are on the <a class="link" href="../#windows">home page</a>; the <a class="link" href="../docs/#mailboxes">documentation</a> describes mailbox routing in detail.</p>
@@ -207,11 +209,14 @@
       <a href="./" aria-current="page">AI across multiple Outlook accounts</a>
       <a href="../ai-for-outlook-classic/">AI for Outlook Classic</a>
       <a href="../setup/">Setup guide</a>
+      <a href="../connectors/">Connector setup</a>
       <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
+      <a href="../support/">Support</a>
       <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
       <a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>
       <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
     </nav>
