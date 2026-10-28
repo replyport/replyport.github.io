@@ -38,6 +38,7 @@
     <nav class="topbar__links" aria-label="Primary">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../connectors/">Connectors</a>
       <a href="./" aria-current="page">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -48,6 +49,7 @@
     <nav class="wrap navdrop__menu" aria-label="Primary, compact">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../connectors/">Connectors</a>
       <a href="./" aria-current="page">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -253,7 +255,7 @@
               <tr><th scope="row">Accounts</th><td>Accounts that Outlook Classic delivers into their own mail data store, such as Microsoft 365 and Exchange accounts. Each account you connect must have its own data store; if two accounts deliver into the same data file, ReplyPort refuses drafts for it rather than risk choosing the wrong account. IMAP and POP accounts are not documented as supported.</td></tr>
               <tr><th scope="row">Outlook running</th><td>Outlook Classic must be open for mail copying and for draft creation. ReplyPort never starts Outlook itself. Search of already-copied mail works while Outlook is closed.</td></tr>
               <tr><th scope="row">Storage</th><td>The Dropbox desktop app, signed in, with ReplyPort&#8217;s dedicated App Folder on this PC. ReplyPort reads and writes its files on disk and uses Dropbox API evidence to verify the bound account and App Folder. Dropbox must keep syncing for your AI to see new copies and for ReplyPort to see new requests.</td></tr>
-              <tr><th scope="row">AI</th><td>An AI assistant with a <strong>Dropbox connection</strong> to the same Dropbox account, able both to read files in, and to create new files in, ReplyPort&#8217;s dedicated App Folder (normally <code>/Apps/ReplyPort</code>; see <a class="link" href="#which-folder">Which Dropbox folder</a>). Read-only access is not enough to search or draft. Installing Dropbox on the PC does not connect it to your AI. See <a class="link" href="#ai-connection">How your AI connects</a>.</td></tr>
+              <tr><th scope="row">AI</th><td>For the current Dropbox setup, an AI assistant needs a <strong>Dropbox connection</strong> to the same account and read/write access to ReplyPort&#8217;s dedicated App Folder (normally <code>/Apps/ReplyPort</code>; see <a class="link" href="#which-folder">Which Dropbox folder</a>). Read-only access is not enough to search or draft. Installing Dropbox on the PC does not connect it to your AI. The separate hosted MCP connector is not approved for customer rollout; see the <a class="link" href="../connectors/">connector setup page</a>.</td></tr>
               <tr><th scope="row">PC state</th><td>The PC must be on, signed in, and running ReplyPort for any request to be processed.</td></tr>
             </tbody>
           </table>
@@ -266,8 +268,8 @@
       <section id="ai-connection">
         <p class="eyebrow">Working with your AI</p>
         <h2>How your AI connects to ReplyPort</h2>
-        <p>ReplyPort and your AI never talk to each other directly. They meet in one place: ReplyPort&#8217;s dedicated App Folder in your Dropbox. ReplyPort reaches it through the Dropbox desktop app on your PC. Your AI reaches the same folder through its own connection to your Dropbox account.</p>
-        <p class="docs-callout docs-callout--dev"><strong>First-class ReplyPort MCP is in development.</strong> The alternative connection path is implemented for controlled deployment but is not yet available as a public setup path. It accesses the same user-controlled Dropbox App Folder; Outlook work continues to run on the local Windows PC. Use the connected AI&#8217;s Dropbox tools for current public setup.</p>
+        <p>In the current Windows-app setup, ReplyPort and your AI share records through ReplyPort&#8217;s dedicated App Folder in your Dropbox. ReplyPort uses Dropbox Desktop on the PC; your AI reaches the same folder through its own Dropbox connection. A separate hosted MCP service lets an AI client call ReplyPort through Cloudflare, which reads approved records from that App Folder and returns requested content to the AI. Neither route gives the AI a connection to Outlook or to the Windows PC.</p>
+        <p class="docs-callout docs-callout--dev"><strong>The hosted MCP connector is not approved for customer rollout.</strong> The service is deployed for controlled preparation, but it has not passed its privacy, security and synthetic end-to-end acceptance gates, and ChatGPT and Claude directory listings are not verified live. Outlook work continues to run in the local Windows application. Use the connected AI&#8217;s Dropbox tools for the current public setup.</p>
         <p class="docs-callout"><strong><code>/Apps/ReplyPort</code> is the usual account-visible Dropbox App Folder path, not a path on your computer.</strong> Dropbox may assign a suffix, for example <code>/Apps/ReplyPort (1)</code>. Copy the setup prompt from Control Centre for the exact path; do not guess from these examples. If an AI says it has no local file tools, or suggests installing a desktop app, ask it to use its Dropbox connection instead. A failed ordinary file search does not mean Dropbox is disconnected.</p>
         <h3>What your AI needs permission to do</h3>
         <div class="docs-table-wrap">
@@ -942,8 +944,8 @@
       <section id="privacy">
         <h2>Privacy summary</h2>
         <ul>
-          <li>The ReplyPort Windows app runs entirely on your PC. There is no ReplyPort server and no hosted AI, and the app contains no ReplyPort analytics or telemetry.</li>
-          <li>Copied mail is processed by Dropbox, because it is in your Dropbox folder, and by whichever AI service you connect to that folder. Each operates under its own terms.</li>
+          <li>The ReplyPort Windows app runs locally for Outlook work and contains no ReplyPort analytics or telemetry. A separate optional ReplyPort-operated Cloudflare MCP service is hosted for AI clients; it does not connect to Outlook.</li>
+          <li>In the current Dropbox workflow, copied mail is processed by Dropbox and the AI service you connect to that folder. With the hosted MCP connector, Cloudflare reads approved copies from Dropbox and returns requested content to the AI host. Each provider operates under its own terms.</li>
           <li>You choose which mailboxes are copied, whether each copies Inbox and Sent Items, all ordinary folders or specific folders, and whether attachments are included. Mail copying and attachment copying are both off until you turn them on, and a mailbox is never widened to more folders by an update.</li>
           <li>Each mailbox has a 90-day default history period, or a 12-month or 24-month period you choose. Older copies age out under retention and recovery rules. Search requests and results are deleted after seven days.</li>
         </ul>
@@ -1120,8 +1122,8 @@
         <p>An AI starts from the exact Dropbox App Folder named in Control Centre&#8217;s generated prompt. It reads <code>BRIDGE_MANIFEST.json</code>, which lists the mailboxes (by random identifier and label), what each can do, the installed version and the format fingerprint of every record type; then <code>AGENT_CONTEXT.md</code>; then the format for the operation it needs. All paths in the manifest and formats are relative to the App Folder. The Windows side addresses the same folder through its local Dropbox path, which is never given to the AI.</p>
         <p>The guides published into the folder come from the installed ReplyPort version. They are generated for the folder in use, rendered in full before anything is written, so that a folder that cannot be identified leaves the existing guides untouched. Generation changes only the folder name: the safety rules, the protocol and the formats are unchanged. Text saved in an AI account is separate and is never edited by ReplyPort.</p>
 
-        <h3>First-class MCP <span class="st st--dev">In development</span></h3>
-        <p>A remote ReplyPort MCP is implemented for controlled deployment so compatible AI clients can use first-class Search, Read, Reply, New Draft, Forward and Draft Status tools instead of constructing queue files themselves. The MCP is a storage bridge: it reads and writes only ReplyPort&#8217;s Dropbox App Folder data. It does not use Outlook COM and cannot replace the local Windows worker as the Outlook executor. It is not yet the public connection path documented by the setup guide.</p>
+        <h3>First-class MCP <span class="st st--dev">Deployed · gated</span></h3>
+        <p>A remote ReplyPort MCP service is deployed for controlled preparation so compatible AI clients can use Search, Read, Reply, New Draft, Forward and Draft Status tools instead of constructing queue files themselves. It reads and writes only authorized ReplyPort Dropbox App Folder data and returns requested content to the connected AI host. It does not use Outlook COM and cannot replace the local Windows worker as the Outlook executor. The service has not passed customer rollout gates, and ChatGPT and Claude directory listings are not verified live. See the proposed <a class="link" href="../connectors/">connector setup guide</a>; do not use the hosted service with real mail until ReplyPort announces availability.</p>
 
         <h3>Records</h3>
         <p>Every record is a strict JSON file with a declared type, protocol version and schema hash. The manifest lists the SHA-256 hash of every schema; a record whose hash does not match is rejected. Records that ReplyPort writes go to a temporary file in the same folder and are renamed into place, so a reader never sees a partial file.</p>
@@ -1179,11 +1181,14 @@
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
       <a href="../setup/">Setup guide</a>
+      <a href="../connectors/">Connector setup</a>
       <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
+      <a href="../support/">Support</a>
       <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
       <a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>
       <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
     </nav>

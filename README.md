@@ -18,6 +18,10 @@ index.html                 the home page
 ai-multiple-outlook-accounts/index.html   landing page: AI across several Outlook accounts
 ai-for-outlook-classic/index.html         landing page: ways to use AI with Outlook Classic
 setup/index.html           consumer-facing AI setup guide
+connectors/index.html      ChatGPT and Claude hosted MCP connector setup
+support/index.html         public support links and contact details
+terms/index.html           proposed Terms of Service draft
+privacy/index.html         privacy policy and hosted-service disclosures
 setup/*.txt                plain-text bootstrap download fallbacks
 docs/index.html            technical documentation / product reference
 assets/site.css            the only stylesheet
@@ -159,15 +163,24 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
    list, policy note, Store CTA and price.
 9. Questions (`#faq`) — fair "when to use ReplyPort" note and short FAQ.
 10. Shared footer — product, guides and company links, plus affiliation notice.
-11. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
-12. Privacy page — full data-handling disclosures and contact information. It
+11. Setup page — prerequisites, three steps, fallback prompt and troubleshooting
+    for the current Windows-app Dropbox workflow.
+12. Connector page — future ChatGPT and Claude MCP setup, current availability,
+    hosted-service processing, disconnection and troubleshooting. Keep its
+    availability notice accurate and do not invent directory installation links.
+13. Support page — existing feedback and contact routes, without a response-time
+    promise.
+14. Privacy page — full data-handling disclosures and contact information. It
     states that Dropbox is the required storage provider in the current release;
-    change it, and its effective date, if another provider ships.
-13. Docs page — the technical reference: feature status, architecture, AI
+    change it, and its effective date, if another provider ships. Keep the
+    Windows-app disclosures separate from optional hosted-service processing.
+15. Terms page — factual draft only until the owner and legal reviewer approve
+    the unresolved business and legal decisions.
+16. Docs page — the technical reference: feature status, architecture, AI
     workflows, mailbox routing, mirroring and folder coverage, attachments,
     safety model, lifecycle, privacy summary, limitations, roadmap,
     troubleshooting, result codes and technical architecture.
-14. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
+17. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
     identity, examples, limits) and `/ai-for-outlook-classic/` (the ways to use AI
     with Outlook, when ReplyPort fits, what it can and cannot do). Each must answer
     a different question from the homepage; do not add thin keyword variants.

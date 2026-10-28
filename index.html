@@ -58,6 +58,7 @@
       <a href="#how">How it works</a>
       <a href="#windows">Requirements</a>
       <a href="setup/">Setup</a>
+      <a href="connectors/">Connectors</a>
       <a href="docs/">Docs</a>
     </nav>
     <a class="btn btn--small" href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Install from Store</a>
@@ -69,6 +70,7 @@
       <a href="#how">How it works</a>
       <a href="#windows">Requirements</a>
       <a href="setup/">Setup</a>
+      <a href="connectors/">Connectors</a>
       <a href="docs/">Docs</a>
     </nav>
   </details>
@@ -152,7 +154,7 @@
           <p class="eyebrow eyebrow--wide">What you can do</p>
           <h2 class="h2">Three jobs across your accounts.</h2>
         </div>
-        <p class="lead">Ask in ordinary language. These examples use a university account and a personal account, with ChatGPT in the first and third and Claude in the second. Each assistant reaches ReplyPort through its Dropbox connection.</p>
+        <p class="lead">Ask in ordinary language. These examples use a university account and a personal account, with ChatGPT in the first and third and Claude in the second. They show the current Dropbox-based connection workflow.</p>
       </div>
 
       <div class="jobs">
@@ -178,7 +180,7 @@
           <div class="job__text">
             <span class="job__num">02</span>
             <h3 class="job__title">Find it, whichever account received it</h3>
-            <p class="job__body">You do not need to remember which mailbox a message went to. Your AI reaches ReplyPort through its Dropbox connection, runs one search in each enabled account and opens the full message before it reports back. Ask for a reply and the draft is created in the account that received the original.</p>
+            <p class="job__body">You do not need to remember which mailbox a message went to. In the current Dropbox workflow, your AI searches each enabled account and opens the full message before it reports back. Ask for a reply and the draft is created in the account that received the original.</p>
             <blockquote class="job__prompt">&#8220;Using ReplyPort, find the email about the podcast invitation. Search across my enabled Outlook mailboxes and identify which account received it.&#8221;<cite>Example request</cite></blockquote>
           </div>
           <figure class="shot shot--chat shot--claude">
@@ -325,7 +327,7 @@
         <li class="how-step">
           <span class="how-step__num">03</span>
           <h3 class="how-step__title">Ask your AI.</h3>
-          <p class="how-step__text">Through its Dropbox connection, your assistant reads that folder to search, summarise and write replies, then leaves a draft request there.</p>
+          <p class="how-step__text">In the current Dropbox workflow, your assistant reads that folder to search and write replies, then leaves a draft request there. A separate hosted MCP connector is in preparation.</p>
           <span class="how-step__arrow" aria-hidden="true"></span>
         </li>
         <li class="how-step">
@@ -351,7 +353,7 @@
           <p class="eyebrow eyebrow--wide">Data flow</p>
           <h2 class="h2">What runs on your PC, and what does not.</h2>
         </div>
-        <p class="lead">ReplyPort&#8217;s connection to Outlook runs on your PC. The mail your AI reads does not stay there: the current version copies it to your Dropbox so your AI can reach it.</p>
+        <p class="lead">ReplyPort&#8217;s connection to Outlook runs on your PC. In the current Windows-app workflow, approved mail is copied to Dropbox for your AI to access. A separate hosted MCP connector is being prepared and will process approved copies through Cloudflare when released.</p>
       </div>
       <div class="split">
         <div>
@@ -362,7 +364,7 @@
                 <li>ReplyPort works with Outlook Classic directly. No Outlook add-in, and you do not sign ReplyPort in through Microsoft Graph.</li>
                 <li>Every draft request is checked against the live mailbox before a draft is saved.</li>
                 <li>Account bindings and keys stay on the PC. Logs contain no subjects, bodies or addresses.</li>
-                <li>There is no ReplyPort server and no send function.</li>
+                <li>The Windows app has no ReplyPort analytics or telemetry. A separate optional ReplyPort-hosted MCP service is being prepared; it does not connect to Outlook.</li>
               </ul>
             </div>
             <div class="flow__place">
@@ -377,7 +379,7 @@
             <div class="flow__place">
               <h3>With your AI</h3>
               <ul>
-                <li>Your assistant reads the approved copies and writes requests. It never connects to Outlook or to your PC.</li>
+                <li>In the Dropbox workflow, your assistant reads approved copies and writes requests. With the optional hosted MCP connector, Cloudflare reads approved copies from Dropbox and returns requested content to the AI host.</li>
                 <li>Messages marked Personal, Private or Confidential, and encrypted messages, are not copied.</li>
                 <li>Your AI provider&#8217;s terms and data policies apply.</li>
               </ul>
@@ -465,11 +467,11 @@
         <div>
           <details>
             <summary>Is ReplyPort a Claude or ChatGPT product?</summary>
-            <p>No. ReplyPort is independent software and does not contain an AI model. It works with assistants that can read and create files in your Dropbox, including Claude and ChatGPT.</p>
+            <p>No. ReplyPort is independent software and does not contain an AI model. The current Windows-app workflow works with assistants that can read and create files in your Dropbox. Optional ChatGPT and Claude hosted connectors are in preparation; they are not verified as public directory listings. See <a href="connectors/">connector setup</a>.</p>
           </details>
           <details>
             <summary>Does my email stay on my PC?</summary>
-            <p>Not all of it. ReplyPort runs on your PC, but so that your AI can read mail it copies recent mail from the mailboxes you approve to your Dropbox. Dropbox and your AI provider process those copies under their own terms. See <a href="#data">Data flow</a>.</p>
+            <p>Not all of it. The Windows app runs on your PC and copies mail you approve to Dropbox. In the current setup, your AI reads those copies through its Dropbox connection. A separate ReplyPort-operated Cloudflare MCP service is being prepared; if connected, it reads approved copies from Dropbox and returns requested content to the AI host. Dropbox, Cloudflare and the AI provider process data under their own terms. See <a href="#data">Data flow</a> and the <a href="privacy/">Privacy policy</a>.</p>
           </details>
           <details>
             <summary>Can ReplyPort send email?</summary>
@@ -525,11 +527,14 @@
       <a href="ai-multiple-outlook-accounts/">AI across multiple Outlook accounts</a>
       <a href="ai-for-outlook-classic/">AI for Outlook Classic</a>
       <a href="setup/">Setup guide</a>
+      <a href="connectors/">Connector setup</a>
       <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
+      <a href="support/">Support</a>
       <a href="privacy/">Privacy</a>
+      <a href="terms/">Terms</a>
       <a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>
       <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
     </nav>

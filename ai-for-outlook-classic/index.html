@@ -49,6 +49,7 @@
     <nav class="topbar__links" aria-label="Primary">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../connectors/">Connectors</a>
       <a href="../docs/">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -59,6 +60,7 @@
     <nav class="wrap navdrop__menu" aria-label="Primary, compact">
       <a href="../#how">How it works</a>
       <a href="../setup/">Setup</a>
+      <a href="../connectors/">Connectors</a>
       <a href="../docs/">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -155,8 +157,8 @@
 
       <section id="data">
         <h2>Where your mail goes</h2>
-        <p>ReplyPort&#8217;s connection to Outlook runs on your PC and does not use an Outlook add-in or Microsoft Graph. To let your AI read mail, the current version copies recent mail from the accounts you approve into a ReplyPort folder in your Dropbox. Your AI reads those copies and leaves draft requests there; ReplyPort checks each request on your PC before creating the draft.</p>
-        <p>Dropbox and your AI provider process the copied mail under their own terms. Messages marked Personal, Private or Confidential, and encrypted messages, are not copied. Details are in the <a class="link" href="../privacy/">Privacy policy</a>.</p>
+        <p>ReplyPort&#8217;s connection to Outlook runs on your PC and does not use an Outlook add-in or Microsoft Graph. In the current Windows-app workflow, ReplyPort copies recent mail from accounts you approve into its Dropbox App Folder. Your AI can read those copies through its Dropbox connection and leave draft requests there; ReplyPort checks each request on your PC before creating the draft. A separate ReplyPort-operated Cloudflare MCP connector is being prepared to read approved copies from Dropbox and return requested content to the AI host.</p>
+        <p>Dropbox, Cloudflare when the hosted connector is used, and your AI provider process data under their own terms. Messages marked Personal, Private or Confidential, and encrypted messages, are not copied by the Windows app. Details are in the <a class="link" href="../privacy/">Privacy policy</a> and <a class="link" href="../connectors/">connector setup guide</a>.</p>
       </section>
 
       <section id="requirements">
@@ -196,11 +198,14 @@
       <a href="../ai-multiple-outlook-accounts/">AI across multiple Outlook accounts</a>
       <a href="./" aria-current="page">AI for Outlook Classic</a>
       <a href="../setup/">Setup guide</a>
+      <a href="../connectors/">Connector setup</a>
       <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
     <nav class="foot__col" aria-label="Company">
       <h2 class="eyebrow">Company</h2>
+      <a href="../support/">Support</a>
       <a href="../privacy/">Privacy</a>
+      <a href="../terms/">Terms</a>
       <a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>
       <a href="mailto:sergei.v.alexeev@gmail.com">Contact</a>
     </nav>
