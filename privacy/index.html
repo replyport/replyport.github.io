@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy policy | ReplyPort</title>
-<meta name="description" content="Privacy policy for ReplyPort, a local Windows utility for Outlook Classic workflows and AI-assisted analysis and drafting.">
+<meta name="description" content="Privacy information for ReplyPort's Windows Outlook Classic application and optional hosted MCP service.">
 <link rel="canonical" href="https://replyport.github.io/privacy/">
 <meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
@@ -59,8 +59,8 @@
     <div class="wrap privacy-hero__inner">
       <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Privacy policy</p>
       <h1>Privacy policy</h1>
-      <p class="privacy-standfirst">ReplyPort is a Windows desktop utility by Sergey Alexeev for user-authorized Outlook Classic workflows and AI-assisted analysis and drafting. This policy describes the current early-access product.</p>
-      <p class="meta">Effective date: 28 October 2026</p>
+      <p class="privacy-standfirst">ReplyPort is a Windows desktop application published by Sergey Alexeev, an individual publisher in Australia. It works with Outlook Classic and Dropbox, with an optional ReplyPort-operated hosted MCP service for compatible AI assistants.</p>
+      <p class="meta">Effective date: 20 November 2026</p>
     </div>
   </header>
 
@@ -70,6 +70,7 @@
       <a href="#overview">Overview</a>
       <a href="#information">Information</a>
       <a href="#storage">Storage and protection</a>
+      <a href="#hosted-service">Hosted MCP service</a>
       <a href="#third-parties">Services you choose</a>
       <a href="#ai">Generative AI</a>
       <a href="#retention">Retention and controls</a>
@@ -80,9 +81,9 @@
       <section id="overview">
         <p class="eyebrow">Overview</p>
         <h2>What ReplyPort does</h2>
-        <p>ReplyPort works locally with Outlook Classic. You select which Outlook mailboxes and folders to copy into ReplyPort&#8217;s dedicated App Folder in your own Dropbox. An AI assistant or other tool that you separately authorize can use those copies to help search, analyse and prepare a reply. ReplyPort creates the resulting draft in the correct Outlook account.</p>
+        <p>ReplyPort works locally with Outlook Classic on Windows. You select which Outlook mailboxes and folders to copy into ReplyPort&#8217;s dedicated App Folder in your own Dropbox. If you connect a compatible AI assistant to ReplyPort&#8217;s hosted MCP service, that service reads approved records from the App Folder and returns requested message content and metadata to the assistant. The ReplyPort Windows application processes draft requests locally and creates any resulting draft in the correct Outlook account.</p>
         <p class="privacy-callout"><strong>Draft only.</strong> ReplyPort does not automatically send email. It does not send mail through SMTP, Microsoft Graph or another cloud mail transport. The user must review every generated draft and manually decide whether to send it in Outlook.</p>
-        <p>The Windows application does not provide a hosted AI model or a mail-sending service. It works with Outlook Classic and Dropbox; any external AI service or integration must be connected and authorized separately.</p>
+        <p>The Windows application does not provide a hosted AI model. The Cloudflare-hosted MCP service is operated by ReplyPort, and the AI assistant is a separate service that you choose and authorize. ReplyPort has no Send capability: it creates unsent Outlook drafts for you to review.</p>
       </section>
 
       <section id="information">
@@ -110,16 +111,27 @@
         <p>ReplyPort uses the current Windows user&#8217;s filesystem permissions, Windows Data Protection API protection for local secrets and sensitive operational state, verified Dropbox App Folder account and namespace binding, opaque mailbox identifiers, mailbox-scoped capabilities, immutable records, and strict Outlook routing and draft verification. Per-mailbox directories inside the App Folder provide logical separation, not independent Dropbox access controls. Dropbox&#8217;s App Folder API restriction applies to <em>ReplyPort&#8217;s own Dropbox app authorization</em>; a separately connected AI tool may receive different Dropbox permissions. Users should review each connection and secure their Windows, Outlook, Dropbox and AI accounts.</p>
       </section>
 
+      <section id="hosted-service">
+        <p class="eyebrow">Optional hosted connector</p>
+        <h2>ReplyPort MCP service</h2>
+        <p>ReplyPort operates an optional hosted MCP service on Cloudflare. When you connect Claude, ChatGPT or another compatible AI assistant, you authorize the service to access your ReplyPort Dropbox App Folder. ReplyPort&#8217;s Dropbox app is restricted to its own App Folder and requests basic account information plus permission to read and write files in that folder.</p>
+        <p>The hosted service reads approved mirrored message metadata, snippets and bodies from your App Folder to answer authorized requests. It can write draft request records and read matching local receipts. It does not connect to Outlook or keep a second mailbox mirror. The Windows application on your PC remains the only Outlook executor.</p>
+        <h3>OAuth credentials and logs</h3>
+        <p>The hosted service stores Dropbox OAuth grant properties in Cloudflare Workers KV. The OAuth provider encrypts those properties with AES-GCM. The Dropbox grant is separate from the MCP bearer token used by the AI assistant. The current refresh grant expires 30 days after authorization; you must reconnect after expiry. You can revoke ReplyPort&#8217;s Dropbox authorization through Dropbox&#8217;s Connected Apps settings.</p>
+        <p>ReplyPort&#8217;s hosted application code does not custom-log MCP request bodies or email content. The reviewed production Wrangler configuration sets Workers Observability to disabled, but ReplyPort has not independently confirmed the active dashboard setting for the deployed service. Cloudflare may process technical, invocation, error, network or security metadata. <a class="link" href="https://developers.cloudflare.com/workers/observability/logs/workers-logs/" rel="noopener">Cloudflare&#8217;s Workers Logs documentation</a> lists retention of 3 days for Workers Free and 7 days for Workers Paid when Workers Logs are enabled. Those limits do not establish retention for other Cloudflare records. ReplyPort has not verified the retention period for those other records and does not promise a deletion time for them.</p>
+      </section>
+
       <section id="third-parties">
         <p class="eyebrow">Services you choose</p>
         <h2>When third parties may process information</h2>
-        <p>The ReplyPort Windows application does not upload mirrored Outlook email to a publisher-operated mail or AI server. It places authorized copies in the user&#8217;s Dropbox account, as described above. A separately authorized AI connector or hosted integration may access or process the records the user makes available to it, according to that connection&#8217;s permissions and terms. The Windows app contains no ReplyPort analytics or telemetry.</p>
+        <p>The Windows application does not upload mirrored Outlook mail to a ReplyPort-operated mailbox server or AI model. It places authorized copies in your Dropbox account. The optional ReplyPort-operated Cloudflare MCP service reads approved files from that App Folder and returns requested message content and metadata to the AI assistant you selected. That AI service processes the returned information under its own terms, settings and retention practices. The Windows app contains no ReplyPort analytics or telemetry.</p>
         <h3>Website promotion measurement</h3>
         <p>The public ReplyPort website may use limited advertising and campaign measurement to understand whether a visitor reached the site from a ReplyPort promotion and whether they chose the Microsoft Store link. When enabled, this may include the OpenAI Ads Measurement Pixel, the Google Ads conversion tag, first-party attribution cookies, URL campaign parameters and a Microsoft Store campaign ID. This website measurement is separate from the Windows app and does not provide advertising systems with Outlook message content or ReplyPort's local mailbox data.</p>
         <p>Information may nevertheless be processed by the services the user uses with ReplyPort:</p>
         <ul>
           <li><strong>Microsoft and the user's mailbox provider</strong> continue to process Outlook mailbox data under the account and service the user already uses. ReplyPort's local Outlook integration does not replace those arrangements.</li>
           <li><strong>Dropbox</strong> processes the files ReplyPort places in its dedicated App Folder, which Dropbox Desktop synchronizes through the user&#8217;s account. Dropbox&#8217;s API also processes account identity and small verification files during authorization and setup.</li>
+          <li><strong>Cloudflare</strong> hosts ReplyPort&#8217;s optional MCP service and stores encrypted Dropbox OAuth grant properties. ReplyPort&#8217;s application code does not custom-log request bodies or email content. Cloudflare may process technical and service metadata under its own terms; ReplyPort has not verified retention for all such records.</li>
           <li><strong>An external AI service, AI-enabled tool or separately authorized integration</strong> may process ReplyPort data that the user chooses to make available for searching, analysis or drafting. Its Dropbox permissions can differ from ReplyPort&#8217;s App Folder-only authorization.</li>
         </ul>
         <p>Each selected service operates under its own terms and privacy policy. Users should review those terms and only make mailbox information available to a service they are permitted and willing to use.</p>
@@ -128,7 +140,7 @@
       <section id="ai">
         <p class="eyebrow">Generative AI</p>
         <h2>AI-assisted output requires review</h2>
-        <p>ReplyPort is designed for AI-assisted analysis and drafting. The current product does not itself provide a hosted generative-AI model. The user chooses whether to use an external AI service or AI-enabled tool.</p>
+        <p>ReplyPort does not provide a generative-AI model. You choose the AI assistant. When you use the hosted MCP service, it returns the requested message content and metadata to that assistant, which processes the information under its own terms, settings and retention practices.</p>
         <p class="privacy-callout">Generative-AI output can be inaccurate, incomplete, biased or inappropriate. The user must review and, where necessary, edit every draft before deciding whether to send it.</p>
         <p>To report inappropriate AI-generated content associated with ReplyPort, email <a class="link" href="mailto:sergei.v.alexeev@gmail.com?subject=ReplyPort%20AI%20content%20report">sergei.v.alexeev@gmail.com</a>. Please do not include confidential email content unless it is necessary to investigate the report.</p>
       </section>
@@ -136,17 +148,20 @@
       <section id="retention">
         <p class="eyebrow">Retention and controls</p>
         <h2>Your choices</h2>
-        <p>ReplyPort defaults to copying recent messages from the previous 90 days, but a user can locally select a 12- or 24-month history window for an enabled mailbox. Mirror snapshots and their optional attachment copies expire according to the configured retention floor and retained history high-water mark; switching to a shorter history window does not immediately delete older copies. Files needed for pending work or safe recovery can remain longer. Disposable search requests and results normally expire after seven days.</p>
+        <p>The selected mailbox history window controls how far back ReplyPort copies mail; it is not a guaranteed deletion date for data already copied. Older snapshots or attachment copies may remain in Dropbox after you change that setting. Draft requests and receipts may also remain in the App Folder until you delete them. ReplyPort does not promise automatic deletion of all Dropbox records on a fixed timetable.</p>
+        <p>Hosted OAuth grants expire 30 days after authorization unless you reconnect. Other service records and technical metadata may remain for periods determined by how ReplyPort and its providers operate the service. ReplyPort does not promise a deletion time for Cloudflare platform metadata.</p>
         <p>The user controls ReplyPort and can:</p>
         <ul>
           <li>stop copying selected mail or stop using the dedicated ReplyPort App Folder in Dropbox;</li>
           <li>choose, for each mailbox, whether email attachments are copied, and turn this off at any time, which removes the attachment copies;</li>
           <li>disable ReplyPort to stop its background processing;</li>
           <li>choose whether to use any external AI service or AI-enabled tool;</li>
+          <li>remove ReplyPort from an AI assistant&#8217;s connector settings to disconnect that assistant;</li>
+          <li>revoke ReplyPort&#8217;s Dropbox authorization in Dropbox&#8217;s Connected Apps settings;</li>
           <li>delete ReplyPort-managed data in the App Folder using <strong>Remove ReplyPort&#8230;</strong> &#8594; <strong>Delete ReplyPort data too</strong> in Control Centre, or manage those files directly in Dropbox; and</li>
           <li>uninstall the Windows application; use ReplyPort&#8217;s removal options separately when local configuration or Dropbox data should also be cleared.</li>
         </ul>
-        <p>Disabling or uninstalling ReplyPort does not delete, move or otherwise change messages in Outlook. Uninstalling the app alone does not delete files in the Dropbox App Folder; removing those copies requires a separate action. ReplyPort&#8217;s removal process protects unrecognized content rather than deleting it as application data. Deleting synchronized files also affects the user&#8217;s Dropbox online and other synchronized devices.</p>
+        <p>Disconnecting an AI assistant, revoking Dropbox authorization and deleting App Folder data are separate actions. Disconnecting does not necessarily delete Dropbox files. Revoking Dropbox authorization does not delete Outlook drafts. Disabling or uninstalling ReplyPort does not delete, move or otherwise change Outlook messages or drafts. Uninstalling the app alone does not delete App Folder files. ReplyPort&#8217;s removal process protects unrecognized content rather than deleting it as application data. Deleting synchronized files also affects your Dropbox account and other synchronized devices.</p>
       </section>
 
       <section id="contact">
@@ -154,7 +169,7 @@
         <h2>Privacy questions and reports</h2>
         <p>ReplyPort is published and developed by <strong>Sergey Alexeev</strong>.</p>
         <p>For privacy questions, requests, concerns or reports of inappropriate AI-generated content, contact <a class="link" href="mailto:sergei.v.alexeev@gmail.com">sergei.v.alexeev@gmail.com</a>.</p>
-        <p class="note">This policy may be updated when ReplyPort&#8217;s data practices change. The effective date above identifies this version, which reflects the current Dropbox App Folder architecture, Dropbox API authorization and local sync verification, and user-selectable mailbox history windows.</p>
+        <p class="note">This policy may be updated when ReplyPort&#8217;s data practices change.</p>
       </section>
     </article>
   </div>
