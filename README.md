@@ -18,6 +18,10 @@ index.html                 the home page
 ai-multiple-outlook-accounts/index.html   landing page: AI across several Outlook accounts
 ai-for-outlook-classic/index.html         landing page: ways to use AI with Outlook Classic
 setup/index.html           consumer-facing AI setup guide
+connectors/index.html      ChatGPT/Codex and Claude hosted MCP connector setup
+support/index.html         public support links and contact details
+terms/index.html           proposed Terms of Service draft
+privacy/index.html         privacy policy and hosted-service disclosures
 setup/*.txt                plain-text bootstrap download fallbacks
 docs/index.html            technical documentation / product reference
 assets/site.css            the only stylesheet
@@ -31,8 +35,8 @@ apple-touch-icon.png       180×180 mark
 robots.txt, sitemap.xml, .nojekyll
 ```
 
-JavaScript is progressive enhancement only: a clipboard helper on the setup
-page, the contents folding and current-section highlight on the docs page, and
+JavaScript is progressive enhancement only: the contents folding and
+current-section highlight on the docs page, and
 `assets/film.js`, the homepage film player. Without JavaScript the
 setup instructions stay readable and downloadable, and the film is a native
 `<video>` with its own controls. The mark states, responsive nav disclosure and
@@ -76,16 +80,18 @@ installs are measured separately in Microsoft Partner Center.
 
 ## Setup guide
 
-The public setup guide at [`setup/`](setup/) owns the three-step AI connection
-process: connect the AI to the Dropbox account containing ReplyPort's App Folder, copy the exact setup prompt from Control Centre,
-and paste it into the AI to follow the guide. Installation, Outlook and mail-copying
-prerequisites appear before those steps. The homepage links here instead of
-maintaining its own instructions.
+The public setup guide at [`setup/`](setup/) owns the hosted-connector onboarding:
+open the official ChatGPT/Codex or Claude directory listing, authorize the user's
+Dropbox account, install the Store app if needed, configure Outlook Classic and
+mail copying, search, check a matching `created` receipt, and disconnect or revoke.
+The directory listings are still pending approval, so the page must not provide an
+unpublished endpoint. The homepage links here instead of maintaining its own steps.
 
-`setup/setup-prompt.txt` matches the copyable prompt on the page. The older
-`chatgpt.txt` and `claude.txt` URLs retain the same prompt for existing links.
+`setup/setup-prompt.txt`, `chatgpt.txt` and `claude.txt` retain the older direct
+Dropbox bootstrap prompt for existing customers. They are not part of the hosted
+directory onboarding and are no longer linked from the setup page.
 `agent-context.txt` redirects readers to the current guide; it is not an operating
-protocol. Keep these download URLs working and do not invent setup instructions.
+protocol. Keep these legacy URLs working and do not invent setup instructions.
 
 ## Positioning
 
@@ -159,15 +165,25 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
    list, policy note, Store CTA and price.
 9. Questions (`#faq`) — fair "when to use ReplyPort" note and short FAQ.
 10. Shared footer — product, guides and company links, plus affiliation notice.
-11. Setup page — prerequisites, three steps, fallback prompt and troubleshooting.
-12. Privacy page — full data-handling disclosures and contact information. It
+11. Setup page — hosted directory onboarding, requirements, draft confirmation,
+    disconnection and troubleshooting. Keep the unavailable listing notice clear.
+12. Connector page — current ChatGPT/Codex and Claude MCP status, hosted-service
+    processing, disconnection and troubleshooting. Production functional
+    acceptance is complete; directory publication is pending. Do not invent live
+    directory links.
+13. Support page — existing feedback and contact routes, without a response-time
+    promise.
+14. Privacy page — draft data-handling disclosures and contact information. It
     states that Dropbox is the required storage provider in the current release;
-    change it, and its effective date, if another provider ships.
-13. Docs page — the technical reference: feature status, architecture, AI
+    change it, and its effective date, if another provider ships. Keep the
+    Windows-app disclosures accurate alongside hosted-service processing.
+15. Terms page — factual draft only until the owner and legal reviewer approve
+    the unresolved business and legal decisions.
+16. Docs page — the technical reference: feature status, architecture, AI
     workflows, mailbox routing, mirroring and folder coverage, attachments,
     safety model, lifecycle, privacy summary, limitations, roadmap,
     troubleshooting, result codes and technical architecture.
-14. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
+17. Landing pages — `/ai-multiple-outlook-accounts/` (routing across accounts,
     identity, examples, limits) and `/ai-for-outlook-classic/` (the ways to use AI
     with Outlook, when ReplyPort fits, what it can and cannot do). Each must answer
     a different question from the homepage; do not add thin keyword variants.
