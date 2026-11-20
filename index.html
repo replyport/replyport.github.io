@@ -99,7 +99,7 @@
             <li>No send function</li>
             <li>One-time purchase</li>
           </ul>
-          <p class="note" id="surfaces">Works with ChatGPT, ChatGPT Work, Codex, Claude, Claude Cowork and Claude Code, connected through your Dropbox.</p>
+          <p class="note" id="surfaces">Hosted ChatGPT/Codex and Claude directory listings are being prepared. The production MCP service has passed functional acceptance; public listings are not yet available.</p>
         </div>
 
         <figure class="shot shot--hero">
@@ -180,7 +180,7 @@
           <div class="job__text">
             <span class="job__num">02</span>
             <h3 class="job__title">Find it, whichever account received it</h3>
-            <p class="job__body">You do not need to remember which mailbox a message went to. In the current Dropbox workflow, your AI searches each enabled account and opens the full message before it reports back. Ask for a reply and the draft is created in the account that received the original.</p>
+        <p class="job__body">You do not need to remember which mailbox a message went to. The hosted ReplyPort connector searches the mail copies you approved and opens the full message before reporting back. Ask for a reply and the Windows app creates the draft in the account that received the original.</p>
             <blockquote class="job__prompt">&#8220;Using ReplyPort, find the email about the podcast invitation. Search across my enabled Outlook mailboxes and identify which account received it.&#8221;<cite>Example request</cite></blockquote>
           </div>
           <figure class="shot shot--chat shot--claude">
@@ -327,7 +327,7 @@
         <li class="how-step">
           <span class="how-step__num">03</span>
           <h3 class="how-step__title">Ask your AI.</h3>
-          <p class="how-step__text">In the current Dropbox workflow, your assistant reads that folder to search and write replies, then leaves a draft request there. A separate hosted MCP connector is in preparation.</p>
+          <p class="how-step__text">The hosted connector reads approved copies from your Dropbox App Folder, returns requested content to your AI, and writes draft requests there. The Windows app processes those requests locally.</p>
           <span class="how-step__arrow" aria-hidden="true"></span>
         </li>
         <li class="how-step">
@@ -353,7 +353,7 @@
           <p class="eyebrow eyebrow--wide">Data flow</p>
           <h2 class="h2">What runs on your PC, and what does not.</h2>
         </div>
-        <p class="lead">ReplyPort&#8217;s connection to Outlook runs on your PC. In the current Windows-app workflow, approved mail is copied to Dropbox for your AI to access. A separate hosted MCP connector is being prepared and will process approved copies through Cloudflare when released.</p>
+        <p class="lead">ReplyPort&#8217;s connection to Outlook runs on your PC. Approved mail is copied to your Dropbox App Folder. The hosted Cloudflare MCP service reads approved copies and returns requested content to your AI; the Windows app remains the only Outlook executor.</p>
       </div>
       <div class="split">
         <div>
@@ -363,8 +363,8 @@
               <ul>
                 <li>ReplyPort works with Outlook Classic directly. No Outlook add-in, and you do not sign ReplyPort in through Microsoft Graph.</li>
                 <li>Every draft request is checked against the live mailbox before a draft is saved.</li>
-                <li>Account bindings and keys stay on the PC. Logs contain no subjects, bodies or addresses.</li>
-                <li>The Windows app has no ReplyPort analytics or telemetry. A separate optional ReplyPort-hosted MCP service is being prepared; it does not connect to Outlook.</li>
+                <li>Outlook account bindings and local keys stay on the PC. Local logs contain no subjects, bodies or addresses.</li>
+                <li>The Windows app has no ReplyPort analytics or telemetry. The hosted ReplyPort MCP service runs on Cloudflare and does not connect to Outlook.</li>
               </ul>
             </div>
             <div class="flow__place">
@@ -379,7 +379,7 @@
             <div class="flow__place">
               <h3>With your AI</h3>
               <ul>
-                <li>In the Dropbox workflow, your assistant reads approved copies and writes requests. With the optional hosted MCP connector, Cloudflare reads approved copies from Dropbox and returns requested content to the AI host.</li>
+                <li>The hosted connector reads approved copies from Dropbox and returns requested content to the AI host. It writes draft requests to Dropbox and reads matching local receipts.</li>
                 <li>Messages marked Personal, Private or Confidential, and encrypted messages, are not copied.</li>
                 <li>Your AI provider&#8217;s terms and data policies apply.</li>
               </ul>
@@ -415,7 +415,7 @@
             <li>Windows 11 on an x64 PC where you can install apps from the Microsoft Store.</li>
             <li>Outlook Classic with your accounts already set up. It must be open for drafts to be created.</li>
             <li>The Dropbox desktop app, signed in on the same PC.</li>
-            <li>An AI assistant connected to that same Dropbox account, with permission to read and create files there, such as ChatGPT, ChatGPT Work, Codex, Claude, Claude Cowork or Claude Code.</li>
+            <li>A supported ChatGPT/Codex or Claude connection. For the hosted connector, you authorize your Dropbox account inside ReplyPort; a separate Dropbox connector in the AI host is not required.</li>
           </ul>
         </div>
         <div class="col col--pad fit-col">
@@ -467,11 +467,11 @@
         <div>
           <details>
             <summary>Is ReplyPort a Claude or ChatGPT product?</summary>
-            <p>No. ReplyPort is independent software and does not contain an AI model. The current Windows-app workflow works with assistants that can read and create files in your Dropbox. Optional ChatGPT and Claude hosted connectors are in preparation; they are not verified as public directory listings. See <a href="connectors/">connector setup</a>.</p>
+            <p>No. ReplyPort is independent software and does not contain an AI model. Its hosted service passed functional production acceptance, but the ChatGPT/Codex and Claude public directory listings have not been submitted or approved. Use only an official listing after it appears. See <a href="connectors/">connector setup</a>.</p>
           </details>
           <details>
             <summary>Does my email stay on my PC?</summary>
-            <p>Not all of it. The Windows app runs on your PC and copies mail you approve to Dropbox. In the current setup, your AI reads those copies through its Dropbox connection. A separate ReplyPort-operated Cloudflare MCP service is being prepared; if connected, it reads approved copies from Dropbox and returns requested content to the AI host. Dropbox, Cloudflare and the AI provider process data under their own terms. See <a href="#data">Data flow</a> and the <a href="privacy/">Privacy policy</a>.</p>
+            <p>Not all of it. The Windows app copies mail you approve to your Dropbox App Folder. If you use the hosted connector, Cloudflare reads approved copies from Dropbox and returns requested content to the AI host; the service does not keep a second mailbox mirror. The AI host processes returned content under its own terms and settings. See <a href="#data">Data flow</a> and the <a href="privacy/">Privacy page, which remains a draft</a>.</p>
           </details>
           <details>
             <summary>Can ReplyPort send email?</summary>
@@ -485,7 +485,7 @@
         <div>
           <details>
             <summary>Do I need another AI subscription?</summary>
-            <p>No subscription comes from ReplyPort. You use your own assistant, on whatever plan lets it read and create files in Dropbox. ReplyPort is a one-time purchase.</p>
+            <p>No AI subscription comes from ReplyPort. Your ChatGPT, Codex or Claude plan must allow the relevant connector. The hosted ReplyPort connection uses your own Dropbox authorization; you do not need to connect a separate Dropbox tool to the AI host.</p>
           </details>
           <details>
             <summary>Does it work with New Outlook or on a Mac?</summary>

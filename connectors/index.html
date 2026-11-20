@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChatGPT and Claude connector setup | ReplyPort</title>
-<meta name="description" content="Setup and troubleshooting for ReplyPort's optional ChatGPT and Claude MCP connectors.">
+<title>ChatGPT, Codex and Claude connector setup | ReplyPort</title>
+<meta name="description" content="Set up ReplyPort's hosted ChatGPT, Codex and Claude connectors after directory approval.">
 <link rel="canonical" href="https://replyport.github.io/connectors/">
 <meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
@@ -51,13 +51,13 @@
     <div class="wrap guide-hero__inner">
       <div>
         <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Connector setup</p>
-        <h1>Connect ReplyPort to ChatGPT or Claude.</h1>
-        <p class="guide-standfirst">The optional hosted connector lets an eligible AI host work with approved ReplyPort mail copies and draft requests. Outlook stays on your Windows PC.</p>
+        <h1>Connect ReplyPort to ChatGPT, Codex or Claude.</h1>
+        <p class="guide-standfirst">The hosted connector works with mail copies in your Dropbox App Folder. Outlook stays on your Windows PC, where ReplyPort creates the native unsent draft.</p>
       </div>
       <aside class="guide-boundary" aria-label="Current availability">
         <p class="eyebrow">Current availability</p>
-        <strong>Not ready for customer mail</strong>
-        <p>The hosted service is deployed but has not passed its customer rollout gates. ChatGPT and Claude public listings are not verified live. Do not connect a real mailbox or use an unpublished connector link.</p>
+        <strong>Production acceptance complete; directory publication pending</strong>
+        <p>The hosted MCP service has passed production functional acceptance. The ChatGPT/Codex and Claude directory listings have not been submitted or approved. Use only an official listing when it becomes available. The linked Privacy and Terms pages are still drafts and are not effective policies.</p>
       </aside>
     </div>
   </header>
@@ -80,27 +80,27 @@
           <li>Install ReplyPort from the <a class="link" href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a> on a supported Windows PC.</li>
           <li>Use Outlook Classic with the accounts you want ReplyPort to process, and keep Outlook open when local draft creation is needed. New Outlook is not supported.</li>
           <li>Install Dropbox Desktop and sign in on that PC. In ReplyPort Control Centre, connect the Dropbox account and choose which mailboxes, folders and optional attachments to mirror.</li>
-          <li>Use a ChatGPT account and workspace that permit the connector and MCP write actions. Availability depends on plan, region, workspace settings and administrator controls. Full MCP write actions are currently available in eligible Business, Enterprise and Edu workspaces.</li>
-          <li>Use Claude on a plan that supports remote MCP connectors (currently Pro, Max, Team or Enterprise). A Team or Enterprise owner may need to enable the connector for the organization.</li>
+          <li>Use a ChatGPT or Codex account and workspace where public plugins and OAuth connections are available. Availability and write-action controls depend on the host's current plan, region and administrator settings.</li>
+          <li>Use a Claude surface and account plan that allow remote MCP connectors. A workspace administrator may need to enable connectors for the organization.</li>
           <li>Use ReplyPort only where you have authority to process the mail and your organization permits Dropbox and the selected AI host.</li>
         </ul>
-        <p class="guide-callout">The older <a class="link" href="../setup/">Dropbox connector setup guide</a> describes the current Windows-app workflow. For the hosted MCP connector, you will authorize the same Dropbox account inside the ReplyPort connector sign-in flow; you do not need to add a separate Dropbox connector to the AI host.</p>
+        <p class="guide-callout">You authorize Dropbox inside ReplyPort's connector sign-in flow. You do not need to add a separate Dropbox connector to ChatGPT, Codex or Claude for this hosted path. The Dropbox account must be the same one used by ReplyPort on your PC.</p>
       </section>
 
       <section id="connect">
         <h2>Connect the hosted ReplyPort connector</h2>
         <ol class="guide-steps" role="list">
           <li class="guide-step"><div><h3>Install ReplyPort and choose mail</h3><p>Connect Dropbox and Outlook Classic in ReplyPort. Turn on copying only for the mailboxes and folders you approve. The app copies eligible mail to ReplyPort&#8217;s dedicated Dropbox App Folder.</p></div></li>
-          <li class="guide-step"><div><h3>Open the official directory listing</h3><p>After provider approval, find ReplyPort in ChatGPT&#8217;s plugin directory or Claude&#8217;s connectors directory and follow that host&#8217;s connection steps. No public install link is available yet.</p></div></li>
+          <li class="guide-step"><div><h3>Open the official directory listing</h3><p>When provider review is complete, find ReplyPort in ChatGPT/Codex&#8217;s universal Plugins Directory or Claude&#8217;s Connectors Directory and choose <strong>Connect</strong>. No public listing is available yet.</p></div></li>
           <li class="guide-step"><div><h3>Authorize the same Dropbox account</h3><p>During ReplyPort&#8217;s sign-in flow, choose the Dropbox account that contains the App Folder used by ReplyPort on your PC. Review the requested App Folder permissions before approving. Each AI host connection has its own authorization.</p></div></li>
-          <li class="guide-step"><div><h3>Run a search, then check draft status</h3><p>Ask the AI to search for a specific message you know is mirrored. For a draft, wait for ReplyPort&#8217;s matching receipt. A queued request is not a created Outlook draft; the status must say <code>created</code>.</p></div></li>
+          <li class="guide-step"><div><h3>Search, then check draft status</h3><p>Keep the PC on with ReplyPort running and Dropbox syncing. Ask the AI to search for a message you know is mirrored. For a draft, wait for the matching receipt. A queued request is not a created Outlook draft; status must say <code>created</code>.</p></div></li>
         </ol>
       </section>
 
       <section id="processing">
         <h2>What the hosted service processes</h2>
-        <p>The ReplyPort-operated Cloudflare MCP service uses the Dropbox authorization you approve to read approved mirrored message metadata, snippets and bodies from ReplyPort&#8217;s Dropbox App Folder. It returns requested search or message content to the connected ChatGPT or Claude host. For a draft request, it writes a request record to Dropbox and can return the local worker&#8217;s receipt status.</p>
-        <p>The hosted service does not connect to Outlook or keep a second mailbox mirror. The ReplyPort Windows app on your PC is the Outlook executor. Cloudflare hosts the service; Dropbox stores and transfers the authorized records; and the AI host processes the content returned to its conversation. See the <a class="link" href="../privacy/">Privacy policy</a> for the service, providers, retention and logging details.</p>
+        <p>The ReplyPort-operated Cloudflare MCP service uses your Dropbox authorization to read approved message metadata, snippets and bodies from ReplyPort&#8217;s Dropbox App Folder. It returns requested search or message content to the connected AI host. For a draft, it writes a request record to Dropbox and reads a matching receipt written by the Windows app.</p>
+        <p>The hosted service does not connect to Outlook or keep a second mailbox mirror. The ReplyPort Windows app on your PC is the Outlook executor. Cloudflare hosts the service; Dropbox stores and transfers the authorized records; and the AI host processes the content returned to its conversation. The <a class="link" href="../privacy/">Privacy page is still a draft</a> and must not be treated as the final policy.</p>
       </section>
 
       <section id="drafts">
@@ -122,7 +122,7 @@
       <section id="trouble">
         <h2>Troubleshooting</h2>
         <dl class="guide-help">
-          <div><dt>ReplyPort is not available in the host</dt><dd>Directory approval and account availability are still pending. Do not use a copied or unofficial connector URL. Check the official listing after ReplyPort announces availability.</dd></div>
+          <div><dt>ReplyPort is not available in the host</dt><dd>The production service has passed functional acceptance, but directory approval and public availability are still pending. Do not use a copied or unofficial connector URL. Check the official listing after ReplyPort announces availability.</dd></div>
           <div><dt>Dropbox sign-in selected the wrong account</dt><dd>Disconnect the ReplyPort host connection, revoke ReplyPort under that Dropbox account&#8217;s connected apps if needed, then start again and choose the account containing the ReplyPort App Folder.</dd></div>
           <div><dt>The search returns no results or remains pending</dt><dd>Check that mail copying is enabled for the correct Outlook mailbox and period, Dropbox has synced, and the selected AI host is connected to the same Dropbox account. Pending searches need the Windows ReplyPort worker to process them.</dd></div>
           <div><dt>The draft has not appeared in Outlook</dt><dd>Keep the PC on, ReplyPort running and Outlook Classic open. Check the request&#8217;s matching receipt in ReplyPort status. A pending or deferred request is not a created draft.</dd></div>
@@ -137,7 +137,7 @@
   <div class="wrap foot__grid">
     <div class="foot__brand"><div class="foot__lockup"><span class="rp-mark rp-mark--24 rp-mark--inverse rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span><span class="foot__wordmark">ReplyPort</span></div><p class="foot__blurb">For Outlook Classic on Windows.</p></div>
     <nav class="foot__col" aria-label="Product"><h2 class="eyebrow">Product</h2><a href="../#how">How it works</a><a href="../#use-cases">Use cases</a><a href="../#windows">Requirements</a><a href="../docs/">Documentation</a></nav>
-    <nav class="foot__col" aria-label="Install"><h2 class="eyebrow">Install</h2><a href="../setup/">Dropbox setup guide</a><a href="./" aria-current="page">Connector setup</a><a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a></nav>
+    <nav class="foot__col" aria-label="Install"><h2 class="eyebrow">Install</h2><a href="../setup/">Setup guide</a><a href="./" aria-current="page">Connector setup</a><a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a></nav>
     <nav class="foot__col" aria-label="Company"><h2 class="eyebrow">Company</h2><a href="../support/">Support</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a><a href="mailto:sergei.v.alexeev@gmail.com">Contact</a></nav>
   </div>
   <div class="wrap foot__legal"><span>&#169; 2026 ReplyPort &#183; Early access &#183; Independent; not affiliated with or endorsed by Microsoft, OpenAI or Anthropic.</span></div>

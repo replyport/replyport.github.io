@@ -80,8 +80,8 @@
       <section id="service">
         <p class="eyebrow">Service description</p>
         <h2>What ReplyPort does</h2>
-        <p>ReplyPort is a Windows application for Outlook Classic. It can copy mail that a user selects into a dedicated Dropbox App Folder and create native unsent drafts in the corresponding Outlook account. A separate ReplyPort-operated Cloudflare MCP service is being prepared to read approved mirrored records from Dropbox and process draft requests for a connected AI host. The hosted service does not access Outlook; the Windows application performs Outlook operations.</p>
-        <p>The ChatGPT and Claude directory listings are not verified live, and the hosted service is not approved for real customer rollout. Service details and availability must be updated before any customer launch.</p>
+        <p>ReplyPort is a Windows application for Outlook Classic. It can copy mail that a user selects into a dedicated Dropbox App Folder and create native unsent drafts in the corresponding Outlook account. The ReplyPort-operated Cloudflare MCP service reads approved mirrored records from Dropbox and processes requests for a connected AI host. The hosted service does not access Outlook; the Windows application performs Outlook operations and writes the receipt used to confirm draft creation.</p>
+        <p>The hosted MCP service passed production functional acceptance on 16 November 2026. The ChatGPT/Codex and Claude directory listings have not been submitted or approved. This Terms page remains a draft, and no user should treat it as an effective agreement.</p>
       </section>
 
       <section id="permitted-use">
@@ -108,7 +108,7 @@
       <section id="privacy">
         <p class="eyebrow">Privacy and support</p>
         <h2>Privacy, disconnection and help</h2>
-        <p>The <a class="link" href="../privacy/">Privacy policy</a> describes current data flows, service providers, retention and logging practices, and user controls. Disconnecting an AI host, revoking Dropbox access, deleting Dropbox data, and removing Outlook drafts are separate actions; ReplyPort does not promise that one action performs the others.</p>
+        <p>The proposed <a class="link" href="../privacy/">Privacy policy</a> describes data flows, service providers, retention, logging and user controls but is not yet effective. Disconnecting an AI host, revoking Dropbox access, deleting Dropbox data, and removing Outlook drafts are separate actions; ReplyPort does not promise that one action performs the others.</p>
         <p>For setup and troubleshooting, see <a class="link" href="../connectors/">connector setup</a> and <a class="link" href="../support/">support</a>.</p>
       </section>
 
@@ -147,7 +147,7 @@
     </nav>
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
-      <a href="../setup/">Dropbox setup guide</a>
+      <a href="../setup/">Setup guide</a>
       <a href="../connectors/">Connector setup</a>
       <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
