@@ -37,7 +37,7 @@
     </a>
     <nav class="topbar__links" aria-label="Primary">
       <a href="../#how">How it works</a>
-      <a href="../setup/">Setup</a>
+      <a href="../connect/">Connect AI</a>
       <a href="./" aria-current="page">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -47,7 +47,7 @@
     <summary><span class="wrap navdrop__summary">Sections</span></summary>
     <nav class="wrap navdrop__menu" aria-label="Primary, compact">
       <a href="../#how">How it works</a>
-      <a href="../setup/">Setup</a>
+      <a href="../connect/">Connect AI</a>
       <a href="./" aria-current="page">Docs</a>
       <a href="../#windows">Requirements</a>
     </nav>
@@ -60,7 +60,7 @@
       <div class="docs-hero__text">
         <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Documentation</p>
         <h1>How ReplyPort works, in detail.</h1>
-        <p class="docs-standfirst">A reference for what ReplyPort copies from Outlook, what your AI can ask it to do, how each draft is checked before it is saved, and where the current limits are. For first-time setup, use the <a class="link" href="../setup/">Setup guide</a>.</p>
+        <p class="docs-standfirst">A reference for what ReplyPort copies from Outlook, what your AI can ask it to do, how each draft is checked before it is saved, and where the current limits are. For first-time setup, use the <a class="link" href="../connect/">AI connection guide</a>.</p>
       </div>
 
       <!-- RELEASE STATUS: states the documented Store version and the review
@@ -195,8 +195,7 @@
               <tr><th scope="row"><a href="#which-folder">AI setup text that names the folder in use</a></th><td><span class="st st--yes">Available</span></td><td>Control Centre&#8217;s generated setup prompt and permanent instructions name the actual App Folder, including a suffix such as <code>/Apps/ReplyPort (1)</code>.</td></tr>
               <tr><th scope="row"><a href="#recovery">Reuse preserved App Folder data</a></th><td><span class="st st--yes">Available</span></td><td>First run verifies protected recovery evidence for the same Dropbox account and App Folder before offering reuse.</td></tr>
               <tr><th scope="row"><a href="#zip">ZIP files as attachments</a></th><td><span class="st st--yes">Available</span></td><td>Copying and attaching to drafts. Other archive types stay unsupported.</td></tr>
-              <tr><th scope="row"><a href="#ai-connection">Dropbox-first AI setup wording</a></th><td><span class="st st--yes">Available</span></td><td>Control Centre&#8217;s setup prompt and permanent instructions point to the dedicated Dropbox App Folder through the AI&#8217;s Dropbox connector, not a local path.</td></tr>
-              <tr><th scope="row"><a href="#ai-connection">First-class ReplyPort MCP</a></th><td><span class="st st--dev">In development</span></td><td>First-class Search, Read, Reply, New Draft, Forward and Draft Status tools are implemented for controlled deployment but are not yet the public connection path.</td></tr>
+              <tr><th scope="row"><a href="#ai-connection">First-class ReplyPort MCP</a></th><td><span class="st st--yes">Available</span></td><td>Connect manually to the public OAuth-protected endpoint. ChatGPT and Claude directory listings are pending.</td></tr>
               <tr><th scope="row"><a href="#storage">Storage provider</a></th><td><span class="st st--yes">Dropbox</span></td><td>OneDrive is <span class="st st--planned">Planned</span>.</td></tr>
               <tr><th scope="row"><a href="#no-send">Sending email</a></th><td><span class="st st--no">Not supported</span></td><td>By design. There is no plan to add it.</td></tr>
             </tbody>
@@ -267,7 +266,7 @@
         <p class="eyebrow">Working with your AI</p>
         <h2>How your AI connects to ReplyPort</h2>
         <p>ReplyPort and your AI never talk to each other directly. They meet in one place: ReplyPort&#8217;s dedicated App Folder in your Dropbox. ReplyPort reaches it through the Dropbox desktop app on your PC. Your AI reaches the same folder through its own connection to your Dropbox account.</p>
-        <p class="docs-callout docs-callout--dev"><strong>First-class ReplyPort MCP is in development.</strong> The alternative connection path is implemented for controlled deployment but is not yet available as a public setup path. It accesses the same user-controlled Dropbox App Folder; Outlook work continues to run on the local Windows PC. Use the connected AI&#8217;s Dropbox tools for current public setup.</p>
+        <p class="docs-callout"><strong>Manual ReplyPort MCP connection is available.</strong> Connect through the public OAuth-protected endpoint using the <a class="link" href="../connect/">AI connection guide</a>. It accesses the same user-controlled Dropbox App Folder; Outlook work continues to run on the local Windows PC. For apps without remote MCP, use the older Dropbox compatibility workflow.</p>
         <p class="docs-callout"><strong><code>/Apps/ReplyPort</code> is the usual account-visible Dropbox App Folder path, not a path on your computer.</strong> Dropbox may assign a suffix, for example <code>/Apps/ReplyPort (1)</code>. Copy the setup prompt from Control Centre for the exact path; do not guess from these examples. If an AI says it has no local file tools, or suggests installing a desktop app, ask it to use its Dropbox connection instead. A failed ordinary file search does not mean Dropbox is disconnected.</p>
         <h3>What your AI needs permission to do</h3>
         <div class="docs-table-wrap">
@@ -316,7 +315,7 @@
         <h3>Saved AI instructions are yours to update</h3>
         <p>The permanent instructions live inside your AI account, in ChatGPT&#8217;s custom instructions, Claude&#8217;s instructions or the equivalent. ReplyPort cannot see them and cannot change them. When ReplyPort&#8217;s instructions change in a new release, the copies in your AI do not change by themselves: open Control Centre, choose <em>Other setup options&#8230;</em> and then <em>Copy permanent instructions</em>, and replace the old text in your AI&#8217;s settings.</p>
         <h3>The setup test</h3>
-        <p>The generated setup prompt asks your AI to read <code>SETUP.md</code> in the exact App Folder and run exactly one harmless search. It creates no draft and does not summarise any mail. The AI reports <strong>Ready</strong> only after ReplyPort&#8217;s matching search result has arrived, even if that result found no messages. The steps for the person setting up are on the <a class="link" href="../setup/">Setup guide</a>.</p>
+        <p>The optional Dropbox compatibility prompt asks your AI to read <code>SETUP.md</code> in the exact App Folder and run exactly one harmless search. It creates no draft and does not summarise any mail. The AI reports <strong>Ready</strong> only after ReplyPort&#8217;s matching search result has arrived, even if that result found no messages. For this older setup path, see the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</p>
       </section>
 
       <section id="workflows">
@@ -762,7 +761,7 @@
           <li><strong>Mail copying.</strong> A separate approval for each mailbox, with the option to include email attachments. Turn it on here for every mailbox you want the AI to search, or choose <em>Not now</em> to leave mail copying off and turn it on later from its card. Folder scope can be adjusted in Control Centre.</li>
           <li><strong>First scan.</strong> ReplyPort copies eligible mail for each mailbox&#8217;s chosen history period in the background, one mailbox at a time. First run does not wait for it; search reports incomplete coverage until the first scan has finished.</li>
         </ol>
-        <p>Then connect your AI using the <a class="link" href="../setup/">Setup guide</a>: connect your AI to the Dropbox account holding ReplyPort&#8217;s App Folder, copy the exact setup prompt from Control Centre, and paste it into a new chat. The AI walks you through saving permanent ReplyPort instructions and runs one harmless test search. Setup creates no drafts. What your AI needs, and what ReplyPort cannot do for you, is explained in <a class="link" href="#ai-connection">How your AI connects</a>.</p>
+        <p>Connect an eligible AI app using the <a class="link" href="../connect/">AI connection guide</a>. It covers the current OAuth-protected MCP route and provider account requirements. Apps without remote MCP can use the older Dropbox connector flow from Control Centre&#8217;s <strong>Advanced actions</strong>; that route is described in the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</p>
         <p class="note">Searching existing mail needs the first scan to have finished. Creating new messages does not.</p>
         <p>If first run is interrupted after ReplyPort has saved its configuration, see <a class="link" href="#recovery">Upgrades, moved folders and recovery</a>.</p>
       </section>
@@ -986,9 +985,9 @@
       <section id="roadmap">
         <h2>Planned and under investigation</h2>
         <p>Items marked in development or planned are not currently public. There are no committed dates.</p>
-        <h3><span class="st st--dev">In development</span> Controlled deployment</h3>
+        <h3><span class="st st--yes">Available</span> Manual MCP connection</h3>
         <ul>
-          <li><strong>First-class ReplyPort MCP</strong> for Search, Read, Reply, New Draft, Forward and Draft Status in compatible AI clients. This storage bridge does not touch Outlook; the Windows worker remains the Outlook executor.</li>
+          <li><strong>ChatGPT and Claude directory listings</strong> are pending. Eligible accounts can connect manually using the <a class="link" href="../connect/">AI connection guide</a>.</li>
         </ul>
         <h3><span class="st st--planned">Planned</span> Accepted direction</h3>
         <ul>
@@ -1010,7 +1009,7 @@
           <div><dt>The AI cannot see the ReplyPort folder</dt>
           <dd>Connect Dropbox to that AI product, and make sure it is the Dropbox account that holds the <code>ReplyPort</code> folder. Installing Dropbox on the PC does not give an AI access.</dd></div>
           <div><dt>The AI says it has no local file tools, or looks for a folder on your computer</dt>
-          <dd>Ask the AI to use its Dropbox connector to open <code>SETUP.md</code> at the exact App Folder path copied from Control Centre. A failed ordinary file search does not mean Dropbox is disconnected, and an AI does not need a desktop app just to use Dropbox. See the <a class="link" href="../setup/">Setup guide</a>.</dd></div>
+          <dd>For current AI apps, follow the <a class="link" href="../connect/">AI connection guide</a> and sign in to the same Dropbox account when OAuth asks. For an app without remote MCP, use the Dropbox connector workflow in the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</dd></div>
           <div><dt>My App Folder has a different name</dt>
           <dd>Use the exact account-visible path in Control Centre&#8217;s generated setup prompt; see <a class="link" href="#which-folder">Which Dropbox folder</a>. Dropbox can assign a suffix such as <code>/Apps/ReplyPort (1)</code>. If saved AI instructions still name the old Dropbox-root <code>/ReplyPort</code>, replace them with the current text from Control Centre.</dd></div>
           <div><dt>Setup stopped partway and now cannot finish</dt>
@@ -1120,8 +1119,10 @@
         <p>An AI starts from the exact Dropbox App Folder named in Control Centre&#8217;s generated prompt. It reads <code>BRIDGE_MANIFEST.json</code>, which lists the mailboxes (by random identifier and label), what each can do, the installed version and the format fingerprint of every record type; then <code>AGENT_CONTEXT.md</code>; then the format for the operation it needs. All paths in the manifest and formats are relative to the App Folder. The Windows side addresses the same folder through its local Dropbox path, which is never given to the AI.</p>
         <p>The guides published into the folder come from the installed ReplyPort version. They are generated for the folder in use, rendered in full before anything is written, so that a folder that cannot be identified leaves the existing guides untouched. Generation changes only the folder name: the safety rules, the protocol and the formats are unchanged. Text saved in an AI account is separate and is never edited by ReplyPort.</p>
 
-        <h3>First-class MCP <span class="st st--dev">In development</span></h3>
-        <p>A remote ReplyPort MCP is implemented for controlled deployment so compatible AI clients can use first-class Search, Read, Reply, New Draft, Forward and Draft Status tools instead of constructing queue files themselves. The MCP is a storage bridge: it reads and writes only ReplyPort&#8217;s Dropbox App Folder data. It does not use Outlook COM and cannot replace the local Windows worker as the Outlook executor. It is not yet the public connection path documented by the setup guide.</p>
+        <h3>Hosted MCP connection <span class="st st--yes">Available</span></h3>
+        <p>ReplyPort&#8217;s public HTTPS MCP endpoint is available for manual connection by compatible AI apps. OAuth sign-in authorizes the Dropbox account used by ReplyPort. The service reads and writes ReplyPort App Folder data; the local Windows worker remains the Outlook executor. Follow the <a class="link" href="../connect/">AI connection guide</a>. Public ChatGPT and Claude directory listings are pending.</p>
+        <h3>Dropbox compatibility setup</h3>
+        <p>For an AI app without remote MCP support, use the older Dropbox connector workflow from Control Centre&#8217;s <strong>Advanced actions</strong> menu or the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</p>
 
         <h3>Records</h3>
         <p>Every record is a strict JSON file with a declared type, protocol version and schema hash. The manifest lists the SHA-256 hash of every schema; a record whose hash does not match is rejected. Records that ReplyPort writes go to a temporary file in the same folder and are renamed into place, so a reader never sees a partial file.</p>
@@ -1178,7 +1179,7 @@
     </nav>
     <nav class="foot__col" aria-label="Install">
       <h2 class="eyebrow">Install</h2>
-      <a href="../setup/">Setup guide</a>
+      <a href="../connect/">Connect AI</a>
       <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
     </nav>
     <nav class="foot__col" aria-label="Company">

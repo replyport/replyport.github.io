@@ -17,8 +17,9 @@ serves the files as they are.
 index.html                 the home page
 ai-multiple-outlook-accounts/index.html   landing page: AI across several Outlook accounts
 ai-for-outlook-classic/index.html         landing page: ways to use AI with Outlook Classic
-setup/index.html           consumer-facing AI setup guide
-setup/*.txt                plain-text bootstrap download fallbacks
+connect/index.html         current AI connection guide
+setup/index.html           legacy Dropbox compatibility guide
+setup/*.txt                plain-text compatibility bootstrap downloads
 docs/index.html            technical documentation / product reference
 assets/site.css            the only stylesheet
 assets/measurement.js      launch attribution and optional OpenAI Ads measurement
@@ -31,8 +32,8 @@ apple-touch-icon.png       180×180 mark
 robots.txt, sitemap.xml, .nojekyll
 ```
 
-JavaScript is progressive enhancement only: a clipboard helper on the setup
-page, the contents folding and current-section highlight on the docs page, and
+JavaScript is progressive enhancement only: clipboard helpers on the connection
+and compatibility pages, the contents folding and current-section highlight on the docs page, and
 `assets/film.js`, the homepage film player. Without JavaScript the
 setup instructions stay readable and downloadable, and the film is a native
 `<video>` with its own controls. The mark states, responsive nav disclosure and
@@ -59,7 +60,7 @@ directly downloaded executable.
   `utm_source=chatgpt&utm_campaign=launch` gives `chatgpt_launch`, and
   `utm_source=google&utm_campaign=search_oct26` gives `google_search_oct26`.
   Any other visit is labelled by the page the Store link was clicked on:
-  `site_home_v2`, `site_multiacct_v1`, `site_generic_v1`, `site_setup_v1`,
+  `site_home_v2`, `site_multiacct_v1`, `site_generic_v1`, `site_connect_v1`, `site_setup_v1`,
   `site_docs_v1` or `site_privacy_v1`. Add a new campaign's mapping in
   `addMicrosoftCampaignId` before sending traffic to it.
 - Every Store link click also sends the Google Ads conversion
@@ -74,15 +75,16 @@ directly downloaded executable.
 The Store-click event is a handoff event, not a purchase. Paid acquisitions and
 installs are measured separately in Microsoft Partner Center.
 
-## Setup guide
+## AI connection guides
 
-The public setup guide at [`setup/`](setup/) owns the three-step AI connection
-process: connect the AI to the Dropbox account containing ReplyPort's App Folder, copy the exact setup prompt from Control Centre,
-and paste it into the AI to follow the guide. Installation, Outlook and mail-copying
-prerequisites appear before those steps. The homepage links here instead of
-maintaining its own instructions.
+The current AI connection guide at [`connect/`](connect/) documents the manually
+available OAuth-protected MCP connection, provider account requirements and the
+pending ChatGPT/Claude public directory listings. The homepage links here instead
+of maintaining its own setup instructions.
 
-`setup/setup-prompt.txt` matches the copyable prompt on the page. The older
+The older Dropbox compatibility workflow remains at [`setup/`](setup/), for apps
+that cannot use remote MCP. `setup/setup-prompt.txt` matches the copyable prompt
+in Control Centre and on that page. The older
 `chatgpt.txt` and `claude.txt` URLs retain the same prompt for existing links.
 `agent-context.txt` redirects readers to the current guide; it is not an operating
 protocol. Keep these download URLs working and do not invent setup instructions.
@@ -172,7 +174,7 @@ Layout tokens worth knowing: `--content` 1240px, `--gutter` 36px,
     with Outlook, when ReplyPort fits, what it can and cannot do). Each must answer
     a different question from the homepage; do not add thin keyword variants.
 
-Keep detailed setup on `/setup/`. Avoid repeating feature tables, negative claims
+Keep current provider instructions on `/connect/` and detailed Dropbox compatibility setup on `/setup/`. Avoid repeating feature tables, negative claims
 or a second closing product pitch on the homepage. Retain the film's captions and
 written description even when they repeat information: they provide access without
 sound or video. Privacy disclosures should not be treated as marketing repetition.
@@ -250,7 +252,7 @@ open issues, not from memory or intent.
   copying*, *Upgrades, moved folders and recovery*, *ZIP files*, then the setup
   page. Mail-copying and folder wording on `setup/index.html` describes the
   current public release. Move shipped items out of the roadmap.
-- The Setup page and the three `setup/*.txt` downloads must match the setup
+- The Dropbox compatibility page and the three `setup/*.txt` downloads must match the setup
   prompt in Control Centre's `AiSetupText.cs` exactly.
 - Do not publish private issue numbers, private paths, mailbox addresses, test
   identities, keys or token material. Explaining the HMAC/idempotency design

@@ -641,8 +641,11 @@ h1{
 .copy-button:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
 .instruction-download{font-size:13px;border-bottom:1px solid var(--border-strong);padding-bottom:1px}
 .copy-status{font-family:var(--mono);font-size:11px;color:var(--signal);min-height:1.5em}
+.instruction-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+.instruction-row input{width:100%;min-width:0;box-sizing:border-box;background:var(--panel);color:var(--body)}
 .guide-help{display:grid;gap:0}
 .guide-help > div{padding:14px 0;border-top:1px solid var(--rule-alt)}
+@media(max-width:640px){.instruction-row{grid-template-columns:1fr}}
 .guide-help dt{font-size:16px;font-weight:500;color:var(--ink)}
 .guide-help dd{margin-top:4px;font-size:14px;line-height:1.6;color:var(--body)}
 
