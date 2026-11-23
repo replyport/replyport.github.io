@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect an AI to ReplyPort</title>
+<meta name="description" content="Connect ChatGPT, Claude or another MCP-compatible AI to ReplyPort using the same Dropbox account.">
+<link rel="canonical" href="https://replyport.github.io/connect/">
+<meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F0F0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/libre-franklin-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18493139821"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18493139821');
+</script>
+<script src="../assets/measurement.js" defer></script>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar__bar">
+    <a class="lockup" href="../" aria-label="ReplyPort, home">
+      <span class="rp-mark rp-mark--24 rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+      <span class="wordmark">ReplyPort</span>
+      <span class="lockup__tag">Windows &#183; Outlook Classic</span>
+    </a>
+    <nav class="topbar__links" aria-label="Primary">
+      <a href="../#how">How it works</a>
+      <a href="./" aria-current="page">Connect AI</a>
+      <a href="../docs/">Docs</a>
+      <a href="../#windows">Requirements</a>
+    </nav>
+    <a class="btn btn--small" href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Install from Store</a>
+  </div>
+  <details class="navdrop">
+    <summary><span class="wrap navdrop__summary">Sections</span></summary>
+    <nav class="wrap navdrop__menu" aria-label="Primary, compact">
+      <a href="../#how">How it works</a>
+      <a href="./" aria-current="page">Connect AI</a>
+      <a href="../docs/">Docs</a>
+      <a href="../#windows">Requirements</a>
+    </nav>
+  </details>
+</header>
+
+<main id="main">
+  <header class="band guide-hero">
+    <div class="wrap guide-hero__inner">
+      <div>
+        <p class="eyebrow eyebrow--widest eyebrow--signal">ReplyPort &#183; Connection guide</p>
+        <h1>Connect ChatGPT, Claude or another MCP app.</h1>
+      </div>
+      <aside class="guide-boundary" aria-label="Before you start">
+        <p class="eyebrow">Before you start</p>
+        <ul>
+          <li>Install ReplyPort and open Outlook Classic.</li>
+          <li>Keep ReplyPort and Outlook Classic running for live updates and unsent drafts.</li>
+          <li>When OAuth asks, sign in to the same Dropbox account used by ReplyPort.</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <div class="wrap guide-layout">
+    <nav class="guide-nav" aria-label="Connection guide sections">
+      <p class="eyebrow">On this page</p>
+      <a href="#provider-listings">ChatGPT and Claude</a>
+      <a href="#other-mcp">Other MCP apps</a>
+      <a href="#compatibility">Dropbox compatibility</a>
+    </nav>
+
+    <article class="guide-copy">
+      <section id="provider-listings">
+        <h2>ChatGPT and Claude</h2>
+        <p>ReplyPort&#8217;s public directory listings are pending. You can connect manually if your account and AI app allow custom remote MCP connections.</p>
+
+        <h3>ChatGPT</h3>
+        <p>For full MCP access, including ReplyPort&#8217;s draft tools, use ChatGPT Business or Enterprise/Edu on the web. ChatGPT Pro can connect to custom MCP servers with read/fetch permissions only, so its users cannot use ReplyPort draft actions. Go to <strong>Plugins &#8594; + &#8594; Add custom MCP server</strong>, enter the URL below and configure OAuth. Business admins or owners create and publish connections. Enterprise/Edu admins can authorize members to create them; admins or owners publish. Workspace rules apply. See OpenAI&#8217;s <a class="link" href="https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt" rel="noopener">custom MCP setup instructions</a>.</p>
+
+        <h3>Claude</h3>
+        <p>Anthropic currently supports custom remote MCP connectors on Claude Free, Pro, Max, Ultra, Team and Enterprise. Free accounts are limited to one custom connector. Team and Enterprise owners must enable connectors for their organization. In Claude, go to <strong>Customize &#8594; Connectors &#8594; Add &#8594; Custom &#8594; Web</strong>, add the URL below and choose an OAuth sign-in option. Follow Anthropic&#8217;s <a class="link" href="https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities" rel="noopener">connector instructions</a>.</p>
+      </section>
+
+      <section id="other-mcp">
+        <h2>Other MCP-compatible apps</h2>
+        <p>Use an app that supports remote MCP over HTTPS and OAuth. Add this server URL:</p>
+        <label for="mcp-endpoint">ReplyPort MCP server URL</label>
+        <div class="instruction-row">
+          <input class="instruction" id="mcp-endpoint" type="url" value="https://replyport-mcp-prod.sergei-v-alexeev.workers.dev/mcp" readonly>
+          <button class="btn btn--secondary" id="copy-mcp-endpoint" type="button">Copy server URL</button>
+        </div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+        <ol class="guide-steps" role="list">
+          <li class="guide-step"><div><h3>Add the remote server</h3><p>Choose your app&#8217;s custom MCP, remote server or web connector option and paste the URL above.</p></div></li>
+          <li class="guide-step"><div><h3>Sign in with OAuth</h3><p>Choose the sign-in option. When ReplyPort opens Dropbox, use the same Dropbox account that ReplyPort uses.</p></div></li>
+          <li class="guide-step"><div><h3>Start with Search</h3><p>Enable ReplyPort for a conversation and ask for a harmless mail search. ReplyPort provides mail search, reading and draft tools. It has no Send tool.</p></div></li>
+        </ol>
+        <p>Some apps require a particular plan, workspace permission or administrator approval. If the app cannot connect to a remote OAuth-protected MCP server, use the <a class="link" href="#compatibility">Dropbox compatibility setup</a>.</p>
+      </section>
+
+      <section id="compatibility">
+        <h2>Dropbox compatibility setup</h2>
+        <p>For an AI app that cannot use remote MCP, use the older Dropbox connector workflow. Open ReplyPort Control Centre and choose <strong>Advanced actions &#8594; Dropbox compatibility setup</strong>, or follow the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</p>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <div class="foot__lockup">
+        <span class="rp-mark rp-mark--24 rp-mark--inverse rp-mark--idle" role="img" aria-label="ReplyPort"><i></i></span>
+        <span class="foot__wordmark">ReplyPort</span>
+      </div>
+      <p class="foot__blurb">For Outlook Classic on Windows.</p>
+    </div>
+    <nav class="foot__col" aria-label="Product">
+      <h2 class="eyebrow">Product</h2>
+      <a href="../#how">How it works</a>
+      <a href="../#use-cases">Use cases</a>
+      <a href="../#windows">Requirements</a>
+      <a href="../docs/">Documentation</a>
+    </nav>
+    <nav class="foot__col" aria-label="Connect">
+      <h2 class="eyebrow">Connect</h2>
+      <a href="./" aria-current="page">Connect AI</a>
+      <a href="../setup/">Dropbox compatibility</a>
+      <a href="https://apps.microsoft.com/detail/9PPGN3H4QGJJ">Microsoft Store</a>
+    </nav>
+    <nav class="foot__col" aria-label="Company">
+      <h2 class="eyebrow">Company</h2>
+      <a href="../privacy/">Privacy</a>
+      <a href="https://github.com/replyport/feedback/issues/new/choose" rel="noopener">Feedback</a>
+    </nav>
+  </div>
+  <div class="wrap foot__legal">
+    <span>&#169; 2026 ReplyPort &#183; Early access &#183; Independent; not affiliated with or endorsed by Microsoft, OpenAI or Anthropic.</span>
+  </div>
+</footer>
+<script>
+(() => {
+  const button = document.getElementById('copy-mcp-endpoint');
+  const endpoint = document.getElementById('mcp-endpoint');
+  const status = document.getElementById('copy-status');
+  if (!button || !endpoint || !status) return;
+  button.addEventListener('click', async () => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(endpoint.value);
+      } else {
+        endpoint.focus();
+        endpoint.select();
+        document.execCommand('copy');
+        endpoint.setSelectionRange(0, 0);
+      }
+      status.textContent = 'Server URL copied.';
+    } catch (error) {
+      endpoint.focus();
+      endpoint.select();
+      status.textContent = 'Copy was unavailable. Select the URL above and copy it.';
+    }
+  });
+})();
+</script>
+</body>
+</html>

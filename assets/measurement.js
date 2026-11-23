@@ -27,6 +27,7 @@
   const SITE_PAGE_CIDS = [
     ['/ai-multiple-outlook-accounts/', 'site_multiacct_v1'],
     ['/ai-for-outlook-classic/', 'site_generic_v1'],
+    ['/connect/', 'site_connect_v1'],
     ['/setup/', 'site_setup_v1'],
     ['/docs/', 'site_docs_v1'],
     ['/privacy/', 'site_privacy_v1'],
@@ -35,6 +36,7 @@
 
   const pageIdentity = () => {
     const path = window.location.pathname;
+    if (path.startsWith('/connect/')) return ['connection', 'ReplyPort AI connection guide'];
     if (path.startsWith('/setup/')) return ['setup', 'ReplyPort setup'];
     if (path.startsWith('/privacy/')) return ['privacy', 'ReplyPort privacy'];
     if (path.startsWith('/ai-multiple-outlook-accounts/')) return ['multiple_accounts', 'ReplyPort multiple Outlook accounts'];
