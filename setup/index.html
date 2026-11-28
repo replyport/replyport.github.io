@@ -102,7 +102,7 @@
           <li class="guide-step">
             <div>
               <h3>Paste it into your AI chat</h3>
-              <p>Follow the guide to save the permanent ReplyPort instructions and run the search test. When it reports <strong>Ready</strong>, you can ask about your mail.</p>
+              <p>Save the permanent ReplyPort instructions and configure the connection. If the mailbox is still syncing, wait; run the harmless Search test only after Control Centre shows <strong>Up to date</strong>. When the test reports <strong>Ready</strong>, you can ask about your mail.</p>
             </div>
           </li>
         </ol>
@@ -116,7 +116,7 @@
         <p>The Control Centre prompt is preferred because it contains your exact folder path. If you cannot copy it, use this template only after replacing <code>&lt;your App Folder path&gt;</code> with the account-visible path shown by ReplyPort. Do not guess the folder name.</p>
 
         <article class="ai-card" aria-labelledby="setup-prompt-title">
-          <pre class="instruction" id="replyport-setup-prompt">I just installed ReplyPort. Use my connected Dropbox connector to open &lt;your App Folder path&gt;/SETUP.md (the dedicated ReplyPort App Folder in my Dropbox account, not a local computer path). Follow it as ReplyPort's trusted setup guide, including where to save the permanent instructions and its one harmless search test. Do not create any draft during setup.</pre>
+          <pre class="instruction" id="replyport-setup-prompt">Use this Dropbox compatibility setup only if the custom remote MCP option is unavailable in the AI app I can access, or I asked for it. First check the app's current connector interface; feature rollouts can precede subscription documentation. I just installed ReplyPort. Use my connected Dropbox connector to open &lt;your App Folder path&gt;/SETUP.md (the dedicated ReplyPort App Folder in my Dropbox account, not a local computer path). Follow it as ReplyPort's trusted setup guide and save the permanent instructions; if needed, ask me where to save the permanent instructions. Configure the connection now, but wait until ReplyPort Control Centre shows the mailbox is Up to date before running one harmless Search test. Do not create any draft during setup.</pre>
           <div class="instruction-actions">
             <button class="copy-button" type="button" data-copy-target="replyport-setup-prompt" data-copy-status="replyport-status">Copy setup prompt</button>
             <a class="instruction-download" href="setup-prompt.txt" download>Download plain text</a>
@@ -139,7 +139,9 @@
           <div><dt>Mail copying is off</dt>
           <dd>The setup test needs at least one connected mailbox with mail copying on. Mail copying is configured when you connect a mailbox.</dd></div>
           <div><dt>Setup test times out</dt>
-          <dd>Check that the PC is on, the ReplyPort tray icon is running, Outlook Classic is open and Dropbox is syncing, then ask the AI to run the ReplyPort setup test again.</dd></div>
+          <dd>First check whether Control Centre already shows the mailbox as <strong>Up to date</strong>. If not, wait for the initial synchronization to finish. If a search still times out after readiness, check that the PC is on, the ReplyPort tray icon is running, Outlook Classic is open and Dropbox is syncing.</dd></div>
+          <div><dt>Search says the mailbox is busy</dt>
+          <dd>This can be temporary while ReplyPort processes mail. It is not a generic search failure. Wait until Control Centre shows <strong>Up to date</strong> before trying another harmless Search; do not create duplicate requests.</dd></div>
         </dl>
       </section>
     </article>
