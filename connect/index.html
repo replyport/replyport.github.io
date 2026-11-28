@@ -72,26 +72,15 @@
   <div class="wrap guide-layout">
     <nav class="guide-nav" aria-label="Connection guide sections">
       <p class="eyebrow">On this page</p>
-      <a href="#provider-listings">ChatGPT and Claude</a>
-      <a href="#other-mcp">Other MCP apps</a>
-      <a href="#compatibility">Dropbox compatibility</a>
+      <a href="#provider-listings">Connect from your AI app</a>
+      <a href="#availability">If the option is unavailable</a>
+      <a href="#compatibility">Other connection options</a>
     </nav>
 
     <article class="guide-copy">
       <section id="provider-listings">
-        <h2>ChatGPT and Claude</h2>
-        <p>ReplyPort&#8217;s public directory listings are pending. You can connect manually if your account and AI app allow custom remote MCP connections.</p>
-
-        <h3>ChatGPT</h3>
-        <p>For full MCP access, including ReplyPort&#8217;s draft tools, use ChatGPT Business or Enterprise/Edu on the web. ChatGPT Pro can connect to custom MCP servers with read/fetch permissions only, so its users cannot use ReplyPort draft actions. Go to <strong>Plugins &#8594; + &#8594; Add custom MCP server</strong>, enter the URL below and configure OAuth. Business admins or owners create and publish connections. Enterprise/Edu admins can authorize members to create them; admins or owners publish. Workspace rules apply. See OpenAI&#8217;s <a class="link" href="https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt" rel="noopener">custom MCP setup instructions</a>.</p>
-
-        <h3>Claude</h3>
-        <p>Anthropic currently supports custom remote MCP connectors on Claude Free, Pro, Max, Ultra, Team and Enterprise. Free accounts are limited to one custom connector. Team and Enterprise owners must enable connectors for their organization. In Claude, go to <strong>Customize &#8594; Connectors &#8594; Add &#8594; Custom &#8594; Web</strong>, add the URL below and choose an OAuth sign-in option. Follow Anthropic&#8217;s <a class="link" href="https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities" rel="noopener">connector instructions</a>.</p>
-      </section>
-
-      <section id="other-mcp">
-        <h2>Other MCP-compatible apps</h2>
-        <p>Use an app that supports remote MCP over HTTPS and OAuth. Add this server URL:</p>
+        <h2>Connect from the AI app you already use</h2>
+        <p>Start by checking the connector options shown in your current ChatGPT or Claude interface. Menus and feature availability can change, and documentation may not reflect every rollout.</p>
         <label for="mcp-endpoint">ReplyPort MCP server URL</label>
         <div class="instruction-row">
           <input class="instruction" id="mcp-endpoint" type="url" value="https://replyport-mcp-prod.sergei-v-alexeev.workers.dev/mcp" readonly>
@@ -99,16 +88,25 @@
         </div>
         <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
         <ol class="guide-steps" role="list">
-          <li class="guide-step"><div><h3>Add the remote server</h3><p>Choose your app&#8217;s custom MCP, remote server or web connector option and paste the URL above.</p></div></li>
-          <li class="guide-step"><div><h3>Sign in with OAuth</h3><p>Choose the sign-in option. When ReplyPort opens Dropbox, use the same Dropbox account that ReplyPort uses.</p></div></li>
-          <li class="guide-step"><div><h3>Start with Search</h3><p>Enable ReplyPort for a conversation and ask for a harmless mail search. ReplyPort provides mail search, reading and draft tools. It has no Send tool.</p></div></li>
+          <li class="guide-step"><div><h3>Add ReplyPort</h3><p>In the app&#8217;s settings or connectors area, choose the custom remote MCP or connector option shown in your interface and paste the URL above.</p></div></li>
+          <li class="guide-step"><div><h3>Connect Dropbox</h3><p>Complete OAuth and sign in to the same Dropbox account ReplyPort uses. Approve the ReplyPort App Folder access requested by the sign-in flow.</p></div></li>
+          <li class="guide-step"><div><h3>Wait for your mailbox</h3><p>You can configure the AI connection while ReplyPort synchronizes mail. Keep ReplyPort and Outlook Classic running. Wait until Control Centre says <strong>Up to date</strong> before trying Search.</p></div></li>
+          <li class="guide-step"><div><h3>Try a harmless Search</h3><p>Then enable ReplyPort for a conversation and ask it to find a message. ReplyPort can read approved mail and create unsent Outlook drafts; it has no Send tool.</p></div></li>
         </ol>
-        <p>Some apps require a particular plan, workspace permission or administrator approval. If the app cannot connect to a remote OAuth-protected MCP server, use the <a class="link" href="#compatibility">Dropbox compatibility setup</a>.</p>
       </section>
 
-      <section id="compatibility">
-        <h2>Dropbox compatibility setup</h2>
-        <p>For an AI app that cannot use remote MCP, use the older Dropbox connector workflow. Open ReplyPort Control Centre and choose <strong>Advanced actions &#8594; Dropbox compatibility setup</strong>, or follow the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</p>
+      <section id="availability" class="faq">
+        <details>
+          <summary>If the custom connector option is not available</summary>
+          <p>Check the current app&#8217;s connector settings and, for a managed workspace, its current administrator settings. Confirm what the interface actually allows before drawing conclusions from subscription documentation. If the direct remote MCP route is genuinely unavailable, see the <a class="link" href="#compatibility">other connection options</a>.</p>
+        </details>
+      </section>
+
+      <section id="compatibility" class="faq">
+        <details>
+          <summary>Other connection options</summary>
+          <p>For an AI app that cannot use remote MCP, ReplyPort retains its Dropbox compatibility workflow. Open Control Centre and choose <strong>Advanced actions &#8594; Dropbox compatibility setup</strong>, or follow the <a class="link" href="../setup/">Dropbox compatibility guide</a>.</p>
+        </details>
       </section>
     </article>
   </div>
